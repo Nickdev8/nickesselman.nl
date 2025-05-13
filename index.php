@@ -9,10 +9,11 @@
     <link rel="icon" type="image/png" href="./images/logo.png">
     <link rel="stylesheet" href="scrips/helper.php">
 
-    <!-- all css -->
+    <!-- basic css -->
     <link rel="stylesheet" href="css/reset.css?v=1.0.0">
     <link rel="stylesheet" href="css/main.css?v=1.0.0">
 
+    <!-- add css of the page Im on -->
     <?php
     $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     $cssFile = "css/{$page}.css";
