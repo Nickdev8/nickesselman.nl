@@ -52,7 +52,7 @@
 .nav-links a:hover,
 .nav-links a:focus {
     background: #1f2d3d;
-    color: #ffb347;
+    color: #ff8c37;
 }
 
 /* Responsive: Stack nav links on small screens */
@@ -72,9 +72,18 @@
 
 
 
+
 /* separator */
 .separator {
-    margin: 4rem auto;
+    margin: 2rem auto;
+}
+.separator:empty::before {
+    content: "\00a0";
+    display: block;
+}
+
+.middle{
+  margin: auto;
 }
 
 .split{
