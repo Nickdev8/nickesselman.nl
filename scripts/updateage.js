@@ -7,7 +7,7 @@ function updateAge() {
     const seconds = Math.floor(diff / 1000);
     const minutes = Math.floor(seconds / 60);
     const days = Math.floor(seconds / (24 * 60 * 60));
-    const months = Math.floor(days / 30.44); // Approximate month length
+    const months = Math.floor(days / (365 / 12));
 
     document.getElementById('seconds-old').textContent = `${seconds} seconds`;
     document.getElementById('minutes-old').textContent = `${minutes} minutes`;
