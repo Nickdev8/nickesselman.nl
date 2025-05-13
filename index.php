@@ -43,8 +43,23 @@
             include 'pages/404.php';
         }
     } else if ($project !== null) {
-        if (file_exists("projects/$project.php")) {
-            include "projects/$project.php";
+        // Find the project in the $projects array
+        $selectedProject = null;
+        foreach ($projects as $proj) {
+            if ($proj['link'] === $project) {
+                $selectedProject = $proj;
+                break;
+            }
+        }
+
+        if ($selectedProject) {
+            if (isset($selectedProject['basiclayout']) && $selectedProject['basiclayout'] === 'true') {
+                include 'projects/basiclayout.php';
+            } else if (file_exists("projects/$project.php")) {
+                include "projects/$project.php";
+            } else {
+                include 'pages/404.php';
+            }
         } else {
             include 'pages/404.php';
         }

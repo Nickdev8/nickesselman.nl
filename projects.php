@@ -2,20 +2,20 @@
 
 $projects = [
     [
-        'title' => 'Project 1',
+        'title' => 'Project1',
         'description' => 'Description of project 1',
         'image' => '1.jpg',
         'link' => 'test',
-        'basiclayout' => 'true',
+        'basiclayout' => 'false',
         'text1' => 'This is a test',
         'text2' => 'This is a test2',
     ],
     [
-        'title' => 'Project 2',
+        'title' => 'Project2',
         'description' => 'Description of project 2',
         'image' => '2.jpg',
-        'link' => '#',
-        'basiclayout' => 'false'
+        'link' => 'test2',
+        'basiclayout' => 'true'
     ],
     [
         'title' => 'Project 3',
