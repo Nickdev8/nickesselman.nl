@@ -17,28 +17,39 @@
     <?php
     $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     $cssFile = "css/{$page}.css";
-    if (file_exists($cssFile)) :
-    ?>
-    <link rel="stylesheet" href="<?php echo $cssFile; ?>?v=1.0.0">
+    if (file_exists($cssFile)):
+        ?>
+        <link rel="stylesheet" href="<?php echo $cssFile; ?>?v=1.0.0">
     <?php endif; ?>
 
 </head>
 
 <body>
     <?php
+    include 'projects.php';
     include 'pages/nav.php';
 
-    if (isset($_GET['page'])) {
-        $page = $_GET['page'];
+    $page = $_GET['page'] ?? null;
+    $project = $_GET['project'] ?? null;
 
-    } else {
+    if ($page === null && $project === null) {
         $page = 'home';
     }
 
-    if (file_exists("pages/$page.php")) {
-        include "pages/$page.php";
+    if ($page !== null) {
+        if (file_exists("pages/$page.php")) {
+            include "pages/$page.php";
+        } else {
+            include 'pages/404.php';
+        }
+    } else if ($project !== null) {
+        if (file_exists("projects/$project.php")) {
+            include "projects/$project.php";
+        } else {
+            include 'pages/404.php';
+        }
     } else {
-        include 'pages/404.php';
+        include 'pages/home.php';
     }
     ?>
 </body>

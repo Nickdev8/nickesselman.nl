@@ -24,7 +24,7 @@
 
 <div class="separator"></div>
 
-<div class="card wide container wide">
+<div class="card wide container">
     <h2 class="headline">Some random images</h2>
     <h2 class="subheadline">Click on an image to see it its source</h2>
     <div class="grid" id="imageGrid">

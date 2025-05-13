@@ -1,5 +1,5 @@
 <div class="card wide container separator">
-    <h2 class="headline">Contact</h2>
+    <h1>This</h1>
     <p>
         If you want to get in touch, you can reach me at:
     </p>
