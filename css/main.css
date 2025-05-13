@@ -1,41 +1,3 @@
-/* Reset CSS */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    font-size: 62.5%;
-}
-
-p {
-    font-size: 1.6rem;
-}
-
-/* Main Nick Esselman */
-header {
-    background: #1f2d3d;
-    color: #ffffff;
-    padding: 1rem 0 6rem;
-    text-align: center;
-}
-
-header>p,
-header>h1 {
-    color: #ffffff !important;
-    z-index: 20;
-    position: relative;
-}
-
-/* Make header content non-selectable */
-header, header * {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-
 /* Navbar Styles */
 .navbar {
     background: #1f2d3d;
@@ -45,6 +7,11 @@ header, header * {
     position: sticky;
     top: 0;
     z-index: 10;
+}
+
+.navbar > *{
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .navbar .contain {
@@ -101,4 +68,22 @@ header, header * {
         width: 100%;
         margin-top: 1rem;
     }
+}
+
+
+
+/* separator */
+.separator {
+    margin: 4rem auto;
+}
+
+.split{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+.split > div{
+    flex: 1;
+    padding: 2rem;
+    
 }

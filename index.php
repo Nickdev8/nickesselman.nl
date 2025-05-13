@@ -10,15 +10,26 @@
     <link rel="stylesheet" href="scrips/helper.php">
 
     <!-- all css -->
-    <link rel="stylesheet" href="css/main-top.css?v=1.0.0">
+    <link rel="stylesheet" href="css/reset.css?v=1.0.0">
+    <link rel="stylesheet" href="css/main.css?v=1.0.0">
+
+    <?php
+    $page = isset($_GET['page']) ? $_GET['page'] : 'home';
+    $cssFile = "css/{$page}.css";
+    if (file_exists($cssFile)) :
+    ?>
+    <link rel="stylesheet" href="<?php echo $cssFile; ?>?v=1.0.0">
+    <?php endif; ?>
 
 </head>
 
 <body>
     <?php
+    include 'pages/nav.php';
+
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
-        
+
     } else {
         $page = 'home';
     }
