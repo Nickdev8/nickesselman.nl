@@ -27,7 +27,7 @@
 <body>
     <?php
     include 'projects.php';
-    include 'pages/nav.php';
+    include 'pages/specials/header.php';
 
     $page = $_GET['page'] ?? null;
     $project = $_GET['project'] ?? null;
@@ -40,7 +40,7 @@
         if (file_exists("pages/$page.php")) {
             include "pages/$page.php";
         } else {
-            include 'pages/404.php';
+            include 'pages/specials/404.php';
         }
     } else if ($project !== null) {
         // Find the project in the $projects array
@@ -58,14 +58,16 @@
             } else if (file_exists("projects/$project.php")) {
                 include "projects/$project.php";
             } else {
-                include 'pages/404.php';
+                include 'pages/specials/404.php';
             }
         } else {
-            include 'pages/404.php';
+            include 'pages/specials/404.php';
         }
     } else {
         include 'pages/home.php';
     }
+
+    include 'pages/specials/footer.php';
     ?>
 </body>
 

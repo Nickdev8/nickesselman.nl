@@ -40,7 +40,7 @@
 
     <div class="right" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.125); border-radius: 1rem; height: fit-content;">
         <?php
-        include 'pages/alltheprogramingluangages.html';
+        include 'pages/specials/alltheprogramingluangages.html';
         ?>
     </div>
 </div>

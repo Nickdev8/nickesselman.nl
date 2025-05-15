@@ -96,3 +96,14 @@
     padding: 2rem;
     
 }
+
+
+@media screen and (max-width: 800px) {
+    .split {
+        flex-direction: column;
+        gap: 0;
+    }
+    .split > div {
+        padding: 1rem;
+    }
+}
