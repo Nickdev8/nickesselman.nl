@@ -1,21 +1,19 @@
-/* Main Nick Esselman */
-header {
+.main-top {
     background: #1f2d3d;
     color: #ffffff;
     padding: 1rem 0 6rem;
     text-align: center;
 }
 
-header>p,
-header>h1 {
+.main-top>p,
+.main-top>h1 {
     color: #ffffff !important;
     z-index: 20;
     position: relative;
 }
 
-/* Make header content non-selectable */
-header,
-header * {
+.main-top,
+.main-top * {
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;

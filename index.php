@@ -24,11 +24,13 @@
 
 </head>
 
-<body>
+<main>
     <?php
     include 'projects.php';
     include 'pages/specials/header.php';
-
+    ?>
+    <main>
+    <?php
     $page = $_GET['page'] ?? null;
     $project = $_GET['project'] ?? null;
 
@@ -66,7 +68,9 @@
     } else {
         include 'pages/home.php';
     }
-
+    ?>
+    </main>
+    <?php
     include 'pages/specials/footer.php';
     ?>
 </body>

@@ -1,11 +1,11 @@
 <script src="scripts/loadmoreimages.js"></script>
 
-<header>
+<div class="main-top">
     <h1 class="ultratitle">Nick Essleman</h1>
     <p class="headline">
         A passionate student who loves creating and learning.
     </p>
-</header>
+</div>
 
 <div class="container split separator">
     <div class="left copy card">
