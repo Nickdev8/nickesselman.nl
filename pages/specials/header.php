@@ -1,5 +1,5 @@
 <header class="site-header">
-    <div class="navbar container wide split">
+    <div class="navbar container wide">
             <a href="index.php" class="logo">
                 <img src="./images/logo_transparent.png" alt="Logo" />
             </a>

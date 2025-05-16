@@ -7,8 +7,8 @@
     </h2>
 </div>
 
-<div class="container split separator">
-    <div class="left copy card">
+<div class="container wide split separator" style="padding: 0 !important;">
+    <div class="card">
         <h2 class="headline">Hi!</h2>
         <p>
             This is a place where I share my projects, ideas, and experiences.
@@ -22,7 +22,7 @@
     </div>
 
 
-    <div class="right card">
+    <div class="card">
         <div class="profile-description">
             <h2 class="headline">About Me</h2>
             <p>
