@@ -9,26 +9,25 @@ $projects = [
         'basiclayout' => 'false',
     ],
     [
-        'title' => 'Project2',
+        'title' => 'Project 2',
         'description' => 'Description of project 2',
         'image' => '2.jpg',
-        'link' => 'test',
-        'basiclayout' => 'false',
-        'text1' => 'This is a test',
-        'text2' => 'This is a test2',
-    ],
-    [
-        'title' => 'Project 3',
-        'description' => 'Description of project 3',
-        'image' => '3.jpg',
-        'link' => '#',
-        'basiclayout' => 'true'
-    ],
-    [
-        'title' => 'Project 4',
-        'description' => 'Description of project 4',
-        'image' => '4.jpg',
-        'link' => '#',
-        'basiclayout' => 'true'
+        'link' => 'project2',
+        'basiclayout' => 'true',
+        'blocks' => [
+            [
+                'title' => 'Overview',
+                'content' => '<p>This is a simple overview of Project 2.</p>',
+            ],
+            [
+                'title' => 'Features',
+                'content' => '<ul><li>Feature 1</li><li>Feature 2</li></ul>',
+            ],
+            [
+                'title' => 'Gallery',
+                'content' => '<p>Here is a screenshot from Project 2.</p>',
+                'image' => 'images/project2-1.jpg',
+            ],
+        ],
     ],
 ];
