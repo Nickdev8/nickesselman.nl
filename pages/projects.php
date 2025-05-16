@@ -1,4 +1,4 @@
-<div class="card container">
+<div class="card container wide">
     <h2 class="headline">These are most of my personal Projects! And events I've contributed in</h2>
 
     <div class="projectgrid">
