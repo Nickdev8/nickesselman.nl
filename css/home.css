@@ -6,7 +6,8 @@
 }
 
 .main-top>p,
-.main-top>h1 {
+.main-top>h1,
+.main-top>h2 {
     color: #ffffff !important;
     z-index: 20;
     position: relative;
