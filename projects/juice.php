@@ -16,7 +16,9 @@
         I made a game called <a href="https://www.meta.com/en-gb/experiences/partyvr/9355384034552901/" target="_blank">PartyVR</a>.<br>
         It was a game where you could play with your friends in VR in the same room, and it was a lot of fun to make.<br>
         I made it in Unity, using the Meta XR SDK.<br>
-        <br>
+        </p>
+    <h2 class="subheadline">My stuggle</h2>
+        <p>
         The Hardest part to get working was the networking. <br>
         because i had a lot of errors with syncing the posisiots of objects with all the players.
     </p>
