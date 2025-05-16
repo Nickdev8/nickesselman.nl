@@ -2,7 +2,7 @@
     <nav class="navbar">
         <div class="contain">
             <a href="index.php" class="logo">
-                <img src="./images/logo.png" alt="Logo" />
+                <img src="./images/logo_transparent.png" alt="Logo" />
             </a>
             <ul class="nav-links">
                 <li><a href="?page=home">Home</a></li>

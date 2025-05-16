@@ -2,13 +2,11 @@
 
 $projects = [
     [
-        'title' => 'Project1',
-        'description' => 'Description of project 1',
-        'image' => '1.jpg',
-        'link' => 'te',
-        'basiclayout' => 'true',
-        'text1' => 'This is a test',
-        'text2' => 'This is a test2',
+        'title' => 'Juice',
+        'description' => 'This was a 12 day long hackathon in shanghai, with Hackclub',
+        'image' => 'juice.jpg',
+        'link' => 'juice',
+        'basiclayout' => 'false',
     ],
     [
         'title' => 'Project2',
@@ -16,6 +14,8 @@ $projects = [
         'image' => '2.jpg',
         'link' => 'test',
         'basiclayout' => 'false',
+        'text1' => 'This is a test',
+        'text2' => 'This is a test2',
     ],
     [
         'title' => 'Project 3',
