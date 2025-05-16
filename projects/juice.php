@@ -19,11 +19,14 @@
     <div class="split">
         <div>
             <p>
-                I created a game called <a href="https://www.meta.com/en-gb/experiences/partyvr/9355384034552901/?require_login=true"
+                I created a game called <a
+                    href="https://www.meta.com/en-gb/experiences/partyvr/9355384034552901/?require_login=true"
                     target="_blank">PartyVR</a>.<br>
-                Imagine a wild party, but in virtual reality—dodge flying cakes, dance with your friends, and compete in wacky
+                Imagine a wild party, but in virtual reality—dodge flying cakes, dance with your friends, and compete in
+                wacky
                 mini-games, all in the same virtual room!<br>
-                Building it was a blast. I used Unity and the Meta XR SDK, and spent way too many late nights laughing at my own
+                Building it was a blast. I used Unity and the Meta XR SDK, and spent way too many late nights laughing
+                at my own
                 bugs.<br>
             </p>
         </div>
@@ -37,11 +40,13 @@
             <p>
                 The hardest part? Networking!<br>
                 Getting everyone’s avatars to move smoothly together was like herding virtual cats.<br>
-                Objects would randomly fly across the room, get stuck in walls, or—most of the time—not move at all for other
+                Objects would randomly fly across the room, get stuck in walls, or—most of the time—not move at all for
+                other
                 players because everything kept desyncing.<br>
                 Sometimes, you’d throw a cake and only you would see it fly, while everyone else just saw it floating in
                 midair!<br>
-                But after a lot of trial and error (and some questionable dance moves in my living room), I finally got it
+                But after a lot of trial and error (and some questionable dance moves in my living room), I finally got
+                it
                 working... at least most of the time.<br>
             </p>
         </div>
@@ -55,7 +60,8 @@
             <p>
                 Unfortunately, I wasn’t able to fully complete the game before the deadline.<br>
                 There were still a few bugs left, and some features I wanted to add just didn’t make it in time.<br>
-                But even with all the chaos, it was an amazing learning experience—and I’m excited to keep working on PartyVR in
+                But even with all the chaos, it was an amazing learning experience—and I’m excited to keep working on
+                PartyVR in
                 the future!<br>
             </p>
         </div>
@@ -74,12 +80,13 @@
                 We both had a great time and made many new friends.<br>
                 <br>
                 When we arrived, we immediately noticed so many differences in the culture.<br>
-                I especially enjoyed trying all the different foods and attempting to communicate with people who didn’t speak
+                I especially enjoyed trying all the different foods and attempting to communicate with people who didn’t
+                speak
                 the same language.<br>
             </p>
         </div>
         <div>
-            <img src="china-food.jpg" alt="Trying local food in China" class="img-cropped">
+            <img src="images/juice/flight.jpg" alt="Trying local food in China" class="img-cropped">
         </div>
     </div>
     <div class="split">
@@ -98,10 +105,12 @@
     <div class="split">
         <div>
             <p>
-                At the “open cafe” we hosted, we all demoed our games and showed them to random people who stopped by.<br>
+                At the “open cafe” we hosted, we all demoed our games and showed them to random people who stopped
+                by.<br>
                 But unfortunately, since I made a multiplayer game, I was not able to demo it.<br>
                 <br>
-                We found some local people selling all kinds of fruits like melons, oranges, and mangos, which we made juice
+                We found some local people selling all kinds of fruits like melons, oranges, and mangos, which we made
+                juice
                 from.<br>
             </p>
         </div>
@@ -112,11 +121,14 @@
     <div class="split">
         <div>
             <p>
-                Both making the juice and showing our games led to lots of laughter and fun times with all the Hack Clubbers
+                Both making the juice and showing our games led to lots of laughter and fun times with all the Hack
+                Clubbers
                 there.<br>
                 <br>
-                The cultural differences that surprised me the most were the old buildings integrated with new technology.<br>
-                Since we weren’t directly in the center of Shanghai but more in the popular downtown, we saw many places with
+                The cultural differences that surprised me the most were the old buildings integrated with new
+                technology.<br>
+                Since we weren’t directly in the center of Shanghai but more in the popular downtown, we saw many places
+                with
                 random cabling running across the street.<br>
             </p>
         </div>
@@ -127,14 +139,26 @@
     <div class="split">
         <div>
             <p>
-                QR codes were everywhere, especially for things like restaurant menus—almost everything was done with a QR
+                QR codes were everywhere, especially for things like restaurant menus—almost everything was done with a
+                QR
                 code.<br>
-                The most popular app for this was Alipay, which is used for paying, ordering food, and even renting bikes.<br>
+                The most popular app for this was Alipay, which is used for paying, ordering food, and even renting
+                bikes.<br>
                 Another app, Didi, is like the Chinese version of Uber and is used for getting around the city.<br>
             </p>
         </div>
         <div>
             <img src="qr-codes.jpg" alt="QR codes in daily life" class="img-cropped">
         </div>
+    </div>
+</div>
+
+<div class="card container separator">
+    <h2 class="headline">More images</h2>
+    <div class="media ">
+        <img src="./images/nice/IMG-20250414-WA0171.jpg" alt="Image" onclick="openPreview(this)">2
+    </div>
+    <div class="media landscape">
+        <img src="./images/nice/IMG-20250414-WA0171.jpg" alt="Image" onclick="openPreview(this)">
     </div>
 </div>
