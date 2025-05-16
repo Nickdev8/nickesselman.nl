@@ -1,5 +1,5 @@
 <div class="card container">
-    <h2 class="headline">These are most of my personal Projects!</h2>
+    <h2 class="headline">These are most of my personal Projects! And events I've contributed in</h2>
 
     <div class="projectgrid">
         <?php
