@@ -20,7 +20,7 @@ html {
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    justify-content:space-between
+    justify-content: space-between
 }
 
 .split>p,
@@ -52,6 +52,14 @@ p {
     object-fit: cover;
     border-radius: 8px;
 }
+
+.img-profile {
+    width: 26rem;
+    border-radius: var(--radii-extra);
+}
+
+
+
 
 @media screen and (max-width: 800px) {
     .split {

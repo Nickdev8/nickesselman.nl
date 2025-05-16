@@ -1,6 +1,5 @@
 <header class="site-header">
-    <nav class="navbar">
-        <div class="contain">
+    <div class="navbar container wide split">
             <a href="index.php" class="logo">
                 <img src="./images/logo_transparent.png" alt="Logo" />
             </a>
@@ -10,8 +9,7 @@
                 <li><a href="?page=projects">Projects</a></li>
                 <li><a href="?page=contact">Contact</a></li>
             </ul>
-        </div>
-    </nav>
+    </div>
 </header>
 
 <style>
@@ -25,12 +23,7 @@
     z-index: 10;
 }
 
-.navbar > * {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.navbar .contain {
+.navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;

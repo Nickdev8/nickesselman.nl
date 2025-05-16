@@ -70,16 +70,6 @@
     grid-column: span 2;
 }
 
-
-.profile {
-    width: 20rem;
-    height: 20rem;
-    max-width: 300px;
-    border-radius: 25%;
-    object-fit: cover;
-    display: block;
-}
-
 .projectbutton {
     text-align: center;
 }
