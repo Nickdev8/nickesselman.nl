@@ -2,7 +2,13 @@
 // Ensure no output before headers
 ob_start();
 
-$dir = './images/nice/';
+// Allow a custom directory via $dir variable, then ?dir=..., then default
+$dir = $dir ?? (isset($_GET['dir']) ? $_GET['dir'] : './images/nice/');
+if (substr($dir, -1) !== '/') $dir .= '/';
+
+// Prevent directory traversal
+$dir = preg_replace('#\.\.[/\\\]#', '', $dir);
+
 $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
 $limit = isset($_GET['limit']) ? intval($_GET['limit']) : 15; // Start with images
 $displayed = isset($_GET['displayed']) ? explode(',', $_GET['displayed']) : [];
@@ -34,19 +40,27 @@ if (is_dir($dir)) {
         $ext = strtolower(pathinfo($src, PATHINFO_EXTENSION));
         if (in_array($ext, $imageExtensions)) {
             // Get image dimensions to determine if it's landscape
-            $imageSize = getimagesize($dir . $src);
-            $isLandscape = $imageSize[0] > $imageSize[1]; // Width > Height
+            $imageSize = @getimagesize($dir . $src);
+            $isLandscape = $imageSize && $imageSize[0] > $imageSize[1]; // Width > Height
             $class = $isLandscape ? 'landscape' : '';
+            // Output image with correct relative path for browser
+            $webPath = $dir . $src;
+            // Remove leading './' if present for browser compatibility
+            if (substr($webPath, 0, 2) === './') $webPath = substr($webPath, 2);
             echo '<div class="media ' . $class . '">
-                    <img src="' . htmlspecialchars($dir . $src) . '" alt="Image" onclick="openPreview(this)">
+                    <img src="' . htmlspecialchars($webPath) . '" alt="Image" onclick="openPreview(this)">
                   </div>';
         } elseif (in_array($ext, $videoExtensions)) {
+            $webPath = $dir . $src;
+            if (substr($webPath, 0, 2) === './') $webPath = substr($webPath, 2);
             echo '<div class="media"><video controls>
-                <source src="' . htmlspecialchars($dir . $src) . '" type="video/mp4">
+                <source src="' . htmlspecialchars($webPath) . '" type="video/mp4">
                 Your browser does not support the video tag.
             </video></div>';
         } elseif (in_array($ext, $panoExtensions)) {
-            echo '<div class="media"><iframe src="' . htmlspecialchars($dir . $src) . '" frameborder="0" allowfullscreen></iframe></div>';
+            $webPath = $dir . $src;
+            if (substr($webPath, 0, 2) === './') $webPath = substr($webPath, 2);
+            echo '<div class="media"><iframe src="' . htmlspecialchars($webPath) . '" frameborder="0" allowfullscreen></iframe></div>';
         }
     }
 } else {

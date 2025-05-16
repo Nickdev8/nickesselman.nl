@@ -6,27 +6,49 @@ html {
 .separator {
     margin: 2rem auto;
 }
+
 .separator:empty::before {
     content: "\00a0";
     display: block;
 }
 
-.middle{
-  margin: auto;
+.middle {
+    margin: auto;
 }
 
-.split{
+.split {
     display: flex;
     flex-direction: row;
     gap: 2rem;
+    justify-content:space-between
 }
-.split > div{
+
+.split>p,
+.split>div {
     flex: 1;
 }
 
+p {
+    max-width: 600px;
+}
+
 .img-cropped {
-    width: 320px;
-    height: 200px;
+    width: 28rem;
+    height: 15rem;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.img-cropped-wide {
+    width: 38rem;
+    height: 15rem;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.img-cropped-small {
+    width: 18rem;
+    height: 25rem;
     object-fit: cover;
     border-radius: 8px;
 }
@@ -36,7 +58,8 @@ html {
         flex-direction: column;
         gap: 0;
     }
-    .split > div {
+
+    .split>div {
         padding: 1rem;
     }
 }
