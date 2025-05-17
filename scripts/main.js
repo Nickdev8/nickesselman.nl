@@ -1,146 +1,154 @@
-const canvas = document.getElementById('treeCanvas');
-const slider = document.getElementById('slider');
-const ctx = canvas.getContext('2d');
-let width = canvas.width = window.innerWidth;
-let height = canvas.height = window.innerHeight;
-let offsetX = 0, offsetY = 0, isDragging = false, startX, startY;
 
-const treeData = {
-    name: 'Root',
-    project: null,
-    children: [
-        { name: 'Project A', project: 'https://example.com/a', children: [] },
-        {
-            name: 'Category B', project: null,
-            children: [
-                { name: 'Project B1', project: 'https://example.com/b1', children: [] },
-                { name: 'Project B1', project: 'https://example.com/b1', children: [] },
-                {
-                    name: 'Project B2', project: 'https://example.com/b2', children: [
-                        { name: 'Project C', project: 'https://example.com/c', children: [] },
-                        {
-                            name: 'Project C', project: 'https://example.com/c', children: [
-                                { name: 'Project C', project: 'https://example.com/c', children: [] },
+    const canvas = document.getElementById('treeCanvas');
+    const ctx    = canvas.getContext('2d');
+    const tooltip= document.getElementById('tooltip');
 
-                            ]
-                        },
+    const CURVE     = 0.2;
+    const DECAY     = 0.75;
+    const MIN_SCALE = 0.15;
+    let width, height, BASE_LEN;
+    let offsetX = 0, offsetY = 400;
+    let isDragging = false, startX, startY;
 
-                    ]
-                }
-            ]
-        },
-        { name: 'Project C', project: 'https://example.com/c', children: [] },
-        {
-            name: 'Project C', project: 'https://example.com/c', children: [
-                { name: 'Project C', project: 'https://example.com/c', children: [] },
+    const treeData = {
+      name:'Root', project:null, children:[
+        {name:'Proj A', project:'https://example.com/a', children:[]},
+        {name:'Cat B',  project:null, children:[
+          {name:'B1', project:'https://example.com/b1', children:[]},
+          {name:'B2', project:'https://example.com/b2', children:[
+            {name:'C', project:'https://example.com/c', children:[]}
+          ]}
+        ]},
+        {name:'Proj C', project:'https://example.com/c', children:[]}
+      ]
+    };
 
-            ]
-        },
-        { name: 'Project C', project: 'https://example.com/c', children: [] }
-    ]
-};
+    function resize(){
+      width     = canvas.width  = window.innerWidth;
+      height    = canvas.height = window.innerHeight;
+      BASE_LEN  = Math.min(width, height) * MIN_SCALE;
+      draw();
+    }
+    window.addEventListener('resize', resize);
+    resize();
 
-function drawNode(node, x, y, angle, depth = 0) {
-    // Adjust branch length and thickness
-    const len = 100 - depth * 10; // Branches get shorter further from the root
-    const branchX = x + Math.cos(angle) * len;
-    const branchY = y + Math.sin(angle) * len;
+    function drawNode(node, x, y, angle, depth=0){
+      const len = BASE_LEN * Math.pow(DECAY, depth);
+      const x2  = x + Math.cos(angle)*len;
+      const y2  = y + Math.sin(angle)*len;
 
-    // Adjust branch color and thickness
-    ctx.strokeStyle = depth === 0 ? '#8B4513' : '#27ae60'; // Brown for the trunk, green for branches
-    ctx.lineWidth = Math.max(2, 12 - depth * 2); // Thicker trunk, thinner branches
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(branchX, branchY);
-    ctx.stroke();
+      // control‐point for smooth bend
+      const cx = x + Math.cos(angle)*len*0.5 + Math.sin(angle)*len*0.3*CURVE;
+      const cy = y + Math.sin(angle)*len*0.5 - Math.cos(angle)*len*0.3*CURVE;
 
-    // Adjust node color
-    ctx.fillStyle = node.project ? '#2ecc71' : '#1abc9c'; // Green for projects, teal for categories
-    ctx.beginPath();
-    ctx.arc(branchX, branchY, 8, 0, 2 * Math.PI);
-    ctx.fill();
+      // branch styling: light tan trunk → bright green branches
+      ctx.lineCap     = 'round';
+      ctx.shadowColor = 'rgba(0,0,0,0.7)';
+      ctx.shadowBlur  = 6;
+      const trunkColor  = '#D2B48C';
+      const branchColor = '#66FF66';
+      ctx.strokeStyle = depth===0 ? trunkColor : branchColor;
+      ctx.lineWidth   = Math.max(3, 12 - depth*1.7);
 
-    // Store node position for hit testing
-    node._pos = { x: branchX, y: branchY };
-    node._radius = 20;
-    // Spread branches more naturally in one direction
-    // const spread = Math.PI/(depth*0.8+0.2);
-    const spread = (depth+1) * -slider.value + 1.5;
+      // draw branch
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.quadraticCurveTo(cx, cy, x2, y2);
+      ctx.stroke();
 
+      // draw node circle
+      ctx.shadowBlur = 0;
+      ctx.fillStyle  = node.project ? '#00E676' : '#00CCCC';
+      ctx.beginPath();
+      ctx.arc(x2, y2, 6 + (node.children.length===0?2:0), 0, 2*Math.PI);
+      ctx.fill();
 
+      // little leaf on true tips
+      if (node.children.length===0){
+        ctx.fillStyle = '#27AE60';
+        ctx.beginPath();
+        ctx.moveTo(x2,y2);
+        ctx.lineTo(x2+Math.cos(angle-0.3)*12, y2+Math.sin(angle-0.3)*12);
+        ctx.lineTo(x2+Math.cos(angle+0.3)*12, y2+Math.sin(angle+0.3)*12);
+        ctx.closePath();
+        ctx.fill();
+      }
 
-    console.log(depth, node.name, spread);
-    node.children.forEach((child, i) => {
-        const a = angle - spread / 2 + (i / (node.children.length - 1 || 1)) * spread;
-        drawNode(child, branchX, branchY, a, depth + 1);
+      // label in white
+      ctx.font      = `${14-depth}px sans-serif`;
+      ctx.fillStyle = '#FFF';
+      ctx.textAlign = depth===0? 'center' : (Math.cos(angle)>0?'left':'right');
+      ctx.fillText(node.name, x2 + Math.cos(angle)*16, y2 + Math.sin(angle)*16);
+
+      // store for hit‐testing
+      node._pos    = {x:x2,y:y2};
+      node._radius = 20;
+
+      // recurse
+      const spread = Math.PI/(depth+2);
+      node.children.forEach((c,i)=>{
+        const a = angle - spread/2 + (i/(node.children.length-1||1))*spread;
+        drawNode(c, x2, y2, a, depth+1);
+      });
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,width,height);
+      ctx.save();
+      ctx.translate(offsetX, offsetY);
+      // root at center
+      drawNode(treeData, width/2, height/2, -Math.PI/2);
+      ctx.restore();
+    }
+
+    function hitTest(node, p){
+      const dx = p.x - node._pos.x,
+            dy = p.y - node._pos.y;
+      if (dx*dx + dy*dy <= node._radius*node._radius) return node;
+      for (let c of node.children){
+        const h = hitTest(c, p);
+        if (h) return h;
+      }
+      return null;
+    }
+
+    // drag + hover
+    canvas.addEventListener('mousedown', e=>{
+      isDragging = true;
+      startX = e.clientX - offsetX;
+      startY = e.clientY - offsetY;
     });
-}
-function draw() {
-    ctx.clearRect(0, 0, width, height);
-    ctx.save();
-    ctx.translate(offsetX, offsetY);
-    drawNode(treeData, width / 2, height - 100, -Math.PI / 2); // Start from the bottom center
-    ctx.restore();
-}
-
-function hitTest(node, pos) {
-    const dx = pos.x - node._pos.x;
-    const dy = pos.y - node._pos.y;
-    if (dx * dx + dy * dy <= node._radius * node._radius) return node;
-    for (let child of node.children) {
-        const hit = hitTest(child, pos);
-        if (hit) return hit;
-    }
-    return null;
-}
-
-function checkHover(e) {
-    const pos = { x: e.clientX - offsetX, y: e.clientY - offsetY };
-    const node = hitTest(treeData, pos);
-    const tooltip = document.getElementById('tooltip');
-    if (node) {
-        tooltip.style.left = e.clientX + 10 + 'px';
-        tooltip.style.top = e.clientY + 10 + 'px';
-        tooltip.textContent = node.name;
-        tooltip.style.display = 'block';
-    } else {
-        tooltip.style.display = 'none';
-    }
-}
-
-canvas.addEventListener('mousedown', e => {
-    isDragging = true;
-    startX = e.clientX - offsetX;
-    startY = e.clientY - offsetY;
-});
-canvas.addEventListener('mousemove', e => {
-    if (isDragging) {
+    canvas.addEventListener('mousemove', e=>{
+      if (isDragging){
         offsetX = e.clientX - startX;
         offsetY = e.clientY - startY;
         draw();
-    } else {
-        checkHover(e);
-    }
-});
-canvas.addEventListener('mouseup', () => isDragging = false);
-canvas.addEventListener('mouseleave', () => isDragging = false);
-canvas.addEventListener('click', e => {
-    const pos = { x: e.clientX - offsetX, y: e.clientY - offsetY };
-    const node = hitTest(treeData, pos);
-    if (node && node.project) window.open(node.project, '_blank');
-});
+      } else {
+        const pos = { x:e.clientX - offsetX, y:e.clientY - offsetY };
+        const hit = hitTest(treeData, pos);
+        if (hit){
+          tooltip.textContent = hit.name;
+          // position tooltip, flip if off‐screen
+          document.body.appendChild(tooltip);
+          const {width:tw, height:th} = tooltip.getBoundingClientRect();
+          let left = e.clientX + 12,
+              top  = e.clientY + 12;
+          if (left + tw > window.innerWidth) left = e.clientX - tw - 12;
+          if (top  + th > window.innerHeight) top = e.clientY - th - 12;
+          tooltip.style.left = left + 'px';
+          tooltip.style.top  = top  + 'px';
+          tooltip.classList.add('visible');
+        } else {
+          tooltip.classList.remove('visible');
+        }
+      }
+    });
+    canvas.addEventListener('mouseup',   ()=>isDragging=false);
+    canvas.addEventListener('mouseleave',()=>isDragging=false);
 
-slider.addEventListener('input', () => {
-    const sliderValue = slider.value;
-    console.log(`Slider value: ${sliderValue}`);
-    draw(); // Re-draw the tree if the slider affects its appearance
-});
-
-window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-    draw();
-});
-
-// Precompute positions and render the tree
-draw();
+    // click → open project if present
+    canvas.addEventListener('click', e=>{
+      const pos = { x:e.clientX - offsetX, y:e.clientY - offsetY };
+      const hit = hitTest(treeData, pos);
+      if (hit && hit.project) window.open(hit.project, '_blank');
+    });
