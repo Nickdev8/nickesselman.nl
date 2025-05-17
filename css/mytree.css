@@ -1,0 +1,28 @@
+canvas {
+    display: block;
+    background: #000;
+    height: 100%;
+}
+
+.tooltip {
+    position: absolute;
+    padding: 6px 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 4px;
+    pointer-events: none;
+    font-size: 14px;
+    display: none;
+    z-index: 10;
+}
+
+input#slider {
+    position: absolute;
+    top: 10rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100; /* Ensure it renders above the canvas */
+    background: #fff;
+    border-radius: 5px;
+    padding: 5px;
+}
