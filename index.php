@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="scrips/helper.php">
 
     <!-- basic css -->
-    <link rel="stylesheet" href="css/reset.css?v=1.0.0">
-    <link rel="stylesheet" href="css/main.css?v=1.0.0">
+    <link rel="stylesheet" href="css/reset.css?v=1.0.1">
+    <link rel="stylesheet" href="css/main.css?v=1.0.1">
 
     <!-- add css of the page Im on -->
     <?php
@@ -19,7 +19,7 @@
     $cssFile = "css/{$page}.css";
     if (file_exists($cssFile)):
         ?>
-        <link rel="stylesheet" href="<?php echo $cssFile; ?>?v=1.0.0">
+        <link rel="stylesheet" href="<?php echo $cssFile; ?>?v=1.0.1">
     <?php endif; ?>
 
 </head>
