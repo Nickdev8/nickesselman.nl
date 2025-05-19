@@ -31,9 +31,13 @@ include './pages/projects.php';
     <h2 class="headline">More images</h2>
     <div class="grid" id="imageGrid">
         <?php
+        // Only load the first batch
         $dir = 'images/mainpagegrid/';
+        $_GET['offset'] = 0;
+        $_GET['limit'] = 20;
         include './scripts/load_images.php';
         ?>
     </div>
-    <button class="separator" id="loadMore" onclick="loadMoreImages()">Load More</button>
+    <button id="loadMoreBtn" class="btn" style="display:block;margin:1em auto;">Load More</button>
+    <div id="sentinel" style="height: 1px;"></div>
 </div>

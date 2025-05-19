@@ -10,7 +10,7 @@ if (substr($dir, -1) !== '/') $dir .= '/';
 $dir = preg_replace('#\.\.[/\\\]#', '', $dir);
 
 $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
-$limit = isset($_GET['limit']) ? intval($_GET['limit']) : 15; // Start with images
+$limit = isset($_GET['limit']) ? intval($_GET['limit']) : 30; // Start with images
 $displayed = isset($_GET['displayed']) ? explode(',', $_GET['displayed']) : [];
 
 $imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
