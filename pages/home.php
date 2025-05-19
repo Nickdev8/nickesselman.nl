@@ -1,5 +1,9 @@
 <script src="scripts/loadmoreimages.js"></script>
 
+<?php
+include 'pages/specials/header.php';
+?>
+
 <div class="main-top">
     <h1 class="ultratitle">Nick Essleman</h1>
     <h2 class="headline">
@@ -16,7 +20,7 @@
             Every project and every line of code tells a story about my journey.
         </p>
     </div>
-    <img src="images/nice/1.jpg" alt="Nick Essleman" class="img-cropped-wide">
+    <img src="images/me.png" alt="Nick Essleman" class="img-cropped-wide">
 
 
 </div>

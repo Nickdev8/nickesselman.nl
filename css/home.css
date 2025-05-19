@@ -21,7 +21,12 @@
     -ms-user-select: none;
 }
 
-
+.inner-main > .site-header{
+    position: unset !important;
+    transform: translateY(0);
+    display: block;
+    z-index: 200;
+}
 
 
 /* images */
@@ -85,11 +90,17 @@
 }
 
 
-.site-header{
-    position: relative !important;
-}
-.site-header.sticky {
-    position: sticky !important;
+.site-header {
+    position: fixed !important;
+    width: 100%;
+    left: 0;
     top: 0;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
+    transform: translateY(-100%);
     z-index: 100;
+}
+
+.site-header.sticky {
+    transform: translateY(0);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }

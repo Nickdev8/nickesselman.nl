@@ -3,7 +3,7 @@
 ob_start();
 
 // Allow a custom directory via $dir variable, then ?dir=..., then default
-$dir = $dir ?? (isset($_GET['dir']) ? $_GET['dir'] : './images/nice/');
+$dir = $dir ?? (isset($_GET['dir']) ? $_GET['dir'] : './images/mainpagegrid/');
 if (substr($dir, -1) !== '/') $dir .= '/';
 
 // Prevent directory traversal

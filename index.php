@@ -22,7 +22,7 @@
     <?php endif; 
     
     if ($page == "home"): ?>
-      <script src="scripts/home.js"></script>
+      <script src="scripts/home.js" defer></script>
     <?php endif; ?>
 
 </head>
@@ -32,7 +32,7 @@
     include 'projects.php';
     include 'pages/specials/header.php';
     ?>
-    <main>
+    <main class="inner-main">
     <?php
     $page = $_GET['page'] ?? null;
     $project = $_GET['project'] ?? null;
