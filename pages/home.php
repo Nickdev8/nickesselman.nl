@@ -32,12 +32,16 @@ include './pages/projects.php';
     <div class="grid" id="imageGrid">
         <?php
         // Only load the first batch
-        $dir = 'images/mainpagegrid/';
-        $_GET['offset'] = 0;
-        $_GET['limit'] = 20;
-        include './scripts/load_images.php';
+        $dir = 'images/*'; // All images in all subfolders of images/
+        $_GET['limit'] = 10;
+        include "./load_images.php";
         ?>
     </div>
     <button id="loadMoreBtn" class="btn" style="display:block;margin:1em auto;">Load More</button>
     <div id="sentinel" style="height: 1px;"></div>
+    <!-- Modal for image preview -->
+    <div id="imageModal" class="modal" style="display:none;">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <img class="modal-content" id="modalImg" src="" alt="Preview">
+    </div>
 </div>

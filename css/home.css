@@ -29,67 +29,6 @@
 }
 
 
-/* images */
-
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    /* Adaptive column sizing */
-    gap: 2px;
-    /* Small gap between items */
-    width: 100%;
-    padding: 0;
-    box-sizing: border-box;
-    grid-auto-flow: dense;
-    /* Ensures better packing of grid items */
-}
-
-.media {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    background-color: #000;
-    /* Fallback background for videos and iframes */
-}
-
-.media img,
-.media video,
-.media iframe {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Ensures media fills the grid cell without white space */
-    transition: transform 0.3s ease;
-    /* Smooth transition for the zoom effect */
-}
-
-.media>img:hover {
-    transform: scale(1.05);
-    /* Increase size to pop out on hover */
-    cursor: pointer;
-}
-
-/* Landscape images take up 2 columns */
-.media.landscape {
-    grid-column: span 2;
-}
-
-.projectbutton {
-    text-align: center;
-}
-
-
-@media screen and (max-width: 800px) {
-
-    .projectbutton {
-        text-align: left;
-        margin: auto 0 !important;
-    }
-}
-
-
 .site-header {
     position: fixed !important;
     width: 100%;

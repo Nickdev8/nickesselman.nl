@@ -1,3 +1,7 @@
+<?php
+$versionnum = "1.0.5"
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,18 +11,21 @@
     <title><?= $_GET['page']?></title>
     <link rel="stylesheet" href="https://css.hackclub.com/theme.css" />
     <link rel="icon" type="image/png" href="./images/logo.png">
-
+    <script type="module" src="scripts/loadmoreimages.js" defer></script>
+    
     <!-- basic css -->
-    <link rel="stylesheet" href="css/reset.css?v=1.0.2">
-    <link rel="stylesheet" href="css/main.css?v=1.0.2">
+    <link rel="stylesheet" href="css/reset.css?v=<?=$versionnum?>">
+    <link rel="stylesheet" href="css/main.css?v=<?=$versionnum?>">
 
     <!-- add css of the page Im on -->
     <?php
     $page = isset($_GET['page']) ? $_GET['page'] : 'home';
+    if (isset($_GET['project']))
+        $page = 'null';
     $cssFile = "css/{$page}.css";
     if (file_exists($cssFile)):
         ?>
-        <link rel="stylesheet" href="<?php echo $cssFile; ?>?v=1.0.2">
+        <link rel="stylesheet" href="<?php echo $cssFile; ?>?v=<?=$versionnum?>">
     <?php endif; 
     
     if ($page == "home"): ?>
