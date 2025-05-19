@@ -1,4 +1,4 @@
-<header class="site-header">
+<header class="site-header" id="site--header-main">
     <div class="navbar container wide">
             <a href="index.php" class="logo">
                 <img src="./images/logo_transparent.png" alt="Logo" />
