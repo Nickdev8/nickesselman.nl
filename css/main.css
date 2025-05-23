@@ -57,6 +57,32 @@ p {
     width: 26rem;
     border-radius: var(--radii-extra);
 }
+
+/* Wide (landscape) images, 16:9 */
+.img-wide >*,
+.img-wide img,
+.img-wide {
+  display: block;           /* remove inline-gap */
+  width: 100%;              /* fill container width */
+  height: auto;             /* height follows width */
+  aspect-ratio: 20 / 8;     /* lock to 16:9 */
+  object-fit: cover;        /* crop overflow if needed */
+  border-radius: 2rem;
+}
+
+/* Tall (portrait) images, 9:16 */
+.img-tall >*,
+.img-tall img,
+.img-tall {
+  display: block;           /* remove inline-gap */
+  width: auto;              /* height drives size if parent has one */
+  height: 100%;             /* fill container height */
+  aspect-ratio: 9 / 16;     /* lock to 9:16 */
+  object-fit: cover;        /* crop overflow if needed */
+  border-radius: 2rem;
+}
+
+
 /* images */
 
 
