@@ -13,6 +13,16 @@ include_once 'basics.php';
             and in total, there were almost 100 people that completed there 100 hours
         </p>
         <img src="images/juice/group.jpg" alt="QR codes in daily life" class="img-cropped-wide">
+        <h2 class="lead">Not Quite Finished</h2>
+        <div class="split">
+            <p>
+                Unfortunately, I wasn’t able to fully complete the game to my linkings.<br>
+                There were still a few bugs left, and some features I wanted to add just didn’t make it in time.<br>
+                But even with all the chaos, it was an amazing learning experience—and I’m excited to keep working
+                on
+                PartyVR in the future!<br>
+            </p>
+        </div>
     </div>
 
     <div class="card container copy separator" style="margin:0; height: fit-content">
@@ -50,17 +60,6 @@ include_once 'basics.php';
         </p>
 
         <!-- <img src="debugging-vr.jpg" alt="Debugging VR networking" class="img-cropped"> -->
-        <h2 class="lead">Not Quite Finished</h2>
-        <div class="split">
-            <p>
-                Unfortunately, I wasn’t able to fully complete the game to my linkings.<br>
-                There were still a few bugs left, and some features I wanted to add just didn’t make it in time.<br>
-                But even with all the chaos, it was an amazing learning experience—and I’m excited to keep working
-                on
-                PartyVR in the future!<br>
-            </p>
-            <img src="images/juice/storepage.jpg" alt="Unfinished PartyVR build" class="img-cropped">
-        </div>
     </div>
 </div>
 <div class="card container separator" id="OpenCafe">
