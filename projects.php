@@ -9,6 +9,13 @@ $projects = [
         'basiclayout' => 'false',
     ],
     [
+        'title' => 'My tree',
+        'description' => 'This is an idea i had for visualising the prjects i made',
+        'image' => 'mytree.jpg',
+        'link' => 'mytree',
+        'basiclayout' => 'false',
+    ],
+    [
         'title' => 'Project 2',
         'description' => 'Description of project 2',
         'image' => '2.jpg',

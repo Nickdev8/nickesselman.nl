@@ -6,7 +6,7 @@
         foreach ($projects as $project) {
             echo '<a href="?project=' . $project['link'] . '" class="card interactive project project-link">';
             echo '    <div class="img-ratio">';
-            echo '      <img src="/images/mainpagegrid/' . $project['image'] . '" alt="' . $project['title'] . '" />';
+            echo '      <img src="/images/projectsimages/' . $project['image'] . '" alt="' . $project['title'] . '" />';
             echo '    </div>';
             echo '    <div class="card-content">';
             echo '      <h3>' . $project['title'] . '</h3>';

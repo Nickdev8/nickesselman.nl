@@ -55,7 +55,6 @@ $versionnum = "1.0.5"
             include 'pages/specials/404.php';
         }
     } else if ($project !== null) {
-        // Find the project in the $projects array
         $selectedProject = null;
         foreach ($projects as $proj) {
             if ($proj['link'] === $project) {
