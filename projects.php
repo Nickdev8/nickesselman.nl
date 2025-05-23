@@ -106,6 +106,8 @@ $projects = [
                 <p>Github Stanly tumblr<br><img src="images/highseas/stanly.jpg" class="img-cropped"></p>
                 <p>Logitech MX Master 3S mouse<br><img src="images/highseas/mouse.jpg" class="img-cropped"></p>
                 <p>Raspberry pi zero<br><img src="images/highseas/rasp.jpg" class="img-cropped"></p>
+                <p>And many, MANY stickers. See the Stickers Projects for more info
+                <a href="/?project=stickers">My Stickers</a></p>
                 </div>'
             ],
             [
@@ -118,6 +120,27 @@ $projects = [
                 <img src="images/highseas/group2.jpg" class="img">
                 <img src="images/highseas/group1.jpg" class="img">'
             ]
+        ]
+    ],
+    [
+
+        'title' => 'EcoNest',
+        'description' => 'Ardiono project for a School assintment',
+        'image' => 'econest.png',
+        'link' => 'econest',
+        'basiclayout' => 'true',
+        'blocks' => [
+            [
+                'title' => 'Overview',
+                'content' => '<p>For school, I got the assintmend named "Duurzaam huis".<br>
+                It was about making a breadboard with led, ldr`s and th11 sensors. <br>
+                I did this together with Bram & Jesper. and we came up with <a href="https://38406.hosts2.ma-cloud.nl/EcoNest/index.php">Econest.com</a>
+                <br><br>
+                And altho I did almost everything with ardeono and the website. I had a blast doing it.<br>
+                I make a single page website with mutlible include statments in php.
+                </p>',
+                'image' => 'images/econest/image.png',
+            ],
         ]
     ],
     [

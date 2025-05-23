@@ -78,4 +78,51 @@
         margin-top: 1rem;
     }
 }
+
+/* Make sure it can wrap */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;            /* <-- allow wrapping */
+  padding: 0 2rem;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;      /* stack logo + links */
+    align-items: center;         /* center everything */
+    padding: 1rem;               /* smaller side padding */
+  }
+
+  .logo {
+    margin-bottom: 0.8rem;       /* space below the logo */
+    display: none;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: row;         /* keep links in a row */
+    flex-wrap: wrap;             /* wrap to the next line if needed */
+    gap: 0.8rem;                 /* smaller gap */
+    justify-content: center;
+    width: 100%;
+    overflow-x: auto;            /* allow horizontal scroll if really tight */
+    margin: 0;                   /* reset any previous margins */
+    padding: 0;                  /* reset padding */
+  }
+
+  .nav-links li {
+    /* optionally let each link grow if you want equal width:
+       flex: 1 1 auto;
+    */
+  }
+
+  .nav-links a {
+    font-size: 1.6rem;           /* slightly smaller text */
+    padding: 0.4rem 0.8rem;      /* tighter padding */
+  }
+}
+
 </style>
