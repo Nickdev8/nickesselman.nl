@@ -113,8 +113,7 @@ $projects = [
                 'content' => '
                 <p>Afer HighSeas was over, they orginized an event for everyone that took part in highseas to meet up with other hackclubbers in your area.<br>
                 So i went to Utecht to meet with 13 hackclubber were 6 showed up, (inc me). We went there and just walked arount the city, talking about the projects we made and the things we do.
-                <br>
-                <br>
+                <br><br>
                 Here i met: jsw08, Tuna, Emma, Verduijn, whacky, Fela and ArtyH</p>
                 <img src="images/highseas/group2.jpg" class="img">
                 <img src="images/highseas/group1.jpg" class="img">'
