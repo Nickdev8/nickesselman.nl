@@ -34,9 +34,11 @@
         object-fit: cover;
     }
 
-    .project>div {
+    .project>.card-content {
         padding: 1rem;
+        padding-top: 1.5rem;
         z-index: 1;
+        min-height: 13rem;
     }
 
     @media screen and (max-width: 1200px) {
