@@ -2,6 +2,121 @@
 
 $projects = [
     [
+        'title' => 'Juice • Hack Club Shanghai',
+        'description' => 'A 100-hour game-jam event in Shanghai, plus an Open Cafe and cultural deep-dive.',
+        'image' => 'images/juice/group.jpg',
+        'link' => 'juice',
+        'basiclayout' => 'true',
+        'blocks' => [
+
+            [
+                'title' => 'In Short',
+                'content' => '
+                <p>
+                    Juice was an event hosted by Hack Club in Shanghai, China.<br>
+                    We had to make a game in 100 hours,<br>
+                    and then fly to China to host an <a href="#OpenCafe">Open Cafe</a>.<br>
+                    In total, almost 100 people completed their 100-hour builds.
+                </p>
+',
+                'image' => 'images/juice/group.jpg',
+                'block_class' => 'narrow',
+                'image_class' => 'img-cropped-wide',
+            ],
+
+            [
+                'title' => 'The Game I Made',
+                'content' => '
+                <p>
+                I created a game called <a
+                    href="https://www.meta.com/en-gb/experiences/partyvr/9355384034552901/?require_login=true"
+                    target="_blank">PartyVR</a>.<br>
+                Imagine a wild VR party—dodge flying cakes, dance with friends, and compete in mini-games!<br>
+                Built in Unity + Meta XR SDK, with many late-night bug hunts.
+                </p>
+                ',
+                'image' => 'images/juice/partyvr.jpg',
+                'block_class' => 'copy',
+                'image_class' => 'img-cropped-small',
+            ],
+
+            [
+                'title' => 'My Struggle',
+                'content' => '
+                <p>
+                    The hardest part? Networking—herding avatars felt like herding virtual cats.<br>
+                    Cakes would fly only on my screen, objects got stuck, and most of the time nothing moved for others.<br>
+                    After tons of trial & error (and questionable dance moves), I got it mostly working… eventually.
+                </p>
+'
+            ],
+
+            [
+                'title' => 'Not Quite Finished',
+                'content' => '
+                <p>
+                    A few bugs lingered and some features didn’t make the cut by the deadline.<br>
+                    Still, it was an amazing learning ride—and I’m excited to keep polishing PartyVR!
+                </p>
+                ',
+                'image' => 'images/juice/storepage.jpg',
+                'image_class' => 'img-cropped',
+            ],
+
+            [
+                'title' => 'In China',
+                'subtitle' => 'Cultural Experiences',
+                'content' => '
+                <p>
+                Traveling solo for the first time, I brought my brother along—together we dove into Shanghai’s streets:<br>
+                exotic fruits turned into fresh juice, strangers snapped photos, and QR codes ruled every menu.<br>
+                We even demoed games at an Open Cafe—though my multiplayer build wasn’t quite demo-ready!
+                </p>
+            ',
+                'image' => [
+                    'images/mainpagegrid/IMG-20250414-WA0309.jpg',
+                    'images/juice/firstmeal.jpg',
+                    'images/juice/stanger.jpg',
+                ],
+                'image_class' => 'img-cropped-wide',
+            ],
+
+            [
+                'content' => '<h2 class="lead">
+                Local encounters and vibrant street scenes made every moment unforgettable.
+                </h2>
+                <p>
+                From fruit-juice stands to neon-lit old buildings with exposed cables—every corner was a surprise.<br>
+                QR-based apps like Alipay and Didi became our lifelines for food, bikes, and rideshares.
+                </p>
+                ',
+                'image' => 'images/juice/subwaywithmeinback.jpg',
+                'image_class' => 'img-cropped-small',
+            ],
+
+            [
+                'title' => 'More Images',
+                'content' => '    
+                <div class="grid" id="imageGrid">
+                <?php
+                // Only load the first batch
+                $dir = "images/juice"; // All images in all subfolders of images/
+                $_GET["limit"] = 10;
+                include "./load_images.php";
+                ?>
+                </div>
+                <button id="loadMoreBtn" class="btn" style="display:block;margin:1em auto;">Load More</button>
+                <div id="sentinel" style="height: 1px;"></div>
+                <!-- Modal for image preview -->
+                <div id="imageModal" class="modal" style="display:none;">
+                    <span class="modal-close" id="modalClose">&times;</span>
+                    <img class="modal-content" id="modalImg" src="" alt="Preview">
+                </div>',
+            ],
+        ]
+    ],
+
+    [
         'title' => 'Juice',
         'description' => 'This was a 12 day long hackathon in shanghai, with Hackclub',
         'image' => 'juice.jpg',
@@ -109,9 +224,9 @@ $projects = [
             [
                 'title' => 'What i Claimed',
                 'content' => '<div style="display:grid; grid-template-columns: repeat(3, 1fr);">
-                <p>Github Stanly tumblr<br><img src="images/highseas/stanly.jpg" class="img-cropped-small"></p>
-                <p>Logitech MX Master 3S mouse<br><img src="images/highseas/mouse.jpg" class="img-cropped-wide"></p>
-                <p>Raspberry pi zero<br><img src="images/highseas/rasp.jpg" class="img-cropped-wide"></p>
+                <p>Github Stanly tumblr<br><img src="images/highseas/stanly.jpg" class="img-cropped"></p>
+                <p>Logitech MX Master 3S mouse<br><img src="images/highseas/mouse.jpg" class="img-cropped"></p>
+                <p>Raspberry pi zero<br><img src="images/highseas/rasp.jpg" class="img-cropped"></p>
                 </div>'
             ],
         ]
