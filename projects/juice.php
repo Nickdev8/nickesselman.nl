@@ -12,7 +12,7 @@ include_once 'basics.php';
                 Cafe</a><br>
             and in total, there were almost 100 people that completed there 100 hours
         </p>
-        <img src="images/juice/group.jpg" alt="QR codes in daily life" class="img-cropped-wide">
+        <img src="images/innerprojects/juice/group.jpg" alt="QR codes in daily life" class="img-cropped-wide">
         <h2 class="lead">Not Quite Finished</h2>
         <div class="split">
             <p>
@@ -43,7 +43,7 @@ include_once 'basics.php';
                     bugs.<br>
                 </p>
             </div>
-            <img src="images/juice/partyvr.jpg" alt="PartyVR gameplay screenshot" class="img-cropped-small">
+            <img src="images/innerprojects/juice/partyvr.jpg" alt="PartyVR gameplay screenshot" class="img-cropped-small">
         </div>
         <h2 class="lead">My Struggle</h2>
         <p>
@@ -86,8 +86,8 @@ include_once 'basics.php';
         But unfortunately, since I made a multiplayer game, I was not able to demo it.<br>
     </p>
     <img src="images/mainpagegrid/IMG-20250414-WA0309.jpg" alt="a buetiful lit street" class="img-cropped-wide">
-    <img src="images/juice/firstmeal.jpg" alt="my first meal in china" class="img-cropped">
-    <img src="images/juice/stanger.jpg" alt="Locals taking pictures" class="img-cropped">
+    <img src="images/innerprojects/juice/firstmeal.jpg" alt="my first meal in china" class="img-cropped">
+    <img src="images/innerprojects/juice/stanger.jpg" alt="Locals taking pictures" class="img-cropped">
 
     <div class="split">
         <div>
@@ -113,13 +113,13 @@ include_once 'basics.php';
                 Another app, Didi, is like the Chinese version of Uber and is used for getting around the city.<br>
             </p>
         </div>
-        <img src="images/juice/subwaywithmeinback.jpg" alt="Making juice with local fruits" class="img-cropped-small">
+        <img src="images/innerprojects/juice/subwaywithmeinback.jpg" alt="Making juice with local fruits" class="img-cropped-small">
     </div>
-    <img src="images/juice/davemetpaolo.jpg" alt="Old buildings with new tech" class="img-cropped-small">
-    <img src="images/juice/cats.jpg" alt="Old buildings with new tech" class="img-cropped-small">
-    <img src="images/juice/whiteboard.jpg" alt="Old buildings with new tech" class="img-cropped-small">
-    <img src="images/juice/zackdemoing.jpg" alt="Old buildings with new tech" class="img-cropped-small">
-    <img src="images/juice/juiceinprogress.jpg" alt="Making juice with local fruits" class="img-cropped-small">
+    <img src="images/innerprojects/juice/davemetpaolo.jpg" alt="Old buildings with new tech" class="img-cropped-small">
+    <img src="images/innerprojects/juice/cats.jpg" alt="Old buildings with new tech" class="img-cropped-small">
+    <img src="images/innerprojects/juice/whiteboard.jpg" alt="Old buildings with new tech" class="img-cropped-small">
+    <img src="images/innerprojects/juice/zackdemoing.jpg" alt="Old buildings with new tech" class="img-cropped-small">
+    <img src="images/innerprojects/juice/juiceinprogress.jpg" alt="Making juice with local fruits" class="img-cropped-small">
 </div>
 
 <div class="card wide container separator">
@@ -127,7 +127,7 @@ include_once 'basics.php';
     <div class="grid" id="imageGrid">
         <?php
         // Only load the first batch
-        $dir = 'images/juice'; // All images in all subfolders of images/
+        $dir = 'images/innerprojects/juice'; // All images in all subfolders of images/
         $_GET['limit'] = 10;
         include "./load_images.php";
         ?>
