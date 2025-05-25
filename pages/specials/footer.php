@@ -11,21 +11,55 @@
       <button class="star-button" type="button">
         <span class="star-button__shine"></span>
         <div class="star-button__primary">
-          <svg class="star-button__icon" viewBox="0 0 438.549 438.549" aria-hidden="true">
-            <!-- (path data omitted for brevity; copy from original) -->
-          </svg>
+          <!-- star icon SVG -->
           <span class="star-button__text">Star on GitHub</span>
         </div>
         <div class="star-button__counter">
-          <svg class="star-button__counter-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <!-- (path data omitted for brevity; copy from original) -->
-          </svg>
-          <span class="star-button__count">6</span>
+          <!-- counter icon SVG -->
+          <span class="star-button__count">…</span>
         </div>
       </button>
     </div>
   </div>
 </footer>
+
+<script>
+  const owner = 'nickdev8';
+  const repo = 'nickesselman.nl';
+  const repoUrl = `https://github.com/${owner}/${repo}`;
+
+  async function updateStarCount() {
+    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
+    if (!res.ok) throw new Error('Failed to fetch count');
+    const { stargazers_count } = await res.json();
+    document.querySelector('.star-button__count').textContent = stargazers_count;
+  }
+
+  document.querySelector('.star-button').addEventListener('click', async e => {
+    const btn = e.currentTarget;
+    btn.disabled = true;
+
+    // 1) fire the star API
+    const res = await fetch('/api/star', { method: 'POST' });
+
+    // 2) open the repo page in a new tab
+    window.open(repoUrl, '_blank');
+
+    // 3) update the count & UI
+    if (res.ok) {
+      await updateStarCount();
+      btn.classList.add('starred');
+    } else {
+      console.error('Star failed');
+    }
+
+    btn.disabled = false;
+  });
+
+  // On page load, show the live count
+  updateStarCount();
+
+</script>
 
 <style>
   /* Footer base styles */
@@ -38,6 +72,7 @@
     position: relative;
     z-index: 10;
   }
+
   .footer-content {
     display: flex;
     flex-wrap: wrap;
@@ -53,6 +88,7 @@
     align-items: center;
     gap: 1rem;
   }
+
   .footer-logo {
     width: 36px;
     height: 36px;
@@ -60,11 +96,13 @@
     background: #fff;
     object-fit: cover;
   }
+
   .footer-contact {
     color: #ff8c37;
     text-decoration: none;
     transition: color 0.2s;
   }
+
   .footer-contact:hover {
     color: #fff;
     text-decoration: underline;
@@ -77,13 +115,16 @@
     align-items: center;
     gap: 1rem;
   }
-  .footer-right > span{
+
+  .footer-right>span {
     min-width: 28rem;
   }
+
   .footer-right a {
     color: #ff8c37;
     text-decoration: none;
   }
+
   .footer-right a:hover {
     text-decoration: underline;
   }
@@ -94,6 +135,7 @@
       align-items: flex-start;
       gap: 1rem;
     }
+
     .footer-left,
     .footer-right {
       font-size: 1.2rem;
@@ -121,14 +163,17 @@
     overflow: hidden;
     transition: background 0.3s ease-out, box-shadow 0.3s ease-out, transform 0.3s ease-out;
   }
+
   .star-button:focus-visible {
     outline: none;
     box-shadow: 0 0 0 2px #000, 0 0 0 4px rgba(0, 0, 0, 0.1);
   }
+
   .star-button:hover {
     background: rgba(0, 0, 0, 0.9);
     box-shadow: 0 0 0 2px #000, 0 0 0 4px rgba(0, 0, 0, 0.1);
   }
+
   .star-button:disabled {
     pointer-events: none;
     opacity: 0.5;
@@ -146,6 +191,7 @@
     transform: translateX(3rem) rotate(12deg);
     transition: transform 1s ease-out;
   }
+
   .star-button:hover .star-button__shine {
     transform: translateX(-10rem) rotate(12deg);
   }
@@ -156,22 +202,27 @@
     align-items: center;
     gap: 0.5rem;
   }
+
   .star-button__icon,
   .star-button__counter-icon {
     width: 1rem;
     height: 1rem;
     fill: currentColor;
   }
+
   .star-button__counter-icon {
     color: #78716c;
     transition: color 0.3s;
   }
+
   .star-button:hover .star-button__counter-icon {
     color: #fbbf24;
   }
+
   .star-button__text {
     margin-left: 0.25rem;
   }
+
   .star-button__count {
     font-variant-numeric: tabular-nums;
   }

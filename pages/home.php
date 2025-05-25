@@ -8,7 +8,7 @@ include 'pages/specials/header.php';
     <!-- <div id="particles-js" style="position:absolute;top:0;left:0;width:100%;height:auto;z-index:1;overflow:hidden;"></div> -->
     <h1 class="ultratitle">Nick Essleman</h1>
 
-    <span id="typed-text"></span><span class="cursor">&nbsp;</span>
+    <span id="typed-text"></span><span class="cursor" data-aos="fade-up">&nbsp;</span>
 </div>
 
 <div class="container split separator card" data-aos="fade-up">
@@ -46,29 +46,23 @@ include './pages/projects.php';
     </div>
     <button id="loadMoreBtn" class="btn" style="display:block;margin:1em auto;">Load More</button>
     <div id="sentinel" style="height: 1px;"></div>
-    <!-- Modal for image preview -->
-    <div id="imageModal" class="modal" style="display:none;">
-        <span class="modal-close" id="modalClose">&times;</span>
-        <img class="modal-content" id="modalImg" src="" alt="Preview">
-    </div>
+
 </div>
 
 
 <script>
-    // 1) your array of displayed strings
     const texts = [
-        "Nick Essleman",
         "Web Developer.",
         "Designer.",
-        "Problem Solver."
+        "Fullstack Developer.",
+        "Problem Solver.",
+        "Student."
     ];
 
-    // 2) config
     const TYPING_SPEED = 100;   // ms per character
     const ERASING_SPEED = 50;   // ms per character on erase
     const NEW_TEXT_DELAY = 1500; // pause before typing next text
 
-    // 3) grab elements
     const typedTextSpan = document.getElementById("typed-text");
     const cursorSpan = document.querySelector(".cursor");
 

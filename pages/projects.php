@@ -4,7 +4,7 @@
     <div class="projectgrid">
         <?php
         foreach ($projects as $project) {
-            echo '<a href="?project=' . $project['link'] . '" class="card project project-link">';
+            echo '<a href="?project=' . $project['link'] . '" class="card project project-link" data-aos="fade-up">';
             echo '    <div class="img-ratio">';
             echo '      <img src="/images/projectsimages/' . $project['image'] . '" alt="' . $project['title'] . '" />';
             echo '    </div>';

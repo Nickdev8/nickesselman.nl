@@ -1,5 +1,5 @@
 <?php
-$versionnum = "1.0.5"
+$versionnum = "1.0.6"
     ?>
 
 <!DOCTYPE html>
@@ -19,6 +19,7 @@ $versionnum = "1.0.5"
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
 
 
@@ -89,11 +90,16 @@ $versionnum = "1.0.5"
             }
             ?>
         </main>
+        <!-- Modal for image preview -->
+        <div id="imageModal" class="modal" style="display:none;">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <img class="modal-content" id="modalImg" src="" alt="Preview">
+        </div>
         <?php
         include 'pages/specials/footer.php';
         ?>
         <script>
-            AOS.init({ duration: 800, once: true });
+            AOS.init({ duration: 800, once: false, mirror: true });
         </script>
 </body>
 

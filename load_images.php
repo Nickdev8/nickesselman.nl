@@ -47,16 +47,16 @@ foreach ($mediaPaths as $filePath) {
         $imageSize = @getimagesize($filePath);
         $isLandscape = $imageSize && $imageSize[0] > $imageSize[1];
         $class = $isLandscape ? 'landscape' : '';
-        echo '<div class="media ' . $class . '">
+        echo '<div data-aos="zoom-in" class="media ' . $class . '">
                 <img src="' . htmlspecialchars($webPath) . '" alt="Image">
               </div>';
     } elseif (in_array($ext, $videoExtensions)) {
-        echo '<div class="media"><video controls>
+        echo '<div data-aos="zoom-in" class="media"><video controls>
             <source src="' . htmlspecialchars($webPath) . '" type="video/mp4">
             Your browser does not support the video tag.
         </video></div>';
     } elseif (in_array($ext, $panoExtensions)) {
-        echo '<div class="media"><iframe src="' . htmlspecialchars($webPath) . '" frameborder="0" allowfullscreen></iframe></div>';
+        echo '<div data-aos="zoom-in" class="media"><iframe src="' . htmlspecialchars($webPath) . '" frameborder="0" allowfullscreen></iframe></div>';
     }
 }
 
