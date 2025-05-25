@@ -1,8 +1,10 @@
 .main-top {
     background: #1f2d3d;
     color: #ffffff;
-    padding: 1rem 0 6rem;
+    padding: 1rem 0 2rem;
+    gap: 1rem;
     text-align: center;
+    justify-content: center;
 }
 
 .main-top>p,
@@ -19,6 +21,13 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+}
+
+.main-top > h1{
+    margin-bottom: 2rem;
+}
+.main-top > div{
+    margin-bottom: 1rem;
 }
 
 .inner-main>.site-header {
@@ -45,11 +54,41 @@
 }
 
 
+@keyframes autoRun3d {
+  from { transform: perspective(800px) rotateY(-360deg); }
+  to   { transform: perspective(800px) rotateY(   0deg); }
+}
 
+.card-3d {
+  position: relative;
+  height: 6rem;
+  transform-style: preserve-3d;
+  transform: perspective(800px);
+  animation: autoRun3d 20s linear infinite;
+  will-change: transform;
+  --card-radius: 250px; /* bump this up for wider spread */
+}
 
-/* From Uiverse.io by kennyotsu */
+.card-3d img {
+  position: absolute;
+  width: 4rem; height:4.5rempx;
+  top:50%; left:50%;
+  border:2px solid var(--elevated);
+  border-radius:.5rem;
+  background:var(--elevated);
+  transform-origin:center center;
+  transform: translate(-50%,-50%)
+             rotateY(var(--card-angle))
+             translateZ(var(--card-radius));
+  /* each child sets its own animation-delay */
+}
+
+/* .card-3d:hover, */
+.card-3d:hover img {
+  animation-play-state: paused !important;
+}
+
 .whatcanido--card {
-    /* color used to softly clip top and bottom of the .words container */
     padding: 1rem 2rem;
     border-radius: 1.25rem;
     justify-items: center;
@@ -93,4 +132,4 @@
     padding-left: 6px;
     color: #956afa;
     animation: spin-bounce 28s infinite;
-}
+} */
