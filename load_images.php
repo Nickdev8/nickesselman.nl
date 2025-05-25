@@ -62,3 +62,5 @@ foreach ($mediaPaths as $filePath) {
 
 ob_end_flush();
 ?>
+
+<img src="" alt="">

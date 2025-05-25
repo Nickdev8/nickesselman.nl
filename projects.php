@@ -123,13 +123,13 @@ $projects = [
     [
         'title' => '3D Printing Journey',
         'description' => 'From an off-brand clearance printer to a fully upgraded Ender 3 V2',
-        'image' => '3dprinting.jpg',
+        'image' => '3dprinter.jpg',
         'link' => '3dprinting',
         'basiclayout' => 'true',
         'blocks' => [
             [
                 'image' => [
-                    'images/projectsimages/initial_printer.jpg',
+                    'images/projectsimages/3dprinter.jpg',
                 ],
             ],
             [
@@ -169,19 +169,22 @@ $projects = [
                     <li><strong>Functional Jigs & Fixtures:</strong> Custom brackets and tool holders to optimize my workshop setup.</li>
                     <li><strong>Miniature Sculptures:</strong> Detailed busts and topographical models using custom slicer profiles.</li>
                     <li><strong>Enclosure Mods:</strong> A custom, clip-together enclosure with built-in dust filter and LED strip mounts.</li>
-                    <li><strong>Replacement Parts:</strong> ODM parts for CNC machines, robotics frames, and custom gears.</li>
                 </ul>
-            ',
-            ],
-            [
+                <div class="split">
+                    <img src="images/innerprojects/3dprint/old.jpg" class="img-cropped" alt="">
+                    <img src="images/innerprojects/3dprint/camera.jpg" class="img-cropped" alt="">
+                </div>',
+
                 'split' => '
-                <img src="images/projectsimages/ender3v2_mods.jpg" class="img-cropped" alt="Ender 3 V2 with upgrades">
-                <img src="images/projectsimages/hadley_telescope.jpg" class="img-cropped" alt="Printed Hadley telescope">
-                <img src="images/projectsimages/jigs_fixtures.jpg" class="img-cropped" alt="Workshop jigs and fixtures">
+                <div class="split">
+                <img src="images/innerprojects/3dprint/germo.jpg" class="img-cropped-small"alt="">
+                <img src="images/innerprojects/3dprint/telesoo.jpg" class="img-cropped-small"alt="">
+                <img src="images/innerprojects/3dprint/camera2.jpg" class="img-cropped-small"alt="">
+                </div>
                 <p>
-                    Every print pushed my skills further and turned this Ender 3 V2 into a versatile fabrication station. I still have a long mod list—next up: dual-filament printing and a silent mainboard swap.
-                </p>
-            ',
+                    Every print pushed my skills further and turned this Ender 3 V2 into a versatile fabrication station. 
+                    I still have a long mod list and small projects I want to make.
+                </p>',
             ],
         ],
     ],

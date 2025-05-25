@@ -1,5 +1,4 @@
 <?php
-include_once 'adddata.php';
 include_once 'basics.php';
 ?>
 <div class="split" style="justify-content: center;">

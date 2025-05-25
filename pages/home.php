@@ -1,12 +1,8 @@
 <script src="scripts/loadmoreimages.js"></script>
 
-<?php
-include 'pages/specials/header.php';
-?>
-
 <div class="main-top">
     <!-- <div id="particles-js" style="position:absolute;top:0;left:0;width:100%;height:auto;z-index:1;overflow:hidden;"></div> -->
-    <h1 class="ultratitle">Nick Essleman</h1>
+    <h1 class="ultratitle">Nick Esselman</h1>
 
     <span id="typed-text"></span><span class="cursor" data-aos="fade-up">&nbsp;</span>
 </div>
@@ -15,7 +11,7 @@ include 'pages/specials/header.php';
     <div>
         <h2 class="headline">Hi!</h2>
         <p>
-            This is a place where I share my projects, ideas, and experiences.
+            This is a place where I share my projects, ideas, and experiences.<br>
             I'm a creative soul with a passion for building, learning, and exploring new ideas.
             Every project and every line of code tells a story about my journey.
         </p>
