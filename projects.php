@@ -9,18 +9,59 @@ $projects = [
         'basiclayout' => 'false',
     ],
     [
-        'title' => 'Party VR',
-        'description' => 'This is the game i made for Juice',
-        'image' => 'partyvr.jpg',
-        'link' => 'partyvr',
-        'basiclayout' => 'false',
-    ],
-    [
-        'title' => 'My tree',
-        'description' => 'This is an idea i had for visualising the prjects i made',
-        'image' => 'mytree.jpg',
-        'link' => 'mytree',
-        'basiclayout' => 'false',
+        'title' => 'Monkey Swing',
+        'description' => 'A game i made to learn C# and unity',
+        'image' => 'monkeyswing.gif',
+        'link' => 'monkeyswing',
+        'basiclayout' => 'true',
+        'blocks' => [
+            [
+                'image' => [
+                    'images/projectsimages/monkeyswing.gif',
+                ]
+            ],
+            [
+                'title' => 'Overview',
+                'content' => '
+                <p>
+                    The first time I sat down at my desk with a nice warm cup of thee, 
+                    Unity’s interface glowing on my screen, I knew MonkeySwing would be more than 
+                    “just another 2D rage game.” I typed my first line of C# and felt my heart race:
+                </p>
+                <pre><code class="language-csharp">
+                    public class MonkeyController : MonoBehaviour {<br>
+                        // …here be bananas (and probably a few bugs)…<br>
+                    }
+                </code></pre>
+                <p>
+                    Each swing of the monkey’s arm became a tiny victory; each unexpected face-plant, 
+                    a lesson learned. When my simple prototype—swinging vines
+                    and one very impatient monkey—finally came together, 
+                    Wrote a cheeky description, and hit “Publish” on <a href="https://nikkcc.itch.io/ms">itch.io</a>.
+                </p>
+                <p>
+                    Although it began as a simple prototype, MonkeySwing opened 
+                    the door to countless new ideas, and it’s still the project I 
+                    point to when people ask where my game-making journey started.
+                </p>',
+
+                'split' => '
+                <iframe frameborder="2"
+                        src="https://itch.io/embed/2254225?border_width=2"
+                        width="550" height="165">
+                <a href="https://nikkcc.itch.io/ms">MonkeySwing by Nick</a>
+                </iframe>
+                <p>
+                    I love showing MonkeySwing as my very first project. It still looks polished, and its simple style shows exactly what I set out to learn.
+                </p>',
+            ],
+            [
+                'image' => [
+                    'images/innerprojects/monkeyswing/gamepllay.png',
+                ]
+            ],
+        ],
+
     ],
     [
         'title' => 'HackPad',
@@ -31,7 +72,7 @@ $projects = [
         'blocks' => [
             [
                 'image' => [
-                    'images/hackpad/pcbfront.jpg',
+                    'images/innerprojects/hackpad/pcbfront.jpg',
                 ]
             ],
             [
@@ -52,7 +93,7 @@ $projects = [
                 </p>
                 ',
                 'image' => [
-                    'images/hackpad/fusion.png',
+                    'images/innerprojects/hackpad/fusion.png',
                 ]
             ],
             [
@@ -68,12 +109,12 @@ $projects = [
                 </ul>
                 <p>feel free to copy the files, modify it and make your own.',
                 'image' => [
-                    'images/hackpad/schematic.png',
+                    'images/innerprojects/hackpad/schematic.png',
                 ]
             ],
             [
                 'image' => [
-                    'images/hackpad/pcbback.jpg',
+                    'images/innerprojects/hackpad/pcbback.jpg',
                 ]
             ],
 
@@ -103,9 +144,9 @@ $projects = [
             [
                 'title' => 'What i Claimed',
                 'content' => '<div style="display:grid; grid-template-columns: repeat(3, 1fr);">
-                <p>Github Stanly tumblr<br><img src="images/highseas/stanly.jpg" class="img-cropped"></p>
-                <p>Logitech MX Master 3S mouse<br><img src="images/highseas/mouse.jpg" class="img-cropped"></p>
-                <p>Raspberry pi zero<br><img src="images/highseas/rasp.jpg" class="img-cropped"></p>
+                <p>Github Stanly tumblr<br><img src="images/innerprojects/highseas/stanly.jpg" class="img-cropped"></p>
+                <p>Logitech MX Master 3S mouse<br><img src="images/innerprojects/highseas/mouse.jpg" class="img-cropped"></p>
+                <p>Raspberry pi zero<br><img src="images/innerprojects/highseas/rasp.jpg" class="img-cropped"></p>
                 <p>And many, MANY stickers. See the Stickers Projects for more info
                 <a href="/?project=stickers">My Stickers</a></p>
                 </div>'
@@ -117,8 +158,8 @@ $projects = [
                 So i went to Utecht to meet with 13 hackclubber were 6 showed up, (inc me). We went there and just walked arount the city, talking about the projects we made and the things we do.
                 <br><br>
                 Here i met: jsw08, Tuna, Emma, Verduijn, whacky, Fela and ArtyH</p>
-                <img src="images/highseas/group2.jpg" class="img">
-                <img src="images/highseas/group1.jpg" class="img">'
+                <img src="images/innerprojects/highseas/group2.jpg" class="img">
+                <img src="images/innerprojects/highseas/group1.jpg" class="img">'
             ]
         ]
     ],
@@ -126,7 +167,7 @@ $projects = [
 
         'title' => 'EcoNest',
         'description' => 'Ardiono project for a School assintment',
-        'image' => 'econest.png',
+        'image' => 'econest.jpg',
         'link' => 'econest',
         'basiclayout' => 'true',
         'blocks' => [
@@ -139,9 +180,23 @@ $projects = [
                 And altho I did almost everything with ardeono and the website. I had a blast doing it.<br>
                 I make a single page website with mutlible include statments in php.
                 </p>',
-                'image' => 'images/econest/image.png',
+                'image' => 'images/innerprojects/econest/image.png',
             ],
         ]
+    ],
+    [
+        'title' => 'My tree',
+        'description' => 'This is an idea i had for visualising the prjects i made',
+        'image' => 'mytree.jpg',
+        'link' => 'mytree',
+        'basiclayout' => 'false',
+    ],
+    [
+        'title' => 'Party VR',
+        'description' => 'This is the game i made for Juice',
+        'image' => 'partyvr.jpg',
+        'link' => 'partyvr',
+        'basiclayout' => 'false',
     ],
     [
         'title' => 'template',
@@ -161,7 +216,7 @@ $projects = [
             [
                 'title' => 'Gallery',
                 'content' => '<p>Here is a screenshot from Project 2.</p>',
-                'image' => 'images/project2-1.jpg',
+                'image' => 'images/innerprojects/project2-1.jpg',
             ],
         ],
     ],

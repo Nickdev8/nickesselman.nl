@@ -6,8 +6,16 @@ include 'pages/specials/header.php';
 
 <div class="main-top">
     <h1 class="ultratitle">Nick Essleman</h1>
-    <h2 class="headline">
-        A passionate student who loves creating and learning.
+    <h2 class="whatcanido">
+        <div class="whatcanido--card">
+            <div class="whatcanido--loader">
+                <h2>I am a pasianate full stack programmer, with a very wide skillset</h2>
+                <div class="whatcanido--words">
+                    <link rel="stylesheet" href="css/luanguagesamination.css">
+                    <?php include 'pages/specials/alltheprogramingluangages.html';?>
+                </div>
+            </div>
+        </div>
     </h2>
 </div>
 

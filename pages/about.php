@@ -42,5 +42,16 @@
         <?php
         include 'pages/specials/alltheprogramingluangages.html';
         ?>
+
+        <style>
+            .PLIK {
+                margin: 5px;
+                transition: transform 0.2s;
+            }
+
+            .PLIK:hover {
+                transform: scale(1.1);
+            }
+        </style>
     </div>
 </div>

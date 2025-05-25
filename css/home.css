@@ -21,7 +21,7 @@
     -ms-user-select: none;
 }
 
-.inner-main > .site-header{
+.inner-main>.site-header {
     position: unset !important;
     transform: translateY(0);
     display: block;
@@ -34,12 +34,63 @@
     width: 100%;
     left: 0;
     top: 0;
-    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
     transform: translateY(-100%);
     z-index: 100;
 }
 
 .site-header.sticky {
     transform: translateY(0);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+
+
+
+/* From Uiverse.io by kennyotsu */
+.whatcanido--card {
+    /* color used to softly clip top and bottom of the .words container */
+    padding: 1rem 2rem;
+    border-radius: 1.25rem;
+    justify-items: center;
+}
+
+.whatcanido h2{
+    font-weight: 500 !important;
+}
+.whatcanido--loader {
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 40px;
+    padding: 10px 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-radius: 8px;
+}
+
+
+.whatcanido--words {
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 1/1;
+}
+
+.whatcanido--words::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(var(--bg-color) 10%,
+            transparent 30%,
+            transparent 70%,
+            var(--bg-color) 90%);
+    z-index: 20;
+}
+
+.whatcanido--words>img {
+    display: block;
+    height: 100%;
+    padding-left: 6px;
+    color: #956afa;
+    animation: spin-bounce 28s infinite;
 }

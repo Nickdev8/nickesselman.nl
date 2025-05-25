@@ -21,6 +21,7 @@ html {
 }
 
 p,
+pre,
 li,
 a{
     font-size: 1.6rem;
