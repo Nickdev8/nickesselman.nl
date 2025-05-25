@@ -1,10 +1,10 @@
-<div class="card container">
+<div class="card container" data-aos="fade-up">
     <h2 class="headline">These are most of my personal Projects! And events I've contributed in</h2>
 
     <div class="projectgrid">
         <?php
         foreach ($projects as $project) {
-            echo '<a href="?project=' . $project['link'] . '" class="card interactive project project-link">';
+            echo '<a href="?project=' . $project['link'] . '" class="card project project-link">';
             echo '    <div class="img-ratio">';
             echo '      <img src="/images/projectsimages/' . $project['image'] . '" alt="' . $project['title'] . '" />';
             echo '    </div>';
@@ -17,6 +17,16 @@
         ?>
     </div>
 </div>
+
+<script>
+    VanillaTilt.init(document.querySelectorAll(".project"), {
+        max: 15,
+        speed: 400,
+        glare: false,
+        gyroscope: false,
+        scale: 1.02
+    });
+</script>
 
 <style>
     .projectgrid {
@@ -32,6 +42,7 @@
         height: max-content;
         display: block;
         object-fit: cover;
+        will-change: transform;
     }
 
     .project>.card-content {

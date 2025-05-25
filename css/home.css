@@ -1,8 +1,7 @@
 .main-top {
     background: #1f2d3d;
     color: #ffffff;
-    padding: 1rem 0 2rem;
-    gap: 1rem;
+    padding: 2rem 0;
     text-align: center;
     justify-content: center;
 }
@@ -73,9 +72,9 @@
   position: absolute;
   width: 4rem; height:4.5rempx;
   top:50%; left:50%;
-  border:2px solid var(--elevated);
+  border:2px solid var(--smoke);
   border-radius:.5rem;
-  background:var(--elevated);
+  background:var(--snow);
   transform-origin:center center;
   transform: translate(-50%,-50%)
              rotateY(var(--card-angle))
@@ -88,48 +87,20 @@
   animation-play-state: paused !important;
 }
 
-.whatcanido--card {
-    padding: 1rem 2rem;
-    border-radius: 1.25rem;
-    justify-items: center;
+
+/* make the cursor bar */
+.cursor {
+  display: inline-block;
+  background-color: currentColor; /* same color as your text */
+  width: 2px;
+  margin-left: 2px;
+  animation: blink 0.7s steps(1) infinite;
+  vertical-align: bottom;
+  height: 1em;               /* adjust to match your font-size */
 }
 
-.whatcanido h2{
-    font-weight: 500 !important;
+/* blink keyframes */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
 }
-.whatcanido--loader {
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-    height: 40px;
-    padding: 10px 10px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    border-radius: 8px;
-}
-
-
-.whatcanido--words {
-    overflow: hidden;
-    position: relative;
-    aspect-ratio: 1/1;
-}
-
-.whatcanido--words::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(var(--bg-color) 10%,
-            transparent 30%,
-            transparent 70%,
-            var(--bg-color) 90%);
-    z-index: 20;
-}
-
-.whatcanido--words>img {
-    display: block;
-    height: 100%;
-    padding-left: 6px;
-    color: #956afa;
-    animation: spin-bounce 28s infinite;
-} */

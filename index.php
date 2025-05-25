@@ -13,8 +13,14 @@ $versionnum = "1.0.5"
     <link rel="icon" type="image/png" href="./images/logo.png">
     <script type="module" src="scripts/loadmoreimages.js" defer></script>
 
-    <!-- gsap -->
+    <!-- libs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+
 
     <!-- basic css -->
     <link rel="stylesheet" href="css/reset.css?v=<?= $versionnum ?>">
@@ -37,54 +43,58 @@ $versionnum = "1.0.5"
 
 </head>
 
-<main>
-    <?php
-    include 'projects.php';
-    include 'pages/specials/header.php';
-    ?>
-    <main class="inner-main">
+<body>
+    <main>
         <?php
-        $page = $_GET['page'] ?? null;
-        $project = $_GET['project'] ?? null;
+        include 'projects.php';
+        include 'pages/specials/header.php';
+        ?>
+        <main class="inner-main">
+            <?php
+            $page = $_GET['page'] ?? null;
+            $project = $_GET['project'] ?? null;
 
-        if ($page === null && $project === null) {
-            $page = 'home';
-        }
-
-        if ($page !== null) {
-            if (file_exists("pages/$page.php")) {
-                include "pages/$page.php";
-            } else {
-                include 'pages/specials/404.php';
+            if ($page === null && $project === null) {
+                $page = 'home';
             }
-        } else if ($project !== null) {
-            $selectedProject = null;
-            foreach ($projects as $proj) {
-                if ($proj['link'] === $project) {
-                    $selectedProject = $proj;
-                    break;
+
+            if ($page !== null) {
+                if (file_exists("pages/$page.php")) {
+                    include "pages/$page.php";
+                } else {
+                    include 'pages/specials/404.php';
                 }
-            }
+            } else if ($project !== null) {
+                $selectedProject = null;
+                foreach ($projects as $proj) {
+                    if ($proj['link'] === $project) {
+                        $selectedProject = $proj;
+                        break;
+                    }
+                }
 
-            if ($selectedProject) {
-                if (isset($selectedProject['basiclayout']) && $selectedProject['basiclayout'] === 'true') {
-                    include 'projects/basiclayout.php';
-                } else if (file_exists("projects/$project.php")) {
-                    include "projects/$project.php";
+                if ($selectedProject) {
+                    if (isset($selectedProject['basiclayout']) && $selectedProject['basiclayout'] === 'true') {
+                        include 'projects/basiclayout.php';
+                    } else if (file_exists("projects/$project.php")) {
+                        include "projects/$project.php";
+                    } else {
+                        include 'pages/specials/404.php';
+                    }
                 } else {
                     include 'pages/specials/404.php';
                 }
             } else {
-                include 'pages/specials/404.php';
+                include 'pages/home.php';
             }
-        } else {
-            include 'pages/home.php';
-        }
+            ?>
+        </main>
+        <?php
+        include 'pages/specials/footer.php';
         ?>
-    </main>
-    <?php
-    include 'pages/specials/footer.php';
-    ?>
-    </body>
+        <script>
+            AOS.init({ duration: 800, once: true });
+        </script>
+</body>
 
 </html>

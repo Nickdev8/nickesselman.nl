@@ -125,4 +125,61 @@
   }
 }
 
+
+
+
+
+
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.2s;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.2rem;
+  width: 0;
+  height: 2px;
+  background: #ff8c37;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+  background: #1f2d3d;
+  color: #ff8c37;
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus::after {
+  width: 80%;
+  left: 10%;
+}
+
+.nav-links a .ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background: rgba(255, 140, 55, 0.4);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
 </style>

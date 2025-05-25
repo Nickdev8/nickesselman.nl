@@ -1,4 +1,4 @@
-<div class="card wide container separator">
+<div class="card container separator">
     <h2 class="headline">Contact</h2>
     <p>
         If you want to get in touch, you can reach me at:
