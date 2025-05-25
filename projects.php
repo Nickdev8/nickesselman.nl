@@ -121,6 +121,71 @@ $projects = [
         ],
     ],
     [
+        'title' => '3D Printing Journey',
+        'description' => 'From an off-brand clearance printer to a fully upgraded Ender 3 V2',
+        'image' => '3dprinting.jpg',
+        'link' => '3dprinting',
+        'basiclayout' => 'true',
+        'blocks' => [
+            [
+                'image' => [
+                    'images/projectsimages/initial_printer.jpg',
+                ],
+            ],
+            [
+                'title' => 'Humble Beginnings',
+                'content' => '
+                <p>
+                    I started with a mystery clearance printer whose specs were laughable, the rails rattled, and the hotend jammed more often than it extruded. I spent hours scraping failed prints from the bed and tweaking questionable firmware—every successful print felt like a major victory.
+                </p>
+            ',
+            ],
+            [
+                'title' => 'Upgrading to Ender 3 V2',
+                'content' => '
+                <p>
+                    Tired of filament waste, I invested in a Creality Ender 3 V2. Its rigid frame, smooth motion, and surprisingly reliable default prints made it clear this was a significant upgrade.
+                </p>
+                <ul>
+                    <li>Installed <strong>OctoPrint</strong> for remote slicing and live webcam monitoring.</li>
+                    <li>Added a <strong>BLTouch</strong> sensor to automate bed leveling and eliminate manual adjustments.</li>
+                    <li>Mounted a <strong>Pi Camera</strong> to catch print failures in real time.</li>
+                    <li>Replaced the stock nozzle with a high-precision <strong>0.4 mm brass nozzle</strong> for finer detail.</li>
+                    <li>Upgraded springs, dampers, and feet to reduce vibration and noise.</li>
+                </ul>
+                <p>
+                    These modifications transformed the printer into a dependable workhorse, delivering first-layer adhesion and consistent results.
+                </p>
+            ',
+            ],
+            [
+                'title' => 'Print Projects',
+                'content' => '
+                <p>
+                    With my Ender 3 V2 tuned to perfection, I tackled ambitious builds:
+                </p>
+                <ul>
+                    <li><strong>Hadley Telescope:</strong> I designed, printed, and assembled a fully functional refractor telescope, complete with focus adjustment and lens housing.</li>
+                    <li><strong>Functional Jigs & Fixtures:</strong> Custom brackets and tool holders to optimize my workshop setup.</li>
+                    <li><strong>Miniature Sculptures:</strong> Detailed busts and topographical models using custom slicer profiles.</li>
+                    <li><strong>Enclosure Mods:</strong> A custom, clip-together enclosure with built-in dust filter and LED strip mounts.</li>
+                    <li><strong>Replacement Parts:</strong> ODM parts for CNC machines, robotics frames, and custom gears.</li>
+                </ul>
+            ',
+            ],
+            [
+                'split' => '
+                <img src="images/projectsimages/ender3v2_mods.jpg" class="img-cropped" alt="Ender 3 V2 with upgrades">
+                <img src="images/projectsimages/hadley_telescope.jpg" class="img-cropped" alt="Printed Hadley telescope">
+                <img src="images/projectsimages/jigs_fixtures.jpg" class="img-cropped" alt="Workshop jigs and fixtures">
+                <p>
+                    Every print pushed my skills further and turned this Ender 3 V2 into a versatile fabrication station. I still have a long mod list—next up: dual-filament printing and a silent mainboard swap.
+                </p>
+            ',
+            ],
+        ],
+    ],
+    [
         'title' => 'HighSeas',
         'description' => 'I Designed, Solderd and Programmed a Micropad',
         'image' => 'highseas.jpg',
