@@ -1,5 +1,5 @@
 <?php
-$versionnum = "1.0.4"
+$versionnum = "1.0.5"
     ?>
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@ $versionnum = "1.0.4"
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $_GET['page'] ?></title>
-    <link rel="stylesheet" href="https://css.hackclub.com/theme.css" />
+    <link rel="stylesheet" href="https://css.hackclub.com/theme.css">
     <link rel="icon" type="image/png" href="./images/logo.png">
     <script type="module" src="scripts/loadmoreimages.js" defer></script>
 
