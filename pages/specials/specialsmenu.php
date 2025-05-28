@@ -79,38 +79,6 @@
     </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const checkbox = document.getElementById('checkbox');
-    const menu = document.getElementById('specials-menu');
-    const enphysics = document.getElementById('enablephysics');
-    
-
-    gsap.set(menu, { autoAlpha: 0, display: 'none' });
-
-    checkbox.addEventListener('change', () => {
-      if (checkbox.checked) {
-        menu.style.display = 'block';
-        gsap.to(menu, { duration: 0.2, autoAlpha: 1 });
-      } else {
-        gsap.to(menu, {
-          duration: 0.2,
-          autoAlpha: 0,
-          onComplete: () => {
-            menu.style.display = 'none';
-          }
-        });
-      }
-    });
-
-    enphysics.addEventListener('change', () => {
-      console.log(enphysics.checked);
-    });
-  });
-</script>
-
-
-
 <style>
     #open-specials-menu {
         position: fixed;
@@ -130,7 +98,7 @@
         overflow: unset;
     }
 
-    #specials-menu .button{
+    #specials-menu .button {
         display: flex;
         gap: 1rem;
     }

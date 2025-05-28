@@ -20,8 +20,10 @@ $versionnum = "1.0.5"
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js"></script>
 
 
+    <script src="scripts/main.js" defer></script>
 
     <!-- basic css -->
     <link rel="stylesheet" href="css/reset.css?v=<?= $versionnum ?>">

@@ -15,7 +15,7 @@
             echo '<a href="?project=' . $project['link'] . '" class="card project project-link" data-aos="fade-up">';
             echo '  <div class="img-ratio">';
             echo '    <img src="/images/projectsimages/' . $project['image'] . '" alt="' . htmlspecialchars($title) . '" />';
-            echo '    <span class="overlay-text">' . htmlspecialchars($badge) . '</span>';
+            // echo '    <span class="overlay-text">' . htmlspecialchars($badge) . '</span>';
             echo '  </div>';
             echo '  <div class="card-content">';
             echo '    <h3>' . htmlspecialchars($title) . '</h3>';
@@ -76,9 +76,7 @@
         background: rgba(0, 0, 0, 0.6);
         color: #fff;
         padding: .25rem .5rem;
-        font-size: 1.25rem;
         border-radius: .25rem;
-        text-transform: uppercase;
         pointer-events: none;
     }
 
