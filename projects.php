@@ -1,6 +1,6 @@
 <?php
-// , highwat, shiprecked
-// wuchlights woods, jazzdesign myscicker collegcion,
+// highwat, shiprecked
+// jazzdesign myscicker collegcion,
 // weird chess, notifibri, minecraft discord server bot, art collection
 $projects = [
     [
@@ -10,78 +10,6 @@ $projects = [
         'link' => 'juice',
         'basiclayout' => 'false',
     ],
-    [
-        'title' => 'Gmae: Gamejams',
-        'description' => 'Some games i made',
-        'image' => 'gamejams.jpg',
-        'link' => 'gamejams',
-        'basiclayout' => 'true',
-        'blocks' => [
-            [
-                'title' => 'GMTK Game Jam 2024',
-                'content' => ' 
-            <p>
-                In August 2024, I dove head-first into my very first game jam: the <a href="https://itch.io/jam/gmtk-2024" target="_blank" rel="noopener">GMTK Game Jam</a>!  
-                Theme: <strong>Built to Scale</strong>. My creation? <a href="https://nikkcc.itch.io/carsizer" target="_blank" rel="noopener">Car Sizer</a>—a quirky little driver where you continuously resize your car to dodge obstacles.  
-                Was it perfect? Far from it. But it was my launchpad into the wild world of rapid-fire game creation.
-            </p>
-        ',
-            'image' => 'images/innerprojects/gamejams/gmtk2024.jpg',
-            ],
-            [
-                'title' => 'Brackeys Jam 2024.2',
-                'content' => '
-            <p>
-                Next up: the <a href="https://itch.io/jam/brackeys-12" target="_blank" rel="noopener">Brackeys Game Jam 2024.2</a>, themed <em>Calm Before the Storm</em>.  
-                I hopped onto the Discord, pitched pixel art skills... and suddenly I was on Team Zeus:
-            </p>
-            <ul>
-                <li><strong>Lead Programmer:</strong> Nan</li>
-                <li><strong>3D & Level Design:</strong> Mithostropic</li>
-                <li><strong>Sound Design:</strong> Berukkula</li>
-                <li><strong>Game Designer & UI:</strong> RAMIXANG</li>
-            </ul>
-            <p>
-                Together, we built <a href="https://nikkcc.itch.io/zeuswrath" target="_blank" rel="noopener">Zeus Wrath</a>: sabotage the village, then call down lightning for phase two!  
-                Demo hiccups aside, every thunderclap taught me something new.
-            </p>
-        ',
-            'image' => 'images/innerprojects/gamejams/brackeys2024_2.jpg',
-            ],
-            [
-                'title' => 'Fisherman’s Storm',
-                'content' => '
-            <p>
-                While brainstorming for Zeus Wrath, I also jumped into RAMIXANG’s side project:  
-                <a href="https://ramixang.itch.io/fishermans-storm" target="_blank" rel="noopener">Fisherman’s Storm</a>.  
-                I crafted seaside sprites and stormy backdrops—nothing beats pixel waves crashing under a moody sky!
-            </p>
-        ',
-            'image' => 'images/innerprojects/gamejams/fishermans_storm.jpg',
-            ],
-            [
-                'title' => 'Boss Rush Jam 2025',
-                'content' => '
-            <p>
-                Then came the month-long <a href="https://itch.io/jam/boss-rush-jam-2025" target="_blank" rel="noopener">Boss Rush Jam 2025</a>.  
-                Our team aimed to build <a href="https://fcolor04.itch.io/witchlight-woods" target="_blank" rel="noopener">Witchlight Woods</a>, a spooky boss-battle romp.  
-                Teammates went MIA, so we never finished—but I still designed eerie forest tiles and kicked off the first level.  
-                Every pixel sharpened my skills, jams or no jams!
-            </p>',
-            'image' => 'images/innerprojects/gamejams/bossrush2025.jpg',
-            ],
-            [
-                'title' => 'Let’s Team Up!',
-                'content' => '
-            <p>
-                Got a game jam squad that needs an extra hand? Whether you’re hunting for a code ninja or craving fresh pixel art magic, I’m ready to jump in!  
-                Drop me a line and let’s turn your wildest game ideas into reality.
-            </p>
-        ',
-            ],
-        ]
-    ],
-
     [
         'title' => 'HackClub: neighborhood',
         'description' => 'A 3 month long, housing program in sanfansico',
@@ -196,6 +124,7 @@ $projects = [
         ],
 
     ],
+
     [
         'title' => 'HackClub: HackPad',
         'description' => 'I Designed, Solderd and Programmed a Micropad',
@@ -252,6 +181,78 @@ $projects = [
             ],
 
         ],
+    ],
+
+    [
+        'title' => 'Gmae: Gamejams',
+        'description' => 'Some games i made',
+        'image' => 'gamejams.jpg',
+        'link' => 'gamejams',
+        'basiclayout' => 'true',
+        'blocks' => [
+            [
+                'title' => 'GMTK Game Jam 2024',
+                'content' => ' 
+            <p>
+                In August 2024, I dove head-first into my very first game jam: the <a href="https://itch.io/jam/gmtk-2024" target="_blank" rel="noopener">GMTK Game Jam</a>!  
+                Theme: <strong>Built to Scale</strong>. My creation? <a href="https://nikkcc.itch.io/carsizer" target="_blank" rel="noopener">Car Sizer</a>—a quirky little driver where you continuously resize your car to dodge obstacles.  
+                Was it perfect? Far from it. But it was my launchpad into the wild world of rapid-fire game creation.
+            </p>
+        ',
+                'image' => 'images/innerprojects/gamejams/gmtk2024.jpg',
+            ],
+            [
+                'title' => 'Brackeys Jam 2024.2',
+                'content' => '
+            <p>
+                Next up: the <a href="https://itch.io/jam/brackeys-12" target="_blank" rel="noopener">Brackeys Game Jam 2024.2</a>, themed <em>Calm Before the Storm</em>.  
+                I hopped onto the Discord, pitched pixel art skills... and suddenly I was on Team Zeus:
+            </p>
+            <ul>
+                <li><strong>Lead Programmer:</strong> Nan</li>
+                <li><strong>3D & Level Design:</strong> Mithostropic</li>
+                <li><strong>Sound Design:</strong> Berukkula</li>
+                <li><strong>Game Designer & UI:</strong> RAMIXANG</li>
+            </ul>
+            <p>
+                Together, we built <a href="https://nikkcc.itch.io/zeuswrath" target="_blank" rel="noopener">Zeus Wrath</a>: sabotage the village, then call down lightning for phase two!  
+                Demo hiccups aside, every thunderclap taught me something new.
+            </p>
+        ',
+                'image' => 'images/innerprojects/gamejams/brackeys2024_2.jpg',
+            ],
+            [
+                'title' => 'Fisherman’s Storm',
+                'content' => '
+            <p>
+                While brainstorming for Zeus Wrath, I also jumped into RAMIXANG’s side project:  
+                <a href="https://ramixang.itch.io/fishermans-storm" target="_blank" rel="noopener">Fisherman’s Storm</a>.  
+                I crafted seaside sprites and stormy backdrops—nothing beats pixel waves crashing under a moody sky!
+            </p>
+        ',
+                'image' => 'images/innerprojects/gamejams/fishermans_storm.jpg',
+            ],
+            [
+                'title' => 'Boss Rush Jam 2025',
+                'content' => '
+            <p>
+                Then came the month-long <a href="https://itch.io/jam/boss-rush-jam-2025" target="_blank" rel="noopener">Boss Rush Jam 2025</a>.  
+                Our team aimed to build <a href="https://fcolor04.itch.io/witchlight-woods" target="_blank" rel="noopener">Witchlight Woods</a>, a spooky boss-battle romp.  
+                Teammates went MIA, so we never finished—but I still designed eerie forest tiles and kicked off the first level.  
+                Every pixel sharpened my skills, jams or no jams!
+            </p>',
+                'image' => 'images/innerprojects/gamejams/bossrush2025.jpg',
+            ],
+            [
+                'title' => 'Let’s Team Up!',
+                'content' => '
+            <p>
+                Got a game jam squad that needs an extra hand? Whether you’re hunting for a code ninja or craving fresh pixel art magic, I’m ready to jump in!  
+                Drop me a line and let’s turn your wildest game ideas into reality.
+            </p>
+        ',
+            ],
+        ]
     ],
     [
         'title' => 'Project: 3D Printing Journey',
@@ -363,7 +364,50 @@ $projects = [
                 <img src="images/innerprojects/highseas/group1.jpg" class="img">'
             ]
         ]
+    ],[
+    'title'       => 'Game: Weird Chess',
+    'description' => 'A hilarious chess variant that breaks all the rules',
+    'image'       => 'chess.jpg',
+    'link'        => 'chess',
+    'basiclayout' => 'true',
+    'blocks'      => [
+        [
+            'title'   => 'Overview',
+            'content' => '
+                <p>
+                    Ever thought chess needed more chaos? During Hack Club’s Shipwrecked challenge, I set out to reinvent the classic game in just 30 hours—and make one of my three projects go viral with 2,000+ views!
+                </p>
+                <p>
+                    Inspired by a wild suggestion from my brother, I built <strong>Weird Chess</strong>: a browser-based 3D board where every piece obeys its own hilarious rule set. It’s chess… but not as you know it.
+                </p>
+            ',
+        ],
+        [
+            'title'   => 'Behind the Madness',
+            'content' => '
+                <p>
+                    The secret sauce is a JSON-driven engine. Want a <em>teleporting pawn</em>? Done. An <em>exploding rook</em>? Easy. Just tweak the JSON file and watch your custom rules explode into action.
+                </p>
+                <ul>
+                    <li><strong>3D Board in Browser:</strong> Built with Three.js for smooth zooms and rotations</li>
+                    <li><strong>Instant Rule Tweaks:</strong> Edit JSON to add or modify piece behavior on the fly</li>
+                    <li><strong>Share the Madness:</strong> Invite friends to try your wildest variants</li>
+                </ul>
+            ',
+        ],
+        [
+            'title'   => 'Try It Yourself!',
+            'content' => '
+                <p>
+                    Curious to see the code behind the chaos? Peek at the repo on 
+                    <a href="https://github.com/Nickdev8/weirdChess" target="_blank" rel="noopener">GitHub</a>. 
+                    Fork it, craft your own bizarre pieces, and let the mayhem unfold!
+                </p>
+            ',
+        ],
     ],
+],
+
     [
 
         'title' => 'School: EcoNest',
