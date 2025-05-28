@@ -91,7 +91,7 @@ if ($hasOnlyImage) {
     overflow: hidden;
     cursor: pointer;
     position: fixed;      /* STICK IT */
-    bottom: 4rem;
+    bottom: 8rem;
     right: 4rem;
     z-index: 999;
 

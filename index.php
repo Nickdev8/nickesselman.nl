@@ -49,6 +49,8 @@ $versionnum = "1.0.5"
     <?php
     include 'projects.php';
     include 'pages/specials/header.php';
+
+    include 'pages/specials/specialsmenu.php';
     ?>
     <main class="inner-main">
         <?php

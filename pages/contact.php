@@ -120,4 +120,7 @@
             <button class="cta">Submit</button>
         </form>
     </div>
+    <?php
+    include_once 'pages/specials/cat.php';
+    ?>
 </div>
