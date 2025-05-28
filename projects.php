@@ -1,6 +1,6 @@
 <?php
-// neigherhood, highwat, shiprecked
-// wuchlights woods, jazzdesign myscicker collegcion, 
+// , highwat, shiprecked
+// wuchlights woods, jazzdesign myscicker collegcion,
 // weird chess, notifibri, minecraft discord server bot, art collection
 $projects = [
     [
@@ -10,6 +10,78 @@ $projects = [
         'link' => 'juice',
         'basiclayout' => 'false',
     ],
+    [
+        'title' => 'Gmae: Gamejams',
+        'description' => 'Some games i made',
+        'image' => 'gamejams.jpg',
+        'link' => 'gamejams',
+        'basiclayout' => 'true',
+        'blocks' => [
+            [
+                'title' => 'GMTK Game Jam 2024',
+                'content' => ' 
+            <p>
+                In August 2024, I dove head-first into my very first game jam: the <a href="https://itch.io/jam/gmtk-2024" target="_blank" rel="noopener">GMTK Game Jam</a>!  
+                Theme: <strong>Built to Scale</strong>. My creation? <a href="https://nikkcc.itch.io/carsizer" target="_blank" rel="noopener">Car Sizer</a>—a quirky little driver where you continuously resize your car to dodge obstacles.  
+                Was it perfect? Far from it. But it was my launchpad into the wild world of rapid-fire game creation.
+            </p>
+        ',
+            'image' => 'images/innerprojects/gamejams/gmtk2024.jpg',
+            ],
+            [
+                'title' => 'Brackeys Jam 2024.2',
+                'content' => '
+            <p>
+                Next up: the <a href="https://itch.io/jam/brackeys-12" target="_blank" rel="noopener">Brackeys Game Jam 2024.2</a>, themed <em>Calm Before the Storm</em>.  
+                I hopped onto the Discord, pitched pixel art skills... and suddenly I was on Team Zeus:
+            </p>
+            <ul>
+                <li><strong>Lead Programmer:</strong> Nan</li>
+                <li><strong>3D & Level Design:</strong> Mithostropic</li>
+                <li><strong>Sound Design:</strong> Berukkula</li>
+                <li><strong>Game Designer & UI:</strong> RAMIXANG</li>
+            </ul>
+            <p>
+                Together, we built <a href="https://nikkcc.itch.io/zeuswrath" target="_blank" rel="noopener">Zeus Wrath</a>: sabotage the village, then call down lightning for phase two!  
+                Demo hiccups aside, every thunderclap taught me something new.
+            </p>
+        ',
+            'image' => 'images/innerprojects/gamejams/brackeys2024_2.jpg',
+            ],
+            [
+                'title' => 'Fisherman’s Storm',
+                'content' => '
+            <p>
+                While brainstorming for Zeus Wrath, I also jumped into RAMIXANG’s side project:  
+                <a href="https://ramixang.itch.io/fishermans-storm" target="_blank" rel="noopener">Fisherman’s Storm</a>.  
+                I crafted seaside sprites and stormy backdrops—nothing beats pixel waves crashing under a moody sky!
+            </p>
+        ',
+            'image' => 'images/innerprojects/gamejams/fishermans_storm.jpg',
+            ],
+            [
+                'title' => 'Boss Rush Jam 2025',
+                'content' => '
+            <p>
+                Then came the month-long <a href="https://itch.io/jam/boss-rush-jam-2025" target="_blank" rel="noopener">Boss Rush Jam 2025</a>.  
+                Our team aimed to build <a href="https://fcolor04.itch.io/witchlight-woods" target="_blank" rel="noopener">Witchlight Woods</a>, a spooky boss-battle romp.  
+                Teammates went MIA, so we never finished—but I still designed eerie forest tiles and kicked off the first level.  
+                Every pixel sharpened my skills, jams or no jams!
+            </p>',
+            'image' => 'images/innerprojects/gamejams/bossrush2025.jpg',
+            ],
+            [
+                'title' => 'Let’s Team Up!',
+                'content' => '
+            <p>
+                Got a game jam squad that needs an extra hand? Whether you’re hunting for a code ninja or craving fresh pixel art magic, I’m ready to jump in!  
+                Drop me a line and let’s turn your wildest game ideas into reality.
+            </p>
+        ',
+            ],
+        ]
+    ],
+
     [
         'title' => 'HackClub: neighborhood',
         'description' => 'A 3 month long, housing program in sanfansico',
@@ -32,7 +104,7 @@ $projects = [
                         Here’s the deal: you pick a passion project, sink at least 100 hours of code into it, and we’ve got you covered—flight, housing, meals, you name it! Imagine debugging with a view of the Golden Gate Bridge and jamming on your project poolside.
                     </p>
                     <p>
-                        For my contribution, I built this very website! <a href="https://NickEsselman.nl" target="_blank" rel="noopener">NickEsselman.nl</a>, to showcase all the wild ideas and late-night coding sessions.  
+                        For my contribution, I built this very website! <a href="https://NickEsselman.nl" target="_blank" rel="noopener">NickEsselman.nl</a>, to showcase all the wild ideas and late-night coding sessions.
                         Oh, and to keep us honest, every week in San Francisco you must clock a minimum of 40 coding hours, tracked effortlessly through <a href="https://hackatime.hackclub.com/" target="_blank" rel="noopener">Hackatime</a> (Hack Club’s fork of WakaTime).
                     </p>
                 ',
@@ -44,13 +116,13 @@ $projects = [
                         Think you’ve got what it takes? If you’re 18 or younger and you’re reading this before <strong>August 11, 2025</strong>, you’re in the right place!
                     </p>
                     <p>
-                        Just dream up a brand-new project and commit at least <strong>100 hours</strong> of coding before the deadline, and we’ll cover everything—flights, housing, meals, the whole shebang.  
+                        Just dream up a brand-new project and commit at least <strong>100 hours</strong> of coding before the deadline, and we’ll cover everything—flights, housing, meals, the whole shebang.
                         <a href="https://neighborhood.hackclub.com/desktop" target="_blank" rel="noopener">
                             <button class="cta">Join Now!</button>
                         </a>
                     </p>
                     <p>
-                        There’s one golden rule: while you’re living the San Francisco coder life, you must log <strong>40 hours of code each week</strong>. We’ll keep track via <a href="https://hackatime.hackclub.com/" target="_blank" rel="noopener">Hackatime</a>.  
+                        There’s one golden rule: while you’re living the San Francisco coder life, you must log <strong>40 hours of code each week</strong>. We’ll keep track via <a href="https://hackatime.hackclub.com/" target="_blank" rel="noopener">Hackatime</a>.
                         Miss the weekly quota, and it’s back home you go. so code hard and make every keystroke count!
                     </p>
                 ',
@@ -85,8 +157,8 @@ $projects = [
                 'title' => 'Overview',
                 'content' => '
                 <p>
-                    The first time I sat down at my desk with a nice warm cup of thee, 
-                    Unity’s interface glowing on my screen, I knew MonkeySwing would be more than 
+                    The first time I sat down at my desk with a nice warm cup of thee,
+                    Unity’s interface glowing on my screen, I knew MonkeySwing would be more than
                     “just another 2D rage game.” I typed my first line of C# and felt my heart race:
                 </p>
                 <pre><code class="language-csharp">
@@ -95,14 +167,14 @@ $projects = [
                     }
                 </code></pre>
                 <p>
-                    Each swing of the monkey’s arm became a tiny victory; each unexpected face-plant, 
+                    Each swing of the monkey’s arm became a tiny victory; each unexpected face-plant,
                     a lesson learned. When my simple prototype—swinging vines
-                    and one very impatient monkey—finally came together, 
+                    and one very impatient monkey—finally came together,
                     Wrote a cheeky description, and hit “Publish” on <a href="https://nikkcc.itch.io/ms">itch.io</a>.
                 </p>
                 <p>
-                    Although it began as a simple prototype, MonkeySwing opened 
-                    the door to countless new ideas, and it’s still the project I 
+                    Although it began as a simple prototype, MonkeySwing opened
+                    the door to countless new ideas, and it’s still the project I
                     point to when people ask where my game-making journey started.
                 </p>',
 
@@ -243,7 +315,7 @@ $projects = [
                 <img src="images/innerprojects/3dprint/camera2.jpg" class="img-cropped-small"alt="">
                 </div>
                 <p>
-                    Every print pushed my skills further and turned this Ender 3 V2 into a versatile fabrication station. 
+                    Every print pushed my skills further and turned this Ender 3 V2 into a versatile fabrication station.
                     I still have a long mod list and small projects I want to make.
                 </p>',
             ],
