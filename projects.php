@@ -1,14 +1,21 @@
 <?php
 // highwat, shiprecked
 // jazzdesign myscicker collegcion,
-// weird chess, notifibri, minecraft discord server bot, art collection
+// notifibri, minecraft discord server bot, art collection
 $projects = [
     [
         'title' => 'HackClub: Juice',
         'description' => 'This was a 12 day long hackathon in shanghai, with Hackclub',
         'image' => 'juice.jpg',
         'link' => 'juice',
-        'basiclayout' => 'false',
+        'basiclayout' => 'false'
+    ],
+    [
+        'title'=> 'My Sticker Collection',
+        'description'=> 'These are all of my own stickers i recived from hackclub.',
+        'image'=> 'stickers.jpg',
+        'link'=> 'stickers',
+        'basiclayout'=> 'false',
     ],
     [
         'title' => 'HackClub: neighborhood',
@@ -184,7 +191,7 @@ $projects = [
     ],
 
     [
-        'title' => 'Gmae: Gamejams',
+        'title' => 'Game: Gamejams',
         'description' => 'Some games i made',
         'image' => 'gamejams.jpg',
         'link' => 'gamejams',

@@ -32,6 +32,7 @@
         <p>This was a 12 day long hackathon in shanghai, with Hackclub</p>
     </div>
 </div>
+
 <div class="wide container separator img-wide">
     <img src="images/innerprojects/juice/group.jpg" alt="" class="img-cropped-wide">
 </div>

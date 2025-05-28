@@ -26,7 +26,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'null';
   .site-header {
     position: sticky;
     width: 100%;
-    background: #1f2d3d;
+    background: var(--myblue);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     top: 0;
     z-index: 10;
@@ -69,7 +69,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'null';
 
   .nav-links a:hover,
   .nav-links a:focus {
-    background: #1f2d3d;
+    background: var(--myblue);
     color: var(--orange);
   }
 
@@ -178,7 +178,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'null';
 
   .nav-links a:hover,
   .nav-links a:focus {
-    background: #1f2d3d;
+    background: var(--myblue);
     color: #ff8c37;
   }
 

@@ -64,7 +64,7 @@
 <style>
   /* Footer base styles */
   .site-footer {
-    background: #1f2d3d;
+    background: var(--myblue);
     color: #fff;
     padding: 2rem 0 1rem;
     font-size: 1.5rem;

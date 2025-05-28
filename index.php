@@ -45,62 +45,62 @@ $versionnum = "1.0.4"
 </head>
 
 <body>
-    <main>
-        <?php
-        include 'projects.php';
-        include 'pages/specials/header.php';
-        ?>
-        <main class="inner-main">
-            <?php
-            $page = $_GET['page'] ?? null;
-            $project = $_GET['project'] ?? null;
 
-            if ($page === null && $project === null) {
-                $page = 'home';
+    <?php
+    include 'projects.php';
+    include 'pages/specials/header.php';
+    ?>
+    <main class="inner-main">
+        <?php
+        $page = $_GET['page'] ?? null;
+        $project = $_GET['project'] ?? null;
+
+        if ($page === null && $project === null) {
+            $page = 'home';
+        }
+
+        if ($page !== null) {
+            if (file_exists("pages/$page.php")) {
+                include "pages/$page.php";
+            } else {
+                include 'pages/specials/404.php';
+            }
+        } else if ($project !== null) {
+            $selectedProject = null;
+            foreach ($projects as $proj) {
+                if ($proj['link'] === $project) {
+                    $selectedProject = $proj;
+                    break;
+                }
             }
 
-            if ($page !== null) {
-                if (file_exists("pages/$page.php")) {
-                    include "pages/$page.php";
-                } else {
-                    include 'pages/specials/404.php';
-                }
-            } else if ($project !== null) {
-                $selectedProject = null;
-                foreach ($projects as $proj) {
-                    if ($proj['link'] === $project) {
-                        $selectedProject = $proj;
-                        break;
-                    }
-                }
-
-                if ($selectedProject) {
-                    if (isset($selectedProject['basiclayout']) && $selectedProject['basiclayout'] === 'true') {
-                        include 'projects/basiclayout.php';
-                    } else if (file_exists("projects/$project.php")) {
-                        include "projects/$project.php";
-                    } else {
-                        include 'pages/specials/404.php';
-                    }
+            if ($selectedProject) {
+                if (isset($selectedProject['basiclayout']) && $selectedProject['basiclayout'] === 'true') {
+                    include 'projects/basiclayout.php';
+                } else if (file_exists("projects/$project.php")) {
+                    include "projects/$project.php";
                 } else {
                     include 'pages/specials/404.php';
                 }
             } else {
-                include 'pages/home.php';
+                include 'pages/specials/404.php';
             }
-            ?>
-        </main>
-        <!-- Modal for image preview -->
-        <div id="imageModal" class="modal" style="display:none;">
-            <span class="modal-close" id="modalClose">&times;</span>
-            <img class="modal-content" id="modalImg" src="" alt="Preview">
-        </div>
-        <?php
-        include 'pages/specials/footer.php';
+        } else {
+            include 'pages/home.php';
+        }
         ?>
-        <script>
-            AOS.init({ duration: 800, once: false, mirror: true });
-        </script>
+    </main>
+    <!-- Modal for image preview -->
+    <div id="imageModal" class="modal" style="display:none;">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <img class="modal-content" id="modalImg" src="" alt="Preview">
+    </div>
+    <?php
+    include 'pages/specials/footer.php';
+    ?>
+    <script>
+        AOS.init({ duration: 800, once: false, mirror: true });
+    </script>
 </body>
 
 </html>

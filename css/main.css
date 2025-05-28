@@ -1,7 +1,3 @@
-html {
-    scroll-behavior: smooth;
-}
-
 /* separator */
 .separator {
     margin: 2rem auto;
@@ -187,4 +183,9 @@ p {
     .split>div {
         padding: 1rem;
     }
+}
+
+
+.no-font{
+    font-family: 'BowlbyOneSC-Regular' !important;
 }
