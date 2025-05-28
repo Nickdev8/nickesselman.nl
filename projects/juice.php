@@ -1,6 +1,40 @@
 <?php
-include_once 'basics.php';
+// include_once 'basics.php';
 ?>
+<style>
+    .header-overlay {
+        position: relative;
+    }
+
+    .header-overlay .overlay-text {
+        position: absolute;
+        top: 3rem;
+        left: 5rem;
+        color: #fff;
+        z-index: 2;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .header-overlay .overlay-text h1,
+    .header-overlay .overlay-text p {
+        color: #fff;
+    }
+
+    .header-overlay img.bg {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+</style>
+<div class="container wide separator header-overlay">
+    <div class="overlay-text">
+        <h1>Juice</h1>
+        <p>This was a 12 day long hackathon in shanghai, with Hackclub</p>
+    </div>
+</div>
+<div class="wide container separator img-wide">
+    <img src="images/innerprojects/juice/group.jpg" alt="" class="img-cropped-wide">
+</div>
 <div class="split" style="justify-content: center;">
     <div class="card container separator narrow" style="margin:0; height: fit-content">
         <h2 class="headline">In Short</h2>
@@ -11,7 +45,6 @@ include_once 'basics.php';
                 Cafe</a><br>
             and in total, there were almost 100 people that completed there 100 hours
         </p>
-        <img src="images/innerprojects/juice/group.jpg" alt="QR codes in daily life" class="img-cropped-wide">
         <h2 class="lead">Not Quite Finished</h2>
         <div class="split">
             <p>
@@ -42,7 +75,8 @@ include_once 'basics.php';
                     bugs.<br>
                 </p>
             </div>
-            <img src="images/innerprojects/juice/partyvr.jpg" alt="PartyVR gameplay screenshot" class="img-cropped-small">
+            <img src="images/innerprojects/juice/partyvr.jpg" alt="PartyVR gameplay screenshot"
+                class="img-cropped-small">
         </div>
         <h2 class="lead">My Struggle</h2>
         <p>
@@ -59,6 +93,7 @@ include_once 'basics.php';
         </p>
 
         <!-- <img src="debugging-vr.jpg" alt="Debugging VR networking" class="img-cropped"> -->
+        <a href="?project=partyvr"><button class="cta">More Here</button></a>
     </div>
 </div>
 <div class="card container separator" id="OpenCafe">
@@ -112,13 +147,15 @@ include_once 'basics.php';
                 Another app, Didi, is like the Chinese version of Uber and is used for getting around the city.<br>
             </p>
         </div>
-        <img src="images/innerprojects/juice/subwaywithmeinback.jpg" alt="Making juice with local fruits" class="img-cropped-small">
     </div>
     <img src="images/innerprojects/juice/davemetpaolo.jpg" alt="Old buildings with new tech" class="img-cropped-small">
     <img src="images/innerprojects/juice/cats.jpg" alt="Old buildings with new tech" class="img-cropped-small">
     <img src="images/innerprojects/juice/whiteboard.jpg" alt="Old buildings with new tech" class="img-cropped-small">
     <img src="images/innerprojects/juice/zackdemoing.jpg" alt="Old buildings with new tech" class="img-cropped-small">
-    <img src="images/innerprojects/juice/juiceinprogress.jpg" alt="Making juice with local fruits" class="img-cropped-small">
+    <img src="images/innerprojects/juice/juiceinprogress.jpg" alt="Making juice with local fruits"
+        class="img-cropped-small">
+    <img src="images/innerprojects/juice/subwaywithmeinback.jpg" alt="Making juice with local fruits"
+        class="img-cropped-small">
 </div>
 
 <div class="card wide container separator">

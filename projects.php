@@ -1,5 +1,7 @@
 <?php
-
+// neigherhood, highwat, shiprecked
+// wuchlights woods, jazzdesign myscicker collegcion, 
+// weird chess, notifibri, minecraft discord server bot, art collection
 $projects = [
     [
         'title' => 'Juice',

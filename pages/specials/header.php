@@ -1,5 +1,14 @@
+<?php
+$page = isset($_GET['page']) ? $_GET['page'] : 'null';
+?>
+
 <header class="site-header" id="site--header-main">
-  <div class="navbar container wide" data-aos="fade-down" data-aos-once="true">
+  <div class="navbar container wide"
+     <?php
+       if ($page === 'home') {
+         echo 'data-aos="fade-down" data-aos-once="true"';
+       }
+     ?>>
     <a href="index.php" class="logo">
       <img src="./images/logo_transparent.png" alt="Logo" />
     </a>
