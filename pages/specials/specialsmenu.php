@@ -1,4 +1,4 @@
-<div class="open-specials-menu">
+<div id="open-specials-menu">
     <input id="checkbox" type="checkbox">
     <label class="toggle" for="checkbox">
         <div id="bar1" class="bars"></div>
@@ -6,57 +6,133 @@
         <div id="bar3" class="bars"></div>
     </label>
 </div>
-<div class="card specials-menu">
+<div class="card" id="specials-menu">
 
-    <label class="neon-checkbox">
-        <input type="checkbox" />
-        <div class="neon-checkbox__frame">
-            <div class="neon-checkbox__box">
-                <div class="neon-checkbox__check-container">
-                    <svg viewBox="0 0 24 24" class="neon-checkbox__check">
-                        <path d="M3,12.5l7,7L21,5"></path>
-                    </svg>
+    <div class="button">
+        <label class="neon-checkbox">
+            <input id="enablephysics" type="checkbox" />
+            <div class="neon-checkbox__frame">
+                <div class="neon-checkbox__box">
+                    <div class="neon-checkbox__check-container">
+                        <svg viewBox="0 0 24 24" class="neon-checkbox__check">
+                            <path d="M3,12.5l7,7L21,5"></path>
+                        </svg>
+                    </div>
+                    <div class="neon-checkbox__glow"></div>
+                    <div class="neon-checkbox__borders">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
                 </div>
-                <div class="neon-checkbox__glow"></div>
-                <div class="neon-checkbox__borders">
-                    <span></span><span></span><span></span><span></span>
+                <div class="neon-checkbox__effects">
+                    <div class="neon-checkbox__particles">
+                        <span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="neon-checkbox__rings">
+                        <div class="ring"></div>
+                        <div class="ring"></div>
+                        <div class="ring"></div>
+                    </div>
+                    <div class="neon-checkbox__sparks">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
                 </div>
             </div>
-            <div class="neon-checkbox__effects">
-                <div class="neon-checkbox__particles">
-                    <span></span><span></span><span></span><span></span>
-                    <span></span><span></span><span></span><span></span>
-                    <span></span><span></span><span></span><span></span>
+        </label>
+        <h2>Enable physics</h2>
+    </div>
+    <br>
+    <div class="button">
+        <label class="neon-checkbox">
+            <input type="checkbox" />
+            <div class="neon-checkbox__frame">
+                <div class="neon-checkbox__box">
+                    <div class="neon-checkbox__check-container">
+                        <svg viewBox="0 0 24 24" class="neon-checkbox__check">
+                            <path d="M3,12.5l7,7L21,5"></path>
+                        </svg>
+                    </div>
+                    <div class="neon-checkbox__glow"></div>
+                    <div class="neon-checkbox__borders">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
                 </div>
-                <div class="neon-checkbox__rings">
-                    <div class="ring"></div>
-                    <div class="ring"></div>
-                    <div class="ring"></div>
-                </div>
-                <div class="neon-checkbox__sparks">
-                    <span></span><span></span><span></span><span></span>
+                <div class="neon-checkbox__effects">
+                    <div class="neon-checkbox__particles">
+                        <span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="neon-checkbox__rings">
+                        <div class="ring"></div>
+                        <div class="ring"></div>
+                        <div class="ring"></div>
+                    </div>
+                    <div class="neon-checkbox__sparks">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </label>
-
+        </label>
+        <h2>Randomize Buttons</h2>
+    </div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const checkbox = document.getElementById('checkbox');
+    const menu = document.getElementById('specials-menu');
+    const enphysics = document.getElementById('enablephysics');
+    
+
+    gsap.set(menu, { autoAlpha: 0, display: 'none' });
+
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        menu.style.display = 'block';
+        gsap.to(menu, { duration: 0.2, autoAlpha: 1 });
+      } else {
+        gsap.to(menu, {
+          duration: 0.2,
+          autoAlpha: 0,
+          onComplete: () => {
+            menu.style.display = 'none';
+          }
+        });
+      }
+    });
+
+    enphysics.addEventListener('change', () => {
+      console.log(enphysics.checked);
+    });
+  });
+</script>
+
+
+
 <style>
-    .open-specials-menu {
+    #open-specials-menu {
         position: fixed;
         bottom: 8rem;
         left: 4rem;
         z-index: 999;
     }
 
-    .specials-menu {
+    #specials-menu {
         position: fixed;
         bottom: 8rem;
         left: 10rem;
         z-index: 999;
+        opacity: 0;
 
         padding: 1rem;
+        overflow: unset;
+    }
+
+    #specials-menu .button{
+        display: flex;
+        gap: 1rem;
     }
 
     #checkbox {
