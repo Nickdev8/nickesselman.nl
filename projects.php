@@ -4,14 +4,73 @@
 // weird chess, notifibri, minecraft discord server bot, art collection
 $projects = [
     [
-        'title' => 'Juice',
+        'title' => 'HackClub: Juice',
         'description' => 'This was a 12 day long hackathon in shanghai, with Hackclub',
         'image' => 'juice.jpg',
         'link' => 'juice',
         'basiclayout' => 'false',
     ],
     [
-        'title' => 'Monkey Swing',
+        'title' => 'HackClub: neighborhood',
+        'description' => 'A 3 month long, housing program in sanfansico',
+        'image' => 'neighborhood.jpg',
+        'link' => 'neighborhood',
+        'basiclayout' => 'true',
+        'blocks' => [
+            [
+                'image' => [
+                    'images/innerprojects/neighborhood/top.jpg',
+                ]
+            ],
+            [
+                'title' => 'Overview',
+                'content' => '
+                    <p>
+                        Ready for a summer hackathon adventure in sunny San Francisco? In May 2025, Hackclub launched an exclusive housing program for programmers. running from June through August, and it’s not your average meet-up.
+                    </p>
+                    <p>
+                        Here’s the deal: you pick a passion project, sink at least 100 hours of code into it, and we’ve got you covered—flight, housing, meals, you name it! Imagine debugging with a view of the Golden Gate Bridge and jamming on your project poolside.
+                    </p>
+                    <p>
+                        For my contribution, I built this very website! <a href="https://NickEsselman.nl" target="_blank" rel="noopener">NickEsselman.nl</a>, to showcase all the wild ideas and late-night coding sessions.  
+                        Oh, and to keep us honest, every week in San Francisco you must clock a minimum of 40 coding hours, tracked effortlessly through <a href="https://hackatime.hackclub.com/" target="_blank" rel="noopener">Hackatime</a> (Hack Club’s fork of WakaTime).
+                    </p>
+                ',
+            ],
+            [
+                'title' => 'Can I Join?',
+                'content' => '
+                    <p>
+                        Think you’ve got what it takes? If you’re 18 or younger and you’re reading this before <strong>August 11, 2025</strong>, you’re in the right place!
+                    </p>
+                    <p>
+                        Just dream up a brand-new project and commit at least <strong>100 hours</strong> of coding before the deadline, and we’ll cover everything—flights, housing, meals, the whole shebang.  
+                        <a href="https://neighborhood.hackclub.com/desktop" target="_blank" rel="noopener">
+                            <button class="cta">Join Now!</button>
+                        </a>
+                    </p>
+                    <p>
+                        There’s one golden rule: while you’re living the San Francisco coder life, you must log <strong>40 hours of code each week</strong>. We’ll keep track via <a href="https://hackatime.hackclub.com/" target="_blank" rel="noopener">Hackatime</a>.  
+                        Miss the weekly quota, and it’s back home you go. so code hard and make every keystroke count!
+                    </p>
+                ',
+            ],
+            [
+                'title' => 'Follow My Journey',
+                'content' => '
+                    <p>
+                        Crave insider access to my San Francisco summer? I’m launching a live blog show you, every twist and turn—sunrise stand-ups, late-night bug hunts, and all the caffeine-powered breakthroughs in between.
+                    </p>
+                    <p>
+                        I’ll drop the blog link right here as soon as it’s live, so keep your eyes peeled and your browser refreshed. Get ready for real-time updates straight from the Bay!
+                    </p>
+                ',
+
+            ]
+        ]
+    ],
+    [
+        'title' => 'Game: Monkey Swing',
         'description' => 'A game i made to learn C# and unity',
         'image' => 'monkeyswing.gif',
         'link' => 'monkeyswing',
@@ -66,7 +125,7 @@ $projects = [
 
     ],
     [
-        'title' => 'HackPad',
+        'title' => 'HackClub: HackPad',
         'description' => 'I Designed, Solderd and Programmed a Micropad',
         'image' => 'hackpad.jpg',
         'link' => 'hackpad',
@@ -123,7 +182,7 @@ $projects = [
         ],
     ],
     [
-        'title' => '3D Printing Journey',
+        'title' => 'Project: 3D Printing Journey',
         'description' => 'From an off-brand clearance printer to a fully upgraded Ender 3 V2',
         'image' => '3dprinter.jpg',
         'link' => '3dprinting',
@@ -191,7 +250,7 @@ $projects = [
         ],
     ],
     [
-        'title' => 'HighSeas',
+        'title' => 'HackClub: HighSeas',
         'description' => 'I Designed, Solderd and Programmed a Micropad',
         'image' => 'highseas.jpg',
         'link' => 'highseas',
@@ -235,7 +294,7 @@ $projects = [
     ],
     [
 
-        'title' => 'EcoNest',
+        'title' => 'School: EcoNest',
         'description' => 'Ardiono project for a School assintment',
         'image' => 'econest.jpg',
         'link' => 'econest',
@@ -255,14 +314,14 @@ $projects = [
         ]
     ],
     [
-        'title' => 'My tree',
+        'title' => 'Project: My tree',
         'description' => 'This is an idea i had for visualising the prjects i made',
         'image' => 'mytree.jpg',
         'link' => 'mytree',
         'basiclayout' => 'false',
     ],
     [
-        'title' => 'Party VR',
+        'title' => 'Project: Party VR',
         'description' => 'This is the game i made for Juice',
         'image' => 'partyvr.jpg',
         'link' => 'partyvr',
