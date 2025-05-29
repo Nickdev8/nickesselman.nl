@@ -29,12 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ---- INIT AOS AFTER YOUR MENU SETUP ----
+  // ---- INIT AOS (after any DOM tweaks) ----
   AOS.init();
 });
 
-
-// ==== MATTER.JS SETUP ====
+// ---- MATTER.JS IMPORTS & GLOBAL STATE ----
 const {
   Engine, World, Bodies, Body,
   Runner, Events,
@@ -49,33 +48,51 @@ let dynamicMappings    = [];
 let staticColliders    = [];
 let walls              = [];
 const originalPositions = new Map();
+const fixedStyles       = new Map();
 
 let isDragging  = false;
 let justDragged = false;
 let filterInstalled = false;
 
 function setupPhysics() {
-  // reset state
+  // 0) CLEAR STATE
   dynamicMappings = [];
   staticColliders = [];
   walls = [];
   originalPositions.clear();
+  fixedStyles.clear();
 
-  // 1) RECORD EACH .physics ELEMENT’S PAGE‐SPACE CENTER
+  // 1) TURN ANY .physics-fixed FROM fixed→absolute (so it scrolls normally)
+  document.querySelectorAll('.physics-fixed').forEach(elem => {
+    const r = elem.getBoundingClientRect();
+    // save the original CSS
+    fixedStyles.set(elem, {
+      position: elem.style.position,
+      left:     elem.style.left,
+      top:      elem.style.top
+    });
+    // compute page‐coords & switch
+    const absLeft = r.left + window.scrollX;
+    const absTop  = r.top  + window.scrollY;
+    elem.style.position = 'absolute';
+    elem.style.left     = `${absLeft}px`;
+    elem.style.top      = `${absTop}px`;
+  });
+
+  // 2) RECORD PAGE-SPACED CENTERS FOR ALL .physics ELEMENTS
   document.querySelectorAll('.physics').forEach(elem => {
     const r = elem.getBoundingClientRect();
-    const x0 = r.left  + window.scrollX + r.width  / 2;
-    const y0 = r.top   + window.scrollY + r.height / 2;
     originalPositions.set(elem, {
       parent:      elem.parentNode,
       nextSibling: elem.nextSibling,
-      x0, y0,
-      width:  r.width,
-      height: r.height
+      x0:          r.left  + window.scrollX + r.width/2,
+      y0:          r.top   + window.scrollY + r.height/2,
+      width:       r.width,
+      height:      r.height
     });
   });
 
-  // 2) RE‐PARENT NESTED .physics‐nested ITEMS
+  // 3) RE-PARENT ANY .physics-nested ELEMENTS
   document.querySelectorAll('.physics-nested').forEach(elem => {
     const outer = elem.closest('.physics:not(.physics-nested)');
     if (outer && outer.parentNode) {
@@ -83,16 +100,16 @@ function setupPhysics() {
     }
   });
 
-  // 3) BUILD DYNAMIC BODIES
+  // 4) CREATE DYNAMIC BODIES
   document.querySelectorAll('.physics').forEach(elem => {
     const orig = originalPositions.get(elem);
     const r    = elem.getBoundingClientRect();
-    const newX0 = r.left  + window.scrollX + r.width  / 2;
-    const newY0 = r.top   + window.scrollY + r.height / 2;
-    const offsetX = orig.x0 - newX0;
-    const offsetY = orig.y0 - newY0;
+    const newX = r.left  + window.scrollX + r.width/2;
+    const newY = r.top   + window.scrollY + r.height/2;
+    const offsetX = orig.x0 - newX;
+    const offsetY = orig.y0 - newY;
 
-    // initial “teleport” so it doesn’t jump
+    // initial offset so it doesn’t jump
     if (offsetX || offsetY) {
       elem.style.transform = `translate(${offsetX}px,${offsetY}px)`;
     }
@@ -107,19 +124,15 @@ function setupPhysics() {
     );
     World.add(world, body);
 
-    dynamicMappings.push({
-      elem, body,
-      x0: orig.x0, y0: orig.y0,
-      offsetX, offsetY
-    });
+    dynamicMappings.push({ elem, body, x0: orig.x0, y0: orig.y0, offsetX, offsetY });
   });
 
-  // 4) BUILD STATIC COLLIDERS (page‐space)
+  // 5) CREATE STATIC COLLIDERS
   document.querySelectorAll('.collision').forEach(elem => {
     const r = elem.getBoundingClientRect();
     const body = Bodies.rectangle(
-      r.left + window.scrollX + r.width  / 2,
-      r.top  + window.scrollY + r.height / 2,
+      r.left + window.scrollX + r.width/2,
+      r.top  + window.scrollY + r.height/2,
       r.width, r.height,
       { isStatic: true, restitution: 0, friction: 1 }
     );
@@ -127,13 +140,10 @@ function setupPhysics() {
     staticColliders.push(body);
   });
 
-  // 5) ONE‐TIME SETUP OF THE FOUR “WALL” BODIES AT PAGE BOUNDARIES
+  // 6) SET UP FOUR “WALL” BODIES ONCE AT PAGE BOUNDS
   const t = 50;
   const W = document.documentElement.scrollWidth;
-  const H = Math.max(
-    document.documentElement.scrollHeight,
-    document.body.scrollHeight
-  );
+  const H = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
   walls = [
     Bodies.rectangle( W/2,    -t/2,   W, t, { isStatic: true } ), // top
     Bodies.rectangle( W/2,  H + t/2,   W, t, { isStatic: true } ), // bottom
@@ -142,10 +152,10 @@ function setupPhysics() {
   ];
   World.add(world, walls);
 
-  // only install filter once, even if you toggle physics repeatedly
+  // 7) INSTALL SCROLL-FILTER ONCE
   if (!filterInstalled) {
     const filter = e => {
-      // if you’re *not* currently dragging a body, let the browser scroll
+      // if you’re not dragging a body, let the browser handle scroll/pinch
       if (!mouseConstraint.body) {
         e.stopImmediatePropagation();
       }
@@ -155,32 +165,28 @@ function setupPhysics() {
     filterInstalled = true;
   }
 
-  // 6) MOUSE DRAGGING (VERY SNAPPY)
+  // 8) MOUSE CONSTRAINT (SNAPPY)
   const mouse = Mouse.create(document.body);
-  const mouseConstraint = MouseConstraint.create(engine, {
+  mouseConstraint = MouseConstraint.create(engine, {
     mouse,
-    constraint: {
-      length: 0.001,
-      stiffness: 0.9,
-      render: { visible: false }
-    }
+    constraint: { length: 0.001, stiffness: 0.9, render: { visible: false } }
   });
   World.add(world, mouseConstraint);
   Events.on(mouseConstraint, 'startdrag', () => { isDragging = true; });
-  Events.on(mouseConstraint, 'enddrag',   () => {
+  Events.on(mouseConstraint, 'enddrag', () => {
     isDragging = false;
     justDragged = true;
     setTimeout(() => { justDragged = false; }, 0);
   });
 
-  // 7) SYNC LOOP (NO scroll‐math needed)
+  // 9) SYNC LOOP & RESPAWN OFF-SCREEN
   Events.on(engine, 'afterUpdate', () => {
     dynamicMappings.forEach(({ elem, body, x0, y0, offsetX, offsetY }) => {
       const dx = body.position.x - x0 + offsetX;
       const dy = body.position.y - y0 + offsetY;
       elem.style.transform = `translate(${dx}px, ${dy}px) rotate(${body.angle}rad)`;
 
-      // respawn if it ever falls way off the bottom
+      // respawn if truly off the bottom
       if (body.position.y > H + 200) {
         Body.setPosition(body, { x: x0, y: y0 });
         Body.setVelocity(body, { x: 0, y: 0 });
@@ -189,36 +195,31 @@ function setupPhysics() {
     });
   });
 
-  // 8) SUPPRESS FOULED CLICK/DRAG EVENTS
-  document.addEventListener('click', e => {
-    if (justDragged) e.stopImmediatePropagation(), e.preventDefault();
-  }, true);
-  document.addEventListener('mousedown', e => {
-    if (isDragging) e.stopImmediatePropagation(), e.preventDefault();
-  }, true);
+  // 10) CLICK/DRAG SAFEGUARDS WHILE ACTIVE
+  document.addEventListener('click',   e => { if (justDragged)  e.stopImmediatePropagation(), e.preventDefault(); }, true);
+  document.addEventListener('mousedown', e => { if (isDragging) e.stopImmediatePropagation(), e.preventDefault(); }, true);
 
-  // 9) DISABLE TEXT/IMAGE SELECTION WHILE ACTIVE
+  // 11) DISABLE TEXT/IMAGE SELECT WHILE PHYSICS ON
   document.body.style.userSelect       = 'none';
   document.body.style.webkitUserSelect = 'none';
   document.body.style.msUserSelect     = 'none';
   document.querySelectorAll('img').forEach(img => {
-    img.draggable     = false;
+    img.draggable   = false;
     img.style.userSelect = 'none';
-    img.ondragstart   = () => false;
+    img.ondragstart = () => false;
   });
 
-  // 10) RE‐ENABLE NATIVE SCROLL BAR
+  // 12) RE-ENABLE NATIVE SCROLLBAR
   document.body.style.overflowY = 'auto';
 
-  // 11) REFRESH AOS SO IT STAYS OUT OF YOUR WAY
+  // 13) REFRESH AOS TO STAY OUT OF THE WAY
   AOS.refresh();
 }
-
 
 function teardownPhysics() {
   Runner.stop(runner);
 
-  // remove dynamic bodies & reset DOM
+  // remove bodies, reset transforms & classes
   dynamicMappings.forEach(({ elem, body }) => {
     World.remove(world, body);
     elem.style.transform       = '';
@@ -229,12 +230,20 @@ function teardownPhysics() {
   staticColliders.forEach(b => World.remove(world, b));
   walls.forEach(b           => World.remove(world, b));
 
-  // restore any moved elements
+  // restore DOM nesting
   originalPositions.forEach(({ parent, nextSibling }, elem) => {
     if (nextSibling) parent.insertBefore(elem, nextSibling);
     else parent.appendChild(elem);
   });
   originalPositions.clear();
+
+  // restore fixed→absolute originals
+  fixedStyles.forEach((styles, elem) => {
+    elem.style.position = styles.position;
+    elem.style.left     = styles.left;
+    elem.style.top      = styles.top;
+  });
+  fixedStyles.clear();
 
   // undo CSS overrides
   document.body.style.userSelect       = '';
