@@ -1,4 +1,4 @@
-<div class="card collision container" data-aos="fade-up">
+<div class="card objectToMoreToTheBackClasses container" data-aos="fade-up">
     <h2 class="headline">These are most of my personal Projects! And events I've contributed in</h2>
 
     <div class="projectgrid">
@@ -12,7 +12,7 @@
                 $badge = $title;
             }
 
-            echo '<a href="?project=' . $project['link'] . '" class="card project project-link" data-aos="fade-up">';
+            echo '<a href="?project=' . $project['link'] . '" class="card projecttilt physics project project-link" data-aos="fade-up">';
             echo '  <div class="img-ratio">';
             echo '    <img src="/images/projectsimages/' . $project['image'] . '" alt="' . htmlspecialchars($title) . '" />';
             // echo '    <span class="overlay-text">' . htmlspecialchars($badge) . '</span>';
@@ -28,7 +28,7 @@
 </div>
 
 <script>
-    VanillaTilt.init(document.querySelectorAll(".project"), {
+    VanillaTilt.init(document.querySelectorAll(".projecttilt"), {
         max: 15,
         speed: 400,
         glare: false,

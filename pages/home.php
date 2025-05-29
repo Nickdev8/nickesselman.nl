@@ -36,7 +36,7 @@
 <?php
 include './pages/projects.php';
 ?>
-<div class="card wide collision container separator" data-aos="fade-up">
+<div class="card wide objectToMoreToTheBackClasses container separator" data-aos="fade-up">
     <h2 class="headline">More images</h2>
     <div class="grid" id="imageGrid">
         <?php

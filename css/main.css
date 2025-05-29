@@ -228,3 +228,16 @@ p {
   animation-duration: 0s;
   /* no overflow: unset here! */
 }
+
+.objectToMoreToTheBackClasses-active{
+    z-index: -999;
+    overflow: visible;
+    position: relative !important;
+    background-color: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04)
+}
+/* “Kill-switch” overrides both transform & cursor */
+.no-hover .media > img:hover {
+    transform: none !important;
+    cursor: default !important;
+}

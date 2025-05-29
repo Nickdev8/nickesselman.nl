@@ -1,5 +1,5 @@
 <?php
-$versionnum = "1.0.5"
+$versionnum = "1.0.6"
     ?>
 
 <!DOCTYPE html>
@@ -134,7 +134,27 @@ $versionnum = "1.0.5"
     include 'pages/specials/footer.php';
     ?>
     <script>
-        // AOS.init({ duration: 800, once: false, mirror: true });
+        // your normal AOS settings
+        const aosOptions = {
+            offset: 120,
+            duration: 400,
+            easing: 'ease',
+            once: false
+        };
+
+        function disableAllAOS() {
+            AOS.init({ ...aosOptions, disable: true });
+
+            document.body.classList.add('no-hover');
+        }
+
+        function enableAllAOS() {
+            AOS.init({ ...aosOptions, disable: false });
+            AOS.refresh();
+            document.body.classList.remove('no-hover');
+        }
+
+        AOS.init(aosOptions);
     </script>
 </body>
 

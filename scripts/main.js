@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // grab <main> once for height-locking
+  const main = document.querySelector('main');
+
   // ---- MENU TOGGLE (GSAP) ----
   const checkbox = document.getElementById('checkbox');
   const menu     = document.getElementById('specials-menu');
@@ -21,10 +24,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const physToggle = document.getElementById('enablephysics');
   physToggle.addEventListener('click', () => {
     if (physToggle.checked) {
+      // === LOCK <main> HEIGHT ===
+      const h = main.getBoundingClientRect().height;
+      main.style.height   = `${h}px`;
+      main.style.overflow = 'hidden';
+      // ========================
+
+      disableAllAOS();
       teardownPhysics();
       setupPhysics();
+
+      document.getElementById('loadMoreBtn').style.display = 'none';
+      document.querySelectorAll('.objectToMoreToTheBackClasses').forEach(elem => {
+        elem.classList.add('objectToMoreToTheBackClasses-active');
+        elem.classList.remove('projecttilt');
+      });
+
       Runner.run(runner, engine);
     } else {
+      // === UNLOCK <main> HEIGHT ===
+      main.style.height   = '';
+      main.style.overflow = '';
+      // ==========================
+
+      enableAllAOS();
       teardownPhysics();
     }
   });
@@ -62,25 +85,24 @@ function setupPhysics() {
   originalPositions.clear();
   fixedStyles.clear();
 
-  // 1) TURN ANY .physics-fixed FROM fixed→absolute (so it scrolls normally)
+  // grab <main> for reparenting .physics-loose
+  const main = document.querySelector('main');
+
+  // 1) FIXED → absolute for any .physics-fixed
   document.querySelectorAll('.physics-fixed').forEach(elem => {
     const r = elem.getBoundingClientRect();
-    // save the original CSS
     fixedStyles.set(elem, {
       position: elem.style.position,
       left:     elem.style.left,
       top:      elem.style.top
     });
-    // compute page‐coords & switch
-    const absLeft = r.left + window.scrollX;
-    const absTop  = r.top  + window.scrollY;
     elem.style.position = 'absolute';
-    elem.style.left     = `${absLeft}px`;
-    elem.style.top      = `${absTop}px`;
+    elem.style.left     = `${r.left + window.scrollX}px`;
+    elem.style.top      = `${r.top  + window.scrollY}px`;
   });
 
-  // 2) RECORD PAGE-SPACED CENTERS FOR ALL .physics ELEMENTS
-  document.querySelectorAll('.physics').forEach(elem => {
+  // 2) RECORD ORIGINAL POSITIONS for BOTH .physics and .physics-loose
+  document.querySelectorAll('.physics, .physics-loose').forEach(elem => {
     const r = elem.getBoundingClientRect();
     originalPositions.set(elem, {
       parent:      elem.parentNode,
@@ -92,7 +114,7 @@ function setupPhysics() {
     });
   });
 
-  // 3) RE-PARENT ANY .physics-nested ELEMENTS
+  // 3) RE-PARENT .physics-nested into siblings of their .physics parent
   document.querySelectorAll('.physics-nested').forEach(elem => {
     const outer = elem.closest('.physics:not(.physics-nested)');
     if (outer && outer.parentNode) {
@@ -100,16 +122,21 @@ function setupPhysics() {
     }
   });
 
-  // 4) CREATE DYNAMIC BODIES
-  document.querySelectorAll('.physics').forEach(elem => {
-    const orig = originalPositions.get(elem);
-    const r    = elem.getBoundingClientRect();
-    const newX = r.left  + window.scrollX + r.width/2;
-    const newY = r.top   + window.scrollY + r.height/2;
-    const offsetX = orig.x0 - newX;
-    const offsetY = orig.y0 - newY;
+  // 4) RE-PARENT .physics-loose INTO <main> (so they’re in our world)
+  document.querySelectorAll('.physics-loose').forEach(elem => {
+    if (main) main.appendChild(elem);
+  });
 
-    // initial offset so it doesn’t jump
+  // 5) CREATE DYNAMIC BODIES for BOTH .physics and .physics-loose
+  document.querySelectorAll('.physics, .physics-loose').forEach(elem => {
+    const orig   = originalPositions.get(elem);
+    const r      = elem.getBoundingClientRect();
+    const newX   = r.left  + window.scrollX + r.width/2;
+    const newY   = r.top   + window.scrollY + r.height/2;
+    const offsetX= orig.x0 - newX;
+    const offsetY= orig.y0 - newY;
+
+    // initial transform so they don’t jump
     if (offsetX || offsetY) {
       elem.style.transform = `translate(${offsetX}px,${offsetY}px)`;
     }
@@ -123,11 +150,10 @@ function setupPhysics() {
       { restitution: 0.4, friction: 0.1 }
     );
     World.add(world, body);
-
     dynamicMappings.push({ elem, body, x0: orig.x0, y0: orig.y0, offsetX, offsetY });
   });
 
-  // 5) CREATE STATIC COLLIDERS
+  // 6) STATIC COLLIDERS
   document.querySelectorAll('.collision').forEach(elem => {
     const r = elem.getBoundingClientRect();
     const body = Bodies.rectangle(
@@ -140,32 +166,29 @@ function setupPhysics() {
     staticColliders.push(body);
   });
 
-  // 6) SET UP FOUR “WALL” BODIES ONCE AT PAGE BOUNDS
+  // 7) PAGE BOUNDS “WALLS”
   const t = 50;
   const W = document.documentElement.scrollWidth;
   const H = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
   walls = [
-    Bodies.rectangle( W/2,    -t/2,   W, t, { isStatic: true } ), // top
-    Bodies.rectangle( W/2,  H + t/2,   W, t, { isStatic: true } ), // bottom
-    Bodies.rectangle(-t/2,    H/2,    t, H, { isStatic: true } ), // left
-    Bodies.rectangle(W + t/2,  H/2,    t, H, { isStatic: true } )  // right
+    Bodies.rectangle( W/2,    -t/2,   W, t, { isStatic: true }),
+    Bodies.rectangle( W/2,  H + t/2,   W, t, { isStatic: true }),
+    Bodies.rectangle(-t/2,    H/2,    t, H, { isStatic: true }),
+    Bodies.rectangle(W + t/2,  H/2,    t, H, { isStatic: true })
   ];
   World.add(world, walls);
 
-  // 7) INSTALL SCROLL-FILTER ONCE
+  // 8) SCROLL FILTER
   if (!filterInstalled) {
     const filter = e => {
-      // if you’re not dragging a body, let the browser handle scroll/pinch
-      if (!mouseConstraint.body) {
-        e.stopImmediatePropagation();
-      }
+      if (!mouseConstraint.body) e.stopImmediatePropagation();
     };
     ['wheel','mousewheel','DOMMouseScroll','touchmove','pointermove']
       .forEach(type => window.addEventListener(type, filter, { capture: true }));
     filterInstalled = true;
   }
 
-  // 8) MOUSE CONSTRAINT (SNAPPY)
+  // 9) MOUSE CONSTRAINT
   const mouse = Mouse.create(document.body);
   mouseConstraint = MouseConstraint.create(engine, {
     mouse,
@@ -173,20 +196,18 @@ function setupPhysics() {
   });
   World.add(world, mouseConstraint);
   Events.on(mouseConstraint, 'startdrag', () => { isDragging = true; });
-  Events.on(mouseConstraint, 'enddrag', () => {
-    isDragging = false;
+  Events.on(mouseConstraint, 'enddrag',   () => {
+    isDragging  = false;
     justDragged = true;
     setTimeout(() => { justDragged = false; }, 0);
   });
 
-  // 9) SYNC LOOP & RESPAWN OFF-SCREEN
+  // 10) SYNC & RESPAWN
   Events.on(engine, 'afterUpdate', () => {
     dynamicMappings.forEach(({ elem, body, x0, y0, offsetX, offsetY }) => {
       const dx = body.position.x - x0 + offsetX;
       const dy = body.position.y - y0 + offsetY;
       elem.style.transform = `translate(${dx}px, ${dy}px) rotate(${body.angle}rad)`;
-
-      // respawn if truly off the bottom
       if (body.position.y > H + 200) {
         Body.setPosition(body, { x: x0, y: y0 });
         Body.setVelocity(body, { x: 0, y: 0 });
@@ -195,11 +216,11 @@ function setupPhysics() {
     });
   });
 
-  // 10) CLICK/DRAG SAFEGUARDS WHILE ACTIVE
-  document.addEventListener('click',   e => { if (justDragged)  e.stopImmediatePropagation(), e.preventDefault(); }, true);
-  document.addEventListener('mousedown', e => { if (isDragging) e.stopImmediatePropagation(), e.preventDefault(); }, true);
+  // 11) CLICK/DRAG SAFEGUARDS
+  document.addEventListener('click',    e => { if (justDragged) e.stopImmediatePropagation(), e.preventDefault(); }, true);
+  document.addEventListener('mousedown',e => { if (isDragging)  e.stopImmediatePropagation(), e.preventDefault(); }, true);
 
-  // 11) DISABLE TEXT/IMAGE SELECT WHILE PHYSICS ON
+  // 12) DISABLE SELECTION WHILE ACTIVE
   document.body.style.userSelect       = 'none';
   document.body.style.webkitUserSelect = 'none';
   document.body.style.msUserSelect     = 'none';
@@ -209,17 +230,17 @@ function setupPhysics() {
     img.ondragstart = () => false;
   });
 
-  // 12) RE-ENABLE NATIVE SCROLLBAR
+  // 13) RE-ENABLE SCROLLBAR
   document.body.style.overflowY = 'auto';
 
-  // 13) REFRESH AOS TO STAY OUT OF THE WAY
+  // 14) REFRESH AOS
   AOS.refresh();
 }
 
 function teardownPhysics() {
   Runner.stop(runner);
 
-  // remove bodies, reset transforms & classes
+  // remove bodies & reset elements
   dynamicMappings.forEach(({ elem, body }) => {
     World.remove(world, body);
     elem.style.transform       = '';
@@ -230,14 +251,13 @@ function teardownPhysics() {
   staticColliders.forEach(b => World.remove(world, b));
   walls.forEach(b           => World.remove(world, b));
 
-  // restore DOM nesting
+  // restore DOM nesting & styles
   originalPositions.forEach(({ parent, nextSibling }, elem) => {
     if (nextSibling) parent.insertBefore(elem, nextSibling);
     else parent.appendChild(elem);
   });
   originalPositions.clear();
 
-  // restore fixed→absolute originals
   fixedStyles.forEach((styles, elem) => {
     elem.style.position = styles.position;
     elem.style.left     = styles.left;
@@ -256,7 +276,7 @@ function teardownPhysics() {
   });
   document.body.style.overflowY = '';
 
-  // clear flags & arrays
+  // reset flags & arrays
   isDragging      = false;
   justDragged     = false;
   dynamicMappings = [];
