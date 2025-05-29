@@ -81,11 +81,12 @@ $versionnum = "1.0.5"
     <?php
     include 'projects.php';
     include 'pages/specials/header.php';
-
-    include 'pages/specials/specialsmenu.php';
     ?>
     <main id="inner-main" class="inner-main">
         <?php
+
+        include 'pages/specials/specialsmenu.php';
+
         $page = $_GET['page'] ?? null;
         $project = $_GET['project'] ?? null;
 
@@ -133,7 +134,7 @@ $versionnum = "1.0.5"
     include 'pages/specials/footer.php';
     ?>
     <script>
-        AOS.init({ duration: 800, once: false, mirror: true });
+        // AOS.init({ duration: 800, once: false, mirror: true });
     </script>
 </body>
 

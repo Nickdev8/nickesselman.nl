@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // ---- MENU TOGGLE (GSAP) ----
   const checkbox = document.getElementById('checkbox');
-  const menu = document.getElementById('specials-menu');
-
+  const menu     = document.getElementById('specials-menu');
   gsap.set(menu, { autoAlpha: 0, display: 'none' });
 
   checkbox.addEventListener('change', () => {
@@ -17,60 +17,65 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-const physToggle = document.getElementById('enablephysics');
+  // ---- PHYSICS TOGGLE ----
+  const physToggle = document.getElementById('enablephysics');
+  physToggle.addEventListener('click', () => {
+    if (physToggle.checked) {
+      teardownPhysics();
+      setupPhysics();
+      Runner.run(runner, engine);
+    } else {
+      teardownPhysics();
+    }
+  });
 
-physToggle.addEventListener('click', e => {
-  if (physToggle.checked) {
-    // if it was already running, stop & clear it...
-    teardownPhysics();
-    // then rebuild from scratch with fresh positions
-    setupPhysics();
-    Runner.run(runner, engine);
-  } else {
-    teardownPhysics();
-  }
+  // ---- INIT AOS AFTER YOUR MENU SETUP ----
+  AOS.init();
 });
 
-});
 
+// ==== MATTER.JS SETUP ====
+const {
+  Engine, World, Bodies, Body,
+  Runner, Events,
+  Mouse, MouseConstraint
+} = Matter;
 
-// Matter.js setup
-const { Engine, World, Bodies, Runner, Events, Mouse, MouseConstraint } = Matter;
 const engine = Engine.create();
-const world = engine.world;
+const world  = engine.world;
 const runner = Runner.create();
 
-// track bodies & DOM positions
-let dynamicMappings = [];
-let staticColliders = [];
-let walls = [];
+let dynamicMappings    = [];
+let staticColliders    = [];
+let walls              = [];
 const originalPositions = new Map();
 
-// drag state
-let isDragging = false;
+let isDragging  = false;
 let justDragged = false;
+let filterInstalled = false;
 
 function setupPhysics() {
-  // reset
+  // reset state
   dynamicMappings = [];
   staticColliders = [];
   walls = [];
   originalPositions.clear();
 
-  // 0) record each .physics elem's original parent, sibling, size & center
+  // 1) RECORD EACH .physics ELEMENT’S PAGE‐SPACE CENTER
   document.querySelectorAll('.physics').forEach(elem => {
     const r = elem.getBoundingClientRect();
+    const x0 = r.left  + window.scrollX + r.width  / 2;
+    const y0 = r.top   + window.scrollY + r.height / 2;
     originalPositions.set(elem, {
-      parent: elem.parentNode,
+      parent:      elem.parentNode,
       nextSibling: elem.nextSibling,
-      x0: r.left + r.width / 2,
-      y0: r.top + r.height / 2,
-      width: r.width,
+      x0, y0,
+      width:  r.width,
       height: r.height
     });
   });
 
-  // 0.5) reparent nested ones *after* recording positions
+  // 2) RE‐PARENT NESTED .physics‐nested ITEMS
   document.querySelectorAll('.physics-nested').forEach(elem => {
     const outer = elem.closest('.physics:not(.physics-nested)');
     if (outer && outer.parentNode) {
@@ -78,26 +83,23 @@ function setupPhysics() {
     }
   });
 
-  // 1) create dynamic bodies & compute per-element offset
+  // 3) BUILD DYNAMIC BODIES
   document.querySelectorAll('.physics').forEach(elem => {
     const orig = originalPositions.get(elem);
-    // new screen‐center after reparent
-    const nr = elem.getBoundingClientRect();
-    const newX0 = nr.left + nr.width / 2;
-    const newY0 = nr.top + nr.height / 2;
-    // offset so it stays visually put until physics moves it
+    const r    = elem.getBoundingClientRect();
+    const newX0 = r.left  + window.scrollX + r.width  / 2;
+    const newY0 = r.top   + window.scrollY + r.height / 2;
     const offsetX = orig.x0 - newX0;
     const offsetY = orig.y0 - newY0;
 
-    // apply that initial offset
+    // initial “teleport” so it doesn’t jump
     if (offsetX || offsetY) {
-      elem.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+      elem.style.transform = `translate(${offsetX}px,${offsetY}px)`;
     }
     elem.style.transformOrigin = 'center center';
     elem.classList.add('physics-active');
     elem.classList.remove('physics-inactive');
 
-    // make the Matter body at the *original* center
     const body = Bodies.rectangle(
       orig.x0, orig.y0,
       orig.width, orig.height,
@@ -105,7 +107,6 @@ function setupPhysics() {
     );
     World.add(world, body);
 
-    // remember everything for sync
     dynamicMappings.push({
       elem, body,
       x0: orig.x0, y0: orig.y0,
@@ -113,12 +114,12 @@ function setupPhysics() {
     });
   });
 
-  // 2) static colliders
+  // 4) BUILD STATIC COLLIDERS (page‐space)
   document.querySelectorAll('.collision').forEach(elem => {
     const r = elem.getBoundingClientRect();
     const body = Bodies.rectangle(
-      r.left + r.width / 2,
-      r.top + r.height / 2,
+      r.left + window.scrollX + r.width  / 2,
+      r.top  + window.scrollY + r.height / 2,
       r.width, r.height,
       { isStatic: true, restitution: 0, friction: 1 }
     );
@@ -126,47 +127,69 @@ function setupPhysics() {
     staticColliders.push(body);
   });
 
-  const w = window.innerWidth;
-  const h = Math.max(
-    document.documentElement.scrollHeight,
-    document.body.scrollHeight,
-    document.documentElement.clientHeight
-  );
+  // 5) ONE‐TIME SETUP OF THE FOUR “WALL” BODIES AT PAGE BOUNDARIES
   const t = 50;
-
+  const W = document.documentElement.scrollWidth;
+  const H = Math.max(
+    document.documentElement.scrollHeight,
+    document.body.scrollHeight
+  );
   walls = [
-    Bodies.rectangle(w / 2, -t / 2, w, t, { isStatic: true }), // top
-    Bodies.rectangle(w / 2, h + t / 2, w, t, { isStatic: true }), // bottom
-    Bodies.rectangle(-t / 2, h / 2, t, h, { isStatic: true }), // left
-    Bodies.rectangle(w + t / 2, h / 2, t, h, { isStatic: true })  // right
+    Bodies.rectangle( W/2,    -t/2,   W, t, { isStatic: true } ), // top
+    Bodies.rectangle( W/2,  H + t/2,   W, t, { isStatic: true } ), // bottom
+    Bodies.rectangle(-t/2,    H/2,    t, H, { isStatic: true } ), // left
+    Bodies.rectangle(W + t/2,  H/2,    t, H, { isStatic: true } )  // right
   ];
   World.add(world, walls);
 
-  // 4) mouse dragging
+  // only install filter once, even if you toggle physics repeatedly
+  if (!filterInstalled) {
+    const filter = e => {
+      // if you’re *not* currently dragging a body, let the browser scroll
+      if (!mouseConstraint.body) {
+        e.stopImmediatePropagation();
+      }
+    };
+    ['wheel','mousewheel','DOMMouseScroll','touchmove','pointermove']
+      .forEach(type => window.addEventListener(type, filter, { capture: true }));
+    filterInstalled = true;
+  }
+
+  // 6) MOUSE DRAGGING (VERY SNAPPY)
   const mouse = Mouse.create(document.body);
-  const mc = MouseConstraint.create(engine, {
-    mouse, constraint: { stiffness: 0.2, render: { visible: false } }
+  const mouseConstraint = MouseConstraint.create(engine, {
+    mouse,
+    constraint: {
+      length: 0.001,
+      stiffness: 0.9,
+      render: { visible: false }
+    }
   });
-  World.add(world, mc);
-  Events.on(mc, 'startdrag', () => { isDragging = true; });
-  Events.on(mc, 'enddrag', () => {
+  World.add(world, mouseConstraint);
+  Events.on(mouseConstraint, 'startdrag', () => { isDragging = true; });
+  Events.on(mouseConstraint, 'enddrag',   () => {
     isDragging = false;
     justDragged = true;
     setTimeout(() => { justDragged = false; }, 0);
   });
 
-  // 5) sync loop
+  // 7) SYNC LOOP (NO scroll‐math needed)
   Events.on(engine, 'afterUpdate', () => {
     dynamicMappings.forEach(({ elem, body, x0, y0, offsetX, offsetY }) => {
       const dx = body.position.x - x0 + offsetX;
       const dy = body.position.y - y0 + offsetY;
-      const angle = body.angle;
-      elem.style.transform =
-        `translate(${dx}px, ${dy}px) rotate(${angle}rad)`;
+      elem.style.transform = `translate(${dx}px, ${dy}px) rotate(${body.angle}rad)`;
+
+      // respawn if it ever falls way off the bottom
+      if (body.position.y > H + 200) {
+        Body.setPosition(body, { x: x0, y: y0 });
+        Body.setVelocity(body, { x: 0, y: 0 });
+        Body.setAngle(body, 0);
+      }
     });
   });
 
-  // 6) suppress clicks/selection while dragging
+  // 8) SUPPRESS FOULED CLICK/DRAG EVENTS
   document.addEventListener('click', e => {
     if (justDragged) e.stopImmediatePropagation(), e.preventDefault();
   }, true);
@@ -174,69 +197,60 @@ function setupPhysics() {
     if (isDragging) e.stopImmediatePropagation(), e.preventDefault();
   }, true);
 
-  // 7) disable text selection
-  document.body.style.userSelect = 'none';
+  // 9) DISABLE TEXT/IMAGE SELECTION WHILE ACTIVE
+  document.body.style.userSelect       = 'none';
   document.body.style.webkitUserSelect = 'none';
-  document.body.style.msUserSelect = 'none';
-
-  // 8) disable image dragging
+  document.body.style.msUserSelect     = 'none';
   document.querySelectorAll('img').forEach(img => {
-    img.draggable = false;
+    img.draggable     = false;
     img.style.userSelect = 'none';
-    img.ondragstart = () => false;
+    img.ondragstart   = () => false;
   });
 
-  // 9) allow scrolling
+  // 10) RE‐ENABLE NATIVE SCROLL BAR
   document.body.style.overflowY = 'auto';
+
+  // 11) REFRESH AOS SO IT STAYS OUT OF YOUR WAY
+  AOS.refresh();
 }
 
-function teardownPhysics() {
 
-  // remove dynamic bodies & clear styles
-  dynamicMappings.forEach(({ elem }) => {
+function teardownPhysics() {
+  Runner.stop(runner);
+
+  // remove dynamic bodies & reset DOM
+  dynamicMappings.forEach(({ elem, body }) => {
+    World.remove(world, body);
+    elem.style.transform       = '';
+    elem.style.transformOrigin = '';
     elem.classList.remove('physics-active');
     elem.classList.add('physics-inactive');
   });
-
-
-  Runner.stop(runner);
-
-  // remove dynamic bodies & clear styles
-  dynamicMappings.forEach(({ elem, body }) => {
-    World.remove(world, body);
-    elem.style.transform = '';
-    elem.style.transformOrigin = '';
-  });
-
-  // remove static colliders & walls
   staticColliders.forEach(b => World.remove(world, b));
-  walls.forEach(b => World.remove(world, b));
+  walls.forEach(b           => World.remove(world, b));
 
-  // restore nested elems to original parent/sibling
+  // restore any moved elements
   originalPositions.forEach(({ parent, nextSibling }, elem) => {
     if (nextSibling) parent.insertBefore(elem, nextSibling);
     else parent.appendChild(elem);
   });
   originalPositions.clear();
 
-  // clear drag flags
-  isDragging = false;
-  justDragged = false;
-
-  // restore selection & dragging
-  document.body.style.userSelect = '';
+  // undo CSS overrides
+  document.body.style.userSelect       = '';
   document.body.style.webkitUserSelect = '';
-  document.body.style.msUserSelect = '';
+  document.body.style.msUserSelect     = '';
   document.querySelectorAll('img').forEach(img => {
-    img.draggable = true;
+    img.draggable   = true;
     img.style.userSelect = '';
     img.ondragstart = null;
   });
-
-  // restore scrolling
   document.body.style.overflowY = '';
 
+  // clear flags & arrays
+  isDragging      = false;
+  justDragged     = false;
   dynamicMappings = [];
   staticColliders = [];
-  walls = [];
+  walls           = [];
 }
