@@ -1,6 +1,18 @@
 <style>
     .header-overlay {
         position: relative;
+        width: 100%;
+        aspect-ratio: 25 / 8;
+        overflow: hidden;
+
+    }
+
+    .header-overlay img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: var(--radii-extra);
     }
 
     .header-overlay .overlay-text {
@@ -14,13 +26,8 @@
 
     .header-overlay .overlay-text h1,
     .header-overlay .overlay-text p {
-        color: #fff;
-    }
-
-    .header-overlay img.bg {
-        display: block;
-        width: 100%;
-        height: auto;
+        margin: 0;
+        color: white;
     }
 
     .img-wide,
@@ -53,38 +60,38 @@
         transition: transform 130ms ease-in-out;
     }
 
-    .iconholder a:hover{
+    .iconholder a:hover {
         transform: scale(1.1);
-    }    
+    }
 
 
 
-@media screen and (max-width: 1100px) {
-    .iconholder {
-        grid-template-columns: 1fr;
+    @media screen and (max-width: 1100px) {
+        .iconholder {
+            grid-template-columns: 1fr;
+        }
     }
-}
-@media screen and (max-width: 800px) {
-    .iconholder {
-        grid-template-columns: 1fr 1fr;
+
+    @media screen and (max-width: 800px) {
+        .iconholder {
+            grid-template-columns: 1fr 1fr;
+        }
     }
-}
-@media screen and (max-width: 550px) {
-    .iconholder {
-        grid-template-columns: 1fr;
+
+    @media screen and (max-width: 550px) {
+        .iconholder {
+            grid-template-columns: 1fr;
+        }
     }
-}
 </style>
 
 <link rel="stylesheet" href="css/form.css">
-<div class="container separator header-overlay">
+<div class="container physics separator header-overlay" matter>
+    <img src="images/projectsimages/contact.jpg" alt="Contact background">
     <div class="overlay-text">
         <h1>Contact</h1>
         <p>Where to find me</p>
     </div>
-</div>
-<div class="container separator img-wide">
-    <img src="images/projectsimages/contact.jpg" alt="" class="img-cropped-wide">
 </div>
 
 <div class="container separator split">

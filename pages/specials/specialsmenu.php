@@ -6,7 +6,7 @@
         <div id="bar3" class="bars"></div>
     </label>
 </div>
-<div class="card" id="specials-menu">
+<div class="card physics" id="specials-menu">
 
     <div class="button">
         <label class="neon-checkbox">

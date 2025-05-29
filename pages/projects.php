@@ -1,4 +1,4 @@
-<div class="card container" data-aos="fade-up">
+<div class="card collision container" data-aos="fade-up">
     <h2 class="headline">These are most of my personal Projects! And events I've contributed in</h2>
 
     <div class="projectgrid">

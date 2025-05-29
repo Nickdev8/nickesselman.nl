@@ -55,27 +55,37 @@ p {
 }
 
 /* Wide (landscape) images, 16:9 */
-.img-wide >*,
+.img-wide>*,
 .img-wide img,
 .img-wide {
-  display: block;           /* remove inline-gap */
-  width: 100%;              /* fill container width */
-  height: auto;             /* height follows width */
-  aspect-ratio: 20 / 8;     /* lock to 16:9 */
-  object-fit: cover;        /* crop overflow if needed */
-  border-radius: 2rem;
+    display: block;
+    /* remove inline-gap */
+    width: 100%;
+    /* fill container width */
+    height: auto;
+    /* height follows width */
+    aspect-ratio: 20 / 8;
+    /* lock to 16:9 */
+    object-fit: cover;
+    /* crop overflow if needed */
+    border-radius: 2rem;
 }
 
 /* Tall (portrait) images, 9:16 */
-.img-tall >*,
+.img-tall>*,
 .img-tall img,
 .img-tall {
-  display: block;           /* remove inline-gap */
-  width: auto;              /* height drives size if parent has one */
-  height: 100%;             /* fill container height */
-  aspect-ratio: 9 / 16;     /* lock to 9:16 */
-  object-fit: cover;        /* crop overflow if needed */
-  border-radius: 2rem;
+    display: block;
+    /* remove inline-gap */
+    width: auto;
+    /* height drives size if parent has one */
+    height: 100%;
+    /* fill container height */
+    aspect-ratio: 9 / 16;
+    /* lock to 9:16 */
+    object-fit: cover;
+    /* crop overflow if needed */
+    border-radius: 2rem;
 }
 
 
@@ -99,7 +109,6 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     background-color: #000;
     /* Fallback background for videos and iframes */
 }
@@ -144,12 +153,16 @@ p {
     display: none;
     position: fixed;
     z-index: 9999;
-    left: 0; top: 0; width: 100vw; height: 100vh;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
     overflow: auto;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0, 0, 0, 0.85);
     justify-content: center;
     align-items: center;
 }
+
 .modal-content {
     margin: auto;
     display: block;
@@ -158,6 +171,7 @@ p {
     border-radius: 8px;
     box-shadow: 0 0 32px #000a;
 }
+
 .modal-close {
     position: absolute;
     top: 2rem;
@@ -169,6 +183,7 @@ p {
     z-index: 10000;
     user-select: none;
 }
+
 .media img {
     cursor: pointer;
 }
@@ -186,6 +201,30 @@ p {
 }
 
 
-.no-font{
+.no-font {
     font-family: 'BowlbyOneSC-Regular' !important;
+}
+
+.physics-active {
+    transition-duration: unset !important;
+    /* overflow: unset; */
+    z-index: 999 !important;
+}
+
+.physics-inactive {
+    transition-duration: .8s !important;
+    /* overflow: unset; */
+}
+
+.physics-nested {
+    z-index: 999 !important;
+}
+
+/* If you still need to temporarily suppress animations/etc
+   when physics is active, but DON’T want to kill scrolling: */
+*:has(.physics.physics-active) {
+  /* remove only animation pauses, but retain overflow */
+  animation-play-state: paused;
+  animation-duration: 0s;
+  /* no overflow: unset here! */
 }

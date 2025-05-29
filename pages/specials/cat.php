@@ -1,4 +1,4 @@
-<div class="cat">
+<div class="cat physics">
     <div class="loader">
         <div class="wrapper">
             <div class="catContainer">

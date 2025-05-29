@@ -84,7 +84,7 @@ $versionnum = "1.0.5"
 
     include 'pages/specials/specialsmenu.php';
     ?>
-    <main class="inner-main">
+    <main id="inner-main" class="inner-main">
         <?php
         $page = $_GET['page'] ?? null;
         $project = $_GET['project'] ?? null;

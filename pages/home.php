@@ -2,12 +2,18 @@
 
 <div class="main-top">
     <!-- <div id="particles-js" style="position:absolute;top:0;left:0;width:100%;height:auto;z-index:1;overflow:hidden;"></div> -->
-    <h1 class="ultratitle">Nick Esselman</h1>
+    <div style="margin:auto; width: fit-content;">
+        <h1 class="ultratitle physics" style="background-color: var(--myblue); padding: 1rem; border-radius: 0.5rem">
+            Nick Esselman</h1>
+    </div>
 
-    <span id="typed-text"></span><span class="cursor" data-aos="fade-up">&nbsp;</span>
+    <div class="physics"
+        style="margin:auto; width: fit-content; background-color: var(--myblue); padding: 1rem; border-radius: 0.5rem">
+        <span id="typed-text"></span><span class="cursor" data-aos="fade-up">&nbsp;</span>
+    </div>
 </div>
 
-<div class="container split separator card" data-aos="fade-up">
+<div class="container split physics separator card" matter data-aos="fade-up">
     <div>
         <h2 class="headline">Hi!</h2>
         <p>
@@ -16,10 +22,10 @@
             Every project and every line of code tells a story about my journey.
         </p>
     </div>
-    <img src="images/me.png" alt="Nick Essleman" class="img-cropped-wide">
+        <img src="images/me.png" alt="Nick Essleman" class="img-cropped-wide">
 </div>
 
-<div class="container separator card narrow" data-aos="fade-up">
+<div class="container physics separator card narrow" matter data-aos="fade-up">
 
     <div class="card-3d">
         <link rel="stylesheet" href="css/luanguagesamination.css">
@@ -30,7 +36,7 @@
 <?php
 include './pages/projects.php';
 ?>
-<div class="card wide container separator" data-aos="fade-up">
+<div class="card wide collision container separator" data-aos="fade-up">
     <h2 class="headline">More images</h2>
     <div class="grid" id="imageGrid">
         <?php
@@ -112,12 +118,12 @@ include './pages/projects.php';
         delay: 0.5
     });
 
-    VanillaTilt.init(document.querySelectorAll(".img-cropped-wide"), {
-        max: 15,
-        speed: 400,
-        glare: true,
-        "max-glare": 0.2,
-    });
+    // VanillaTilt.init(document.querySelectorAll(".img-cropped-wide"), {
+    //     max: 15,
+    //     speed: 400,
+    //     glare: true,
+    //     "max-glare": 0.2,
+    // });
 
     /* after Particles.js is loaded */
     particlesJS("particles-js", {

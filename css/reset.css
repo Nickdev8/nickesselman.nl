@@ -71,3 +71,15 @@ body {
 footer {
   margin-top: auto;
 }
+
+
+
+html, body {
+  /* let the page grow taller than the viewport */
+  height: auto !important;
+  min-height: 100vh !important;
+
+  /* always allow vertical scroll, never hide overflow */
+  overflow-x: hidden !important;
+  overflow-y: auto   !important;
+}
