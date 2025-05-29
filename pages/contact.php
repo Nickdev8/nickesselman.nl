@@ -88,7 +88,7 @@
 </div>
 
 <div class="container separator split">
-    <div class="physics card">
+    <div class="card physics" matter>
         <h3 class="headline">Info</h3>
         <div class="iconholder">
             <a href="https://www.linkedin.com/in/nick-esselman/">
@@ -111,7 +111,7 @@
                 nick.esselman@gmail.com</a>
         </div>
     </div>
-    <div class="physics card">
+    <div class="card physics" matter>
         <form class="form">
             <h3 class="headline">Contact us</h3>
             <input type="text" placeholder="Your email" class="input">

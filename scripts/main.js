@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const checkbox = document.getElementById('checkbox');
     const menu = document.getElementById('specials-menu');
-    const enphysics = document.getElementById('enablephysics');
 
     gsap.set(menu, { autoAlpha: 0, display: 'none' });
 
@@ -20,24 +19,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+
+
+    const enphysics = document.getElementById('enablephysics');
+
+    let running = true;
     enphysics.addEventListener('change', () => {
-        if (enphysics.checked) {
-            console.log("physics is on!")
+        running = enphysics.checked;
+        if (running) {
+            startphysics(true);
         }
+        else
+            startphysics(false);
+        console.log(running)
     });
+
 });
 
+// Alias commonly used modules
+const { Engine, World, Bodies, Runner, Events } = Matter;
 
-function startphysics() {
-    // Alias commonly used modules
-    const { Engine, World, Bodies, Runner, Events } = Matter;
+// 1. Create an engine
+const engine = Engine.create();
+const world = engine.world;
 
-    // 1. Create an engine
-    const engine = Engine.create();
-    const world = engine.world;
+// 2. Create a runner to control the update loop
+const runner = Runner.create();
 
-    // 2. Create a runner to control the update loop
-    const runner = Runner.create();
+function startphysics(isrunning = false) {
+    if (!isrunning) {
+        Runner.stop(runner);
+        return;
+    }
+
 
     // 3. Start the simulation
     Runner.run(runner, engine);
@@ -97,10 +111,4 @@ function startphysics() {
                 `rotate(${angle}rad)`;
         });
     });
-
-
-
-
 }
-
-startphysics();

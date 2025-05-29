@@ -20,10 +20,40 @@ $versionnum = "1.0.5"
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/matter-dom-plugin@1.0.0/build/matter-dom-plugin.min.js"></script>
 
     <script src="scripts/main.js" defer></script>
+    <!-- <script defer>
+  Matter.use('matter-dom-plugin');
+
+        // Alias commonly used modules
+        const {
+            Engine,
+            Runner,
+            World,
+            RenderDom,      // provided by matter-dom-plugin
+            DomBodies,      // optional: declarative body creation
+            MouseConstraint,
+            DomMouseConstraint,
+            Mouse
+        } = Matter;
+
+        // 1. Create and run engine
+        const engine = Engine.create();
+        const runner = Runner.create();
+        Runner.run(runner, engine);
+
+        // 2. Create DOM renderer
+        const render = RenderDom.create({
+            engine: engine,
+            element: document.body  // or specify a container element
+        });
+
+        // **Correct usage**: call the static run() on RenderDom
+        RenderDom.run(render);
+    </script> -->
 
     <!-- basic css -->
     <link rel="stylesheet" href="css/reset.css?v=<?= $versionnum ?>">

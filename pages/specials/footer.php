@@ -1,4 +1,5 @@
-<footer class="site-footer collision">
+<footer class="site-footer collision" matter static>
+
   <div class="footer-content container">
     <div class="footer-left">
       <img src="/images/logo_transparent.png" alt="Nick Esselman Logo" class="footer-logo">
