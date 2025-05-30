@@ -237,7 +237,7 @@ span.physics-active {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .objectToMoreToTheBackClasses-active {

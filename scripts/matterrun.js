@@ -19,7 +19,6 @@ var Engine = Matter.Engine,
 var engine;
 if (page == "about")
     engine = Engine.create({ enableSleeping: true });
-
 else
     engine = Engine.create({ enableSleeping: false });
 
@@ -43,6 +42,10 @@ var isDragging = false, justDragged = false, filterInstalled = false;
 var ropedistnace = 50;
 var ropeLength = 100;
 var hoopSensor;
+var rectC, rectCHoop, rim;
+let lastSensorTriggerTime = 0;
+const SENSOR_COOLDOWN_MS = 1000; // 1 second
+
 
 // ===== Interface Toggles =====
 function enableMatter() {
@@ -172,6 +175,7 @@ function setupPhysics() {
         });
     });
 
+
     // Static Colliders
     document.querySelectorAll('.collision').forEach(function (elem) {
         var r = elem.getBoundingClientRect();
@@ -184,6 +188,8 @@ function setupPhysics() {
         Composite.add(world, body);
         staticColliders.push(body);
     });
+
+
 
     // Add Custom Objects, Images & Joints
     addObjects();
@@ -233,12 +239,23 @@ function setupPhysics() {
 
     // update anchors every frame
     Events.on(engine, 'beforeUpdate', function () {
-        var offX = window.innerWidth - 100;
-        var offY = 50;
-        var ax1 = window.scrollX + offX;
-        var ay1 = window.scrollY + offY;
-        var ax2 = ax1 - ropedistnace;
-        var ay2 = ay1;
+        const isMobile = window.innerWidth < 900;
+        const offY = 50;
+
+        let ax1, ax2;
+        if (isMobile) {
+            const centerX = window.scrollX + window.innerWidth / 2;
+            ax1 = centerX + ropedistnace / 2;
+            ax2 = centerX - ropedistnace / 2;
+        } else {
+            const offX = window.innerWidth - 100;
+            ax1 = window.scrollX + offX;
+            ax2 = ax1 - ropedistnace;
+        }
+
+        const ay1 = window.scrollY + offY;
+        const ay2 = ay1;
+
         if (ropeConstraint1) {
             ropeConstraint1.pointA.x = ax1;
             ropeConstraint1.pointA.y = ay1;
@@ -256,6 +273,7 @@ function setupPhysics() {
             fixedAnchor2.position.y = ay2;
         }
     });
+
 
     // Sync Loop
     Events.on(engine, 'afterUpdate', function () {
@@ -314,21 +332,34 @@ function setupPhysics() {
     });
 
     Events.on(engine, 'collisionStart', function (event) {
+        const now = Date.now();
+
         event.pairs.forEach(function (pair) {
-            // Check if one body is the sensor and the other is a ball
             [pair.bodyA, pair.bodyB].forEach(function (body) {
                 if (body === hoopSensor) {
                     const otherBody = pair.bodyA === hoopSensor ? pair.bodyB : pair.bodyA;
 
-                    // Check if otherBody is one of your balls (you can refine this further)
-                    if (otherBody.circleRadius) {
-                        // Trigger your custom function
+                    // Ignore hoop-related objects
+                    if (
+                        otherBody === hoopSensor ||
+                        otherBody === rectC ||    // backboard
+                        otherBody === rectCHoop || // hoop visual
+                        otherBody === rim          // rim
+                    ) return;
+
+                    // Cooldown: skip if triggered too recently
+                    if (now - lastSensorTriggerTime < SENSOR_COOLDOWN_MS) return;
+
+                    // Valid dynamic object
+                    if (!otherBody.isStatic && !otherBody.isSensor && otherBody.speed > 0.1) {
+                        lastSensorTriggerTime = now;
                         ballWentThroughHoop(otherBody);
                     }
                 }
             });
         });
     });
+
 
 
     // Interaction Guards & misc
@@ -373,7 +404,7 @@ function addObjects() {
         var mainElem = document.querySelector('main');
 
         mainElem.style.overflow = 'hidden';
-        addManyBalls(100);
+        addManyBalls(10);
         dobasketballhoop();
     }
 
@@ -425,6 +456,8 @@ function addObjects() {
         img.style.width = '40px';
         img.style.height = '40px';
         img.style.transformOrigin = 'center center';
+        img.style.userSelect = 'none';
+        img.setAttribute('draggable', 'false');
         document.body.appendChild(img);
         imageMappings.push({
             elem: img,
@@ -467,6 +500,8 @@ function addManyBalls(count) {
         img.style.width = '40px';
         img.style.height = '40px';
         img.style.transformOrigin = 'center center';
+        img.style.userSelect = 'none';
+        img.setAttribute('draggable', 'false');
         document.body.appendChild(img);
 
         imageMappings.push({
@@ -480,14 +515,26 @@ function addManyBalls(count) {
 
 
 function dobasketballhoop() {
-    var p1 = { x: window.scrollX + window.innerWidth - ropedistnace, y: window.scrollY + 50 };
-    var p2 = { x: p1.x - ropedistnace, y: p1.y };
+    const isMobile = window.innerWidth < 900;
+
+
+    let p1, p2;
+    if (isMobile) {
+        const centerX = window.scrollX + window.innerWidth / 2;
+        const anchorY = window.scrollY + 50;
+        p1 = { x: centerX - ropedistnace / 2, y: anchorY };
+        p2 = { x: centerX + ropedistnace / 2, y: anchorY };
+    } else {
+        p1 = { x: window.scrollX + window.innerWidth - ropedistnace, y: window.scrollY + 50 };
+        p2 = { x: p1.x - ropedistnace, y: p1.y };
+    }
+
     var rectWidth = 180;
     var rectHeight = 120;
 
     // === 1. rectC (backboard): gravity only, no collision
-    var rectC = Bodies.rectangle(
-        p1.x - ropeLength, p1.y,
+    rectC = Bodies.rectangle(
+        (p1.x + p2.x) / 2, p1.y,
         rectWidth, rectHeight,
         {
             restitution: 0,
@@ -521,7 +568,7 @@ function dobasketballhoop() {
     // === 3. rectCHoop (hoop visual only, no collision)
     var hoopWidth = rectWidth / 2;
     var hoopHeight = rectWidth / 2;
-    var rectCHoop = Bodies.rectangle(
+    rectCHoop = Bodies.rectangle(
         rectC.position.x,
         (rectC.position.y + rectHeight / 2 + hoopHeight / 2),
         hoopWidth, hoopHeight,
@@ -608,7 +655,7 @@ function dobasketballhoop() {
     const rimY = rectCHoop.position.y + hoopHeight / 2 + rimHeight / 2;
 
     // The main rim body (invisible, no collision)
-    const rim = Bodies.rectangle(rimX, rimY, rimWidth, rimHeight, {
+    rim = Bodies.rectangle(rimX, rimY, rimWidth, rimHeight, {
         inertia: Infinity,
         collisionFilter: {
             category: CATEGORY_NONE,
@@ -700,14 +747,99 @@ function dobasketballhoop() {
 }
 
 
+/**
+ * Create confetti squares at (x,y), some of which auto‐remove.
+ * @param {number} x 
+ * @param {number} y 
+ * @param {number} count 
+ * @param {number} disappearChance  // between 0 and 1
+ * @param {number} lifespanMs       // milliseconds before auto‐remove
+ */
+function createConfetti(x, y, count, disappearChance = 0, lifespanMs = 0) {
+    const size = 8;
+    for (let i = 0; i < count; i++) {
+        const confBody = Bodies.rectangle(x, y, size, size, {
+            restitution: 0.7, friction: 0.1
+        });
+        World.add(world, confBody);
+
+        Body.setVelocity(confBody, {
+            x: (Math.random() - 0.5) * 6,
+            y: (Math.random() - 0.5) * 6
+        });
+        Body.setAngularVelocity(confBody, (Math.random() - 0.5) * 0.3);
+
+        const div = document.createElement('div');
+        div.style.position = 'absolute';
+        div.style.width = size + 'px';
+        div.style.height = size + 'px';
+        div.style.backgroundColor = `hsl(${Math.random() * 360},100%,50%)`;
+        div.style.pointerEvents = 'none';
+        div.style.transformOrigin = 'center center';
+        document.body.appendChild(div);
+
+        // Track for syncing
+        imageMappings.push({ elem: div, body: confBody, x0: x, y0: y });
+
+        // Maybe auto‐remove
+        if (disappearChance > 0 && Math.random() < disappearChance) {
+            setTimeout(() => {
+                // remove physics body
+                Matter.World.remove(world, confBody);
+                // remove DOM
+                div.remove();
+                // remove mapping
+                const idx = imageMappings.findIndex(m => m.body === confBody);
+                if (idx !== -1) imageMappings.splice(idx, 1);
+            }, lifespanMs);
+        }
+    }
+}
+
+/**
+ * Spawn confetti randomly across the full scrollable area.
+ * @param {number} count 
+ * @param {number} disappearChance 
+ * @param {number} lifespanMs 
+ */
+function spawnGlobalConfetti(count, disappearChance, lifespanMs) {
+    const W = document.documentElement.scrollWidth;
+    const H = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight
+    );
+    for (let i = 0; i < count; i++) {
+        const x = Math.random() * W;
+        const y = Math.random() * H;
+        createConfetti(x, y, 1, disappearChance, lifespanMs);
+    }
+}
+
 function ballWentThroughHoop(otherBody) {
-    console.log(otherBody);
-    Matter.World.remove(world, otherBody);
-    const mappingIndex = imageMappings.findIndex(m => m.body === otherBody);
-    if (mappingIndex !== -1) {
-        const sprite = imageMappings[mappingIndex].elem;
-        sprite.remove(); // remove DOM element
-        imageMappings.splice(mappingIndex, 1); // remove from mapping list
+
+    // Try to find and remove matching DOM element
+    const index = imageMappings.findIndex(m => m.body === otherBody);
+    if (index !== -1) {
+        // Always try to remove physics body
+        Matter.Composite.remove(world, otherBody);
+
+        const elem = imageMappings[index].elem;
+
+        // Safety: remove DOM node if it's still in the tree
+        if (elem && elem.parentNode) {
+            elem.parentNode.removeChild(elem);
+        }
+
+        // Remove from syncing
+        imageMappings.splice(index, 1);
     }
 
+    // Confetti burst at the sensor
+    const p = hoopSensor.position;
+    createConfetti(p.x, p.y, 10, 0.5, 1000);
+    // spawnGlobalConfetti(50, 0.5, 1000);
+    // Optional: new balls
+    if (Math.random() < 0.5) {
+        addManyBalls(Math.floor(Math.random() * 3) + 1);
+    }
 }

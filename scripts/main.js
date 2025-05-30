@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
   physToggle.addEventListener('click', () => {
     if (physToggle.checked) {
       enablebasketballbutton();
-      removemaintop();
       enableMatter();
     } else {
       location.reload();

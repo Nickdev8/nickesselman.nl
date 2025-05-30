@@ -14,11 +14,9 @@ function updateAge() {
     const months = Math.floor(days / (365.25 / 12));
     const years = diff / (365.25 * 24 * 60 * 60 * 1000);
 
-    // Update radial
     document.getElementById('years-old').textContent = years.toFixed(2);
 
 
-    // figure out the last and next birthday relative to now
     const thisYearBday = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
     let lastBday, nextBday;
     if (now >= thisYearBday) {
@@ -34,10 +32,8 @@ function updateAge() {
     const percent = elapsed / yearSpan;
     const offset = circumference * (1 - percent);
 
-    // Apply to the circle
     circle.style.strokeDashoffset = offset;
 
-    // Update list
     document.getElementById('months-old').textContent = months;
     document.getElementById('days-old').textContent = days;
     document.getElementById('hours-old').textContent = hours;

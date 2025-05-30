@@ -151,6 +151,13 @@
     .age-list li span:first-child {
         font-weight: bold;
     }
+
+
+    @media screen and (max-width: 900px) {
+        .radibarcontainer{
+            display: none;
+        }
+    }
 </style>
 
 <script src="scripts/updateage.js"></script>
