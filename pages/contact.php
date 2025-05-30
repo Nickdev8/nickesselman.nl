@@ -38,6 +38,7 @@
 
     .icon {
         width: 4rem;
+        height: 4rem;
     }
 
     .iconholder {
@@ -99,22 +100,22 @@
         <h3 class="headline">Info</h3>
         <div class="iconholder">
             <a href="https://www.linkedin.com/in/nick-esselman/">
-                <img class="icon" src="https://img.icons8.com/?size=100&id=8808&format=png&color=000000">
+                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=8808&format=png&color=000000">
                 nick-esselman</a>
             <a href="https://discordapp.com/users/452409871300558848">
-                <img class="icon" src="https://img.icons8.com/?size=100&id=30888&format=png&color=000000">
+                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=30888&format=png&color=000000">
                 @nikkcc.nick</a>
             <a href="https://github.com/Nickdev8">
-                <img class="icon" src="https://img.icons8.com/?size=100&id=3tC9EQumUAuq&format=png&color=000000">
+                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=3tC9EQumUAuq&format=png&color=000000">
                 Nickdev8</a>
             <a href="https://www.instagram.com/nick.esselman/">
-                <img class="icon" src="https://img.icons8.com/?size=100&id=32309&format=png&color=000000">
+                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=32309&format=png&color=000000">
                 @nick.esselman</a>
             <a href="mailto:info@nickesselman.nl">
-                <img class="icon" src="https://img.icons8.com/?size=100&id=qRMmG0Arw19N&format=png&color=000000">
+                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=qRMmG0Arw19N&format=png&color=000000">
                 info@nickesselman.nl</a>
             <a href="mailto:nick.esselman@gmail.com">
-                <img class="icon" src="https://img.icons8.com/?size=100&id=zVhqEPoFFZ89&format=png&color=000000">
+                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=zVhqEPoFFZ89&format=png&color=000000">
                 nick.esselman@gmail.com</a>
         </div>
     </div>

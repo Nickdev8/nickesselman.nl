@@ -1,57 +1,154 @@
-<div class="card container">
-    <h2 class="headline">Nick Esselman</h2>
-    <p>
-        I'm <?php echo floor((time() - strtotime('2008-08-08')) / (365.25 * 24 * 60 * 60) * 100) / 100; ?> years old.
-    </p>
-    <ul>
-        <li id="months-old"></li>
-        <li id="days-old"></li>
-        <li id="minutes-old"></li>
-        <li id="seconds-old"></li>
-    </ul>
-    <script src="scripts/updateage.js"></script>
-    <p>
-        I'm a student at <a href="https://www.ma-web.nl/">Media College Amsterdam</a>, studying
-        <strong>Full Stack Software Development</strong>.
-    </p>
+<div class="split objectToMoreToTheBackClasses separator container">
+
+    <div class="card container physics radibarcontainer small">
+        <h2 class="headline">Nick Esselman</h2> <br><br>
+        <div class="radial-bar">
+            <svg viewBox="0 0 100 100">
+                <circle class="bg" cx="50" cy="50" r="45"></circle>
+                <circle class="progress" cx="50" cy="50" r="45" stroke-dasharray="282.6" stroke-dashoffset="282.6">
+                </circle>
+            </svg>
+            <div class="radial-text"><span id="years-old">0.00</span> yrs</div>
+        </div>
+        <div class="separator"></div>
+        <ul class="age-list">
+            <li><span>Months:</span><span id="months-old">0</span></li>
+            <li><span>Days:</span><span id="days-old">0</span></li>
+            <li><span>Hours:</span><span id="hours-old">0</span></li>
+            <li><span>Minutes:</span><span id="minutes-old">0</span></li>
+            <li><span>Seconds:</span><span id="seconds-old">0</span></li>
+        </ul>
+    </div>
+
+
+    <div class="card objectToMoreToTheBackClasses container">
+        <div class="physics physics-add-card" style="padding:0 2rem !important;width:fit-content; align-items:start;">
+            <h2 class="headline">My story</h2>
+        </div>
+        <!-- class="physics physics-add-card" -->
+         <div class="onlyspans">
+        <p class="objectToMoreToTheBackClasses onlyspans">
+            I am <span class="physics">Coding for
+            <?= floor((time() - strtotime('2017-09-02')) / (365.25 * 24 * 60 * 60) * 100) / 100; ?>
+            years now.</span> I stared back when i was 9. <span class="physics">I learned on my own.</span> by trial and error. And did this for a
+            few years.
+            <br><br>
+            After high school I went to Media College Amsterdam to study full stack development.<br>
+            And in the first year <span class="physics">I joined HackClub
+            <?= floor((time() - strtotime('2024-12-18')) / ((365.25/12) * 24 * 60 * 60) * 100) / 100; ?> months ago.</span>
+            where i experienced a lot fun of new things.
+            <a href="?page=HackClub"> Read here. </a>
+            <br><br>
+            its worth your time to read if you are someone or know somewhat that has even the slightest interest in
+            coding. (and is below <strong>18</strong>)
+            <br>
+            At HackClub i met some incredible people and i went on trips to places like Shanghai and San Francisco.
+            Everything was paid for by HackClub.
+        </p>
 </div>
+        <div class="separator"></div>
 
+        <div class="right objectToMoreToTheBackClasses"
+            style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.125); border-radius: 1rem; padding:2rem 2rem; height: fit-content;">
+            <?php
+            include 'pages/specials/alltheprogramingluangages.html';
+            ?>
 
-<div class="card container separator">
-    <h2 class="headline">My story</h2>
-    <p>
-        I started Programming
-        <?php echo floor((time() - strtotime('2017-09-02')) / (365.25 * 24 * 60 * 60) * 100) / 100; ?>
-        years ago, back when i was 9. all on my own, I learned to code by trial and error. And did this for a few years.
-        <br><br>
-        After high school I went to Media College Amsterdam to study full stack development.
-        <br>
-        And in the first year i joined HackClub. where i experienced a lot fun of new things.
-        <a href="?page=HackClub"> Read here. </a>
-        <br><br>
-        its worth your time to read if you are someone or know somewhat that has even the slightest interest in
-        coding. (and is below <strong>18</strong>)
-        <br>
-        At HackClub i met some incredible people and i went on trips to places like Shanghai and San Francisco.
-        Everything was paid for by HackClub.
-    </p>
-
-    <div class="separator"></div>
-
-    <div class="right" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.125); border-radius: 1rem; height: fit-content;">
-        <?php
-        include 'pages/specials/alltheprogramingluangages.html';
-        ?>
-
-        <style>
-            .PLIK {
-                margin: 5px;
-                transition: transform 0.2s;
-            }
-
-            .PLIK:hover {
-                transform: scale(1.1);
-            }
-        </style>
+            <style>
+            </style>
+        </div>
     </div>
 </div>
+
+
+<style>
+    .PLIK {
+        margin: 5px;
+        transition: transform 0.2s;
+    }
+
+    .PLIK:hover {
+        transform: scale(1.1);
+    }
+
+    .radibarcontainer {
+        max-width: 300px;
+        overflow: unset !important;
+    }
+
+    .radibarcontainer * {
+        overflow: unset !important;
+        padding-inline-start: unset !important;
+    }
+
+    .age-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 24px;
+        max-width: 320px;
+        text-align: center;
+    }
+
+    .age-card h2 {
+        margin-bottom: 16px;
+        font-size: 1.5rem;
+        color: #333;
+    }
+
+    .radial-bar {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 24px;
+    }
+
+    .radial-bar svg {
+        transform: rotate(-90deg);
+        width: 100%;
+        height: 100%;
+    }
+
+    .radial-bar circle {
+        fill: none;
+        stroke-width: 16;
+    }
+
+    .radial-bar .bg {
+        stroke: #eee;
+    }
+
+    .radial-bar .progress {
+        stroke: #4caf50;
+        stroke-linecap: round;
+        transition: stroke-dashoffset 0.5s ease;
+    }
+
+    .radial-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        color: #4caf50;
+    }
+
+    .age-list {
+        list-style: none;
+        text-align: left;
+        font-size: 0.9rem;
+        color: #555;
+    }
+
+    .age-list li {
+        margin: 8px 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .age-list li span:first-child {
+        font-weight: bold;
+    }
+</style>
+
+<script src="scripts/updateage.js"></script>

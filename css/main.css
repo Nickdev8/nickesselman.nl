@@ -205,6 +205,7 @@ p {
     font-family: 'BowlbyOneSC-Regular' !important;
 }
 
+
 .physics-active {
     transition-duration: unset !important;
     /* overflow: unset; */
@@ -220,24 +221,35 @@ p {
     z-index: 999 !important;
 }
 
+span.physics-active {
+    padding: 1rem 1rem;
+    display: inline-block;
+    will-change: transform;
+}
+
 /* If you still need to temporarily suppress animations/etc
    when physics is active, but DON’T want to kill scrolling: */
 *:has(.physics.physics-active) {
-  /* remove only animation pauses, but retain overflow */
-  animation-play-state: paused;
-  animation-duration: 0s;
-  /* no overflow: unset here! */
+    /* remove only animation pauses, but retain overflow */
+    animation-play-state: paused;
+    animation-duration: 0s;
+    /* no overflow: unset here! */
 }
 
-.objectToMoreToTheBackClasses-active{
+.hidden {
+    display: none;
+}
+
+.objectToMoreToTheBackClasses-active {
     z-index: -999;
     overflow: visible;
     position: relative !important;
     background-color: transparent;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04)
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0) !important;
 }
+
 /* “Kill-switch” overrides both transform & cursor */
-.no-hover .media > img:hover {
+.no-hover .media>img:hover {
     transform: none !important;
     cursor: default !important;
 }

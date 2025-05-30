@@ -8,7 +8,7 @@
     <img id="board" src="images/specials/board.png" alt="">
 </div>
 
-<div id="open-specials-menu">
+<div class="card physics physics-fixed" id="open-specials-menu" style="padding: var(--spacing-3) !important;">
     <input id="checkbox" type="checkbox">
     <label class="toggle" for="checkbox">
         <div id="bar1" class="bars"></div>
@@ -16,7 +16,7 @@
         <div id="bar3" class="bars"></div>
     </label>
 </div>
-<div class="card physics physics-fixed" id="specials-menu">
+<div class="card physics physics-fixed" id="specials-menu" style="padding: var(--spacing-3) !important;">
 
     <div class="button">
         <label class="neon-checkbox">
@@ -96,6 +96,7 @@
         right: 4rem;
         z-index: 999;
         color: white;
+        display: none;
     }
 
     #baskedball-hoop {
@@ -104,6 +105,7 @@
         right: 4rem;
         z-index: 999;
         color: white;
+        display: none;
     }
 
     #baskedball-hoop #hoop {
@@ -111,7 +113,6 @@
         left: 20rem;
         top: 3rem;
     }
-
 
     #baskedball-hoop #board {
         width: 30rem;
@@ -121,22 +122,26 @@
         width: 10rem;
     }
 
+
+
     #open-specials-menu {
         position: fixed;
         bottom: 8rem;
-        left: 4rem;
+        left: 2rem;
         z-index: 999;
+        height: max-content;
     }
 
     #specials-menu {
         position: fixed;
         bottom: 8rem;
-        left: 10rem;
+        left: 12rem;
         z-index: 999;
         opacity: 0;
 
         padding: 1rem;
         overflow: unset;
+        height: max-content;
     }
 
     #specials-menu .button {

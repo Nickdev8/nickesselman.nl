@@ -3,12 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- MENU TOGGLE (GSAP) ----
   const checkbox = document.getElementById('checkbox');
   const menu = document.getElementById('specials-menu');
+  const physToggle = document.getElementById('enablephysics');
   gsap.set(menu, { autoAlpha: 0, display: 'none' });
 
   checkbox.addEventListener('change', () => {
     if (checkbox.checked) {
       menu.style.display = 'block';
       gsap.to(menu, { duration: 0.2, autoAlpha: 1 });
+    } else if (physToggle.checked) {
+      gsap.to(menu, {
+        duration: 0.2,
+        autoAlpha: 0.5,
+      });
     } else {
       gsap.to(menu, {
         duration: 0.2,
@@ -19,13 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ---- PHYSICS TOGGLE ---- call to the file /scripts/matterrun.js
-  const physToggle = document.getElementById('enablephysics');
   physToggle.addEventListener('click', () => {
     if (physToggle.checked) {
       enablebasketballbutton();
+      removemaintop();
       enableMatter();
     } else {
-      disableMatter();
+      location.reload();
     }
   });
 
@@ -33,6 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
   AOS.init();
 });
 
-function enablebasketballbutton(){
+function enablebasketballbutton() {
   const hoop = document.getElementById('baskedball-hoop');
+}
+
+
+function removemaintop() {
+  if (document.querySelector('.main-top')) {
+
+    gsap.to(".main-top", {
+      backgroundColor: "transparent",  // fade to fully transparent
+      duration: 1.5,                   // 1.5 seconds
+      ease: "power2.out",              // nice smooth easing
+
+    });
+  }
 }

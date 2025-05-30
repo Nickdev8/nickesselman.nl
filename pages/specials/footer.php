@@ -1,4 +1,4 @@
-<footer class="site-footer collision" matter static>
+<footer class="site-footer" matter static>
 
   <div class="footer-content container">
     <div class="footer-left">
@@ -69,7 +69,6 @@
     color: #fff;
     padding: 2rem 0 1rem;
     font-size: 1.5rem;
-    margin-top: auto;
     position: relative;
     z-index: 10;
   }
