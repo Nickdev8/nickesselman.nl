@@ -24,6 +24,7 @@ $versionnum = "1.0.6"
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/matter-dom-plugin@1.0.0/build/matter-dom-plugin.min.js"></script>
 
+    <script src="scripts/matterrun.js" defer></script>
     <script src="scripts/main.js" defer></script>
     <!-- <script defer>
   Matter.use('matter-dom-plugin');

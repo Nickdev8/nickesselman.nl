@@ -1,3 +1,13 @@
+<div id="baskedball-enableicon">
+    hi
+</div>
+
+
+<div id="baskedball-hoop">
+    <img id="hoop" src="images/specials/hoop.png" alt="">
+    <img id="board" src="images/specials/board.png" alt="">
+</div>
+
 <div id="open-specials-menu">
     <input id="checkbox" type="checkbox">
     <label class="toggle" for="checkbox">
@@ -80,6 +90,37 @@
 </div>
 
 <style>
+    #baskedball-enableicon {
+        position: fixed;
+        top: 8rem;
+        right: 4rem;
+        z-index: 999;
+        color: white;
+    }
+
+    #baskedball-hoop {
+        position: fixed;
+        top: 8rem;
+        right: 4rem;
+        z-index: 999;
+        color: white;
+    }
+
+    #baskedball-hoop #hoop {
+        position: relative;
+        left: 20rem;
+        top: 3rem;
+    }
+
+
+    #baskedball-hoop #board {
+        width: 30rem;
+    }
+
+    #baskedball-hoop #hoop {
+        width: 10rem;
+    }
+
     #open-specials-menu {
         position: fixed;
         bottom: 8rem;
