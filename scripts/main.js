@@ -44,14 +44,14 @@ function enablebasketballbutton() {
 }
 
 
-function removemaintop() {
-  if (document.querySelector('.main-top')) {
+// function removemaintop() {
+//   if (document.querySelector('.main-top')) {
 
-    gsap.to(".main-top", {
-      backgroundColor: "transparent",  // fade to fully transparent
-      duration: 1.5,                   // 1.5 seconds
-      ease: "power2.out",              // nice smooth easing
+//     gsap.to(".main-top", {
+//       backgroundColor: "transparent",  // fade to fully transparent
+//       duration: 1.5,                   // 1.5 seconds
+//       ease: "power2.out",              // nice smooth easing
 
-    });
-  }
-}
+//     });
+//   }
+// }
