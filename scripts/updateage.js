@@ -17,13 +17,24 @@ function updateAge() {
     // Update radial
     document.getElementById('years-old').textContent = years.toFixed(2);
 
-    // Year progress percent
-    const startOfYear = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
-    const nextBirthday = new Date(now.getFullYear() + (now >= startOfYear ? 1 : 0), birthDate.getMonth(), birthDate.getDate());
-    const yearSpan = nextBirthday - startOfYear;
-    const elapsed = now - startOfYear;
+
+    // figure out the last and next birthday relative to now
+    const thisYearBday = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+    let lastBday, nextBday;
+    if (now >= thisYearBday) {
+        lastBday = thisYearBday;
+        nextBday = new Date(now.getFullYear() + 1, birthDate.getMonth(), birthDate.getDate());
+    } else {
+        lastBday = new Date(now.getFullYear() - 1, birthDate.getMonth(), birthDate.getDate());
+        nextBday = thisYearBday;
+    }
+
+    const yearSpan = nextBday - lastBday;
+    const elapsed = now - lastBday;
     const percent = elapsed / yearSpan;
     const offset = circumference * (1 - percent);
+
+    // Apply to the circle
     circle.style.strokeDashoffset = offset;
 
     // Update list

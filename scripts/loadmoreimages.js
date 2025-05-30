@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    if (!document.getElementById('imageGrid')) return;
     const grid = document.getElementById('imageGrid');
     const loadMoreBtn = document.getElementById('loadMoreBtn');
     let offset = grid.querySelectorAll('.media').length;

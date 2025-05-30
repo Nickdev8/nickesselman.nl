@@ -1,5 +1,5 @@
 <?php
-$versionnum = "1.0.6"
+$versionnum = "1.0.7"
     ?>
 
 <!DOCTYPE html>
@@ -78,7 +78,6 @@ $versionnum = "1.0.6"
 </head>
 
 <body>
-
     <?php
     include 'projects.php';
     include 'pages/specials/header.php';
@@ -135,6 +134,8 @@ $versionnum = "1.0.6"
     include 'pages/specials/footer.php';
     ?>
     <script>
+        var page = "<?php echo $page; ?>"
+        
         // your normal AOS settings
         const aosOptions = {
             offset: 120,

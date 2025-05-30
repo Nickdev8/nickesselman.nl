@@ -10,7 +10,6 @@
             </svg>
             <div class="radial-text"><span id="years-old">0.00</span> yrs</div>
         </div>
-        <div class="separator"></div>
         <ul class="age-list">
             <li><span>Months:</span><span id="months-old">0</span></li>
             <li><span>Days:</span><span id="days-old">0</span></li>
@@ -18,6 +17,8 @@
             <li><span>Minutes:</span><span id="minutes-old">0</span></li>
             <li><span>Seconds:</span><span id="seconds-old">0</span></li>
         </ul>
+        <div class="separator"></div>
+        <h4 class="caption">*Orange circle is time till next birthday</h4>
     </div>
 
 
@@ -28,18 +29,19 @@
         <!-- class="physics physics-add-card" -->
          <div class="onlyspans">
         <p class="objectToMoreToTheBackClasses onlyspans">
-            I am <span class="physics">Coding for
-            <?= floor((time() - strtotime('2017-09-02')) / (365.25 * 24 * 60 * 60) * 100) / 100; ?>
-            years now.</span> I stared back when i was 9. <span class="physics">I learned on my own.</span> by trial and error. And did this for a
-            few years.
+            I am 
+            <span class="physics">Coding for <?= floor((time() - strtotime('2017-09-02')) / (365.25 * 24 * 60 * 60) * 100) / 100; ?> years now.</span> 
+            I stared back when i was 9. 
+            <span class="physics">I learned on my own.</span> 
+            by trial and error. And did this for a few years.
             <br><br>
-            After high school I went to Media College Amsterdam to study full stack development.<br>
-            And in the first year <span class="physics">I joined HackClub
+            After high school I went to <span class="physics">Media College Amsterdam.</span> to <span class="physics">Study: full stack development.</span><br>
+            And in the first year <span class="physics">I joined HackClub, now 
             <?= floor((time() - strtotime('2024-12-18')) / ((365.25/12) * 24 * 60 * 60) * 100) / 100; ?> months ago.</span>
-            where i experienced a lot fun of new things.
-            <a href="?page=HackClub"> Read here. </a>
+            where i experienced a lot fun of new things. For example, 
+            <a href="?project=juice">juice!</a>
             <br><br>
-            its worth your time to read if you are someone or know somewhat that has even the slightest interest in
+            its worth your time to read if you are someone or know someone that has even the slightest interest in
             coding. (and is below <strong>18</strong>)
             <br>
             At HackClub i met some incredible people and i went on trips to places like Shanghai and San Francisco.
@@ -119,7 +121,7 @@
     }
 
     .radial-bar .progress {
-        stroke: #4caf50;
+        stroke: var(--orange);
         stroke-linecap: round;
         transition: stroke-dashoffset 0.5s ease;
     }
@@ -130,7 +132,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 2rem;
-        color: #4caf50;
+        color: var(--orange);
     }
 
     .age-list {

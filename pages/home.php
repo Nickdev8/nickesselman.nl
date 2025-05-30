@@ -126,12 +126,12 @@ include './pages/projects.php';
     // });
 
     /* after Particles.js is loaded */
-    particlesJS("particles-js", {
-        "particles": {
-            "number": { "value": 60 },
-            "size": { "value": 3 },
-            "move": { "speed": 1.5 },
-            "line_linked": { "enable": true }
-        }
-    });
+    // particlesJS("particles-js", {
+    //     "particles": {
+    //         "number": { "value": 60 },
+    //         "size": { "value": 3 },
+    //         "move": { "speed": 1.5 },
+    //         "line_linked": { "enable": true }
+    //     }
+    // });
 </script>
