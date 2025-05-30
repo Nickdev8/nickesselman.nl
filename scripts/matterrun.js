@@ -1,4 +1,7 @@
-
+const CATEGORY_NONE = 0x0000;
+const CATEGORY_HOOP = 0x0001;
+const CATEGORY_BALL = 0x0002;
+const CATEGORY_CORNER = 0x0004;
 
 // ===== Matter.js Declarations & Setup =====
 var Engine = Matter.Engine,
@@ -16,6 +19,7 @@ var Engine = Matter.Engine,
 var engine;
 if (page == "about")
     engine = Engine.create({ enableSleeping: true });
+
 else
     engine = Engine.create({ enableSleeping: false });
 
@@ -366,6 +370,9 @@ function addObjects() {
 
     if (page == "about") {
 
+        var mainElem = document.querySelector('main');
+
+        mainElem.style.overflow = 'hidden';
         addManyBalls(100);
         dobasketballhoop();
     }
@@ -473,148 +480,234 @@ function addManyBalls(count) {
 
 
 function dobasketballhoop() {
-    // long rope anchors
-    var ropeOffsetX = window.innerWidth - ropedistnace;
-    var ropeOffsetY = 50;
-    var p1 = { x: window.scrollX + ropeOffsetX, y: window.scrollY + ropeOffsetY };
+    var p1 = { x: window.scrollX + window.innerWidth - ropedistnace, y: window.scrollY + 50 };
     var p2 = { x: p1.x - ropedistnace, y: p1.y };
+    var rectWidth = 180;
+    var rectHeight = 120;
 
-    // rectC instead of ballC: twice as big, inertia locked, no collisions
-    var rectWidth = 60 * 3;   // 120px wide
-    var rectHeight = 40 * 3;   //  80px tall
+    // === 1. rectC (backboard): gravity only, no collision
     var rectC = Bodies.rectangle(
-        p1.x - ropeLength,
-        p1.y,
-        rectWidth,
-        rectHeight,
+        p1.x - ropeLength, p1.y,
+        rectWidth, rectHeight,
         {
-            restitution: 0.5,
-            friction: 0.1,
-            inertia: Infinity,        // lock rotation
-            collisionFilter: { mask: 0 }  // ignore all collisions
+            restitution: 0,
+            friction: 0,
+            inertia: Infinity,
+            collisionFilter: {
+                category: CATEGORY_NONE,
+                mask: CATEGORY_NONE
+            }
         }
     );
     Composite.add(world, rectC);
 
-    // now hook both corners
+    // === 2. rope constraints (same)
     ropeConstraint1 = Constraint.create({
         pointA: p1,
         bodyB: rectC,
         pointB: { x: rectWidth / 2, y: -rectHeight / 2 },
         length: ropeLength,
-        stiffness: 0.001, damping: 0.04
+        stiffness: 0.001, damping: 0.05
     });
     ropeConstraint2 = Constraint.create({
         pointA: p2,
         bodyB: rectC,
         pointB: { x: -rectWidth / 2, y: -rectHeight / 2 },
         length: ropeLength,
-        stiffness: 0.001, damping: 0.04
+        stiffness: 0.001, damping: 0.05
     });
     Composite.add(world, [ropeConstraint1, ropeConstraint2]);
-    fixedAnchor1 = { position: p1 };
-    fixedAnchor2 = { position: p2 };
 
-    // sprite for rectC
-    var imgRect = document.createElement('img');
-    imgRect.src = 'images/specials/board.png';
-    imgRect.style.position = 'absolute';
-    imgRect.style.width = rectWidth / 10 + 'rem';
-    imgRect.style.height = rectHeight / 10 + 'rem';
-    imgRect.style.zIndex = -10;
-    imgRect.style.transformOrigin = 'center center';
-    document.body.appendChild(imgRect);
-    imageMappings.push({
-        elem: imgRect,
-        body: rectC,
-        x0: rectC.position.x,
-        y0: rectC.position.y
-    });
-
-
-    var hoopwidht = rectWidth / 2;
-    var hoopheight = rectWidth / 2;
-
-    // Duplicate rectC position
+    // === 3. rectCHoop (hoop visual only, no collision)
+    var hoopWidth = rectWidth / 2;
+    var hoopHeight = rectWidth / 2;
     var rectCHoop = Bodies.rectangle(
         rectC.position.x,
-        rectC.position.y,
-        hoopwidht,
-        hoopheight,
+        (rectC.position.y + rectHeight / 2 + hoopHeight / 2),
+        hoopWidth, hoopHeight,
         {
-            restitution: 0.5,
-            friction: 0.1,
-            inertia: Infinity,        // lock rotation
-            collisionFilter: { mask: 0 }  // ignore all collisions
+            inertia: Infinity,
+            collisionFilter: {
+                category: CATEGORY_NONE,
+                mask: CATEGORY_NONE
+            }
         }
     );
     Composite.add(world, rectCHoop);
 
-    // Constraint to always join rectC and rectCHoop
-    var hoopConstraint = Constraint.create({
-        bodyA: rectC,
-        pointA: { x: 0, y: 80 },      // Offset relative to rectC's center
-        bodyB: rectCHoop,
-        pointB: { x: 0, y: 0 },    // Adjust these values for your desired offset
-        length: 0,
-        stiffness: 1,
-        damping: 0.1
+    // === 4. Lock hoop to board (no relative movement)
+    Composite.add(world, [
+        Constraint.create({ bodyA: rectC, pointA: { x: 0, y: rectHeight / 2 }, bodyB: rectCHoop, pointB: { x: 0, y: -hoopHeight / 2 }, length: 0, stiffness: 1 }),
+        Constraint.create({ bodyA: rectC, pointA: { x: -hoopWidth / 2, y: rectHeight / 2 }, bodyB: rectCHoop, pointB: { x: -hoopWidth / 2, y: -hoopHeight / 2 }, length: 0, stiffness: 1 }),
+        Constraint.create({ bodyA: rectC, pointA: { x: hoopWidth / 2, y: rectHeight / 2 }, bodyB: rectCHoop, pointB: { x: hoopWidth / 2, y: -hoopHeight / 2 }, length: 0, stiffness: 1 })
+    ]);
+
+    // === 5. Top-corner colliders (real collisions!)
+    const cornerRadius = 8;
+    const cornerOffsetY = -hoopHeight / 2;
+    const corners = [
+        { x: -hoopWidth / 2 + cornerRadius, y: cornerOffsetY },  // left
+        { x: hoopWidth / 2 - cornerRadius, y: cornerOffsetY }   // right
+    ];
+    corners.forEach(offset => {
+        const corner = Bodies.circle(
+            rectCHoop.position.x + offset.x,
+            rectCHoop.position.y + offset.y,
+            cornerRadius,
+            {
+                isSensor: false,
+                friction: 0,
+                restitution: 0.2,
+                collisionFilter: {
+                    category: CATEGORY_CORNER,
+                    mask: CATEGORY_BALL // only collide with balls
+                }
+            }
+        );
+        // Keep circle glued to the hoop
+        Composite.add(world, [
+            corner,
+            Constraint.create({
+                bodyA: rectCHoop,
+                pointA: offset,
+                bodyB: corner,
+                pointB: { x: 0, y: 0 },
+                length: 0,
+                stiffness: 1
+            })
+        ]);
     });
 
-    Composite.add(world, hoopConstraint);
-
-    // Image overlay for rectCHoop
-    var imgHoop = document.createElement('img');
+    // === 6. Hoop image
+    const imgHoop = document.createElement('img');
     imgHoop.src = 'images/specials/hoop.png';
     imgHoop.style.position = 'absolute';
-    imgHoop.style.width = hoopwidht / 10 + 'rem';
-    imgHoop.style.height = hoopheight / 10 + 'rem';
-    imgHoop.style.zIndex = -9;
+    imgHoop.style.width = hoopWidth / 10 + 'rem';
+    imgHoop.style.height = hoopHeight / 10 + 'rem';
     imgHoop.style.transformOrigin = 'center center';
+    imgHoop.style.zIndex = -9;
     document.body.appendChild(imgHoop);
+    imageMappings.push({ elem: imgHoop, body: rectCHoop, x0: rectCHoop.position.x, y0: rectCHoop.position.y });
 
-    imageMappings.push({
-        elem: imgHoop,
-        body: rectCHoop,
-        x0: rectCHoop.position.x,
-        y0: rectCHoop.position.y
-    });
+    // === 7. Board image
+    const imgRect = document.createElement('img');
+    imgRect.src = 'images/specials/board.png';
+    imgRect.style.position = 'absolute';
+    imgRect.style.width = rectWidth / 10 + 'rem';
+    imgRect.style.height = rectHeight / 10 + 'rem';
+    imgRect.style.transformOrigin = 'center center';
+    imgRect.style.zIndex = -10;
+    document.body.appendChild(imgRect);
+    imageMappings.push({ elem: imgRect, body: rectC, x0: rectC.position.x, y0: rectC.position.y });
 
 
-    // add sensor for confeti
+    // === 8. RIM: positioned below the hoop, with only left & right collisions
+    const rimWidth = hoopWidth;
+    const rimHeight = -225;
+    const rimX = rectCHoop.position.x;
+    const rimY = rectCHoop.position.y + hoopHeight / 2 + rimHeight / 2;
 
-    // Sensor dimensions (slightly smaller than hoop)
-    var sensorWidth = hoopwidht * 0.7;
-    var sensorHeight = 10; // narrow sensor for detecting passage
-
-    hoopSensor = Bodies.rectangle(
-        rectCHoop.position.x,
-        rectCHoop.position.y,
-        sensorWidth,
-        sensorHeight,
-        {
-            isSensor: true,
-            isStatic: true,
-            render: { visible: false }
+    // The main rim body (invisible, no collision)
+    const rim = Bodies.rectangle(rimX, rimY, rimWidth, rimHeight, {
+        inertia: Infinity,
+        collisionFilter: {
+            category: CATEGORY_NONE,
+            mask: CATEGORY_NONE
         }
-    );
-
-    Composite.add(world, hoopSensor);
-
-    // Constraint to keep sensor fixed relative to rectCHoop
-    var sensorConstraint = Constraint.create({
-        bodyA: rectCHoop,
-        pointA: { x: 0, y: 0 }, // centered exactly
-        bodyB: hoopSensor,
-        pointB: { x: 0, y: 0 },
-        length: 0,
-        stiffness: 1,
     });
-    Composite.add(world, sensorConstraint);
+    Composite.add(world, rim);
+
+    // Attach to hoop (follows it)
+    Composite.add(world, Constraint.create({
+        bodyA: rectCHoop,
+        pointA: { x: 0, y: hoopHeight / 2 },
+        bodyB: rim,
+        pointB: { x: 0, y: -rimHeight / 2 },
+        length: 0,
+        stiffness: 1
+    }));
+
+    // Add visible image for rim
+    const imgRim = document.createElement('img');
+    imgRim.src = 'images/specials/rim.png'; // <-- use your rim image here
+    imgRim.style.position = 'absolute';
+    imgRim.style.width = rimWidth / 10 + 'rem';
+    imgRim.style.height = rimHeight / 10 + 'rem';
+    imgRim.style.zIndex = '6'; // above balls & hoop
+    imgRim.style.transformOrigin = 'center center';
+    document.body.appendChild(imgRim);
+    imageMappings.push({
+        elem: imgRim,
+        body: rim,
+        x0: rim.position.x,
+        y0: rim.position.y
+    });
+
+    // === 9. RIM EDGE COLLIDERS (left & right)
+    const edgeSize = 6;
+    const offsetX = rimWidth / 2 - edgeSize;
+    ['left', 'right'].forEach(side => {
+        const sign = side === 'left' ? -1 : 1;
+        const edge = Bodies.rectangle(
+            rim.position.x + sign * offsetX,
+            rim.position.y,
+            edgeSize,
+            rimHeight,
+            {
+                isSensor: false,
+                restitution: 0.2,
+                collisionFilter: {
+                    category: CATEGORY_CORNER,
+                    mask: CATEGORY_BALL
+                }
+            }
+        );
+        Composite.add(world, edge);
+        Composite.add(world, Constraint.create({
+            bodyA: rim,
+            pointA: { x: sign * offsetX, y: 0 },
+            bodyB: edge,
+            pointB: { x: 0, y: 0 },
+            length: 0,
+            stiffness: 1
+        }));
+
+        hoopSensor = Bodies.rectangle(
+            rim.position.x,
+            rim.position.y,
+            rimWidth * 0.7,
+            6,
+            {
+                isSensor: true,
+                isStatic: false,
+                render: { visible: false }
+            }
+        );
+
+        Composite.add(world, hoopSensor);
+
+        Composite.add(world, Constraint.create({
+            bodyA: rim,
+            pointA: { x: 0, y: 0 },
+            bodyB: hoopSensor,
+            pointB: { x: 0, y: 0 },
+            length: 0,
+            stiffness: 1
+        }));
+
+    });
 
 }
 
-function ballWentThroughHoop(ball) {
-    console.log("Ball went through the hoop!", ball);
-    // Your custom logic goes here, e.g., updating scores, effects, etc.
+
+function ballWentThroughHoop(otherBody) {
+    console.log(otherBody);
+    Matter.World.remove(world, otherBody);
+    const mappingIndex = imageMappings.findIndex(m => m.body === otherBody);
+    if (mappingIndex !== -1) {
+        const sprite = imageMappings[mappingIndex].elem;
+        sprite.remove(); // remove DOM element
+        imageMappings.splice(mappingIndex, 1); // remove from mapping list
+    }
+
 }
