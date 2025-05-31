@@ -60,6 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  if (document.getElementById('nottobig')){
+    document.querySelector('main').style.maxHeight = '85vh';
+    document.querySelector('main').style.overflow = 'hidden';
+
+  }
+
   // ---- INIT AOS (after any DOM tweaks) ----
   AOS.init();
 });

@@ -1,8 +1,58 @@
+<div id="nottobig"></div> <!-- max the screen to 100vh (main.js) -->
+
+<div class="container physics separator header-overlay" matter>
+    <img src="images/projectsimages/contact.jpg" alt="Contact background">
+    <div class="overlay-text">
+        <h1>Contact</h1>
+        <p>Where to find me</p>
+    </div>
+</div>
+
+<div class="container separator split">
+    <div class="card physics" matter>
+        <h3 class="headline">Info</h3>
+        <div class="iconholder">
+            <a href="https://www.linkedin.com/in/nick-esselman/">
+                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=8808&format=png&color=000000">
+                nick-esselman</a>
+            <a href="https://discordapp.com/users/452409871300558848">
+                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=30888&format=png&color=000000">
+                @nikkcc.nick</a>
+            <a href="https://github.com/Nickdev8">
+                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=3tC9EQumUAuq&format=png&color=000000">
+                Nickdev8</a>
+            <a href="https://www.instagram.com/nick.esselman/">
+                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=32309&format=png&color=000000">
+                @nick.esselman</a>
+            <a href="mailto:info@nickesselman.nl">
+                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=qRMmG0Arw19N&format=png&color=000000">
+                info@nickesselman.nl</a>
+            <a href="mailto:nick.esselman@gmail.com">
+                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=zVhqEPoFFZ89&format=png&color=000000">
+                nick.esselman@gmail.com</a>
+        </div>
+    </div>
+    <div class="card physics" matter>
+        <form class="form">
+            <h3 class="headline">Contact me</h3>
+            <h4 class="caption">Or just email to nick.esselman@gmail.com</h4>
+            <input type="text" placeholder="Your email" class="input">
+            <textarea placeholder="Your message"></textarea>
+
+            <button class="cta">Submit</button>
+        </form>
+    </div>
+    <?php
+    include_once 'pages/specials/cat.php';
+    ?>
+</div>
+
+
 <style>
     .header-overlay {
         position: relative;
         width: 100%;
-        aspect-ratio: 30 / 8;
+        aspect-ratio: 20 / 8;
         overflow: hidden;
 
     }
@@ -91,50 +141,3 @@
 </style>
 
 <link rel="stylesheet" href="css/form.css">
-
-<div class="container physics separator header-overlay" matter>
-    <img src="images/projectsimages/contact.jpg" alt="Contact background">
-    <div class="overlay-text">
-        <h1>Contact</h1>
-        <p>Where to find me</p>
-    </div>
-</div>
-
-<div class="container separator split">
-    <div class="card physics" matter>
-        <h3 class="headline">Info</h3>
-        <div class="iconholder">
-            <a href="https://www.linkedin.com/in/nick-esselman/">
-                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=8808&format=png&color=000000">
-                nick-esselman</a>
-            <a href="https://discordapp.com/users/452409871300558848">
-                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=30888&format=png&color=000000">
-                @nikkcc.nick</a>
-            <a href="https://github.com/Nickdev8">
-                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=3tC9EQumUAuq&format=png&color=000000">
-                Nickdev8</a>
-            <a href="https://www.instagram.com/nick.esselman/">
-                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=32309&format=png&color=000000">
-                @nick.esselman</a>
-            <a href="mailto:info@nickesselman.nl">
-                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=qRMmG0Arw19N&format=png&color=000000">
-                info@nickesselman.nl</a>
-            <a href="mailto:nick.esselman@gmail.com">
-                <img class="icon physics physics-nested" src="https://img.icons8.com/?size=100&id=zVhqEPoFFZ89&format=png&color=000000">
-                nick.esselman@gmail.com</a>
-        </div>
-    </div>
-    <div class="card physics" matter>
-        <form class="form">
-            <h3 class="headline">Contact me</h3>
-            <h4 class="caption">Or just email to nick.esselman@gmail.com</h4>
-            <input type="text" placeholder="Your email" class="input">
-            <textarea placeholder="Your message"></textarea>
-
-            <button class="cta">Submit</button>
-        </form>
-    </div>
-    <?php
-    include_once 'pages/specials/cat.php';
-    ?>
-</div>
