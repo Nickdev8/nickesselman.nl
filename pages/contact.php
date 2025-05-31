@@ -2,9 +2,13 @@
     .header-overlay {
         position: relative;
         width: 100%;
-        aspect-ratio: 25 / 8;
+        aspect-ratio: 30 / 8;
         overflow: hidden;
 
+    }
+    .card{
+        padding-top: var(--spacing-2) !important;
+        padding-bottom: var(--spacing-2) !important;
     }
 
     .header-overlay img {
@@ -87,6 +91,7 @@
 </style>
 
 <link rel="stylesheet" href="css/form.css">
+
 <div class="container physics separator header-overlay" matter>
     <img src="images/projectsimages/contact.jpg" alt="Contact background">
     <div class="overlay-text">
@@ -121,7 +126,8 @@
     </div>
     <div class="card physics" matter>
         <form class="form">
-            <h3 class="headline">Contact us</h3>
+            <h3 class="headline">Contact me</h3>
+            <h4 class="caption">Or just email to nick.esselman@gmail.com</h4>
             <input type="text" placeholder="Your email" class="input">
             <textarea placeholder="Your message"></textarea>
 

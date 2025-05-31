@@ -46,6 +46,9 @@ var rectC, rectCHoop, rim;
 let lastSensorTriggerTime = 0;
 const SENSOR_COOLDOWN_MS = 1000; // 1 second
 
+let bounceSoundLastSecond = 0;
+let bounceSoundCount = 0;
+const BOUNCE_SOUND_LIMIT_PER_SECOND = 1;
 
 // ===== Interface Toggles =====
 function enableMatter() {
@@ -333,18 +336,24 @@ function setupPhysics() {
 
     Events.on(engine, 'collisionStart', function (event) {
         const now = Date.now();
+        const thisSecond = Math.floor(now / 100);
+
+        // Reset counter each second
+        if (thisSecond !== bounceSoundLastSecond) {
+            bounceSoundLastSecond = thisSecond;
+            bounceSoundCount = 0;
+        }
 
         event.pairs.forEach(function (pair) {
             [pair.bodyA, pair.bodyB].forEach(function (body) {
                 if (body === hoopSensor) {
                     const otherBody = pair.bodyA === hoopSensor ? pair.bodyB : pair.bodyA;
 
-                    // Ignore hoop-related objects
                     if (
                         otherBody === hoopSensor ||
-                        otherBody === rectC ||    // backboard
-                        otherBody === rectCHoop || // hoop visual
-                        otherBody === rim          // rim
+                        otherBody === rectC ||    
+                        otherBody === rectCHoop || 
+                        otherBody === rim
                     ) return;
 
                     // Cooldown: skip if triggered too recently
@@ -357,6 +366,33 @@ function setupPhysics() {
                     }
                 }
             });
+
+
+
+            const bodyA = pair.bodyA;
+            const bodyB = pair.bodyB;
+
+            if (bodyA.isSensor || bodyB.isSensor) return;
+
+            const velA = bodyA.velocity;
+            const velB = bodyB.velocity;
+            const relVel = Math.sqrt(
+                Math.pow(velA.x - velB.x, 2) +
+                Math.pow(velA.y - velB.y, 2)
+            );
+
+            if (relVel < 2.5) return; // Ignore soft impacts
+            if (bounceSoundCount >= BOUNCE_SOUND_LIMIT_PER_SECOND) return;
+
+            const base = document.getElementById('bounceSound');
+            if (base) {
+                const clone = base.cloneNode();
+                clone.volume = Math.min(0.9, relVel / 5);
+                clone.playbackRate = 0.95 + Math.random() * 0.1;
+                clone.play().catch(() => { });
+                bounceSoundCount++;
+            }
+
         });
     });
 

@@ -1,13 +1,11 @@
-<div id="baskedball-enableicon">
-    hi
+<audio id="bounceSound" src="sounds/bounce.mp3" preload="auto">
+    Your browser does not support the audio element.
+</audio>
+
+
+<div id="muteicon" class="physics card" style="padding: var(--spacing-1) !important;">
+    <img id="hoop" src="images/specials/mute.png" unselectable="on" draggable="false" alt="">
 </div>
-
-
-<div id="baskedball-hoop">
-    <img id="hoop" src="images/specials/hoop.png" alt="">
-    <img id="board" src="images/specials/board.png" alt="">
-</div>
-
 <div class="card physics physics-fixed" id="open-specials-menu" style="padding: var(--spacing-3) !important;">
     <input id="checkbox" type="checkbox">
     <label class="toggle" for="checkbox">
@@ -90,39 +88,31 @@
 </div>
 
 <style>
-    #baskedball-enableicon {
+    #muteicon {
         position: fixed;
-        top: 8rem;
-        right: 4rem;
+        top: 18rem;
+        left: 4rem;
         z-index: 999;
         color: white;
         display: none;
     }
 
-    #baskedball-hoop {
-        position: fixed;
-        top: 8rem;
-        right: 4rem;
-        z-index: 999;
-        color: white;
-        display: none;
+    #muteicon img{
+        -moz-user-select: none;
+-webkit-user-select: none;
+user-select: none;
+        user-select: none;
+        width: 6rem;
+        height: 6rem;
+    }
+    #muteicon:hover{
+        cursor: pointer;
     }
 
-    #baskedball-hoop #hoop {
-        position: relative;
-        left: 20rem;
-        top: 3rem;
+    #mute-btn {
     }
-
-    #baskedball-hoop #board {
-        width: 30rem;
+    #mute-btn.muted {
     }
-
-    #baskedball-hoop #hoop {
-        width: 10rem;
-    }
-
-
 
     #open-specials-menu {
         position: fixed;

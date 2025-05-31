@@ -24,9 +24,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const audio = document.getElementById('bounceSound');
+  const mutebutton = document.getElementById('muteicon');
+  const muteimg = mutebutton.querySelector('img');
+  // Update button text/style based on mute state
+  function updateButton() {
+    if (audio.muted) {
+      muteimg.src = 'images/specials/notmute.png';
+      audio.src = '';
+      console.log('unmuted');
+    } else {
+      muteimg.src = 'images/specials/mute.png';
+      audio.src = 'sounds/bounce.mp3';
+      console.log('muted');
+    }
+  }
+  // Initialize button label
+  updateButton();
+
+  mutebutton.addEventListener('click', () => {
+    audio.muted = !audio.muted;
+    updateButton();
+  });
+
+
+
   // ---- PHYSICS TOGGLE ---- call to the file /scripts/matterrun.js
   physToggle.addEventListener('click', () => {
     if (physToggle.checked) {
+      mutebutton.style.display = 'unset !important';
       enablebasketballbutton();
       enableMatter();
     } else {
