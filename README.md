@@ -1,26 +1,60 @@
-# Nick's Portfolio – [nickesselman.nl](https://nickesselman.nl)
+# 🚀 Nick's Interactive Portfolio
 
-Welcome to my personal portfolio!  
-I'm **Nick**, and this site was created for the Hack Club event **Neighborhood**.
+[![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fnickesselman.nl)](https://nickesselman.nl)
+[![Made with Matter.js](https://img.shields.io/badge/Made%20with-Matter.js-brightgreen)](https://brm.io/matter-js/)
+[![Built for Hack Club](https://img.shields.io/badge/Built%20for-Hack%20Club-red)](https://hackclub.com)
 
-## About This Site
+Welcome! I'm **Nick**, a developer passionate about creating immersive web experiences where creativity meets physics simulation.
 
-This portfolio is a showcase of my personal projects, skills, and interests. I built it to share my work with the Hack Club community and anyone interested in what I do. The site is designed to be simple, clean, and easy to navigate.
+## ✨ Features
 
-## Why I Made This
+- **Physics-Driven UI**: Built with Matter.js, every interactive element follows real-world physics
+- **Dynamic Interactions**: Experience gravity, collisions, and particle effects throughout the site
+- **Responsive Design**: Seamlessly adapts to any device while maintaining physics functionality
+- **Project Showcase**: Browse through my coding, design, and hardware experiments
 
-I wanted a central place to display my projects and experiments, and the Hack Club Neighborhood event was the perfect motivation to finally build it. It’s a way for me to document my progress.
+## 🛠️ Tech Stack
 
-## What You’ll Find Here
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Physics Engine**: Matter.js
+- **Animation**: GSAP
+- **Effects**: Particles.js, AOS
+- **Backend**: PHP
 
-- **Personal Projects:** A gallery of my coding, design, and hardware projects, each with descriptions and images.
-- **Project Details:** Click on any project to see more information, including what I learned and how I built it.
-- **About Me:** Learn more about who I am and what I’m passionate about.
-- **Contact:** Find ways to reach out or connect with me.
+## 🎮 Interactive Features
 
-Visit the site at [nickesselman.nl](https://nickesselman.nl) to explore my work!
+The site goes beyond traditional web portfolios by implementing:
+- Gravity-affected UI elements
+- Dynamic collision detection
+- Interactive particle systems
+- Physics-based animations
+- Real-time element manipulation
+
+## 🚀 Getting Started
+
+Visit [nickesselman.nl](https://nickesselman.nl) to experience:
+- Interactive project showcases
+- Physics-based UI elements
+- Live demos of my work
+- Dynamic content presentation
+
+## 💡 About The Project
+
+Originally built for the Hack Club Neighborhood event, this portfolio doubles as an experimental playground for web physics. Every interactive element is powered by Matter.js, creating a unique blend of functionality and entertainment.
+
+## 📫 Connect With Me
+
+- Portfolio: [nickesselman.nl](https://nickesselman.nl)
+- Email: [nick.esselman@gmail.com](mailto:nick.esselman@gmail.com)
+- Hack Club: [@nickesselman](https://hackclub.com)
+
+## 🙏 Acknowledgments
+
+Special thanks to:
+- [Hack Club](https://hackclub.com) community
+- [Matter.js](https://brm.io/matter-js/) physics engine
+- All the awesome developers who inspire creativity
 
 ---
 
-Thanks for stopping by!  
-— Nick
+<p align="center">Made with ❤️ by Nick Esselman</p>
