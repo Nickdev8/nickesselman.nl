@@ -39,8 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('muted');
     }
   }
-  // Initialize button label
-  updateButton();
 
   mutebutton.addEventListener('click', () => {
     audio.muted = !audio.muted;
@@ -53,14 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
   physToggle.addEventListener('click', () => {
     if (physToggle.checked) {
       mutebutton.style.display = 'unset !important';
-      enablebasketballbutton();
-      enableMatter();
+      enableMatter(physicsConfig);
     } else {
       location.reload();
     }
   });
 
-  if (document.getElementById('nottobig')){
+  if (document.getElementById('nottobig')) {
     document.querySelector('main').style.maxHeight = '85vh';
     document.querySelector('main').style.overflow = 'hidden';
 
@@ -69,10 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- INIT AOS (after any DOM tweaks) ----
   AOS.init();
 });
-
-function enablebasketballbutton() {
-  const hoop = document.getElementById('baskedball-hoop');
-}
 
 
 // function removemaintop() {

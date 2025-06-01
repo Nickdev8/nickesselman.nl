@@ -24,8 +24,6 @@ $versionnum = "1.0.7"
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/matter-dom-plugin@1.0.0/build/matter-dom-plugin.min.js"></script>
 
-    <script src="scripts/matterrun.js" defer></script>
-    <script src="scripts/main.js" defer></script>
     <!-- <script defer>
   Matter.use('matter-dom-plugin');
 
@@ -135,7 +133,7 @@ $versionnum = "1.0.7"
     ?>
     <script>
         var page = "<?php echo $page; ?>"
-        
+
         // your normal AOS settings
         const aosOptions = {
             offset: 120,
@@ -158,6 +156,12 @@ $versionnum = "1.0.7"
 
         AOS.init(aosOptions);
     </script>
+
+
+
+    <script src="scripts/matterrun.js"></script>
+    <script src="scripts/physicsconfigs.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 
 </html>
