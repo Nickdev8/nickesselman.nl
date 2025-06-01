@@ -146,34 +146,63 @@ function enableMatter(config) {
     // 4.9) Create page‐walls (top/bottom/left/right), same as before:
     // … inside enableMatter(), right before we create `walls` …
 
-    let t = 50;
+    // 1. Figure out how “tall” the page is, and how tall the footer is:
+    let t = 60;
     let W = document.documentElement.scrollWidth;
     let H = Math.max(
         document.documentElement.scrollHeight,
         document.body.scrollHeight
     );
+    // let footerElem = document.querySelector("footer");
+    // let footerHeight = footerElem ? footerElem.getBoundingClientRect().height : 0;
 
-    // Grab footer’s height (if it exists):
-    let footer = document.querySelector("footer");
-    let footerHeight = footer ? footer.getBoundingClientRect().height : 0;
+    // 2. Build the bottom wall so that it sits directly on top of the footer:
+    let bottomY = H - t / 2; // Adjust calculation to ensure proper placement
+    let bottomWall = Bodies.rectangle(
+        W / 2, bottomY, W, t,
+        {
+            isStatic: true,
+            collisionFilter: {
+                category: CATEGORY_MAP.PHYSICS,
+                mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CAT
+            }
+        }
+    );
 
-    // Now create four walls, but subtract footerHeight from the bottom wall’s center‐Y:
-    walls = [
-        // top wall stays at y = -t/2
-        Bodies.rectangle(W / 2, -t / 2, W, t, { isStatic: true, collisionFilter: { category: CATEGORY_NONE, mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.CAT } }),
+    // 3. Build two very tall side-walls. We’ll use a height = H * 5
+    //    and place them at y = (H*5)/2 so they cover the entire vertical span:
+    let sideHeight = H * 5;
+    let sideY = sideHeight / 2;
 
-        // bottom wall is now at y = (H + t/2 - footerHeight)
-        Bodies.rectangle(W / 2, H + t / 2 - footerHeight, W, t, { isStatic: true, collisionFilter: { category: CATEGORY_NONE, mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.CAT } }),
+    // Left wall
+    let leftWall = Bodies.rectangle(
+        -t / 2, sideY, t, sideHeight,
+        {
+            isStatic: true,
+            collisionFilter: {
+                category: CATEGORY_MAP.PHYSICS,
+                mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CAT
+            }
+        }
+    );
 
-        // left wall
-        Bodies.rectangle(-t / 2, H / 2, t, H, { isStatic: true, collisionFilter: { category: CATEGORY_NONE, mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.CAT } }),
+    // Right wall
+    let rightWall = Bodies.rectangle(
+        W + t / 2, sideY, t, sideHeight,
+        {
+            isStatic: true,
+            collisionFilter: {
+                category: CATEGORY_MAP.PHYSICS,
+                mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CAT
+            }
+        }
+    );
 
-        // right wall
-        Bodies.rectangle(W + t / 2, H / 2, t, H, { isStatic: true, collisionFilter: { category: CATEGORY_NONE, mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.CAT } })
-    ];
-
+    // 4. Add just these three bodies (no top wall):
+    walls = [bottomWall, leftWall, rightWall];
     Composite.add(world, walls);
 
+    devLog("Walls initialized:", walls);
 
 
     // 4.10) Setup scroll filtering & mouse control & events exactly as before:
@@ -222,21 +251,24 @@ function addObject(params) {
 
 // ---------- 5) IMPLEMENTATION DETAILS (helpers & factories) ----------
 
-// 5.1) Prepare the DOM before physics starts (same as your `enableMatter()` used to do)
+// 5.1) Prepare the DOM before physics starts
 function prepareDomForPhysics() {
-    // 1) Add “.card” class to every element that matches “span.physics” or “.physics-add-card”:
+    devLog("prepareDomForPhysics: started");
+    // Add “.card” class to every element that matches “span.physics” or “.physics-add-card”
     document.querySelectorAll("span.physics, .physics-add-card").forEach(elem => {
         elem.classList.add("card");
+        devLog("Added .card to", elem);
     });
-    // 2) In each <p.onlyspans>, remove anything that isn't <span.physics>:
+    // In each <p.onlyspans>, remove anything that's not a <span.physics>
     document.querySelectorAll("p.onlyspans").forEach(p => {
         Array.from(p.childNodes).forEach(node => {
             if (!(node.nodeType === Node.ELEMENT_NODE && node.matches("span.physics"))) {
+                devLog("Removing non-physics child:", node, "from", p);
                 p.removeChild(node);
             }
         });
     });
-    // 3) Stretch <main> to fill the viewport (so bodies can drop), same as before:
+    // Stretch <main> to fill the viewport (so bodies can drop)
     let mainElem = document.querySelector("main");
     let rect = mainElem.getBoundingClientRect();
     let header = document.querySelector("header");
@@ -246,59 +278,44 @@ function prepareDomForPhysics() {
         - (footer ? footer.getBoundingClientRect().height : 0);
     let finalHeight = Math.max(rect.height, minHeight);
     mainElem.style.height = finalHeight + "px";
-    mainElem.style.overflow = "hidden";
+    devLog("Set <main> height to", finalHeight, "px");
+    // Hide loadMoreBtn if exists
     if (document.getElementById("loadMoreBtn")) {
         document.getElementById("loadMoreBtn").style.display = "none";
     }
-    document.querySelectorAll(".objectToMoreToTheBackClasses")
-        .forEach(elem => {
-            elem.classList.add("objectToMoreToTheBackClasses-active");
-            elem.classList.remove("projecttilt");
-        });
+    // Update any classes for proper stacking
+    document.querySelectorAll(".objectToMoreToTheBackClasses").forEach(elem => {
+        elem.classList.add("objectToMoreToTheBackClasses-active");
+        elem.classList.remove("projecttilt");
+        devLog("Updated classes for", elem);
+    });
     disableAllAOS();
+    devLog("prepareDomForPhysics: complete");
 }
 
 
-// 5.2) Create dynamic bodies for every element matching `selector`
-//      `options` should include restitution, friction, collisionFilter, etc.
+// 5.2) Create dynamic bodies for every element matching selector
 function createBodiesFromSelector(selector, options) {
     document.querySelectorAll(selector).forEach(elem => {
-        let orig = originalPositions.get(elem);
-        if (!orig) return; // safety
-
-        // 5.2.1) Compute offset for CSS‐transform (so we don’t “jump” the element)
-        let rNew = elem.getBoundingClientRect();
-        let newX = rNew.left + window.scrollX + rNew.width / 2;
-        let newY = rNew.top + window.scrollY + rNew.height / 2;
-        let offsetX = orig.x0 - newX;
-        let offsetY = orig.y0 - newY;
-        if (offsetX !== 0 || offsetY !== 0) {
-            elem.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-        }
-        elem.style.transformOrigin = "center center";
-
-        // 5.2.2) Create a Matter body at (orig.x0, orig.y0) with orig.width × orig.height:
+        let r = elem.getBoundingClientRect();
+        devLog("createBodiesFromSelector: Found element", elem, "with rect", r);
         let body = Bodies.rectangle(
-            orig.x0,
-            orig.y0,
-            orig.width,
-            orig.height,
+            r.left + window.scrollX + r.width / 2,
+            r.top + window.scrollY + r.height / 2,
+            r.width,
+            r.height,
             Object.assign({
                 restitution: 0.4,
-                friction: 0.1
+                friction: 0.1,
+                collisionFilter: {
+                    category: CATEGORY_MAP.PHYSICS,
+                    mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CAT
+                }
             }, options)
         );
         Composite.add(world, body);
-
-        // 5.2.3) Keep a mapping so that on every “afterUpdate” we can sync CSS → physics:
-        dynamicMappings.push({
-            elem: elem,
-            body: body,
-            x0: orig.x0,
-            y0: orig.y0,
-            offsetX: offsetX,
-            offsetY: offsetY
-        });
+        dynamicMappings.push({ elem: elem, body: body, x0: r.left + window.scrollX + r.width / 2, y0: r.top + window.scrollY + r.height / 2, offsetX: 0, offsetY: 0 });
+        devLog("Dynamic body created and mapped:", body);
     });
 }
 
@@ -343,7 +360,15 @@ function setupMouseControl() {
     let mouse = Mouse.create(document.body);
     mouseConstraint = MouseConstraint.create(engine, {
         mouse: mouse,
-        constraint: { length: 0.001, stiffness: 0.9, render: { visible: false } }
+        constraint: {
+            length: 0.001,
+            stiffness: 0.9,
+            render: { visible: false }
+        },
+        collisionFilter: {
+            category: CATEGORY_MAP.PHYSICS, // Ensure mouse can interact with physics objects
+            mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CAT // Allow interaction with balls and other objects
+        }
     });
     Composite.add(world, mouseConstraint);
     Events.on(mouseConstraint, "startdrag", () => { isDragging = true; });
@@ -373,44 +398,49 @@ function setupMouseControl() {
 }
 
 
-// 5.6) Sync‐loop: copy physics positions back into DOM every frame
+// 5.6) Sync-loop: copy physics positions back into DOM every frame
 function setupAfterUpdateSync() {
     Events.on(engine, "afterUpdate", () => {
-        // 5.6.1) sync all physics‐driven DIVs/images
+        let mainElem = document.querySelector("main");
+        let mainRect = mainElem.getBoundingClientRect();
+        let topOfMain = window.scrollY + mainRect.top;
+        let docH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+        let footerElem = document.querySelector("footer");
+        let footerHeight = footerElem ? footerElem.getBoundingClientRect().height : 0;
+        let bottomY = docH + 50 / 2 - footerHeight;
+
         dynamicMappings.forEach(m => {
             let dx = m.body.position.x - m.x0 + m.offsetX;
             let dy = m.body.position.y - m.y0 + m.offsetY;
             m.elem.style.transform = `translate(${dx}px, ${dy}px) rotate(${m.body.angle}rad)`;
-            // respawn if fallen off:
-            let H = Math.max(
-                document.documentElement.scrollHeight,
-                document.body.scrollHeight
-            );
-            if (m.body.position.y > H + 200) {
-                Body.setPosition(m.body, { x: m.x0, y: m.y0 });
+            // Debug log for each element being synced
+            devLog("Sync dynamic element:", m.elem, "Position:", m.body.position, "dx, dy:", dx, dy);
+            if (m.body.position.y > bottomY + 200) {
+                let respawnY = topOfMain + 50;
+                Body.setPosition(m.body, { x: m.body.position.x, y: respawnY });
                 Body.setVelocity(m.body, { x: 0, y: 0 });
                 Body.setAngle(m.body, 0);
+                devLog("Respawned dynamic body:", m.body);
             }
         });
 
-        // 5.6.2) sync all “imageMappings” (balls, hoop images, confetti, etc.)
         imageMappings.forEach(m => {
-            let H = Math.max(
-                document.documentElement.scrollHeight,
-                document.body.scrollHeight
-            );
-            if (m.body.position.y > H + 200) {
-                Body.setPosition(m.body, { x: m.x0, y: m.y0 });
+            if (m.body.position.y > bottomY + 200) {
+                let respawnY = topOfMain + 50;
+                Body.setPosition(m.body, { x: m.body.position.x, y: respawnY });
                 Body.setVelocity(m.body, { x: 0, y: 0 });
                 Body.setAngle(m.body, 0);
+                devLog("Respawned image-mapped body:", m.body);
             }
             let p = m.body.position;
             m.elem.style.left = p.x + "px";
             m.elem.style.top = p.y + "px";
             m.elem.style.transform = `translate(-50%,-50%) rotate(${m.body.angle}rad)`;
+            // Log the update for each DOM image element
+            devLog("Updated image element:", m.elem, "to position:", p);
         });
 
-        // 5.6.3) sync any “constraintMappings” (SVG lines for springs/ropes)
+        // 3) Sync any SVG constraint lines (unchanged from before):
         constraintMappings
             .filter(m => m.constraint && (m.constraint.bodyA || m.constraint.pointA))
             .forEach(m => {
@@ -426,7 +456,55 @@ function setupAfterUpdateSync() {
                 m.elem.setAttribute("x2", worldB.x);
                 m.elem.setAttribute("y2", worldB.y);
             });
+
+        // If dev mode is enabled, update the debug overlay with current collisions or sensor info.
+        // Inside setupAfterUpdateSync, after syncing SVG constraint lines:
+        if (window.devMode) {
+            let lastDelta = engine.timing.lastDelta || 0;
+            let fps = lastDelta > 0 ? (1000 / lastDelta).toFixed(1) : "N/A";
+            let devInfo = "";
+            devInfo += "Body Count: " + Composite.allBodies(world).length + "<br/>";
+            devInfo += "Collision Pairs: " + engine.pairs.list.length + "<br/>";
+            devInfo += "Dynamic Mappings: " + dynamicMappings.length + "<br/>";
+            devInfo += "Image Mappings: " + imageMappings.length + "<br/>";
+            devInfo += "Static Colliders: " + staticColliders.length + "<br/>";
+            devInfo += "Constraints: " + constraintMappings.length + "<br/>";
+            devInfo += "Last Delta (ms): " + lastDelta.toFixed(2) + "<br/>";
+            devInfo += "FPS: " + fps + "<br/>";
+
+            const devDiv = document.getElementById("devInfo");
+            if (devDiv) {
+                devDiv.innerHTML = devInfo;
+            }
+        }
+
+        // Update the sensor overlay position:
+        if (hoopSensor) {
+            updateSensorOverlay();
+        }
     });
+}
+
+function updateSensorOverlay() {
+    if (!window.devMode) return;
+    let sensorDiv = document.getElementById("sensorOverlay");
+    if (!sensorDiv) {
+        sensorDiv = document.createElement("div");
+        sensorDiv.id = "sensorOverlay";
+        // Style the overlay (a small red square, for instance)
+        sensorDiv.style.position = "fixed";
+        sensorDiv.style.width = "10px";
+        sensorDiv.style.height = "10px";
+        sensorDiv.style.background = "red";
+        sensorDiv.style.border = "2px dashed white";
+        sensorDiv.style.pointerEvents = "none";
+        sensorDiv.style.zIndex = "1001";
+        document.body.appendChild(sensorDiv);
+    }
+    // Convert sensor position to viewport coordinates (assuming no scaling)
+    let pos = hoopSensor.position;
+    sensorDiv.style.left = (pos.x - 5) + "px";
+    sensorDiv.style.top = (pos.y - 5) + "px";
 }
 
 
@@ -491,71 +569,70 @@ function spawnCustomDefaults(config) {
     let cx = window.scrollX + window.innerWidth / 2;
     let cy = window.scrollY + window.innerHeight / 2;
 
+    // Define x and y for the ball
+    let x = cx; // Center x-coordinate
+    let y = cy; // Center y-coordinate
+
     // 5.8.1) Two balls joined by a spring:
-    let ballA = Bodies.circle(cx - 25, cy, 20, { restitution: 0.5, friction: 0.1, collisionFilter: { category: CATEGORY_MAP.BALL, mask: CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER } });
-    let ballB = Bodies.circle(cx + 25, cy, 20, { restitution: 0.5, friction: 0.1, collisionFilter: { category: CATEGORY_MAP.BALL, mask: CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER } });
-    let spring = Constraint.create({
-        bodyA: ballA, pointA: { x: 0, y: 0 },
-        bodyB: ballB, pointB: { x: 0, y: 0 },
-        length: 50, stiffness: 0.05, damping: 0.02
+    let ballA = Bodies.circle(cx - 25, cy, 20, {
+        restitution: 0.5,
+        friction: 0.1,
+        collisionFilter: {
+            category: CATEGORY_MAP.BALL,
+            mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER | CATEGORY_MAP.HOOP | CATEGORY_MAP.CAT
+        }
     });
-    Composite.add(world, [ballA, ballB, spring]);
+    let ballB = Bodies.circle(cx + 25, cy, 20, {
+        restitution: 0.5,
+        friction: 0.1,
+        collisionFilter: {
+            category: CATEGORY_MAP.BALL,
+            mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER | CATEGORY_MAP.HOOP | CATEGORY_MAP.CAT
+        }
+    });
+
+    let ball = Bodies.circle(x, y, 20, {
+        restitution: 0.5,
+        friction: 0.1,
+        collisionFilter: {
+            category: CATEGORY_MAP.BALL,
+            mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER | CATEGORY_MAP.HOOP | CATEGORY_MAP.CAT
+        }
+    });
+    Composite.add(world, [ballA, ballB, ball]);
 
     attachImageToBody(ballA, "images/specials/ball.png", 40, 40);
     attachImageToBody(ballB, "images/specials/ball.png", 40, 40);
 
     // 5.8.2) A standby extra ball:
-    let ballD = Bodies.circle(cx, cy + 60, 20, { restitution: 0.5, friction: 0.1, collisionFilter: { category: CATEGORY_MAP.BALL, mask: CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER } });
+    let ballD = Bodies.circle(cx, cy + 60, 20, {
+        restitution: 0.5,
+        friction: 0.1,
+        collisionFilter: {
+            category: CATEGORY_MAP.BALL,
+            mask: CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER
+        }
+    });
     Composite.add(world, ballD);
     attachImageToBody(ballD, "images/specials/ball.png", 40, 40);
 
-    // 5.8.3) SVG overlay for spring + ropes:
-    let svgNS = "http://www.w3.org/2000/svg";
-    let svg = document.createElementNS(svgNS, "svg");
-    let docW = document.documentElement.scrollWidth;
-    let docH = Math.max(
-        document.documentElement.scrollHeight,
-        document.body.scrollHeight
-    );
-    svg.style.position = "absolute";
-    svg.style.left = "0";
-    svg.style.top = "0";
-    svg.style.width = docW + "px";
-    svg.style.height = docH + "px";
-    svg.style.pointerEvents = "none";
-    document.body.appendChild(svg);
-
-    let line1 = document.createElementNS(svgNS, "line");
-    line1.setAttribute("stroke", "#888");
-    line1.setAttribute("stroke-width", "2");
-    svg.appendChild(line1);
-    constraintMappings.push({ elem: line1, constraint: spring });
-
-    let line2 = document.createElementNS(svgNS, "line");
-    line2.setAttribute("stroke", "#888");
-    line2.setAttribute("stroke-width", "2");
-    svg.appendChild(line2);
-    constraintMappings.push({ elem: line2, constraint: ropeConstraint1 });
-
-    let line3 = document.createElementNS(svgNS, "line");
-    line3.setAttribute("stroke", "#888");
-    line3.setAttribute("stroke-width", "2");
-    svg.appendChild(line3);
-    constraintMappings.push({ elem: line3, constraint: ropeConstraint2 });
-
     // 5.8.4) If page=="about", spawn 10 balls + a basketball hoop:
-    if (
-        config.spawnOnPage &&
-        config.spawnOnPage.pageName === page
-    ) {
+    if (config.spawnOnPage && config.spawnOnPage.pageName === page) {
         document.querySelector("main").style.overflow = "hidden";
         addManyBalls(config.spawnOnPage.ballCount || 0);
-        addObject({ type: "hoop" });
+        addObject({
+            type: "hoop",
+            size: { width: 200, height: 150 },
+            boardScale: 0.8,
+            boardYOffset: -1050,
+            hoopScale: 1.45,
+            rimYOffset: 100
+        });
     }
 }
 
 
-// 5.9) Helper to attach an <img> overlay to a given body (size in px):
+// 5.9) Helper to attach an <img> overlay to a given body
 function attachImageToBody(body, imagePath, widthPx, heightPx) {
     let img = document.createElement("img");
     img.src = imagePath;
@@ -572,30 +649,58 @@ function attachImageToBody(body, imagePath, widthPx, heightPx) {
         x0: body.position.x,
         y0: body.position.y
     });
+    devLog("Attached image to body:", body, "Image element:", img);
 }
 
 
 // 5.10) Spawns a grid of “count” extra balls (like your addManyBalls):
 function addManyBalls(count) {
+    const mainElem = document.querySelector("main");
+    const mainRect = mainElem.getBoundingClientRect();
+    // “topOfMain” in document coordinates:
+    const topOfMain = window.scrollY + mainRect.top;
+
+    // We’ll start our grid 50px below the top of <main>:
+    const startY = topOfMain + 50;
+    // Center horizontally (relative to viewport) −100px:
     const startX = window.innerWidth / 2 - 100;
-    const startY = window.scrollY + 100;
     const spacing = 50;
 
     for (let i = 0; i < count; i++) {
         const col = i % 10;
         const row = Math.floor(i / 10);
+
         const x = startX + col * spacing;
         const y = startY + row * spacing;
+
         let ball = Bodies.circle(x, y, 20, {
             restitution: 0.5,
             friction: 0.1,
             collisionFilter: {
                 category: CATEGORY_MAP.BALL,
-                mask: CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER
+                mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER | CATEGORY_MAP.HOOP | CATEGORY_MAP.CAT
             }
         });
         Composite.add(world, ball);
-        attachImageToBody(ball, "images/specials/ball.png", 40, 40);
+        devLog("Ball created:", ball);
+
+        // Attach the sprite image the same way as before:
+        const img = document.createElement("img");
+        img.src = "images/specials/ball.png";
+        img.style.position = "absolute";
+        img.style.width = "40px";
+        img.style.height = "40px";
+        img.style.transformOrigin = "center center";
+        img.style.userSelect = "none";
+        img.setAttribute("draggable", "false");
+        document.body.appendChild(img);
+
+        imageMappings.push({
+            elem: img,
+            body: ball,
+            x0: x,    // store these so if you ever want to “respawn at exactly this spot,” you have the data…
+            y0: y
+        });
     }
 }
 
@@ -604,7 +709,6 @@ function addManyBalls(count) {
 //       you call `addObject({ type:"hoop" })` (or is invoked inside spawnCustomDefaults).
 //       We’ve extracted it so you can re‐use `addObject({ type:"hoop", position:…, size:… })` easily.
 function createHoopFactory(world, params = {}) {
-    // You can override default size/position by providing params.position or params.size.
     const isMobile = window.innerWidth < 900;
     let p1, p2;
     if (isMobile) {
@@ -619,24 +723,34 @@ function createHoopFactory(world, params = {}) {
         p2 = { x: x0 - ropedistnace, y: y0 };
     }
 
-    const rectWidth = params.size?.width || 180;
-    const rectHeight = params.size?.height || 120;
+    // New custom parameters:
+    let boardScale = params.boardScale || 1.0;         // Scale factor for board dimensions
+    let boardYOffset = params.boardYOffset || 0;         // Vertical offset for board
+    let hoopScale = params.hoopScale || 1.0;             // Scale factor for hoop dimensions
+    let rimYOffset = params.rimYOffset || 0;             // Additional offset for the rim
 
-    // === 1) Backboard (rectC): gravity + no collision:
+    // Calculate backboard dimensions with scaling:
+    const baseRectWidth = params.size?.width || 180;
+    const baseRectHeight = params.size?.height || 120;
+    const rectWidth = baseRectWidth * boardScale;
+    const rectHeight = baseRectHeight * boardScale;
+
+    // Calculate hoop dimensions with hoopScale:
+    let hoopWidth = (params.hoopWidth || (baseRectWidth / 2)) * hoopScale;
+    let hoopHeight = (params.hoopHeight || (baseRectHeight / 2)) * hoopScale;
+
+    // --- 1) Create backboard (adjusted by boardYOffset) ---
     rectC = Bodies.rectangle(
-        (p1.x + p2.x) / 2, p1.y,
+        (p1.x + p2.x) / 2, p1.y + boardYOffset,
         rectWidth, rectHeight,
         {
             inertia: Infinity,
-            collisionFilter: {
-                category: CATEGORY_NONE,
-                mask: CATEGORY_NONE
-            }
+            collisionFilter: { category: CATEGORY_NONE, mask: CATEGORY_NONE }
         }
     );
     Composite.add(world, rectC);
 
-    // === 2) Rope constraints (same as before)
+    // --- 2) Create rope constraints ---
     ropeConstraint1 = Constraint.create({
         pointA: p1,
         bodyB: rectC,
@@ -653,24 +767,19 @@ function createHoopFactory(world, params = {}) {
     });
     Composite.add(world, [ropeConstraint1, ropeConstraint2]);
 
-    // === 3) Hoop visual (rectCHoop), gravity=off, const = off
-    let hoopWidth = rectWidth / 2;
-    let hoopHeight = rectWidth / 2;
+    // --- 3) Create hoop visual ---
     rectCHoop = Bodies.rectangle(
         rectC.position.x,
         rectC.position.y + rectHeight / 2 + hoopHeight / 2,
         hoopWidth, hoopHeight,
         {
             inertia: Infinity,
-            collisionFilter: {
-                category: CATEGORY_NONE,
-                mask: CATEGORY_NONE
-            }
+            collisionFilter: { category: CATEGORY_NONE, mask: CATEGORY_NONE }
         }
     );
     Composite.add(world, rectCHoop);
 
-    // === 4) Lock hoop to board (length=0, stiffness=1):
+    // --- 4) Lock hoop to board ---
     Composite.add(world, [
         Constraint.create({
             bodyA: rectC, pointA: { x: 0, y: rectHeight / 2 },
@@ -689,59 +798,50 @@ function createHoopFactory(world, params = {}) {
         })
     ]);
 
-    // === 5) Top‐corner colliders (circle) for the hoop (collide only with balls)
+    // --- 5) Add top-corner colliders for the hoop (unchanged) ---
     const cornerRadius = 8;
     const cornerOffsetY = -hoopHeight / 2;
-    let corners = [
-        { x: -hoopWidth / 2 + cornerRadius, y: cornerOffsetY },
-        { x: hoopWidth / 2 - cornerRadius, y: cornerOffsetY }
-    ];
-    corners.forEach(offset => {
-        let corner = Bodies.circle(
-            rectCHoop.position.x + offset.x,
-            rectCHoop.position.y + offset.y,
-            cornerRadius,
-            {
-                isSensor: false,
-                friction: 0,
-                restitution: 0.2,
-                collisionFilter: {
-                    category: CATEGORY_CORNER,
-                    mask: CATEGORY_BALL
+    [{ x: -hoopWidth / 2 + cornerRadius, y: cornerOffsetY },
+    { x: hoopWidth / 2 - cornerRadius, y: cornerOffsetY }]
+        .forEach(offset => {
+            let corner = Bodies.circle(
+                rectCHoop.position.x + offset.x,
+                rectCHoop.position.y + offset.y,
+                cornerRadius,
+                {
+                    isSensor: false,
+                    friction: 0,
+                    restitution: 0.2,
+                    collisionFilter: { category: CATEGORY_CORNER, mask: CATEGORY_BALL }
                 }
-            }
-        );
-        Composite.add(world, [corner,
-            Constraint.create({
-                bodyA: rectCHoop,
-                pointA: offset,
-                bodyB: corner,
-                pointB: { x: 0, y: 0 },
-                length: 0, stiffness: 1
-            })
-        ]);
-    });
+            );
+            Composite.add(world, [corner,
+                Constraint.create({
+                    bodyA: rectCHoop,
+                    pointA: offset,
+                    bodyB: corner,
+                    pointB: { x: 0, y: 0 },
+                    length: 0, stiffness: 1
+                })
+            ]);
+        });
 
-    // === 6) Hoop image:
+    // --- 6) Attach hoop image with adjusted size ---
     attachImageToBody(rectCHoop, "images/specials/hoop.png",
-        hoopWidth / 10 + "rem", hoopHeight / 10 + "rem");
+        hoopWidth + "px", hoopHeight + "px");
 
-    // === 7) Backboard image:
+    // --- 7) Attach backboard image ---
     attachImageToBody(rectC, "images/specials/board.png",
-        rectWidth / 10 + "rem", rectHeight / 10 + "rem");
+        rectWidth + "px", rectHeight + "px");
 
-    // === 8) The invisible “rim” body (no collision left/right, visible rim is an image):
+    // --- 8) Create the rim (apply rimYOffset) ---
     let rimWidth = hoopWidth;
-    let rimHeight = -225; // negative to position below hoop
+    let rimHeight = params.rimHeight !== undefined ? params.rimHeight : -225; // default negative positions below hoop
     let rimX = rectCHoop.position.x;
-    let rimY = rectCHoop.position.y + hoopHeight / 2 + rimHeight / 2;
-
+    let rimY = rectCHoop.position.y + hoopHeight / 2 + rimHeight / 2 + rimYOffset;
     rim = Bodies.rectangle(rimX, rimY, rimWidth, rimHeight, {
         inertia: Infinity,
-        collisionFilter: {
-            category: CATEGORY_NONE,
-            mask: CATEGORY_NONE
-        }
+        collisionFilter: { category: CATEGORY_NONE, mask: CATEGORY_NONE }
     });
     Composite.add(world, rim);
     Composite.add(world, Constraint.create({
@@ -752,9 +852,9 @@ function createHoopFactory(world, params = {}) {
         length: 0, stiffness: 1
     }));
     attachImageToBody(rim, "images/specials/rim.png",
-        rimWidth / 10 + "rem", rimHeight / 10 + "rem");
+        rimWidth + "px", rimHeight + "px");
 
-    // === 9) Rim‐edge colliders (left & right), plus the hoopSensor
+    // --- 9) Create rim-edge colliders and set up the hoop sensor (unchanged) ---
     const edgeSize = 6;
     const offsetX = rimWidth / 2 - edgeSize;
     ["left", "right"].forEach(side => {
@@ -766,10 +866,7 @@ function createHoopFactory(world, params = {}) {
             {
                 isSensor: false,
                 restitution: 0.2,
-                collisionFilter: {
-                    category: CATEGORY_CORNER,
-                    mask: CATEGORY_BALL
-                }
+                collisionFilter: { category: CATEGORY_CORNER, mask: CATEGORY_BALL }
             }
         );
         Composite.add(world, [edge,
@@ -781,49 +878,46 @@ function createHoopFactory(world, params = {}) {
                 length: 0, stiffness: 1
             })
         ]);
-
-        hoopSensor = Bodies.rectangle(
-            rim.position.x,
-            rim.position.y,
-            rimWidth * 0.7,
-            6,
-            {
-                isSensor: true,
-                isStatic: false,
-                render: { visible: false }
-            }
-        );
-        Composite.add(world, hoopSensor);
-        Composite.add(world, Constraint.create({
-            bodyA: rim,
-            pointA: { x: 0, y: 0 },
-            bodyB: hoopSensor,
-            pointB: { x: 0, y: 0 },
-            length: 0, stiffness: 1
-        }));
     });
+
+    // Create the hoop sensor and add a constraint to keep it with the rim.
+    hoopSensor = Bodies.rectangle(
+        rim.position.x,
+        rim.position.y,
+        rimWidth * 0.7,
+        6,
+        {
+            isSensor: true,
+            isStatic: false,
+            render: { visible: false }
+        }
+    );
+    Composite.add(world, hoopSensor);
+    Composite.add(world, Constraint.create({
+        bodyA: rim,
+        pointA: { x: 0, y: 0 },
+        bodyB: hoopSensor,
+        pointB: { x: 0, y: 0 },
+        length: 0, stiffness: 1
+    }));
 }
 
-
-// 5.12) Factory for a “sphere” that you can spawn via addObject({ type:"sphere", … })
 function createSphereFactory(world, params = {}) {
-    let x = params.position?.x || (window.scrollX + window.innerWidth / 2);
-    let y = params.position?.y || (window.scrollY + window.innerHeight / 2);
+    let x = params.position?.x || window.innerWidth / 2;
+    let y = params.position?.y || window.scrollY + 50;
     let size = params.size || 20;
-    let category = CATEGORY_MAP[params.category] || CATEGORY_MAP.BALL;
-    let mask = (params.mask || ["BALL", "CORNER"]).reduce((acc, name) => acc | (CATEGORY_MAP[name] || 0), 0);
 
     let ball = Bodies.circle(x, y, size, {
-        restitution: params.restitution ?? 0.5,
-        friction: params.friction ?? 0.1,
+        restitution: 0.5,
+        friction: 0.1,
         collisionFilter: {
-            category: category,
-            mask: mask
+            category: CATEGORY_MAP.BALL,
+            mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER | CATEGORY_MAP.HOOP | CATEGORY_MAP.CAT
         }
     });
     Composite.add(world, ball);
 
-    // Attach sprite if provided:
+    // Attach image for visual representation
     if (params.image) {
         let img = document.createElement("img");
         img.src = params.image;
@@ -833,14 +927,10 @@ function createSphereFactory(world, params = {}) {
         img.style.transformOrigin = "center center";
         img.setAttribute("draggable", "false");
         document.body.appendChild(img);
-        imageMappings.push({ elem: img, body: ball, x0: x, y0: y });
+        imageMappings.push({ elem: img, body: ball });
     }
 
-    // Attach collision sound if provided (we’ll piggy‐back on the “bounce” logic above)
-    if (params.sound) {
-        ball.sound = params.sound;
-        // You could store it in a map for lookup inside setupCollisionHandlers if you want per‐ball sounds
-    }
+    return ball;
 }
 
 
@@ -912,5 +1002,11 @@ function spawnGlobalConfetti(count, disappearChance, lifespanMs) {
         let x = Math.random() * W;
         let y = Math.random() * H;
         createConfetti(x, y, 1, disappearChance, lifespanMs);
+    }
+}
+
+function devLog(...args) {
+    if (window.devMode) {
+        console.log(...args);
     }
 }

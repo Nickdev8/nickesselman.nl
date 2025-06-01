@@ -3,10 +3,10 @@
 </audio>
 
 
-<div id="muteicon" class="physics card" style="padding: var(--spacing-1) !important;">
+<div id="muteicon" class="physics-fixed card" style="padding: var(--spacing-1) !important;">
     <img id="hoop" src="images/specials/mute.png" unselectable="on" draggable="false" alt="">
 </div>
-<div class="card physics physics-fixed" id="open-specials-menu" style="padding: var(--spacing-3) !important;">
+<div class="card physics-fixed" id="open-specials-menu" style="padding: var(--spacing-3) !important;">
     <input id="checkbox" type="checkbox">
     <label class="toggle" for="checkbox">
         <div id="bar1" class="bars"></div>
@@ -14,7 +14,7 @@
         <div id="bar3" class="bars"></div>
     </label>
 </div>
-<div class="card physics physics-fixed" id="specials-menu" style="padding: var(--spacing-3) !important;">
+<div class="card physics-fixed" id="specials-menu" style="padding: var(--spacing-3) !important;">
 
     <div class="button">
         <label class="neon-checkbox">
@@ -84,6 +84,40 @@
             </div>
         </label>
         <h2>Randomize Buttons</h2>
+    </div>
+    <br>
+    <div class="button">
+        <label class="neon-checkbox">
+            <input id="devModeToggle" type="checkbox" />
+            <div class="neon-checkbox__frame">
+                <div class="neon-checkbox__box">
+                    <div class="neon-checkbox__check-container">
+                        <svg viewBox="0 0 24 24" class="neon-checkbox__check">
+                            <path d="M3,12.5l7,7L21,5"></path>
+                        </svg>
+                    </div>
+                    <div class="neon-checkbox__glow"></div>
+                    <div class="neon-checkbox__borders">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+                <div class="neon-checkbox__effects">
+                    <div class="neon-checkbox__particles">
+                        <span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="neon-checkbox__rings">
+                        <div class="ring"></div>
+                        <div class="ring"></div>
+                        <div class="ring"></div>
+                    </div>
+                    <div class="neon-checkbox__sparks">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+        </label>
+        <h2>Dev Mode</h2>
     </div>
 </div>
 

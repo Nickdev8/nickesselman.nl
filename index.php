@@ -24,36 +24,6 @@ $versionnum = "1.0.7"
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/matter-dom-plugin@1.0.0/build/matter-dom-plugin.min.js"></script>
 
-    <!-- <script defer>
-  Matter.use('matter-dom-plugin');
-
-        // Alias commonly used modules
-        const {
-            Engine,
-            Runner,
-            World,
-            RenderDom,      // provided by matter-dom-plugin
-            DomBodies,      // optional: declarative body creation
-            MouseConstraint,
-            DomMouseConstraint,
-            Mouse
-        } = Matter;
-
-        // 1. Create and run engine
-        const engine = Engine.create();
-        const runner = Runner.create();
-        Runner.run(runner, engine);
-
-        // 2. Create DOM renderer
-        const render = RenderDom.create({
-            engine: engine,
-            element: document.body  // or specify a container element
-        });
-
-        // **Correct usage**: call the static run() on RenderDom
-        RenderDom.run(render);
-    </script> -->
-
     <!-- basic css -->
     <link rel="stylesheet" href="css/reset.css?v=<?= $versionnum ?>">
     <link rel="stylesheet" href="css/main.css?v=<?= $versionnum ?>">
@@ -158,6 +128,12 @@ $versionnum = "1.0.7"
     </script>
 
 
+
+    <!-- physics engine -->
+    <div id="devView">
+        <strong>Dev View</strong>
+        <div id="devInfo"></div>
+    </div>
 
     <script src="scripts/matterrun.js"></script>
     <script src="scripts/physicsconfigs.js"></script>

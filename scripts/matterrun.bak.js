@@ -26,7 +26,6 @@ else
 var world = engine.world;
 var runner = Runner.create();
 
-// State Collections
 var dynamicMappings = [];
 var imageMappings = [];
 var constraintMappings = [];
@@ -35,7 +34,6 @@ var walls = [];
 var originalPositions = new Map();
 var fixedStyles = new Map();
 
-// viewport-fixed anchors
 var ropeConstraint1, ropeConstraint2, fixedAnchor1, fixedAnchor2;
 var isDragging = false, justDragged = false, filterInstalled = false;
 
@@ -44,22 +42,19 @@ var ropeLength = 100;
 var hoopSensor;
 var rectC, rectCHoop, rim;
 let lastSensorTriggerTime = 0;
-const SENSOR_COOLDOWN_MS = 1000; // 1 second
+const SENSOR_COOLDOWN_MS = 1000;
 
 let bounceSoundLastSecond = 0;
 let bounceSoundCount = 0;
 const BOUNCE_SOUND_LIMIT_PER_SECOND = 1;
 
-// ===== Interface Toggles =====
 function enableMatter() {
     var mainElem = document.querySelector('main');
 
-    // 1) fix missing dot in your selector
     document.querySelectorAll('span.physics, .physics-add-card').forEach(elem => {
         elem.classList.add('card');
     });
 
-    // 2) in each <p.onlyspans>, remove anything that isn't a <span.physics>
     document.querySelectorAll('p.onlyspans').forEach(p => {
         Array.from(p.childNodes).forEach(node => {
             if (!(node.nodeType === Node.ELEMENT_NODE && node.matches('span.physics'))) {
@@ -68,7 +63,6 @@ function enableMatter() {
         });
     });
 
-    // now the rest of your normal flow…
     var rect = mainElem.getBoundingClientRect();
     var header = document.querySelector('header');
     var footer = document.querySelector('footer');
@@ -81,7 +75,7 @@ function enableMatter() {
     mainElem.style.overflow = 'hidden';
 
     disableAllAOS();
-    setupPhysics();  // setupPhysics will now record the spans' original positions and reparent them
+    setupPhysics();
     if (document.getElementById('loadMoreBtn'))
         document.getElementById('loadMoreBtn').style.display = 'none';
     document.querySelectorAll('.objectToMoreToTheBackClasses')
@@ -96,7 +90,6 @@ function enableMatter() {
 
 // ===== Physics Initialization =====
 function setupPhysics() {
-    // Reset State
     dynamicMappings.length = 0;
     imageMappings.length = 0;
     constraintMappings.length = 0;
@@ -105,11 +98,9 @@ function setupPhysics() {
     originalPositions.clear();
     fixedStyles.clear();
 
-    // near the top of setupPhysics (or enableMatter), before you wire up afterUpdate:
     var footer = document.querySelector('footer');
     var footerHeight = footer ? footer.getBoundingClientRect().height : 0;
 
-    // Fix .physics-fixed Elements
     document.querySelectorAll('.physics-fixed').forEach(function (elem) {
         var r = elem.getBoundingClientRect();
         fixedStyles.set(elem, {
@@ -122,7 +113,6 @@ function setupPhysics() {
         elem.style.top = (r.top + window.scrollY) + 'px';
     });
 
-    // Record Original Positions
     document.querySelectorAll('.physics, .physics-loose').forEach(function (elem) {
         elem.classList.add('physics-active');
         elem.classList.remove('physics-inactive');
@@ -137,7 +127,7 @@ function setupPhysics() {
             height: r.height
         });
     });
-    // Re-parent Nested & Loose
+
     document.querySelectorAll('.physics-nested').forEach(function (elem) {
         var outer = elem.closest('.physics:not(.physics-nested)');
         if (outer && outer.parentNode) {
@@ -149,7 +139,6 @@ function setupPhysics() {
         mainElem && mainElem.appendChild(elem);
     });
 
-    // Create Dynamic Bodies for .physics divs
     document.querySelectorAll('.physics, .physics-loose').forEach(function (elem) {
         var orig = originalPositions.get(elem);
         var r = elem.getBoundingClientRect();
@@ -178,8 +167,6 @@ function setupPhysics() {
         });
     });
 
-
-    // Static Colliders
     document.querySelectorAll('.collision').forEach(function (elem) {
         var r = elem.getBoundingClientRect();
         var body = Bodies.rectangle(
@@ -193,11 +180,8 @@ function setupPhysics() {
     });
 
 
-
-    // Add Custom Objects, Images & Joints
     addObjects();
 
-    // Page walls
     var t = 50;
     var W = document.documentElement.scrollWidth;
     var H = Math.max(
@@ -213,8 +197,6 @@ function setupPhysics() {
     Composite.add(world, walls);
 
 
-
-    // Scroll Filtering
     if (!filterInstalled) {
         var filter = function (e) {
             if (!mouseConstraint.body) e.stopImmediatePropagation();
@@ -226,7 +208,6 @@ function setupPhysics() {
         filterInstalled = true;
     }
 
-    // Mouse Control
     var mouse = Mouse.create(document.body);
     var mouseConstraint = MouseConstraint.create(engine, {
         mouse: mouse,
@@ -240,7 +221,6 @@ function setupPhysics() {
         setTimeout(function () { justDragged = false; }, 0);
     });
 
-    // update anchors every frame
     Events.on(engine, 'beforeUpdate', function () {
         const isMobile = window.innerWidth < 900;
         const offY = 50;
@@ -278,15 +258,12 @@ function setupPhysics() {
     });
 
 
-    // Sync Loop
     Events.on(engine, 'afterUpdate', function () {
-        // sync physics divs
         dynamicMappings.forEach(function (m) {
             var dx = m.body.position.x - m.x0 + m.offsetX;
             var dy = m.body.position.y - m.y0 + m.offsetY;
             m.elem.style.transform =
                 'translate(' + dx + 'px,' + dy + 'px) rotate(' + m.body.angle + 'rad)';
-            // respawn if fallen off
             var H = Math.max(
                 document.documentElement.scrollHeight,
                 document.body.scrollHeight
@@ -298,7 +275,6 @@ function setupPhysics() {
             }
         });
 
-        // respawn & sync ball images
         imageMappings.forEach(function (m) {
             var H = Math.max(
                 document.documentElement.scrollHeight,
@@ -316,7 +292,6 @@ function setupPhysics() {
                 'translate(-50%,-50%) rotate(' + m.body.angle + 'rad)';
         });
 
-        // improved joint-line sync:
         constraintMappings
             .filter(m => m.constraint && (m.constraint.bodyA || m.constraint.pointA))
             .forEach(function (m) {
@@ -338,7 +313,6 @@ function setupPhysics() {
         const now = Date.now();
         const thisSecond = Math.floor(now / 100);
 
-        // Reset counter each second
         if (thisSecond !== bounceSoundLastSecond) {
             bounceSoundLastSecond = thisSecond;
             bounceSoundCount = 0;
@@ -356,10 +330,8 @@ function setupPhysics() {
                         otherBody === rim
                     ) return;
 
-                    // Cooldown: skip if triggered too recently
                     if (now - lastSensorTriggerTime < SENSOR_COOLDOWN_MS) return;
 
-                    // Valid dynamic object
                     if (!otherBody.isStatic && !otherBody.isSensor && otherBody.speed > 0.1) {
                         lastSensorTriggerTime = now;
                         ballWentThroughHoop(otherBody);
@@ -381,7 +353,7 @@ function setupPhysics() {
                 Math.pow(velA.y - velB.y, 2)
             );
 
-            if (relVel < 2.5) return; // Ignore soft impacts
+            if (relVel < 2.5) return;
             if (bounceSoundCount >= BOUNCE_SOUND_LIMIT_PER_SECOND) return;
 
             const base = document.getElementById('bounceSound');
@@ -398,7 +370,6 @@ function setupPhysics() {
 
 
 
-    // Interaction Guards & misc
     document.addEventListener('click', function (e) {
         if (justDragged) { e.stopImmediatePropagation(); e.preventDefault(); }
     }, true);
@@ -421,11 +392,9 @@ function setupPhysics() {
 
 // ===== Custom Objects, Images & Joints =====
 function addObjects() {
-    // compute viewport center for respawn
     var cx = window.scrollX + window.innerWidth / 2;
     var cy = window.scrollY + window.innerHeight / 2;
 
-    // two balls connected by a spring
     var ballA = Bodies.circle(cx - 25, cy, 20, { restitution: 0.5, friction: 0.1 });
     var ballB = Bodies.circle(cx + 25, cy, 20, { restitution: 0.5, friction: 0.1 });
     var spring = Constraint.create({
@@ -444,11 +413,9 @@ function addObjects() {
         dobasketballhoop();
     }
 
-    // standalone extra ball
     var ballD = Bodies.circle(cx, cy + 60, 20, { restitution: 0.5, friction: 0.1 });
     Composite.add(world, ballD);
 
-    // SVG overlay for joints
     var svgNS = 'http://www.w3.org/2000/svg';
     var svg = document.createElementNS(svgNS, 'svg');
     var docW = document.documentElement.scrollWidth;
@@ -464,14 +431,12 @@ function addObjects() {
     svg.style.pointerEvents = 'none';
     document.body.appendChild(svg);
 
-    // spring line
     var line1 = document.createElementNS(svgNS, 'line');
     line1.setAttribute('stroke', '#888');
     line1.setAttribute('stroke-width', '2');
     svg.appendChild(line1);
     constraintMappings.push({ elem: line1, constraint: spring });
 
-    // rope lines
     var line2 = document.createElementNS(svgNS, 'line');
     line2.setAttribute('stroke', '#888');
     line2.setAttribute('stroke-width', '2');
@@ -484,7 +449,6 @@ function addObjects() {
     svg.appendChild(line3);
     constraintMappings.push({ elem: line3, constraint: ropeConstraint2 });
 
-    // map sprites for balls
     [ballA, ballB, ballD].forEach(function (body) {
         var img = document.createElement('img');
         img.src = 'images/specials/ball.png';
@@ -507,29 +471,24 @@ function addObjects() {
 
 
 function addManyBalls(count) {
-    // starting x/y so the balls don't all overlap
     const startX = window.innerWidth / 2 - 100;
     const startY = window.scrollY + 100;
-    const spacing = 50; // px gap between balls
+    const spacing = 50;
 
     for (let i = 0; i < count; i++) {
-        // compute a grid layout: 10 per row
         const col = i % 10;
         const row = Math.floor(i / 10);
 
         const x = startX + col * spacing;
         const y = startY + row * spacing;
 
-        // create the body
         const ball = Bodies.circle(x, y, 20, {
             restitution: 0.5,
             friction: 0.1
         });
 
-        // add to world
         Composite.add(world, ball);
 
-        // add its sprite
         const img = document.createElement('img');
         img.src = 'images/specials/ball.png';
         img.style.position = 'absolute';
@@ -568,7 +527,6 @@ function dobasketballhoop() {
     var rectWidth = 180;
     var rectHeight = 120;
 
-    // === 1. rectC (backboard): gravity only, no collision
     rectC = Bodies.rectangle(
         (p1.x + p2.x) / 2, p1.y,
         rectWidth, rectHeight,
@@ -584,7 +542,6 @@ function dobasketballhoop() {
     );
     Composite.add(world, rectC);
 
-    // === 2. rope constraints (same)
     ropeConstraint1 = Constraint.create({
         pointA: p1,
         bodyB: rectC,
@@ -601,7 +558,6 @@ function dobasketballhoop() {
     });
     Composite.add(world, [ropeConstraint1, ropeConstraint2]);
 
-    // === 3. rectCHoop (hoop visual only, no collision)
     var hoopWidth = rectWidth / 2;
     var hoopHeight = rectWidth / 2;
     rectCHoop = Bodies.rectangle(
@@ -618,19 +574,17 @@ function dobasketballhoop() {
     );
     Composite.add(world, rectCHoop);
 
-    // === 4. Lock hoop to board (no relative movement)
     Composite.add(world, [
         Constraint.create({ bodyA: rectC, pointA: { x: 0, y: rectHeight / 2 }, bodyB: rectCHoop, pointB: { x: 0, y: -hoopHeight / 2 }, length: 0, stiffness: 1 }),
         Constraint.create({ bodyA: rectC, pointA: { x: -hoopWidth / 2, y: rectHeight / 2 }, bodyB: rectCHoop, pointB: { x: -hoopWidth / 2, y: -hoopHeight / 2 }, length: 0, stiffness: 1 }),
         Constraint.create({ bodyA: rectC, pointA: { x: hoopWidth / 2, y: rectHeight / 2 }, bodyB: rectCHoop, pointB: { x: hoopWidth / 2, y: -hoopHeight / 2 }, length: 0, stiffness: 1 })
     ]);
 
-    // === 5. Top-corner colliders (real collisions!)
     const cornerRadius = 8;
     const cornerOffsetY = -hoopHeight / 2;
     const corners = [
-        { x: -hoopWidth / 2 + cornerRadius, y: cornerOffsetY },  // left
-        { x: hoopWidth / 2 - cornerRadius, y: cornerOffsetY }   // right
+        { x: -hoopWidth / 2 + cornerRadius, y: cornerOffsetY },
+        { x: hoopWidth / 2 - cornerRadius, y: cornerOffsetY }
     ];
     corners.forEach(offset => {
         const corner = Bodies.circle(
@@ -643,11 +597,11 @@ function dobasketballhoop() {
                 restitution: 0.2,
                 collisionFilter: {
                     category: CATEGORY_CORNER,
-                    mask: CATEGORY_BALL // only collide with balls
+                    mask: CATEGORY_BALL
                 }
             }
         );
-        // Keep circle glued to the hoop
+
         Composite.add(world, [
             corner,
             Constraint.create({
@@ -661,7 +615,6 @@ function dobasketballhoop() {
         ]);
     });
 
-    // === 6. Hoop image
     const imgHoop = document.createElement('img');
     imgHoop.src = 'images/specials/hoop.png';
     imgHoop.style.position = 'absolute';
@@ -672,7 +625,6 @@ function dobasketballhoop() {
     document.body.appendChild(imgHoop);
     imageMappings.push({ elem: imgHoop, body: rectCHoop, x0: rectCHoop.position.x, y0: rectCHoop.position.y });
 
-    // === 7. Board image
     const imgRect = document.createElement('img');
     imgRect.src = 'images/specials/board.png';
     imgRect.style.position = 'absolute';
@@ -684,13 +636,11 @@ function dobasketballhoop() {
     imageMappings.push({ elem: imgRect, body: rectC, x0: rectC.position.x, y0: rectC.position.y });
 
 
-    // === 8. RIM: positioned below the hoop, with only left & right collisions
     const rimWidth = hoopWidth;
     const rimHeight = -225;
     const rimX = rectCHoop.position.x;
     const rimY = rectCHoop.position.y + hoopHeight / 2 + rimHeight / 2;
 
-    // The main rim body (invisible, no collision)
     rim = Bodies.rectangle(rimX, rimY, rimWidth, rimHeight, {
         inertia: Infinity,
         collisionFilter: {
@@ -700,7 +650,6 @@ function dobasketballhoop() {
     });
     Composite.add(world, rim);
 
-    // Attach to hoop (follows it)
     Composite.add(world, Constraint.create({
         bodyA: rectCHoop,
         pointA: { x: 0, y: hoopHeight / 2 },
@@ -710,13 +659,12 @@ function dobasketballhoop() {
         stiffness: 1
     }));
 
-    // Add visible image for rim
     const imgRim = document.createElement('img');
-    imgRim.src = 'images/specials/rim.png'; // <-- use your rim image here
+    imgRim.src = 'images/specials/rim.png';
     imgRim.style.position = 'absolute';
     imgRim.style.width = rimWidth / 10 + 'rem';
     imgRim.style.height = rimHeight / 10 + 'rem';
-    imgRim.style.zIndex = '6'; // above balls & hoop
+    imgRim.style.zIndex = '6';
     imgRim.style.transformOrigin = 'center center';
     document.body.appendChild(imgRim);
     imageMappings.push({
@@ -726,7 +674,6 @@ function dobasketballhoop() {
         y0: rim.position.y
     });
 
-    // === 9. RIM EDGE COLLIDERS (left & right)
     const edgeSize = 6;
     const offsetX = rimWidth / 2 - edgeSize;
     ['left', 'right'].forEach(side => {
@@ -788,9 +735,10 @@ function dobasketballhoop() {
  * @param {number} x 
  * @param {number} y 
  * @param {number} count 
- * @param {number} disappearChance  // between 0 and 1
- * @param {number} lifespanMs       // milliseconds before auto‐remove
- */
+ * @param {number} disappearChance  
+ * @param {number} lifespanMs
+ * Credit for the confetti goes to chatgpt, i coulnt figure it out XD
+*/
 function createConfetti(x, y, count, disappearChance = 0, lifespanMs = 0) {
     const size = 8;
     for (let i = 0; i < count; i++) {
@@ -873,8 +821,7 @@ function ballWentThroughHoop(otherBody) {
     // Confetti burst at the sensor
     const p = hoopSensor.position;
     createConfetti(p.x, p.y, 10, 0.5, 1000);
-    // spawnGlobalConfetti(50, 0.5, 1000);
-    // Optional: new balls
+    // spawnGlobalConfetti(50, 0.5, 1000); commented out for lag :)
     if (Math.random() < 0.5) {
         addManyBalls(Math.floor(Math.random() * 3) + 1);
     }

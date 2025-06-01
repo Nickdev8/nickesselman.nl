@@ -253,3 +253,18 @@ span.physics-active {
     transform: none !important;
     cursor: default !important;
 }
+
+
+#devView {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: #0f0;
+    padding: 1rem;
+    max-height: 300px;
+    overflow: auto;
+    font-size: 2rem;
+    display: none;
+    z-index: 1000;
+}

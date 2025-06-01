@@ -9,18 +9,7 @@ const physicsConfig = {
                 friction: 0.1,
                 collisionFilter: {
                     category: CATEGORY_MAP.PHYSICS,
-                    mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.CAT
-                }
-            }
-        },
-        {
-            selector: ".cat",
-            options: {
-                restitution: 0.5,
-                friction: 0.2,
-                collisionFilter: {
-                    category: CATEGORY_MAP.CAT,
-                    mask: CATEGORY_MAP.PHYSICS
+                    mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CAT
                 }
             }
         },
@@ -31,7 +20,7 @@ const physicsConfig = {
                 friction: 0.1,
                 collisionFilter: {
                     category: CATEGORY_MAP.PHYSICS,
-                    mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.CAT
+                    mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CAT
                 }
             }
         }

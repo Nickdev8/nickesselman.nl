@@ -1,8 +1,5 @@
+/* this script if only for animations that were way to long to put in a readable css file to not clutter the place up */
 
-
-/* 3) Keyframes: for each frame i=0…34, 
-   - at (i+0.2)/35 of the time we overshoot by +2%, 
-   - at (i+1)/35 of the time we settle exactly on that frame */
 @keyframes spin-bounce {
     0.571429% {
         transform: translateY(-2%);
