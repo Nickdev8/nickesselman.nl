@@ -24,8 +24,8 @@
 
 
     <div class="card objectToMoreToTheBackClasses container">
-        <div class="physics physics-add-card" style="padding:0 2rem !important;width:fit-content; align-items:start;">
-            <h2 class="headline">My story</h2>
+        <div class="physics physics-add-card" style="!important;width:fit-content; align-items:start;">
+            <h2 class="headline parentonlypaddingwhenphysicsisactive">My story</h2>
         </div>
         <!-- class="physics physics-add-card" -->
          <div class="onlyspans">

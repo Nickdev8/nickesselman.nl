@@ -236,6 +236,10 @@ span.physics-active {
     /* no overflow: unset here! */
 }
 
+div.physics-active:has(.parentonlypaddingwhenphysicsisactive) {
+    padding: 0 2rem
+}
+
 .hidden {
     display: none !important;
 }

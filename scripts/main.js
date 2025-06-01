@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const audio = document.getElementById('bounceSound');
   const mutebutton = document.getElementById('muteicon');
   const muteimg = mutebutton.querySelector('img');
-  // Update button text/style based on mute state
   function updateButton() {
     if (audio.muted) {
       muteimg.src = 'images/specials/notmute.png';

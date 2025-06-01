@@ -3,7 +3,7 @@
 </audio>
 
 
-<div id="muteicon" class="physics-fixed card" style="padding: var(--spacing-1) !important;">
+<div id="muteicon" class="card physics-fixed" style="padding: var(--spacing-1) !important;">
     <img id="hoop" src="images/specials/mute.png" unselectable="on" draggable="false" alt="">
 </div>
 <div class="card physics-fixed" id="open-specials-menu" style="padding: var(--spacing-3) !important;">

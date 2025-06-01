@@ -1,7 +1,6 @@
 <?php
 include_once 'adddata.php';
 
-// grab blocks
 $blocks = $selectedProject['blocks'] ?? [];
 $firstBlock = $blocks[0] ?? null;
 $hasOnlyImage = $firstBlock
@@ -10,8 +9,7 @@ $hasOnlyImage = $firstBlock
   && empty($firstBlock['subtitle'])
   && empty($firstBlock['content']);
 
-// normalize to first image URL
-if ($hasOnlyImage) {
+  if ($hasOnlyImage) {
   $imgs = is_array($firstBlock['image'])
     ? $firstBlock['image']
     : [$firstBlock['image']];
@@ -19,7 +17,6 @@ if ($hasOnlyImage) {
 }
 ?>
 <?php if ($hasOnlyImage): ?>
-  <!-- only‐image header variant -->
   <style>
     .header-overlay {
       position: relative;
@@ -53,16 +50,11 @@ if ($hasOnlyImage) {
     </div>
   </div>
 <?php else: ?>
-  <!-- regular header -->
   <div class="container separator">
     <h1><?= htmlspecialchars($selectedProject['title']) ?></h1>
     <p><?= htmlspecialchars($selectedProject['description']) ?></p>
   </div>
 <?php endif; ?>
-
-
-
-
 
 <button class="totopbutton" id="backToTop">
   <svg class="svgIcon" viewBox="0 0 384 512">
@@ -77,7 +69,6 @@ if ($hasOnlyImage) {
 
 <style>
   .totopbutton {
-    /* layout & look (your existing) */
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -90,22 +81,19 @@ if ($hasOnlyImage) {
     box-shadow: 0px 0px 0px 4px rgba(180, 160, 255, 0.253);
     overflow: hidden;
     cursor: pointer;
-    position: fixed;      /* STICK IT */
+    position: fixed;
     bottom: 8rem;
     right: 4rem;
     z-index: 999;
 
-    /* hide-offscreen by default */
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
     pointer-events: none;
 
-    /* animate everything (including your hover-expansion props) */
     transition: all 0.3s ease-out;
   }
 
-  /* when we add .visible, slide up + fade in */
   .totopbutton.visible {
     opacity: 1;
     visibility: visible;
@@ -113,53 +101,42 @@ if ($hasOnlyImage) {
     pointer-events: auto;
   }
 
-  /* your existing hover-to-expand */
+  .totopbutton:hover {
+    transform: translateY(0) scale(1.1);
+  }
+
   .totopbutton .svgIcon {
     width: 12px;
-    transition-duration: 0.3s;
+    transition: transform 0.3s ease-out;
   }
 
   .totopbutton .svgIcon path {
     fill: white;
   }
 
-  .totopbutton:hover {
-    width: 140px;
-    border-radius: 50px;
-    background-color: var(--orange);
-    align-items: center;
-  }
-
   .totopbutton:hover .svgIcon {
-    transform: translateY(-200%);
+    transform: translateY(-30%);
   }
 
   .totopbutton::before {
-    position: absolute;
-    bottom: -20px;
-    content: "Back to Top";
-    color: white;
-    font-size: 0;
-    transition: font-size 0.3s;
-  }
-
-  .totopbutton:hover::before {
-    font-size: 13px;
-    bottom: unset;
+    display: none;
   }
 </style>
 
 <script>
   (function() {
-    const totopbtn       = document.getElementById('backToTop');
-    const showAfter = 100; // px scrolled before showing
+    const totopbtn   = document.getElementById('backToTop');
+    const showAfter  = 0;
 
     window.addEventListener('scroll', () => {
       totopbtn.classList.toggle('visible', window.scrollY > showAfter);
     });
 
-    totopbtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    var elevator = new Elevator({
+      element: totopbtn,
+      mainAudio: '/sounds/elevator.mp3',
+      endAudio: '/sounds/ding.mp3',
+      duration: 15500
     });
   })();
 </script>

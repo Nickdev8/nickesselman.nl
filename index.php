@@ -1,6 +1,10 @@
 <?php
-$versionnum = "1.0.7"
-    ?>
+// filepath: /home/nick/Documents/HackClub/projects/nickesselman.nl/index.php
+$cacheDuration = floor(86400 * 365.25); // 1 year
+header("Cache-Control: public, max-age={$cacheDuration}");
+header("Expires: " . gmdate("D, d M Y H:i:s", time() + $cacheDuration) . " GMT");
+$versionnum = "1.0.8";
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +24,8 @@ $versionnum = "1.0.7"
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/elevator.js/elevator.min.js"></script>
+    <script src="https://rawgit.com/WeiChiaChang/Easter-egg/master/easter-eggs-collection.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/matter-dom-plugin@1.0.0/build/matter-dom-plugin.min.js"></script>
@@ -135,9 +141,9 @@ $versionnum = "1.0.7"
         <div id="devInfo"></div>
     </div>
 
-    <script src="scripts/matterrun.js"></script>
-    <script src="scripts/physicsconfigs.js"></script>
-    <script src="scripts/main.js"></script>
+    <script src="scripts/matterrun.js?v=<?= $versionnum ?>"></script>
+    <script src="scripts/physicsconfigs.js?v=<?= $versionnum ?>"></script>
+    <script src="scripts/main.js?v=<?= $versionnum ?>"></script>
 </body>
 
 </html>
