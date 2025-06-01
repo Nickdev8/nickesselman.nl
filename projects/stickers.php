@@ -1,5 +1,5 @@
 <?php
-include_once 'basics.php';
+include_once 'basicscopy.php';
 ?>
 <style>
     .header-overlay {
@@ -28,8 +28,8 @@ include_once 'basics.php';
 </style>
 <div class="container wide separator header-overlay">
     <div class="overlay-text">
-        <h1>Juice</h1>
-        <p>This was a 12 day long hackathon in shanghai, with Hackclub</p>
+        <h1>My Sticker Collection</h1>
+        <p>These are all of my own stickers i recived from hackclub.</p>
     </div>
 </div>
 
@@ -44,35 +44,53 @@ include_once 'basics.php';
         plus the stickers you get from joining. and the bunch load i got from juice in shanhai. the total must be crazy
         high.
         and almost every new type i recive, i put on the back of my laptop. where there are over 28 different stickers,
-        with ony one acadental dupelacete.
-        in here you can see all of them next to eatch other.
+        with ony one accidental duplicate. <br>
+        Here you can see all of them next to eatch other.
     </p>
 </div>
 
+<div class="container separator img-wide">
+    <img src="images/innerprojects/stickers/main.jpg" alt="" class="img-cropped-wide">
+</div>
 
 <div class="card container separator">
     <div class="grid" id="imageGrid">
-        <div class="media">
-            <img src="images/innerprojects/stickers/juiceinprogress.jpg" alt="Image">
-        </div>
-        <div class="media">
-            <img src="images/mainpagegrid/IMG-20250414-WA0275.jpg" alt="Image">
-        </div>
-        <div class="media landscape">
-            <img src="images/mainpagegrid/IMG-20250414-WA0111.jpg" alt="Image">
-        </div>
-        <div class="media landscape">
-            <img src="images/innerprojects/juice/ingrid/4.jpeg" alt="Image">
-        </div>
-        <div class="media">
-            <img src="images/mainpagegrid/IMG-20250414-WA0282.jpg" alt="Image">
-        </div>
-        <div class="media landscape">
-            <img src="images/mainpagegrid/IMG-20250414-WA0180.jpg" alt="Image">
-        </div>
-        <div class="media">
-            <img src="images/mainpagegrid/IMG-20250414-WA0323.jpg" alt="Image">
-        </div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker2.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker3.jpg" alt="Image"></div>
+        <div class="media"><img src="images/innerprojects/stickers/sticker8.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker4.jpg" alt="Image"></div>
+
+        <div class="media"><img src="images/innerprojects/stickers/sticker1.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker5.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker6.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker7.jpg" alt="Image"></div>
+
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker9.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker10.jpg" alt="Image"></div>
+        <div class="media"><img src="images/innerprojects/stickers/sticker11.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker12.jpg" alt="Image"></div>
+
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker13.jpg" alt="Image"></div>
+        <div class="media"><img src="images/innerprojects/stickers/sticker15.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker14.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker16.jpg" alt="Image"></div>
+
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker17.jpg" alt="Image"></div>
+        <div class="media"><img src="images/innerprojects/stickers/sticker18.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker19.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/patch1.jpg" alt="Image"></div>
+
+        <div class="media"><img src="images/innerprojects/stickers/patch2.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/patch3.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/patch4.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker3.jpg" alt="Image"></div>
+
+        <div class="media landscape"><img src="images/innerprojects/stickers/post1.jpg" alt="Image"></div>
+        <div class="media"><img src="images/innerprojects/stickers/post2.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/post3.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/post4.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/post5.jpg" alt="Image"></div>
+
         <img src="" alt="">
     </div>
 </div>

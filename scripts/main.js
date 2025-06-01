@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const audio = document.getElementById('bounceSound');
   const mutebutton = document.getElementById('muteicon');
   const muteimg = mutebutton.querySelector('img');
+
   function updateButton() {
     if (audio.muted) {
       muteimg.src = 'images/specials/notmute.png';
@@ -44,11 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
     updateButton();
   });
 
+  const specialphysicsmenu = document.getElementById('morephysics-menu');
 
-
+  // morephysics = document.getElementById('morephysics-menu');
   // ---- PHYSICS TOGGLE ---- call to the file /scripts/matterrun.js
   physToggle.addEventListener('click', () => {
     if (physToggle.checked) {
+      gsap.to(specialphysicsmenu, { duration: 2, autoAlpha: 1 });
       mutebutton.style.display = 'unset !important';
       enableMatter(physicsConfig);
     } else {

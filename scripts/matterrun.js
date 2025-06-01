@@ -298,13 +298,25 @@ function prepareDomForPhysics() {
 // 5.2) Create dynamic bodies for every element matching selector
 function createBodiesFromSelector(selector, options) {
     document.querySelectorAll(selector).forEach(elem => {
-        let r = elem.getBoundingClientRect();
-        // For physics-fixed elements record viewport coords; else include scroll offsets
-        let isFixed = elem.classList.contains("physics-fixed");
-        let baseX = isFixed ? (r.left + r.width / 2) : (r.left + window.scrollX + r.width / 2);
-        let baseY = isFixed ? (r.top + r.height / 2) : (r.top + window.scrollY + r.height / 2);
-        let body = Bodies.rectangle(
-            baseX, baseY,
+        const r = elem.getBoundingClientRect();
+        const isFixed = elem.classList.contains("physics-fixed");
+        
+        // For fixed elements, store viewport coordinates but create body at document coordinates
+        let baseX, baseY;
+        if (isFixed) {
+            // Store viewport coordinates as reference
+            baseX = r.left + r.width / 2;
+            baseY = r.top + r.height / 2;
+        } else {
+            // Store document coordinates
+            baseX = r.left + window.scrollX + r.width / 2;
+            baseY = r.top + window.scrollY + r.height / 2;
+        }
+
+        // Create body at current document position
+        const body = Bodies.rectangle(
+            baseX + (isFixed ? window.scrollX : 0),
+            baseY + (isFixed ? window.scrollY : 0),
             r.width,
             r.height,
             Object.assign({
@@ -316,9 +328,18 @@ function createBodiesFromSelector(selector, options) {
                 }
             }, options)
         );
+
         Composite.add(world, body);
-        dynamicMappings.push({ elem: elem, body: body, x0: baseX, y0: baseY, offsetX: 0, offsetY: 0 });
-        devLog("Dynamic body created and mapped:", body);
+        
+        dynamicMappings.push({
+            elem: elem,
+            body: body,
+            x0: baseX,
+            y0: baseY,
+            offsetX: 0,
+            offsetY: 0,
+            isFixed: isFixed
+        });
     });
 }
 
@@ -425,16 +446,24 @@ function setupAfterUpdateSync() {
         let bottomY = docH + 50 / 2 - footerHeight;
 
         dynamicMappings.forEach(m => {
-            // For fixed elements, we already recorded viewport coordinates.
-            const baseX = m.x0;
-            const baseY = m.y0;
-            const dx = m.body.position.x - baseX + m.offsetX;
-            const dy = m.body.position.y - baseY + m.offsetY;
-            m.elem.style.transform = `translate(${dx}px, ${dy}px) rotate(${m.body.angle}rad)`;
-            devLog("Sync dynamic element:", m.elem, "Position:", m.body.position, "dx, dy:", dx, dy);
-
-            // respawn logic...
-            // [existing respawn code continues here]
+            if (m.elem.classList.contains("physics-fixed")) {
+                // For fixed elements: 
+                // 1. Calculate transform relative to viewport
+                // 2. Account for scroll position in physics body but not visual position
+                const dx = m.body.position.x - m.x0;
+                const dy = m.body.position.y - m.y0;
+                
+                // Subtract scroll offset for visual position since element is fixed
+                const visualX = dx - window.scrollX;
+                const visualY = dy - window.scrollY;
+                
+                m.elem.style.transform = `translate(${visualX}px, ${visualY}px) rotate(${m.body.angle}rad)`;
+            } else {
+                // Normal elements: transform normally
+                const dx = m.body.position.x - m.x0;
+                const dy = m.body.position.y - m.y0;
+                m.elem.style.transform = `translate(${dx}px, ${dy}px) rotate(${m.body.angle}rad)`;
+            }
         });
 
         imageMappings.forEach(m => {
@@ -603,31 +632,10 @@ function spawnCustomDefaults(config) {
             mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER | CATEGORY_MAP.HOOP | CATEGORY_MAP.CAT
         }
     });
-
-    let ball = Bodies.circle(x, y, 20, {
-        restitution: 0.5,
-        friction: 0.1,
-        collisionFilter: {
-            category: CATEGORY_MAP.BALL,
-            mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER | CATEGORY_MAP.HOOP | CATEGORY_MAP.CAT
-        }
-    });
-    Composite.add(world, [ballA, ballB, ball]);
+    Composite.add(world, [ballA, ballB]);
 
     attachImageToBody(ballA, "images/specials/ball.png", 40, 40);
     attachImageToBody(ballB, "images/specials/ball.png", 40, 40);
-
-    // 5.8.2) A standby extra ball:
-    let ballD = Bodies.circle(cx, cy + 60, 20, {
-        restitution: 0.5,
-        friction: 0.1,
-        collisionFilter: {
-            category: CATEGORY_MAP.BALL,
-            mask: CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER
-        }
-    });
-    Composite.add(world, ballD);
-    attachImageToBody(ballD, "images/specials/ball.png", 40, 40);
 
     // 5.8.4) If page=="about", spawn 10 balls + a basketball hoop:
     if (config.spawnOnPage && config.spawnOnPage.pageName === page) {

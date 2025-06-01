@@ -1,6 +1,5 @@
 <?php
-// highwat, shiprecked
-// jazzdesign myscicker collegcion,
+//  myscicker collegcion,
 // notifibri, minecraft discord server bot, art collection
 $projects = [
     [
@@ -11,11 +10,11 @@ $projects = [
         'basiclayout' => 'false'
     ],
     [
-        'title'=> 'My Sticker Collection',
-        'description'=> 'These are all of my own stickers i recived from hackclub.',
-        'image'=> 'stickers.jpg',
-        'link'=> 'stickers',
-        'basiclayout'=> 'false',
+        'title' => 'My Sticker Collection',
+        'description' => 'These are all of my own stickers i recived from hackclub.',
+        'image' => 'stickers.jpg',
+        'link' => 'stickers',
+        'basiclayout' => 'false',
     ],
     [
         'title' => 'HackClub: neighborhood',
@@ -371,16 +370,67 @@ $projects = [
                 <img src="images/innerprojects/highseas/group1.jpg" class="img">'
             ]
         ]
-    ],[
-    'title'       => 'Game: Weird Chess',
-    'description' => 'A hilarious chess variant that breaks all the rules',
-    'image'       => 'chess.jpg',
-    'link'        => 'chess',
-    'basiclayout' => 'true',
-    'blocks'      => [
-        [
-            'title'   => 'Overview',
-            'content' => '
+    ],
+    [
+        'title' => 'Website: jazzdesign',
+        'description' => 'I made the website, for my sisters company',
+        'image' => 'jazzdesign.jpg',
+        'link' => 'jazzdesign',
+        'basiclayout' => 'true',
+        'blocks' => [
+            [
+                'image' => 'images/innerprojects/jazzdesign/mainpage.png'
+            ],
+            [
+                'title' => 'What`s JazzDesign?',
+                'content' => '
+                
+                <div class="split">
+                    <div>
+                        <p>
+                            <a href="https://jazzdesign.nl">JazzDesign</a> is my sister Jessie`s fashion design studio, specializing in custom clothing for both businesses and individuals. When she approached me in 2024 to create her website, I jumped at the opportunity!
+                        </p>
+                        <h3 class="subheadline">The Challenge</h3>
+                        <p>
+                            While I had built websites before, this was my first time creating one for a real client. 
+                            Working with my sister meant balancing:
+                            - Professional needs vs. creative freedom
+                            - Fashion-forward design vs. usability
+                            - Client expectations vs. technical constraints
+                        </p>
+                    </div>
+                    <div>
+                        <img src="images/innerprojects/jazzdesign/mobile.png" alt="Mobile view" class="img-cropped-small">
+                    </div>
+                </div>
+
+                <h3 class="subheadline">Behind The Scenes</h3>
+                <p>
+                    My favorite part was setting up the infrastructure - configuring hosting, managing SSL certificates, and ensuring everything runs smoothly behind the scenes. The design process was equally rewarding, translating Jessie`s fashion aesthetic into a digital experience.
+                </p>
+
+
+                <h3 class="subheadline">Outcome</h3>
+                <p>
+                    The site has helped Jessie showcase her work to potential clients and streamline her booking process. It`s been a great learning experience in client communication and real-world web development.
+                </p>',
+            ],
+            [
+
+                'image' => 'images/innerprojects/jazzdesign/about.png'
+            ]
+        ]
+    ],
+    [
+        'title' => 'Game: Weird Chess',
+        'description' => 'A hilarious chess variant that breaks all the rules',
+        'image' => 'chess.jpg',
+        'link' => 'chess',
+        'basiclayout' => 'true',
+        'blocks' => [
+            [
+                'title' => 'Overview',
+                'content' => '
                 <p>
                     Ever thought chess needed more chaos? During Hack Club’s Shipwrecked challenge, I set out to reinvent the classic game in just 30 hours—and make one of my three projects go viral with 2,000+ views!
                 </p>
@@ -388,10 +438,10 @@ $projects = [
                     Inspired by a wild suggestion from my brother, I built <strong>Weird Chess</strong>: a browser-based 3D board where every piece obeys its own hilarious rule set. It’s chess… but not as you know it.
                 </p>
             ',
-        ],
-        [
-            'title'   => 'Behind the Madness',
-            'content' => '
+            ],
+            [
+                'title' => 'Behind the Madness',
+                'content' => '
                 <p>
                     The secret sauce is a JSON-driven engine. Want a <em>teleporting pawn</em>? Done. An <em>exploding rook</em>? Easy. Just tweak the JSON file and watch your custom rules explode into action.
                 </p>
@@ -401,19 +451,19 @@ $projects = [
                     <li><strong>Share the Madness:</strong> Invite friends to try your wildest variants</li>
                 </ul>
             ',
-        ],
-        [
-            'title'   => 'Try It Yourself!',
-            'content' => '
+            ],
+            [
+                'title' => 'Try It Yourself!',
+                'content' => '
                 <p>
                     Curious to see the code behind the chaos? Peek at the repo on 
                     <a href="https://github.com/Nickdev8/weirdChess" target="_blank" rel="noopener">GitHub</a>. 
                     Fork it, craft your own bizarre pieces, and let the mayhem unfold!
                 </p>
             ',
+            ],
         ],
     ],
-],
 
     [
 

@@ -1,5 +1,5 @@
 <?php
-include_once 'basics.php';
+include_once 'basicscopy.php';
 ?>
 <style>
     .header-overlay {
