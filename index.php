@@ -141,9 +141,11 @@ $versionnum = "1.0.8";
         <div id="devInfo"></div>
     </div>
 
+    <script src="scripts/special-menus.js?v=<?= $versionnum ?>"></script>
     <script src="scripts/matterrun.js?v=<?= $versionnum ?>"></script>
-    <script src="scripts/physicsconfigs.js?v=<?= $versionnum ?>"></script>
-    <script src="scripts/main.js?v=<?= $versionnum ?>"></script>
+    <script src="scripts/physics-configs.js?v=<?= $versionnum ?>"></script>
+    <script src="scripts/physics-controls.js?v=<?= $versionnum ?>"></script>
+    <script src="scripts/special-menu-controls.js?v=<?= $versionnum ?>"></script>
 </body>
 
 </html>

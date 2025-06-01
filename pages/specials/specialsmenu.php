@@ -6,7 +6,7 @@
 <div id="muteicon" class="card physics-fixed" style="padding: var(--spacing-1) !important;">
     <img id="hoop" src="images/specials/mute.png" unselectable="on" draggable="false" alt="">
 </div>
-<div class="card physics-fixed" id="open-specials-menu" style="padding: var(--spacing-3) !important;">
+<div class="card physics-fixed specials" id="open-specials-menu" style="padding: var(--spacing-3) !important;">
     <input id="checkbox" type="checkbox">
     <label class="toggle" for="checkbox">
         <div id="bar1" class="bars"></div>
@@ -15,9 +15,9 @@
     </label>
 </div>
 
-<div class="card physics-fixed" id="specials-menu" style="padding: var(--spacing-3) !important;">
-
-    <div class="specialsbuttonwithtext">
+<div class="card physics-fixed specials" id="specials-menu" style="padding: var(--spacing-3) !important;">
+    <h3 class="headline">Settings*</h3>
+    <div>
         <label class="special-switch">
             <input id="enablephysics" type="checkbox">
             <span class="special-slider"></span>
@@ -27,22 +27,50 @@
 </div>
 
 
-<div class="card physics-fixed" id="morephysics-menu" style="padding: var(--spacing-3) !important;">
-    <div class="specialsbuttonwithtext">
+<div class="card physics-fixed specials" id="morephysics-menu" style="padding: var(--spacing-3) !important;">
+    <h3 class="headline">Physics Options</h3>
+    <div>
         <label class="special-switch">
             <input id="devModeToggle" type="checkbox">
             <span class="special-slider"></span>
         </label>
-        <h2>Physics Dev Mode</h2>
+        <h2>Dev Mode</h2>
+    </div>
+    <div>
+        <label class="special-switch">
+            <input id="arrowgravity" type="checkbox">
+            <span class="special-slider"></span>
+        </label>
+        <h2>Arrows => Gravity</h2>
+    </div>
+    <div>
+        <label class="special-switch">
+            <input id="roofcollision" type="checkbox">
+            <span class="special-slider"></span>
+        </label>
+        <h2>Roof collision</h2>
+    </div>
+    <div>
+        <label class="special-switch">
+            <input id="sleepToggle" checked type="checkbox">
+            <span class="special-slider"></span>
+        </label>
+        <h2>Obj Sleep</h2>
+        <button id="wakingbutton"> wake</button>
     </div>
 </div>
 
 
 
 <style>
-    .specialsbuttonwithtext {
+    .specials .headline {
+        margin: unset;
+    }
+
+    .specials>div {
         display: flex;
         gap: 1.5rem;
+        margin-top: 1rem;
     }
 
     #muteicon {
@@ -179,7 +207,7 @@
         background-color: var(--orange);
         transition: 0.4s;
     }
-    
+
     input:checked+.special-slider:before {
         transform: translateX(2em);
         background: var(--green);

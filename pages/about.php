@@ -1,5 +1,3 @@
-<div id="nottobig"></div> <!-- max the screen to 100vh (main.js) -->
-
 <div class="split objectToMoreToTheBackClasses separator container">
     <div class="card container physics radibarcontainer small">
         <h2 class="headline">Nick Esselman</h2> <br><br>

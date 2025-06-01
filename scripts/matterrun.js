@@ -27,7 +27,8 @@ var Engine = Matter.Engine,
     Mouse = Matter.Mouse,
     MouseConstraint = Matter.MouseConstraint,
     Events = Matter.Events,
-    Vector = Matter.Vector;
+    Vector = Matter.Vector,
+    Sleeping = Matter.Sleeping;
 
 var engine = (page === "about")
     ? Engine.create({ enableSleeping: true })
@@ -1011,8 +1012,39 @@ function spawnGlobalConfetti(count, disappearChance, lifespanMs) {
     }
 }
 
+let roofBody = null;
+
+function addRoofCollider() {
+    var mainElem = document.querySelector("main");
+    if (!mainElem) return console.warn("No <main> found");
+
+    var mainRect = mainElem.getBoundingClientRect();
+    var topOfMain = window.scrollY + mainRect.top;
+    var W = document.documentElement.scrollWidth;
+    var thickness = 60;
+    var roofY = topOfMain - thickness / 2;
+
+    roofBody = Bodies.rectangle(
+        W / 2, roofY, W, thickness, {
+        isStatic: true,
+        collisionFilter: {
+            category: CATEGORY_MAP.PHYSICS,
+            mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CAT
+        }
+    }
+    );
+
+    Composite.add(world, roofBody);
+    walls.push(roofBody);
+    staticColliders.push(roofBody);
+
+    window.roofBody = roofBody;
+    devLog("Roof added", roofBody);
+}
+
 function devLog(...args) {
     if (window.devMode) {
         console.log(...args);
     }
 }
+
