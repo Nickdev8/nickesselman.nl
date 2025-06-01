@@ -97,7 +97,7 @@ function enableMatter(config) {
         });
         elem.style.position = "absolute";
         // Use viewport coordinates—do not add window.scrollX/Y here
-        elem.style.left = r.left + "px"; 
+        elem.style.left = r.left + "px";
         elem.style.top = r.top + "px";
     });
 
@@ -251,10 +251,23 @@ function addObject(params) {
 
 
 // ---------- 5) IMPLEMENTATION DETAILS (helpers & factories) ----------
+function convertFixedElements() {
+    const mainElem = document.querySelector("main");
+    const mainRect = mainElem.getBoundingClientRect();
+    document.querySelectorAll(".physics-fixed").forEach(elem => {
+        let r = elem.getBoundingClientRect();
+        // Convert from fixed to absolute relative to <main>
+        elem.style.position = "absolute";
+        elem.style.left = (r.left - mainRect.left) + "px";
+        elem.style.top = (r.top - mainRect.top) + "px";
+    });
+}
+
 
 // 5.1) Prepare the DOM before physics starts
 function prepareDomForPhysics() {
     devLog("prepareDomForPhysics: started");
+    convertFixedElements();
     // Add “.card” class to every element that matches “span.physics” or “.physics-add-card”
     document.querySelectorAll("span.physics, .physics-add-card").forEach(elem => {
         elem.classList.add("card");
@@ -299,24 +312,14 @@ function prepareDomForPhysics() {
 function createBodiesFromSelector(selector, options) {
     document.querySelectorAll(selector).forEach(elem => {
         const r = elem.getBoundingClientRect();
-        const isFixed = elem.classList.contains("physics-fixed");
-        
-        // For fixed elements, store viewport coordinates but create body at document coordinates
-        let baseX, baseY;
-        if (isFixed) {
-            // Store viewport coordinates as reference
-            baseX = r.left + r.width / 2;
-            baseY = r.top + r.height / 2;
-        } else {
-            // Store document coordinates
-            baseX = r.left + window.scrollX + r.width / 2;
-            baseY = r.top + window.scrollY + r.height / 2;
-        }
+        // Always use document coordinates now:
+        const baseX = r.left + window.scrollX + r.width / 2;
+        const baseY = r.top + window.scrollY + r.height / 2;
 
         // Create body at current document position
         const body = Bodies.rectangle(
-            baseX + (isFixed ? window.scrollX : 0),
-            baseY + (isFixed ? window.scrollY : 0),
+            baseX,
+            baseY,
             r.width,
             r.height,
             Object.assign({
@@ -330,15 +333,14 @@ function createBodiesFromSelector(selector, options) {
         );
 
         Composite.add(world, body);
-        
+
         dynamicMappings.push({
             elem: elem,
             body: body,
             x0: baseX,
             y0: baseY,
             offsetX: 0,
-            offsetY: 0,
-            isFixed: isFixed
+            offsetY: 0
         });
     });
 }
@@ -446,24 +448,10 @@ function setupAfterUpdateSync() {
         let bottomY = docH + 50 / 2 - footerHeight;
 
         dynamicMappings.forEach(m => {
-            if (m.elem.classList.contains("physics-fixed")) {
-                // For fixed elements: 
-                // 1. Calculate transform relative to viewport
-                // 2. Account for scroll position in physics body but not visual position
-                const dx = m.body.position.x - m.x0;
-                const dy = m.body.position.y - m.y0;
-                
-                // Subtract scroll offset for visual position since element is fixed
-                const visualX = dx - window.scrollX;
-                const visualY = dy - window.scrollY;
-                
-                m.elem.style.transform = `translate(${visualX}px, ${visualY}px) rotate(${m.body.angle}rad)`;
-            } else {
-                // Normal elements: transform normally
-                const dx = m.body.position.x - m.x0;
-                const dy = m.body.position.y - m.y0;
-                m.elem.style.transform = `translate(${dx}px, ${dy}px) rotate(${m.body.angle}rad)`;
-            }
+            // No special case for physics-fixed—treat like any other object.
+            const dx = m.body.position.x - m.x0;
+            const dy = m.body.position.y - m.y0;
+            m.elem.style.transform = `translate(${dx}px, ${dy}px) rotate(${m.body.angle}rad)`;
         });
 
         imageMappings.forEach(m => {
@@ -478,7 +466,6 @@ function setupAfterUpdateSync() {
             m.elem.style.left = p.x + "px";
             m.elem.style.top = p.y + "px";
             m.elem.style.transform = `translate(-50%,-50%) rotate(${m.body.angle}rad)`;
-            // Log the update for each DOM image element
             devLog("Updated image element:", m.elem, "to position:", p);
         });
 
@@ -607,13 +594,15 @@ function setupCollisionHandlers() {
 
 // 5.8) “Default” custom objects that run inside enableMatter (previously your addObjects())
 function spawnCustomDefaults(config) {
-    // We still keep your two‐ball‐spring + extra ball + (if page=="about", spawn hoop + many balls)
-    let cx = window.scrollX + window.innerWidth / 2;
-    let cy = window.scrollY + window.innerHeight / 2;
+    let mainElem = document.querySelector("main");
+    // Use offsetLeft/offsetTop and clientWidth/clientHeight so that
+    // the center is computed in document coordinates regardless of scroll.
+    let cx = mainElem.offsetLeft + (mainElem.clientWidth / 2);
+    let cy = mainElem.offsetTop + (mainElem.clientHeight / 2);
 
-    // Define x and y for the ball
-    let x = cx; // Center x-coordinate
-    let y = cy; // Center y-coordinate
+    // Define x and y for the ball (center)
+    let x = cx;
+    let y = cy;
 
     // 5.8.1) Two balls joined by a spring:
     let ballA = Bodies.circle(cx - 25, cy, 20, {
@@ -637,18 +626,10 @@ function spawnCustomDefaults(config) {
     attachImageToBody(ballA, "images/specials/ball.png", 40, 40);
     attachImageToBody(ballB, "images/specials/ball.png", 40, 40);
 
-    // 5.8.4) If page=="about", spawn 10 balls + a basketball hoop:
+    // Additional objects (e.g. hoop + more balls) can be spawned here if needed
     if (config.spawnOnPage && config.spawnOnPage.pageName === page) {
         document.querySelector("main").style.overflow = "hidden";
         addManyBalls(config.spawnOnPage.ballCount || 0);
-        addObject({
-            type: "hoop",
-            size: { width: 200, height: 150 },
-            boardScale: 0.8,
-            boardYOffset: -1050,
-            hoopScale: 1.45,
-            rimYOffset: 100
-        });
     }
 }
 
