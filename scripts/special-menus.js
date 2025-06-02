@@ -1,12 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  window.addEventListener('scroll', () => {
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    if (window.scrollY > maxScroll) {
-      window.scrollTo(window.scrollX, maxScroll);
-    }
-  });
-
-
   const specialPhysics = document.getElementById('morephysics-menu');
   const physToggle = document.getElementById('enablephysics');
   const checkbox = document.getElementById('checkbox');

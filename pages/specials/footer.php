@@ -1,4 +1,4 @@
-<footer class="site-footer collision" matter static>
+<footer class="site-footer" matter static>
 
   <div class="footer-content container">
     <div class="footer-left">

@@ -1,38 +1,79 @@
 .main-top {
-    background: #1f2d3d;
-    color: #ffffff;
-    padding: 4rem 0;
-    text-align: center;
-    justify-content: center;
+  background: #1f2d3d;
+  color: #ffffff;
+  padding: 4rem 0;
+  text-align: center;
+  justify-content: center;
+
 }
 
 .main-top>p,
 .main-top>h1,
 .main-top>h2 {
-    color: #ffffff !important;
-    z-index: 20;
-    position: relative;
+  color: #ffffff !important;
+  z-index: 20;
+  position: relative;
 }
 
 .main-top,
 .main-top * {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
-.main-top > h1{
-    margin-bottom: 2rem;
+.main-top>h1 {
+  margin-bottom: 2rem;
 }
-.main-top > div{
-    margin-bottom: 1rem;
+
+.main-top>div {
+  margin-bottom: 1rem;
+}
+
+.parallax-section {
+  z-index: -100;
+  position: relative;                   /* establish a positioning context */
+  min-height: 300px;
+  background-image: url("/images/parralax.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* 1) Make sure the text‐wrapper fills the entire section */
+.parallax-text {
+  position: absolute;                   /* position relative to .parallax-section */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);     /* perfectly center it */
+  width: auto;
+  text-align: center;
+  pointer-events: none;                 /* lets clicks pass through if you need that */
+  /* (optional) add a semi‐transparent bg to improve legibility: */
+  /* background: rgba(0, 0, 0, 0.4); */
+  /* padding: 1rem; */
+  z-index: 1;                           /* ensure it sits above the background */
+}
+
+.parallax-text h1 {
+  color: black;
+  font-size: 2rem;
+  font-weight: 4rem;
+  margin: 0;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 
 @keyframes autoRun3d {
-  from { transform: perspective(800px) rotateY(-360deg); }
-  to   { transform: perspective(800px) rotateY(   0deg); }
+  from {
+    transform: perspective(800px) rotateY(-360deg);
+  }
+
+  to {
+    transform: perspective(800px) rotateY(0deg);
+  }
 }
 
 .card-3d {
@@ -42,20 +83,21 @@
   transform: perspective(800px);
   animation: autoRun3d 20s linear infinite;
   will-change: transform;
-  --card-radius: 250px; /* bump this up for wider spread */
+  --card-radius: 250px;
+  /* bump this up for wider spread */
 }
 
 .card-3d img {
   position: absolute;
-  width: 4rem; height:4.5rempx;
-  top:50%; left:50%;
-  border:2px solid var(--smoke);
-  border-radius:.5rem;
-  background:var(--snow);
-  transform-origin:center center;
-  transform: translate(-50%,-50%)
-             rotateY(var(--card-angle))
-             translateZ(var(--card-radius));
+  width: 4rem;
+  height: 4.5rempx;
+  top: 50%;
+  left: 50%;
+  border: 2px solid var(--smoke);
+  border-radius: .5rem;
+  background: var(--snow);
+  transform-origin: center center;
+  transform: translate(-50%, -50%) rotateY(var(--card-angle)) translateZ(var(--card-radius));
   /* each child sets its own animation-delay */
 }
 
@@ -68,16 +110,26 @@
 /* make the cursor bar */
 .cursor {
   display: inline-block;
-  background-color: currentColor; /* same color as your text */
+  background-color: currentColor;
+  /* same color as your text */
   width: 2px;
   margin-left: 2px;
   animation: blink 0.7s steps(1) infinite;
   vertical-align: bottom;
-  height: 1em;               /* adjust to match your font-size */
+  height: 1em;
+  /* adjust to match your font-size */
 }
 
 /* blink keyframes */
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  50.01%, 100% { opacity: 0; }
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  50.01%,
+  100% {
+    opacity: 0;
+  }
 }
