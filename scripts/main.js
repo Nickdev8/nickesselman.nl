@@ -28,6 +28,7 @@ const emoticons = [
 
 document.addEventListener('DOMContentLoaded', () => {
   const randomemiji = document.getElementById('randomemiji');
-  randomemiji.innerHTML = emoticons[Math.floor(Math.random() * emoticons.length)];
+  if (randomemiji)
+    randomemiji.innerHTML = emoticons[Math.floor(Math.random() * emoticons.length)];
 
 });

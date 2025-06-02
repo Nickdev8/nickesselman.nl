@@ -757,8 +757,8 @@ function createHoopFactory(world, params = {}) {
         p1 = { x: centerX - ropedistnace / 2, y: anchorY };
         p2 = { x: centerX + ropedistnace / 2, y: anchorY };
     } else {
-        let x0 = window.scrollX + window.innerWidth - ropedistnace;
-        let y0 = window.scrollY + 50;
+        let x0 = window.scrollX + window.innerWidth - ropedistnace - 100;
+        let y0 = window.scrollY + 100;
         p1 = { x: x0, y: y0 };
         p2 = { x: x0 - ropedistnace, y: y0 };
     }

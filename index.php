@@ -3,7 +3,7 @@
 $cacheDuration = floor(86400 * 365.25); // 1 year
 header("Cache-Control: public, max-age={$cacheDuration}");
 header("Expires: " . gmdate("D, d M Y H:i:s", time() + $cacheDuration) . " GMT");
-$versionnum = "1.0.8";
+$versionnum = "1.0.9";
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +30,12 @@ $versionnum = "1.0.8";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/matter-dom-plugin@1.0.0/build/matter-dom-plugin.min.js"></script>
 
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJk2+m3pvpvVzKDh4jHzKx3v57B+8H0E2eX+E="
+    crossorigin="anonymous"
+  ></script>
+  
     <!-- basic css -->
     <link rel="stylesheet" href="css/reset.css?v=<?= $versionnum ?>">
     <link rel="stylesheet" href="css/main.css?v=<?= $versionnum ?>">
@@ -147,6 +153,8 @@ $versionnum = "1.0.8";
     <script src="scripts/physics-configs.js?v=<?= $versionnum ?>"></script>
     <script src="scripts/physics-controls.js?v=<?= $versionnum ?>"></script>
     <script src="scripts/special-menu-controls.js?v=<?= $versionnum ?>"></script>
+
+    <?php include 'pages/specials/duckhund.php'; ?>
 </body>
 
 </html>

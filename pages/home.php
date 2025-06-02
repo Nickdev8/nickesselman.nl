@@ -34,11 +34,11 @@
     </div>
 </div>
 
-<div class="parallax-section">
+<!-- <div class="parallax-section">
   <div class="parallax-text">
     <h1 class="physics" id="randomemiji" style="background-color: var(--white); padding: 1rem; border-radius: 0.5rem">:></h1>
   </div>
-</div>
+</div> -->
 <?php
 include './pages/projects.php';
 ?>

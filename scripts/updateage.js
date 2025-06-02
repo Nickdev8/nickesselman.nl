@@ -7,7 +7,8 @@ circle.style.strokeDasharray = circumference;
 function updateAge() {
     const now = new Date();
     const diff = now - birthDate;
-    const seconds = Math.floor(diff / 1000);
+    const miliseconds = Math.floor(diff);
+    const seconds = Math.floor(miliseconds / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
@@ -39,7 +40,8 @@ function updateAge() {
     document.getElementById('hours-old').textContent = hours;
     document.getElementById('minutes-old').textContent = minutes;
     document.getElementById('seconds-old').textContent = seconds;
+    document.getElementById('miliseconds-old').textContent = miliseconds;
 }
 
 updateAge();
-setInterval(updateAge, 1000);
+setInterval(updateAge, 1);

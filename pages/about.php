@@ -15,6 +15,7 @@
             <li><span>Hours:</span><span id="hours-old">0</span></li>
             <li><span>Minutes:</span><span id="minutes-old">0</span></li>
             <li><span>Seconds:</span><span id="seconds-old">0</span></li>
+            <li><span>Miliseconds:</span><span id="miliseconds-old">0</span></li>
         </ul>
         <div class="separator"></div>
         <h4 class="caption">*Orange circle is time till next birthday</h4>

@@ -2,7 +2,6 @@
     Your browser does not support the audio element.
 </audio>
 
-
 <div id="muteicon" class="card physics-fixed" style="padding: var(--spacing-1) !important;">
     <img id="hoop" src="images/specials/mute.png" unselectable="on" draggable="false" alt="">
 </div>
