@@ -1,4 +1,4 @@
-# 🚀 Nick's Interactive Portfolio
+# Nick's Portfolio
 
 [![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fnickesselman.nl)](https://nickesselman.nl)
 [![Made with Matter.js](https://img.shields.io/badge/Made%20with-Matter.js-brightgreen)](https://brm.io/matter-js/)
@@ -6,14 +6,14 @@
 
 Welcome! I'm **Nick**, a developer passionate about creating immersive web experiences where creativity meets physics simulation.
 
-## ✨ Features
+## Features
 
 - **Physics-Driven UI**: Built with Matter.js, every interactive element follows real-world physics
 - **Dynamic Interactions**: Experience gravity, collisions, and particle effects throughout the site
 - **Responsive Design**: Seamlessly adapts to any device while maintaining physics functionality
 - **Project Showcase**: Browse through my coding, design, and hardware experiments
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: HTML5, CSS3, JavaScript
 - **Physics Engine**: Matter.js
@@ -21,22 +21,9 @@ Welcome! I'm **Nick**, a developer passionate about creating immersive web exper
 - **Effects**: Particles.js, AOS
 - **Backend**: PHP
 
-## 🎮 Interactive Features
+## Getting Started
 
-The site goes beyond traditional web portfolios by implementing:
-- Gravity-affected UI elements
-- Dynamic collision detection
-- Interactive particle systems
-- Physics-based animations
-- Real-time element manipulation
-
-## 🚀 Getting Started
-
-Visit [nickesselman.nl](https://nickesselman.nl) to experience:
-- Interactive project showcases
-- Physics-based UI elements
-- Live demos of my work
-- Dynamic content presentation
+Visit [nickesselman.nl](https://nickesselman.nl) to experience
 
 ## 💡 About The Project
 
