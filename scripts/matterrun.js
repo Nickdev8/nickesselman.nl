@@ -65,6 +65,9 @@ let bounceSoundLastSecond = 0;
 let bounceSoundCount = 0;
 const BOUNCE_SOUND_LIMIT_PER_SECOND = 1;
 
+// Add near your other global mappings:
+let colliderDivMappings = [];
+
 // ---------- 4) PUBLIC API: enableMatter(config) & addObject(params) ----------
 
 /**
@@ -512,6 +515,30 @@ function setupAfterUpdateSync() {
         if (hoopSensor) {
             updateSensorOverlay();
         }
+
+        // Update collider overlays:
+        colliderDivMappings.forEach(mapping => {
+            let p = mapping.body.position;
+            mapping.elem.style.left = p.x + "px";
+            mapping.elem.style.top = p.y + "px";
+            mapping.elem.style.transform = `rotate(${mapping.body.angle}rad)`;
+            // Optionally, adjust width/height from bounds:
+            let bounds = mapping.body.bounds;
+            let width = bounds.max.x - bounds.min.x;
+            let height = bounds.max.y - bounds.min.y;
+            mapping.elem.style.width = width + "px";
+            mapping.elem.style.height = height + "px";
+        });
+
+        // Update dynamic mappings:
+        for (let i = dynamicMappings.length - 1; i >= 0; i--) {
+            checkAndRespawn(dynamicMappings[i], dynamicMappings, i);
+        }
+
+        // Update image mappings:
+        for (let i = imageMappings.length - 1; i >= 0; i--) {
+            checkAndRespawn(imageMappings[i], imageMappings, i);
+        }
     });
 }
 
@@ -631,6 +658,16 @@ function spawnCustomDefaults(config) {
     if (config.spawnOnPage && config.spawnOnPage.pageName === page) {
         document.querySelector("main").style.overflow = "hidden";
         addManyBalls(config.spawnOnPage.ballCount || 0);
+        if (config.spawnOnPage.hoop) {
+            addObject({
+                type: "hoop",
+                boardSize: { width: 200, height: 150 },
+                rimSize: -250,
+                boardScale: 1.0,
+                hoopScale: 1.0,
+                rimYOffset: 10
+            });
+        }
     }
 }
 
@@ -732,15 +769,18 @@ function createHoopFactory(world, params = {}) {
     let hoopScale = params.hoopScale || 1.0;             // Scale factor for hoop dimensions
     let rimYOffset = params.rimYOffset || 0;             // Additional offset for the rim
 
-    // Calculate backboard dimensions with scaling:
-    const baseRectWidth = params.size?.width || 180;
-    const baseRectHeight = params.size?.height || 120;
+    // Use boardSize from params if provided (fall back to params.size or defaults):
+    const baseRectWidth = (params.boardSize && params.boardSize.width) || (params.size && params.size.width) || 180;
+    const baseRectHeight = (params.boardSize && params.boardSize.height) || (params.size && params.size.height) || 120;
     const rectWidth = baseRectWidth * boardScale;
     const rectHeight = baseRectHeight * boardScale;
 
     // Calculate hoop dimensions with hoopScale:
     let hoopWidth = (params.hoopWidth || (baseRectWidth / 2)) * hoopScale;
     let hoopHeight = (params.hoopHeight || (baseRectHeight / 2)) * hoopScale;
+
+    // Use rimSize from params if provided; otherwise default to -225
+    let rimHeight = params.rimSize !== undefined ? params.rimSize : (params.rimHeight !== undefined ? params.rimHeight : -225);
 
     // --- 1) Create backboard (adjusted by boardYOffset) ---
     rectC = Bodies.rectangle(
@@ -833,17 +873,16 @@ function createHoopFactory(world, params = {}) {
             ]);
         });
 
-    // --- 6) Attach hoop image with adjusted size ---
+    // --- Attach hoop image with adjusted size ---
     attachImageToBody(rectCHoop, "images/specials/hoop.png",
         hoopWidth + "px", hoopHeight + "px");
 
-    // --- 7) Attach backboard image ---
+    // --- Attach backboard image ---
     attachImageToBody(rectC, "images/specials/board.png",
         rectWidth + "px", rectHeight + "px");
 
-    // --- 8) Create the rim (apply rimYOffset) ---
+    // --- Create the rim (apply rimYOffset) ---
     let rimWidth = hoopWidth;
-    let rimHeight = params.rimHeight !== undefined ? params.rimHeight : -225; // default negative positions below hoop
     let rimX = rectCHoop.position.x;
     let rimY = rectCHoop.position.y + hoopHeight / 2 + rimHeight / 2 + rimYOffset;
     rim = Bodies.rectangle(rimX, rimY, rimWidth, rimHeight, {
@@ -861,33 +900,38 @@ function createHoopFactory(world, params = {}) {
     attachImageToBody(rim, "images/specials/rim.png",
         rimWidth + "px", rimHeight + "px");
 
-    // --- 9) Create rim-edge colliders and set up the hoop sensor (unchanged) ---
+    // --- Create rim-edge colliders and set up the hoop sensor ---
     const edgeSize = 6;
-    const offsetX = rimWidth / 2 - edgeSize;
+    const offsetX = rimWidth / 2;
     ["left", "right"].forEach(side => {
         let sign = side === "left" ? -1 : 1;
+        let edgeHeight = Math.abs(rimHeight) * 0.1;
         let edge = Bodies.rectangle(
             rim.position.x + sign * offsetX,
             rim.position.y,
-            edgeSize, rimHeight,
+            edgeSize, edgeHeight,
             {
-                isSensor: false,
-                restitution: 0.2,
-                collisionFilter: { category: CATEGORY_CORNER, mask: CATEGORY_BALL }
+                inertia: Infinity,
+                collisionFilter: { category: CATEGORY_CORNER, mask: CATEGORY_BALL },
+                restitution: 0.2
             }
         );
-        Composite.add(world, [edge,
+        Composite.add(world, [
+            edge,
             Constraint.create({
                 bodyA: rim,
                 pointA: { x: sign * offsetX, y: 0 },
                 bodyB: edge,
                 pointB: { x: 0, y: 0 },
-                length: 0, stiffness: 1
+                length: 0,
+                stiffness: 1
             })
         ]);
+        if (window.devMode) {
+            createColliderOverlay(edge, "Edge: " + side);
+        }
     });
 
-    // Create the hoop sensor and add a constraint to keep it with the rim.
     hoopSensor = Bodies.rectangle(
         rim.position.x,
         rim.position.y,
@@ -924,7 +968,6 @@ function createSphereFactory(world, params = {}) {
     });
     Composite.add(world, ball);
 
-    // Attach image for visual representation
     if (params.image) {
         let img = document.createElement("img");
         img.src = params.image;
@@ -941,9 +984,7 @@ function createSphereFactory(world, params = {}) {
 }
 
 
-// 5.13) If you ever want to remove a sphere/hoop/etc. when it goes out of bounds:
 function ballWentThroughHoop(otherBody) {
-    // (Same as your old code; copy‐paste or keep it as is.)
     let index = imageMappings.findIndex(m => m.body === otherBody);
     if (index !== -1) {
         Composite.remove(world, otherBody);
@@ -952,20 +993,24 @@ function ballWentThroughHoop(otherBody) {
         imageMappings.splice(index, 1);
     }
     let p = hoopSensor.position;
-    createConfetti(p.x, p.y, 10, 0.5, 1000);
+    createConfetti(p.x, p.y, 10, 1, 4000);
+    spawnGlobalConfetti(10, 1, 4000);
     if (Math.random() < 0.5) {
         addManyBalls(Math.floor(Math.random() * 3) + 1);
     }
 }
 
 
-// 5.14) Your confetti helper stays almost unchanged:
 function createConfetti(x, y, count, disappearChance = 0, lifespanMs = 0) {
     const size = 8;
     for (let i = 0; i < count; i++) {
         const confBody = Bodies.rectangle(x, y, size, size, {
-            restitution: 0.7, friction: 0.1,
-            collisionFilter: { category: CATEGORY_NONE, mask: CATEGORY_NONE }
+            restitution: 0.7,
+            friction: 0.1,
+            collisionFilter: {
+                category: CATEGORY_MAP.BALL, // Changed category so walls (mask includes BALL) collide with confetti
+                mask: 0xFFFF
+            }
         });
         World.add(world, confBody);
 
@@ -985,6 +1030,8 @@ function createConfetti(x, y, count, disappearChance = 0, lifespanMs = 0) {
         document.body.appendChild(div);
 
         imageMappings.push({ elem: div, body: confBody, x0: x, y0: y });
+
+        lifespanMs = lifespanMs + ((Math.random() - 0.5) * 1000);
 
         if (disappearChance > 0 && Math.random() < disappearChance) {
             setTimeout(() => {
@@ -1042,9 +1089,91 @@ function addRoofCollider() {
     devLog("Roof added", roofBody);
 }
 
+// After your world is created, add a floor collider based on the document body height:
+const floorHeight = 50; // adjust as needed
+const floorY = document.body.scrollHeight + floorHeight / 2;
+const floor = Bodies.rectangle(
+    document.body.scrollWidth / 2,
+    floorY,
+    document.body.scrollWidth,
+    floorHeight,
+    {
+        isStatic: true,
+        render: { visible: false },
+        collisionFilter: { category: CATEGORY_PHYSICS }
+    }
+);
+Composite.add(world, floor);
+
 function devLog(...args) {
     if (window.devMode) {
         console.log(...args);
+    }
+}
+
+// Create a helper to make a visible overlay for a collider body:
+function createColliderOverlay(body, label = "") {
+    let div = document.createElement("div");
+    div.className = "collider-overlay";
+    div.style.position = "absolute";
+    div.style.border = "2px dashed red";
+    div.style.pointerEvents = "none";
+    div.style.zIndex = "1002"; // Above other elements
+    if (label) {
+        div.innerText = label;
+        div.style.fontSize = "10px";
+        div.style.color = "red";
+    }
+    document.body.appendChild(div);
+    colliderDivMappings.push({ elem: div, body: body });
+}
+
+const roofcollision = document.getElementById('roofcollision');
+
+function checkAndRespawn(mapping, mappingArray, index) {
+    let pos = mapping.body.position;
+    // Define the scene boundaries based on the document body dimensions
+    const sceneLeft = 0;
+    const sceneTop = 0;
+    const sceneRight = document.body.scrollWidth;
+    const sceneBottom = document.body.scrollHeight;
+
+    // If the object is below the scene (e.g. past the footer), remove it.
+    if (pos.y > sceneBottom) {
+        Composite.remove(world, mapping.body);
+        if (mapping.elem && mapping.elem.parentNode) {
+            mapping.elem.parentNode.removeChild(mapping.elem);
+        }
+        mappingArray.splice(index, 1);
+        return;
+    }
+
+    // Check if the object's center is completely outside the scene (above or on the sides):
+    if (pos.x < sceneLeft || pos.x > sceneRight || pos.y < sceneTop) {
+        // If the object's velocity is very low, assume it won't respawn on its own.
+        if (Math.abs(mapping.body.velocity.x) < 0.1 && Math.abs(mapping.body.velocity.y) < 0.1) {
+            // Remove from physics world and DOM
+            Composite.remove(world, mapping.body);
+            if (mapping.elem && mapping.elem.parentNode) {
+                mapping.elem.parentNode.removeChild(mapping.elem);
+            }
+            mappingArray.splice(index, 1);
+        } else {
+            // If the object is above the scene and within horizontal bounds,
+            // and roofCollision.checked is false, leave it as is.
+            if (pos.y < sceneTop &&
+                pos.x >= sceneLeft && pos.x <= sceneRight &&
+                roofcollision && roofcollision.checked === false) {
+                return;
+            } else {
+                // Otherwise, reposition it to the middle top of the scene.
+                let newX = sceneRight / 2;
+                let newY = sceneTop + 50;
+                Body.setPosition(mapping.body, { x: newX, y: newY });
+                Body.setVelocity(mapping.body, { x: 0, y: 0 });
+                Body.setAngularVelocity(mapping.body, 0);
+            }
+        }
     }
 }
 

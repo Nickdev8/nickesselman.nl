@@ -1,10 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ---- MENU TOGGLE (GSAP) ----
-  const checkbox = document.getElementById('checkbox');
-  const menu = document.getElementById('specials-menu');
+  window.addEventListener('scroll', () => {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    if (window.scrollY > maxScroll) {
+      window.scrollTo(window.scrollX, maxScroll);
+    }
+  });
+
+
+  const specialPhysics = document.getElementById('morephysics-menu');
   const physToggle = document.getElementById('enablephysics');
+  const checkbox = document.getElementById('checkbox');
+  const mutebutton = document.getElementById('muteicon');
+
+  const menu = document.getElementById('specials-menu');
   gsap.set(menu, { autoAlpha: 0, display: 'none' });
 
+  // ---- MENU TOGGLE (GSAP) ----
   checkbox.addEventListener('change', () => {
     if (checkbox.checked) {
       menu.style.display = 'block';
@@ -20,24 +31,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ---- MUTE / UNMUTE BUTTON ----
-  const audio = document.getElementById('bounceSound');
-  const mutebutton = document.getElementById('muteicon');
-  const muteimg = mutebutton.querySelector('img');
-
-  function updateButton() {
-    if (audio.muted) {
-      muteimg.src = 'images/specials/notmute.png';
-      audio.src = '';
+  // ---- StartSim (GSAP) ----
+  physToggle.addEventListener('click', () => {
+    if (physToggle.checked) {
+      gsap.to(specialPhysics, { duration: 2, autoAlpha: 1 });
+      mutebutton.style.display = 'unset';
+      enableMatter(physicsConfig);
     } else {
-      muteimg.src = 'images/specials/mute.png';
-      audio.src = 'sounds/bounce.mp3';
+      location.reload();
     }
-  }
-
-  mutebutton.addEventListener('click', () => {
-    audio.muted = !audio.muted;
-    updateButton();
   });
 
   // ---- INIT AOS (after any DOM tweaks) ----

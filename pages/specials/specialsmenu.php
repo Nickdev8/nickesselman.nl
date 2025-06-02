@@ -52,12 +52,13 @@
     </div>
     <div>
         <label class="special-switch">
-            <input id="sleepToggle" checked type="checkbox">
+            <input id="sleepToggle" type="checkbox" <?php if ($_GET['page'] == "about") echo 'checked'?>>
             <span class="special-slider"></span>
         </label>
         <h2>Obj Sleep</h2>
-        <button id="wakingbutton"> wake</button>
+        <button style="height:1.5em;" id="wakingbutton"> wake</button>
     </div>
+
 </div>
 
 

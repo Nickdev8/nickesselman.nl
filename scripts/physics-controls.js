@@ -3,29 +3,24 @@
 // (Make sure Matter.* and your physicsConfig are already loaded.)
 
 document.addEventListener('DOMContentLoaded', () => {
-  const physToggle     = document.getElementById('enablephysics');
-  const specialPhysics = document.getElementById('morephysics-menu');
-  const mutebutton     = document.getElementById('muteicon'); // to show/hide if needed
+  const roofcollision = document.getElementById('roofcollision');
+  const sleepToggle = document.getElementById('sleepToggle');
+  const wakingbutton = document.getElementById('wakingbutton');
+  const devToggle = document.getElementById('devModeToggle');
+  const devOverlay = document.getElementById('devView');
 
-  const roofcollision  = document.getElementById('roofcollision');
-  const sleepToggle    = document.getElementById('sleepToggle');
-  const wakingbutton   = document.getElementById('wakingbutton');
-  const arrowgravity   = document.getElementById('arrowgravity');
+  // ---- Dev mode ----
 
-  // 1) Enable / Disable Matter.js
-  physToggle.addEventListener('click', () => {
-    if (physToggle.checked) {
-      // Reveal the “more physics” sub‐menu
-      gsap.to(specialPhysics, { duration: 2, autoAlpha: 1 });
-      // Show mute button (override CSS if needed)
-      mutebutton.style.display = 'unset';
-      // Start the physics engine
-      enableMatter(physicsConfig);
-    } else {
-      // Simply reload page to clear physics state
-      location.reload();
-    }
-  });
+  if (devToggle) {
+    devToggle.addEventListener('change', () => {
+      window.devMode = devToggle.checked;
+      console.log("Dev mode is now", window.devMode ? "ON" : "OFF");
+
+      if (devOverlay) {
+        devOverlay.style.display = window.devMode ? "block" : "none";
+      }
+    });
+  }
 
   // 2) Roof toggle
   roofcollision.addEventListener('click', () => {
@@ -69,31 +64,5 @@ document.addEventListener('DOMContentLoaded', () => {
         body.sleepCounter = 0;
       }
     });
-  });
-
-  // 5) Arrow‐key gravity (only if physics is enabled & arrow‐toggle checked)
-  document.addEventListener('keydown', (event) => {
-    if (!physToggle.checked || !arrowgravity.checked) return;
-
-    switch (event.key) {
-      case 'ArrowUp':
-        engine.world.gravity.x = 0;
-        engine.world.gravity.y = -1;
-        break;
-      case 'ArrowDown':
-        engine.world.gravity.x = 0;
-        engine.world.gravity.y = 1;
-        break;
-      case 'ArrowLeft':
-        engine.world.gravity.x = -1;
-        engine.world.gravity.y = 0;
-        break;
-      case 'ArrowRight':
-        engine.world.gravity.x = 1;
-        engine.world.gravity.y = 0;
-        break;
-      default:
-        return;
-    }
   });
 });

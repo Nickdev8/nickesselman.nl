@@ -47,6 +47,7 @@ const physicsConfig = {
     },
     spawnOnPage: {
         pageName: "about",
-        ballCount: 100
+        ballCount: 100,
+        hoop: true,
     }
 };
