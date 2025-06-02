@@ -3,7 +3,7 @@
 $cacheDuration = floor(86400 * 365.25); // 1 year
 header("Cache-Control: public, max-age={$cacheDuration}");
 header("Expires: " . gmdate("D, d M Y H:i:s", time() + $cacheDuration) . " GMT");
-$versionnum = "1.0.9";
+$versionnum = "1.1.0";
 ?>
 
 <!DOCTYPE html>
@@ -154,7 +154,7 @@ $versionnum = "1.0.9";
     <script src="scripts/physics-controls.js?v=<?= $versionnum ?>"></script>
     <script src="scripts/special-menu-controls.js?v=<?= $versionnum ?>"></script>
 
-    <?php include 'pages/specials/duckhund.php'; ?>
+    <?php include 'pages/specials/duckhunt.php'; ?>
 </body>
 
 </html>

@@ -27,7 +27,7 @@
     .cat {
         position: fixed;
         bottom: 6rem;
-        right: 5rem;
+        right: 15rem;
         z-index: 999;
     }
 

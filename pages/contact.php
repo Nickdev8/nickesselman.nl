@@ -7,7 +7,7 @@
 </div>
 
 <div class="container separator split">
-    <div class="card physics" matter>
+    <div class="infocard card physics" matter>
         <h3 class="headline">Info</h3>
         <div class="iconholder">
             <a href="https://www.linkedin.com/in/nick-esselman/">
@@ -51,12 +51,27 @@
     ?>
 </div>
 
+<script>
+    document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const email = this.getAttribute('href').replace("mailto:", "");
+            navigator.clipboard.writeText(email)
+                .then(function () {
+                    alert('Copied email: ' + email);
+                })
+                .catch(function (err) {
+                    console.error('Failed to copy email: ', err);
+                });
+        });
+    });
+</script>
 
 <style>
     .header-overlay {
         position: relative;
         width: 100%;
-        aspect-ratio: 3 / 1;
+        aspect-ratio: 7 / 2;
         overflow: hidden;
 
     }
@@ -64,6 +79,10 @@
     .card {
         padding-top: var(--spacing-2) !important;
         padding-bottom: var(--spacing-2) !important;
+    }
+
+    .infocard {
+        max-width: 400px;
     }
 
     .header-overlay img {
@@ -103,9 +122,10 @@
     .iconholder {
         display: grid;
         /* Define two columns, each taking up 1 fraction of the available space */
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         /* Optional: gap between items */
-        grid-gap: 16px;
+        grid-gap: 2px;
+        margin-bottom: 1rem;
     }
 
 
@@ -116,7 +136,7 @@
         text-decoration: none;
         color: black;
         border-radius: 2rem;
-        padding: 1rem;
+        padding: 0 1rem;
         transition: transform 130ms ease-in-out;
     }
 
@@ -136,6 +156,11 @@
             aspect-ratio: 4 / 1;
 
         }
+
+        .infocard {
+            max-width: unset;
+        }
+
     }
 
     @media screen and (max-width: 800px) {

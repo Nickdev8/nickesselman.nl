@@ -2,12 +2,13 @@
     #duckbox {
         position: fixed;
         bottom: 1rem;
-        left: calc(50% - 3rem);
+        right: 1rem;
+        /* left: calc(50% - 3rem); */
         background-color: var(--muted);
         padding: 1rem;
         border-radius: 0.5rem;
         display: inline-block;
-        z-index: 998;
+        z-index: 9999;
         box-shadow: inset 0 -2.1rem var(--slate);
     }
 
@@ -54,8 +55,8 @@
     }
 </style>
 
-<div id="duckbox">
-    <button id="duckbutton" class="physics-fixed"></button>
+<div id="duckbox" class="physics-fixed">
+    <button id="duckbutton"></button>
 </div>
 
 <div id="duck-container"></div>
@@ -64,7 +65,6 @@
     let activeDuckCount = 0;
     const flappingAudio = new Audio("/sounds/duckhunt/duck-flapping.mp3");
     flappingAudio.loop = true;
-    let buttonPressCount = 0;
     const baseSpeed = 120;
     const duckFrames = {
         upRight: [
@@ -80,8 +80,6 @@
     };
 
     document.getElementById("duckbutton").addEventListener("click", () => {
-        buttonPressCount++;
-        const currentSpeed = baseSpeed * Math.pow(2, buttonPressCount - 1);
         const duckCount = 5;
         const container = document.getElementById("duck-container");
 
@@ -97,7 +95,7 @@
             duck.src = duckFrames.upRight[0];
             container.appendChild(duck);
             activeDuckCount++;
-            startDuckAnimation(duck, currentSpeed);
+            startDuckAnimation(duck, baseSpeed);
         }
     });
 

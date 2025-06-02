@@ -23,6 +23,13 @@
         </label>
         <h2>Enable physics</h2>
     </div>
+    <div>
+        <label class="special-switch">
+            <input id="enableduckhunt" checked type="checkbox">
+            <span class="special-slider"></span>
+        </label>
+        <h2>Enable Duck Hunt</h2>
+    </div>
 </div>
 
 

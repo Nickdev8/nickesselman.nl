@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const specialPhysics = document.getElementById('morephysics-menu');
   const physToggle = document.getElementById('enablephysics');
+  const duckhuntToggle = document.getElementById('enableduckhunt');
+  const duckbox = document.getElementById('duckbox');
   const checkbox = document.getElementById('checkbox');
   const mutebutton = document.getElementById('muteicon');
 
@@ -26,11 +28,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- StartSim (GSAP) ----
   physToggle.addEventListener('click', () => {
     if (physToggle.checked) {
-      gsap.to(specialPhysics, { duration: 2, autoAlpha: 1 });
+      gsap.to(mutebutton, { duration: 2, autoAlpha: 1 });
       mutebutton.style.display = 'unset';
       enableMatter(physicsConfig);
     } else {
       location.reload();
+    }
+  });
+
+  // ---- enable duckhunt button (GSAP) ----
+  duckhuntToggle.addEventListener('click', () => {
+    if (duckhuntToggle.checked) {
+      gsap.to(duckbox, { duration: 0.2, autoAlpha: 1 });
+    } else {
+      gsap.to(duckbox, { duration: 0.2, autoAlpha: 0 });
     }
   });
 

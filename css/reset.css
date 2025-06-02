@@ -83,3 +83,7 @@ html, body {
   overflow-x: hidden !important;
   overflow-y: auto   !important;
 }
+
+main{
+  overflow-y: hidden   !important;
+}
