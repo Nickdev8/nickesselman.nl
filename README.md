@@ -25,17 +25,17 @@ Welcome! I'm **Nick**, a developer passionate about creating immersive web exper
 
 Visit [nickesselman.nl](https://nickesselman.nl) to experience
 
-## 💡 About The Project
+## About The Project
 
 Originally built for the Hack Club Neighborhood event, this portfolio doubles as an experimental playground for web physics. Every interactive element is powered by Matter.js, creating a unique blend of functionality and entertainment.
 
-## 📫 Connect With Me
+## Connect With Me
 
 - Portfolio: [nickesselman.nl](https://nickesselman.nl)
 - Email: [nick.esselman@gmail.com](mailto:nick.esselman@gmail.com)
 - Hack Club: [@nickesselman](https://hackclub.com)
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Special thanks to:
 - [Hack Club](https://hackclub.com) community
