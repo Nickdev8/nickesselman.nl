@@ -1,6 +1,4 @@
 <?php
-//  myscicker collegcion,
-// notifibri, minecraft discord server bot, art collection
 $projects = [
     [
         'title' => 'HackClub: Juice',
@@ -327,6 +325,29 @@ $projects = [
                 </p>',
             ],
         ],
+    ],
+    [
+        'title' => 'Project: Discord Minecraft server bot',
+        'description' => 'I made a Discord bot for a multiplayer MC server',
+        'image' => 'discord.jpg',
+        'link' => 'dcmcbot',
+        'basiclayout' => 'true',
+        'blocks' => [
+            [
+                'image' => 'images/projectsimages/discord.png'
+            ],
+            [
+                'title' => 'What?',
+                'content' => '<p>
+                Its a bot on discord so i can send commands 
+                like /serverOn or /serverReboot for easy distobutet management, 
+                so if a User want to boot the server, he Can! <br>
+                This was back in 2024.
+                </p>
+                <a href="https://github.com/Nickdev8/minercaftbot">The Repo!</a>
+                ',
+            ]
+        ]
     ],
     [
         'title' => 'HackClub: HighSeas',
