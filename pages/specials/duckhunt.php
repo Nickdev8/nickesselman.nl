@@ -45,7 +45,7 @@
 
     .duckhunt-duck {
         position: fixed;
-        z-index: 999;
+        z-index: 99;
         width: 32px;
         height: 32px;
         transform-origin: center center;
@@ -63,10 +63,13 @@
         cursor: pointer;
     }
 </style>
+
 <div id="duckhunt-card">
+    <h2>Duck</h2>
     <div id="duckbox" class="physics-fixed">
         <button id="duckbutton"></button>
     </div>
+    <h2>Hunt</h2>
 </div>
 
 <div id="duck-container"></div>

@@ -6,6 +6,7 @@
     <img id="hoop" src="images/specials/mute.png" unselectable="on" draggable="false" alt="">
 </div>
 
+
 <div class="card overlay-menu physics-fixed specials" id="open-specials-menu" style="opacity:1;">
     <input id="checkbox" type="checkbox">
     <label class="toggle" for="checkbox">
