@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Braille';
+    src: url('../fonts/Braille.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* separator */
 .separator {
     margin: 2rem auto;
@@ -271,8 +278,4 @@ div.physics-active:has(.parentonlypaddingwhenphysicsisactive) {
     font-size: 2rem;
     display: none;
     z-index: 1000;
-}
-
-body{
-    overflow: hidden;
 }

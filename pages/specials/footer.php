@@ -1,7 +1,8 @@
 <footer class="site-footer" matter static>
 
     <?php if ($page != "cv"){
-      include_once 'pages/specials/cat.php'; }
+      // include_once 'pages/specials/cat.php'; 
+    }
       ?>
   <div class="footer-content container">
     <div class="footer-left">

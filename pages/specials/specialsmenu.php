@@ -27,13 +27,16 @@
     </div>
     <div>
         <label class="special-switch">
-            <input id="enableduckhunt" checked type="checkbox">
+            <input id="blindmode" type="checkbox">
             <span class="special-slider"></span>
         </label>
-        <h2>Enable Duck Hunt</h2>
+        <h2>Blind mode</h2>
     </div>
 </div>
 
+<div class="overlay-menu" id="bigpointyarrow">
+    <img src="images/arrow.png" alt="">
+</div>
 
 <div class="card overlay-menu physics-fixed specials" id="morephysics-menu">
     <h3 class="headline">Physics Options</h3>

@@ -1,7 +1,7 @@
 .overlay-menu {
     position: fixed;
     z-index: 999;
-    opacity: 0;
+    opacity: 1;
     padding: var(--spacing-3) !important;
 }
 
@@ -21,11 +21,21 @@
 }
 
 #morephysics-menu {
-    bottom: 20rem;
+    bottom: 25rem;
     left: 12rem;
 }
 
 #specials-menu {
     bottom: 8rem;
     left: 12rem;
+}
+
+#bigpointyarrow{
+    bottom: 8rem;
+    left: 22rem;
+}
+
+#bigpointyarrow>img {
+    width: 20rem;
+    height: 20rem;
 }

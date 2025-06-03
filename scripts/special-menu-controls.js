@@ -28,12 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Konami code: ↑↑↓↓←→←→ (also dev mode)
 (function () {
-    const physToggle = document.getElementById('enablephysics');
-    
     var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39]; //66, 65 BA
     var konamiIndex = 0;
 
     document.addEventListener('keydown', function (e) {
+
+        const physToggle = document.getElementById('enablephysics');
+        const arrowgravity = document.getElementById('arrowgravity');
+
         if (e.keyCode === konamiCode[konamiIndex]) {
             konamiIndex++;
             if (konamiIndex === konamiCode.length) {

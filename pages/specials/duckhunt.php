@@ -1,5 +1,7 @@
 <style>
     #duckhunt-card {
+        max-width: 7.6rem;
+        max-height: 15rem;
         position: fixed;
         z-index: 999;
         opacity: 0;
@@ -64,9 +66,9 @@
     }
 </style>
 
-<div id="duckhunt-card">
+<div id="duckhunt-card" class="physics-fixed">
     <h2>Duck</h2>
-    <div id="duckbox" class="physics-fixed">
+    <div id="duckbox">
         <button id="duckbutton"></button>
     </div>
     <h2>Hunt</h2>

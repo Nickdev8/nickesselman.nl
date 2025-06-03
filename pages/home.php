@@ -3,7 +3,7 @@
 <div class="main-top">
     <!-- <div id="particles-js" style="position:absolute;top:0;left:0;width:100%;height:auto;z-index:1;overflow:hidden;"></div> -->
     <div style="margin:auto; width: fit-content;">
-        <h1 class="ultratitle physics" style="background-color: var(--myblue); padding: 1rem; border-radius: 0.5rem">
+        <h1 class="sawarabi-mincho-regular ultratitle physics" style="background-color: var(--myblue); padding: 1rem; border-radius: 0.5rem">
             Nick Esselman</h1>
     </div>
 
