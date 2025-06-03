@@ -1,14 +1,22 @@
 <style>
-    #duckbox {
+    #duckhunt-card {
         position: fixed;
-        bottom: 1rem;
-        right: 1rem;
+        z-index: 999;
+        opacity: 0;
+        padding: var(--spacing-3) !important;
+
+        border-radius: var(--radii-extra);
+        box-shadow: var(--shadow-card);
+        padding: var(--spacing-2) !important;
+        background-color: var(--white);
+    }
+
+    #duckbox {
         /* left: calc(50% - 3rem); */
         background-color: var(--muted);
         padding: 1rem;
         border-radius: 0.5rem;
         display: inline-block;
-        z-index: 9999;
         box-shadow: inset 0 -2.1rem var(--slate);
     }
 
@@ -24,6 +32,7 @@
             inset 0 -0.8rem var(--red);
         color: transparent;
         font-size: 0;
+
     }
 
     #duckbutton:hover {
@@ -54,9 +63,10 @@
         cursor: pointer;
     }
 </style>
-
-<div id="duckbox" class="physics-fixed">
-    <button id="duckbutton"></button>
+<div id="duckhunt-card">
+    <div id="duckbox" class="physics-fixed">
+        <button id="duckbutton"></button>
+    </div>
 </div>
 
 <div id="duck-container"></div>
@@ -117,8 +127,8 @@
         quackAudio.play().catch(() => { });
         const angleDeg = 20 + Math.random() * 140;
         const angleRad = (angleDeg * Math.PI) / 180;
-        const dirX = Math.cos(angleRad);
-        const dirY = -Math.sin(angleRad);
+        let dirX = Math.cos(angleRad); // mutable, so we can update it later
+        let dirY = -Math.sin(angleRad); // mutable, so we can update it later
 
         if (Math.abs(dirY) > Math.abs(dirX)) {
             currentFrames = duckFrames.upRight;
@@ -132,6 +142,7 @@
             duck.style.transform = "scale(2, 2)";
         }
 
+        // Use a faster initial frame interval (150 ms)
         frameIntervalID = setInterval(() => {
             frameIndex = (frameIndex + 1) % currentFrames.length;
             duck.src = currentFrames[frameIndex];
@@ -148,6 +159,31 @@
         }
 
         placeDuckBelowView();
+
+        // After 5 seconds, flip the duck's horizontal direction (keep vertical direction)
+        // and increase animation speed (do this only once per duck)
+        let hasFlipped = false;
+        setTimeout(() => {
+            if (!hasFlipped) {
+                // Flip only horizontal movement (preventing a downward movement)
+                dirX = -dirX;
+                hasFlipped = true;
+                // Flip horizontal scaling accordingly
+                if (duck.style.transform.includes("scale(-2")) {
+                    duck.style.transform = "scale(2, 2)";
+                } else {
+                    duck.style.transform = "scale(-2, 2)";
+                }
+                // Increase the frame animation speed by clearing and setting a new interval (75 ms)
+                if (frameIntervalID !== null) {
+                    clearInterval(frameIntervalID);
+                    frameIntervalID = setInterval(() => {
+                        frameIndex = (frameIndex + 1) % currentFrames.length;
+                        duck.src = currentFrames[frameIndex];
+                    }, 75);
+                }
+            }
+        }, 5000);
 
         let lastTimestamp = null;
         let isFalling = false;
@@ -218,7 +254,7 @@
                 isFalling = true;
                 lastTimestamp = null;
                 animationID = requestAnimationFrame(step);
-            }, 500);
+            }, 300);
         });
 
         function cleanupDuck() {

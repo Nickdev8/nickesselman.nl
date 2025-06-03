@@ -27,9 +27,9 @@ $versionnum = "1.1.0";
     <script src="https://cdn.jsdelivr.net/npm/elevator.js/elevator.min.js"></script>
     <script src="https://rawgit.com/WeiChiaChang/Easter-egg/master/easter-eggs-collection.js"></script>
 
-  <!-- (Optional) Client-side validation script; see Section 3 -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-  
+    <!-- (Optional) Client-side validation script; see Section 3 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/matter-dom-plugin@1.0.0/build/matter-dom-plugin.min.js"></script>
 
@@ -39,6 +39,7 @@ $versionnum = "1.1.0";
     <!-- basic css -->
     <link rel="stylesheet" href="css/reset.css?v=<?= $versionnum ?>">
     <link rel="stylesheet" href="css/main.css?v=<?= $versionnum ?>">
+    <link rel="stylesheet" href="css/topmenuoffset.css?v=<?= $versionnum ?>">
 
     <!-- add css of the page Im on -->
     <?php
@@ -65,7 +66,6 @@ $versionnum = "1.1.0";
     <main id="inner-main" class="inner-main">
         <?php
 
-        include 'pages/specials/specialsmenu.php';
 
         $page = $_GET['page'] ?? null;
         $project = $_GET['project'] ?? null;
@@ -147,14 +147,19 @@ $versionnum = "1.1.0";
         <div id="devInfo"></div>
     </div>
 
-    <script src="scripts/main.js?v=<?= $versionnum ?>"></script>
-    <script src="scripts/special-menus.js?v=<?= $versionnum ?>"></script>
-    <script src="scripts/matterrun.js?v=<?= $versionnum ?>"></script>
-    <script src="scripts/physics-configs.js?v=<?= $versionnum ?>"></script>
-    <script src="scripts/physics-controls.js?v=<?= $versionnum ?>"></script>
-    <script src="scripts/special-menu-controls.js?v=<?= $versionnum ?>"></script>
+    <?php if ($page != "cv"): ?>
+        <script src="scripts/main.js?v=<?= $versionnum ?>"></script>
+        <script src="scripts/special-menus.js?v=<?= $versionnum ?>"></script>
+        <script src="scripts/matterrun.js?v=<?= $versionnum ?>"></script>
+        <script src="scripts/physics-configs.js?v=<?= $versionnum ?>"></script>
+        <script src="scripts/physics-controls.js?v=<?= $versionnum ?>"></script>
+        <script src="scripts/special-menu-controls.js?v=<?= $versionnum ?>"></script>
+        <?php
+        include 'pages/specials/duckhunt.php';
+        include 'pages/specials/specialsmenu.php';
+        ?>
+    <?php endif; ?>
 
-    <?php include 'pages/specials/duckhunt.php'; ?>
 </body>
 
 </html>

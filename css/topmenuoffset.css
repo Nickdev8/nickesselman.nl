@@ -1,0 +1,31 @@
+.overlay-menu {
+    position: fixed;
+    z-index: 999;
+    opacity: 0;
+    padding: var(--spacing-3) !important;
+}
+
+#duckhunt-card {
+    bottom: 17rem;
+    left: 2rem;
+}
+
+#muteicon {
+    top: 18rem;
+    left: 4rem;
+}
+
+#open-specials-menu {
+    bottom: 8rem;
+    left: 2rem;
+}
+
+#morephysics-menu {
+    bottom: 20rem;
+    left: 12rem;
+}
+
+#specials-menu {
+    bottom: 8rem;
+    left: 12rem;
+}

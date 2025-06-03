@@ -1,3 +1,4 @@
+
 <div class="cat physics">
     <div class="loader">
         <div class="wrapper">
@@ -25,7 +26,7 @@
 
 <style>
     .cat {
-        position: fixed;
+        position: absolute;
         bottom: 6rem;
         right: 15rem;
         z-index: 999;
