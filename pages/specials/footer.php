@@ -1,5 +1,6 @@
 <footer class="site-footer" matter static>
 
+  <?php include_once 'pages/specials/cat.php'; ?>
   <div class="footer-content container">
     <div class="footer-left">
       <img src="/images/logo_transparent.png" alt="Nick Esselman Logo" class="footer-logo">

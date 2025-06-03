@@ -36,39 +36,53 @@
             <p>Bartender for almost 1 year.</p>
             <p>Started programming on my own when I was 9. and am now learning more in collage</p>
         </div>
-    </div>
-
-    <div class="cv-section iconholder">
-        <h2>Info</h2>
-        <a href="https://www.linkedin.com/in/nick-esselman/">
-            <img class="icon physics physics-nested"
-                src="https://img.icons8.com/?size=100&id=8808&format=png&color=000000">
-            nick-esselman</a>
-        <a href="https://discordapp.com/users/452409871300558848">
-            <img class="icon physics physics-nested"
-                src="https://img.icons8.com/?size=100&id=30888&format=png&color=000000">
-            @nikkcc.nick</a>
-        <a href="https://github.com/Nickdev8">
-            <img class="icon physics physics-nested"
-                src="https://img.icons8.com/?size=100&id=3tC9EQumUAuq&format=png&color=000000">
-            Nickdev8</a>
-        <a href="https://www.instagram.com/nick.esselman/">
-            <img class="icon physics physics-nested"
-                src="https://img.icons8.com/?size=100&id=32309&format=png&color=000000">
-            @nick.esselman</a>
-        <a href="mailto:info@nickesselman.nl">
-            <img class="icon physics physics-nested"
-                src="https://img.icons8.com/?size=100&id=qRMmG0Arw19N&format=png&color=000000">
-            info@nickesselman.nl</a>
-        <a href="mailto:nick.esselman@gmail.com">
-            <img class="icon physics physics-nested"
-                src="https://img.icons8.com/?size=100&id=zVhqEPoFFZ89&format=png&color=000000">
-            nick.esselman@gmail.com</a>
+        <div class="cv-section">
+            <h2>Projects</h2>
+            <ul>
+                <li><strong>HackClub: <a href="/?project=juice">Juice</strong></a> - A 12-day hackathon project in
+                    Shanghai.
+                </li>
+                <li><strong>Collection: <a href="/?project=stickers">My Sticker</strong></a> - A personal project
+                    showcasing my
+                    HackClub sticker collection.</li>
+                <li><strong>HackClub: <a href="/?project=neighborhood">Neighborhood</strong></a> - A 3-month housing
+                    program
+                    project in San Francisco.</li>
+                <li><strong>Game: <a href="/?project=monkeyswing">Monkey Swing</strong></a> - My introduction to game
+                    development using Unity and C#.</li>
+                <li><strong>HackClub: <a href="/?project=highseas">HighSeas</strong></a> - A team event project centered
+                    around innovative project deployment.</li>
+            </ul>
+        </div>
+        <div class="cv-section iconholder">
+            <h2>Info</h2>
+            <a href="https://www.linkedin.com/in/nick-esselman/">
+                <img class="icon physics physics-nested"
+                    src="https://img.icons8.com/?size=100&id=8808&format=png&color=000000">
+                nick-esselman</a>
+            <a href="https://discordapp.com/users/452409871300558848">
+                <img class="icon physics physics-nested"
+                    src="https://img.icons8.com/?size=100&id=30888&format=png&color=000000">
+                @nikkcc.nick</a>
+            <a href="https://github.com/Nickdev8">
+                <img class="icon physics physics-nested"
+                    src="https://img.icons8.com/?size=100&id=3tC9EQumUAuq&format=png&color=000000">
+                Nickdev8</a>
+            <a href="https://www.instagram.com/nick.esselman/">
+                <img class="icon physics physics-nested"
+                    src="https://img.icons8.com/?size=100&id=32309&format=png&color=000000">
+                @nick.esselman</a>
+            <a href="mailto:info@nickesselman.nl">
+                <img class="icon physics physics-nested"
+                    src="https://img.icons8.com/?size=100&id=qRMmG0Arw19N&format=png&color=000000">
+                info@nickesselman.nl</a>
+            <a href="mailto:nick.esselman@gmail.com">
+                <img class="icon physics physics-nested"
+                    src="https://img.icons8.com/?size=100&id=zVhqEPoFFZ89&format=png&color=000000">
+                nick.esselman@gmail.com</a>
+        </div>
     </div>
 </div>
-
-
-<?php include_once 'pages/specials/cat.php'; ?>
 
 <script>
     document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
@@ -148,7 +162,6 @@
         margin-bottom: 10px;
     }
 
-
     .icon {
         width: 4rem;
         height: 4rem;
@@ -176,10 +189,7 @@
         transform: translateX(1.1rem);
     }
 
-
     :root {
-        --myblue: #000 !important;
+        --myblue: #222 !important;
     }
 </style>
-
-<link rel="stylesheet" href="css/form.css">
