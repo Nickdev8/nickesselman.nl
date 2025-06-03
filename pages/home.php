@@ -43,18 +43,16 @@
 include './pages/projects.php';
 ?>
 <div class="card wide objectToMoreToTheBackClasses container separator" data-aos="fade-up">
-    <h2 class="headline">More images</h2>
-    <div class="grid" id="imageGrid">
-        <?php
-        // Only load the first batch
-        $dir = 'images/*'; // All images in all subfolders of images/
-        $_GET['limit'] = 10;
-        include "./load_images.php";
-        ?>
-    </div>
-    <button id="loadMoreBtn" class="btn" style="display:block;margin:1em auto;">Load More</button>
-    <div id="sentinel" style="height: 1px;"></div>
 
+        <!-- ─── IMAGE GALLERY SECTION ─────────────────────────────────────────────────── -->
+        <section id="gallery-section">
+            <?php
+            // This pull in both:
+            // 1) the definition of `outputMedia()` and the `if(isset($_GET['offset'])) { … } exit; }` block
+            // 2) the <div class="card…">…</script> portion that renders the initial batch + JS
+            include 'projects/gallery-section.php';
+            ?>
+        </section>
 </div>
 
 
