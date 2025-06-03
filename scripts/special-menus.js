@@ -11,10 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- MENU TOGGLE (GSAP) ----
   checkbox.addEventListener('change', () => {
+    const whatobjects = [menu, duckhuntToggle];
     if (checkbox.checked) {
-      menu.style.display = 'block';
-      gsap.to(menu, { duration: 0.2, autoAlpha: 1 });
-      if (duckhuntToggle.checked) gsap.to(duckbox, { duration: 0.2, autoAlpha: 1 });
+      whatobjects.forEach(obj => {
+        obj.style.display = 'block';
+        gsap.to(obj, { duration: 0.2, autoAlpha: 1 });
+      });
     } else if (physToggle.checked) {
       gsap.to(menu, { duration: 0.2, autoAlpha: 0.5 });
       if (duckhuntToggle.checked) gsap.to(duckbox, { duration: 0.2, autoAlpha: 0.5 });
@@ -40,14 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ---- enable duckhunt button (GSAP) ----
-  duckhuntToggle.addEventListener('click', () => {
-    if (duckhuntToggle.checked) {
-      gsap.to(duckbox, { duration: 0.2, autoAlpha: 1 });
-    } else {
-      gsap.to(duckbox, { duration: 0.2, autoAlpha: 0 });
-    }
-  });
 
   // ---- INIT AOS (after any DOM tweaks) ----
   AOS.init();
