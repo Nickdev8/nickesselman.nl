@@ -93,7 +93,7 @@
     width: 36px;
     height: 36px;
     border-radius: 8px;
-    background: #fff;
+    background: var(--myblue);
     object-fit: cover;
   }
 

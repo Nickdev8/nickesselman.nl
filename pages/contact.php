@@ -37,14 +37,7 @@
         </div>
     </div>
     <div class="card physics" matter>
-        <form class="form">
-            <h3 class="headline">Contact me</h3>
-            <h4 class="caption">Or just email to nick.esselman@gmail.com</h4>
-            <input type="text" placeholder="Your email" class="input">
-            <textarea placeholder="Your message"></textarea>
-
-            <button class="cta">Submit</button>
-        </form>
+        <?php include_once 'pages/specials/contactform.php'; ?>
     </div>
     <?php
     include_once 'pages/specials/cat.php';

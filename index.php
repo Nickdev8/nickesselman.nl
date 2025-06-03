@@ -27,15 +27,15 @@ $versionnum = "1.1.0";
     <script src="https://cdn.jsdelivr.net/npm/elevator.js/elevator.min.js"></script>
     <script src="https://rawgit.com/WeiChiaChang/Easter-egg/master/easter-eggs-collection.js"></script>
 
+  <!-- (Optional) Client-side validation script; see Section 3 -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/matter-dom-plugin@1.0.0/build/matter-dom-plugin.min.js"></script>
 
-  <script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJk2+m3pvpvVzKDh4jHzKx3v57B+8H0E2eX+E="
-    crossorigin="anonymous"
-  ></script>
-  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJk2+m3pvpvVzKDh4jHzKx3v57B+8H0E2eX+E=" crossorigin="anonymous"></script>
+
     <!-- basic css -->
     <link rel="stylesheet" href="css/reset.css?v=<?= $versionnum ?>">
     <link rel="stylesheet" href="css/main.css?v=<?= $versionnum ?>">

@@ -17,6 +17,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'null';
       <li><a href="?page=about">About</a></li>
       <li><a href="?page=projects">Projects</a></li>
       <li><a href="?page=contact">Contact</a></li>
+      <li><a href="?page=cv">CV</a></li>
     </ul>
   </div>
 </header>
