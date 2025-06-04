@@ -319,28 +319,30 @@ function prepareDomForPhysics() {
 function createBodiesFromSelector(selector, options) {
     document.querySelectorAll(selector).forEach(elem => {
         const r = elem.getBoundingClientRect();
-        // Always use document coordinates now:
         const baseX = r.left + window.scrollX + r.width / 2;
         const baseY = r.top + window.scrollY + r.height / 2;
+        
+        // Removed attractor function here
+        const defaultOptions = {
+            mass: 10,
+            restitution: 0.4,
+            friction: 0.1,
+            collisionFilter: {
+                category: CATEGORY_MAP.PHYSICS,
+                mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CAT
+            }
+        };
 
-        // Create body at current document position
+        const bodyOptions = Object.assign({}, defaultOptions, options);
         const body = Bodies.rectangle(
             baseX,
             baseY,
             r.width,
             r.height,
-            Object.assign({
-                restitution: 0.4,
-                friction: 0.1,
-                collisionFilter: {
-                    category: CATEGORY_MAP.PHYSICS,
-                    mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CAT
-                }
-            }, options)
+            bodyOptions
         );
-
         Composite.add(world, body);
-
+        
         dynamicMappings.push({
             elem: elem,
             body: body,
@@ -631,16 +633,13 @@ function setupCollisionHandlers() {
 // 5.8) “Default” custom objects that run inside enableMatter (previously your addObjects())
 function spawnCustomDefaults(config) {
     world.gravity.scale = 0;
-
     let mainElem = document.querySelector("main");
-    // Use offsetLeft/offsetTop and clientWidth/clientHeight so that
-    // the center is computed in document coordinates regardless of scroll.
     let cx = mainElem.offsetLeft + (mainElem.clientWidth / 2);
     let cy = mainElem.offsetTop + (mainElem.clientHeight / 2);
 
-    // 5.8.1) Two balls joined by a spring:
-    let ballA = Bodies.circle(cx - 25, cy, 200, {
-        mass: 15,
+    // Add an attractor to ballA only:
+    let ballA = Bodies.circle(cx - 25, cy, 20, {
+        mass: 150,
         restitution: 0.5,
         friction: 0.1,
         collisionFilter: {
@@ -649,15 +648,16 @@ function spawnCustomDefaults(config) {
         },
         plugin: {
             attractors: [
-                function (bodyA, bodyB) {
+                function(ballA, otherBody) {
+                    if (otherBody === ballA) return;
+                    const multiplier = 1e-6;
                     return {
-                        x: (bodyA.position.x - bodyB.position.x) * 1e-6,
-                        y: (bodyA.position.y - bodyB.position.y) * 1e-6,
+                        x: (ballA.position.x - otherBody.position.x) * multiplier,
+                        y: (ballA.position.y - otherBody.position.y) * multiplier
                     };
                 }
             ]
         }
-
     });
     let ballB = Bodies.circle(cx + 25, cy, 20, {
         restitution: 0.5,
@@ -668,11 +668,18 @@ function spawnCustomDefaults(config) {
         }
     });
     Composite.add(world, [ballA, ballB]);
-
+    
+    // Attach ballA's image and change its color via CSS filter
     attachImageToBody(ballA, "images/specials/ball.png", 40, 40);
+    const ballAMapping = imageMappings.find(mapping => mapping.body === ballA);
+    if (ballAMapping && ballAMapping.elem) {
+        // Change hue and saturation for ballA (adjust filter value as desired)
+        ballAMapping.elem.style.filter = "hue-rotate(90deg) saturate(3)";
+    }
+    
+    // Attach ballB's image normally
     attachImageToBody(ballB, "images/specials/ball.png", 40, 40);
 
-    // Additional objects (e.g. hoop + more balls) can be spawned here if needed
     if (config.spawnOnPage && config.spawnOnPage.pageName === page) {
         document.querySelector("main").style.overflow = "hidden";
         addManyBalls(config.spawnOnPage.ballCount || 0);
