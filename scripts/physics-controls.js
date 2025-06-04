@@ -22,9 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2) Roof toggle
   roofcollision.addEventListener('click', () => {
-    if (roofcollision.checked) {
+    addRoofCollider(roofcollision.checked);
+  });
+
+  function addRoofCollider(isChecked) {
+    if (isChecked) {
       addRoofCollider();
     }
     else if (window.roofBody) {
@@ -35,8 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       console.warn("No roof found to remove (window.roofBody is null).");
     }
-  });
-
+  }
   // 3) Sleep toggle
   sleepToggle.addEventListener('change', () => {
     engine.enableSleeping = sleepToggle.checked;

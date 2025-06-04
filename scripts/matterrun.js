@@ -1,5 +1,3 @@
-Matter.use(MatterAttractors);
-
 // ---------- 1) Collision‐category constants (you can add more as needed) ----------
 const CATEGORY_NONE = 0x0000;
 const CATEGORY_HOOP = 0x0001;
@@ -31,6 +29,9 @@ var Engine = Matter.Engine,
     Events = Matter.Events,
     Vector = Matter.Vector,
     Sleeping = Matter.Sleeping;
+
+Matter.use(MatterAttractors);
+
 
 var engine = (page === "about")
     ? Engine.create({ enableSleeping: true })
@@ -629,25 +630,34 @@ function setupCollisionHandlers() {
 
 // 5.8) “Default” custom objects that run inside enableMatter (previously your addObjects())
 function spawnCustomDefaults(config) {
+    world.gravity.scale = 0;
+
     let mainElem = document.querySelector("main");
     // Use offsetLeft/offsetTop and clientWidth/clientHeight so that
     // the center is computed in document coordinates regardless of scroll.
     let cx = mainElem.offsetLeft + (mainElem.clientWidth / 2);
     let cy = mainElem.offsetTop + (mainElem.clientHeight / 2);
 
-    // Define x and y for the ball (center)
-    let x = cx;
-    let y = cy;
-
     // 5.8.1) Two balls joined by a spring:
-    let ballA = Bodies.circle(cx - 25, cy, 20, {
+    let ballA = Bodies.circle(cx - 25, cy, 200, {
+        mass: 15,
         restitution: 0.5,
         friction: 0.1,
         collisionFilter: {
             category: CATEGORY_MAP.BALL,
             mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER | CATEGORY_MAP.HOOP | CATEGORY_MAP.CAT
+        },
+        plugin: {
+            attractors: [
+                function (bodyA, bodyB) {
+                    return {
+                        x: (bodyA.position.x - bodyB.position.x) * 1e-6,
+                        y: (bodyA.position.y - bodyB.position.y) * 1e-6,
+                    };
+                }
+            ]
         }
-        
+
     });
     let ballB = Bodies.circle(cx + 25, cy, 20, {
         restitution: 0.5,
@@ -1096,6 +1106,8 @@ function addRoofCollider() {
     window.roofBody = roofBody;
     devLog("Roof added", roofBody);
 }
+
+addRoofCollider();
 
 // After your world is created, add a floor collider based on the document body height:
 const floorHeight = 50; // adjust as needed

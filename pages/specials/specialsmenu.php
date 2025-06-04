@@ -56,7 +56,7 @@
     </div>
     <div>
         <label class="special-switch">
-            <input id="roofcollision" type="checkbox">
+            <input id="roofcollision" checked type="checkbox">
             <span class="special-slider"></span>
         </label>
         <h2>Roof collision</h2>
