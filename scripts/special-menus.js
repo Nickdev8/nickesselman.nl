@@ -6,27 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkbox = document.getElementById('checkbox');
   const mutebutton = document.getElementById('muteicon');
   const menu = document.getElementById('specials-menu');
+  const ravemode = document.getElementById('ravemode');
+  const devmode = document.getElementById('devModeToggle');
 
   const whatobjects = [menu, duckbox];
-  const allmenuitems = document.querySelectorAll('.overlay-menu')
-
-  // Restore saved toggle states (localStorage stores only strings)
-  // if (localStorage.getItem('physToggle')) {
-  //   physToggle.checked = localStorage.getItem('physToggle') === 'true';
-  //   if (physToggle.checked) {
-  //     gsap.to(specialPhysics, { duration: 2, autoAlpha: 1 });
-  //     gsap.to(mutebutton, { duration: 2, autoAlpha: 1 });
-  //     specialPhysics.style.display = 'unset';
-  //     mutebutton.style.display = 'unset';
-  //     enableMatter(physicsConfig);
-  //   }
-  // }
-
-  if (localStorage.getItem('blindmode')) {
-    blindmode.checked = localStorage.getItem('blindmode') === 'true';
-    const body = document.querySelector('body');
-    body.style.fontFamily = blindmode.checked ? 'Braille, sans-serif' : '';
-  }
+  const allmenuitems = document.querySelectorAll('.overlay-menu');
 
   // ---- MENU TOGGLE (GSAP) ----
   checkbox.addEventListener('change', () => {
@@ -59,6 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  devmode.addEventListener('click', () => {
+    document.querySelectorAll('*').forEach(el => {
+      if (devmode.checked) {
+      el.classList.add('dev-border');
+      }
+      else {
+        el.classList.remove('dev-border');
+      }
+    });
+  });
   // ---- StartSim (GSAP) ----
   physToggle.addEventListener('click', () => {
     localStorage.setItem('physToggle', physToggle.checked);
@@ -81,11 +75,73 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  blindmode.addEventListener('change', () => {
-    localStorage.setItem('blindmode', blindmode.checked);
-    const body = document.querySelector('body');
-    body.style.fontFamily = blindmode.checked ? 'Braille, sans-serif' : '';
+  whattochangetowhat = [
+    { from: 'sp-rave', to: 'raveactive' },
+    { from: 'card', to: 'raveactive' }
+  ];
+
+  // ---- LocalStorage Checkbox Array for automatic state handling ----
+  const toggledCheckboxes = [
+    {
+      element: ravemode,
+      storageKey: 'ravemode',
+      updateUI: (checked) => {
+        whattochangetowhat.forEach(change => {
+          document.querySelectorAll(`.${change.from}`).forEach(el => {
+            if (checked) {
+              el.classList.add(change.to);
+            } else {
+              el.classList.remove(change.to);
+            }
+          });
+        });
+        // Include /pages/specials/rave.php when ravemode is checked; remove when unchecked.
+        if (checked) {
+          let raveContainer = document.getElementById('ravemode-container');
+          if (!raveContainer) {
+            raveContainer = document.createElement('div');
+            raveContainer.id = 'ravemode-container';
+            document.body.insertAdjacentElement('afterbegin', raveContainer);
+          }
+          fetch('/pages/specials/rave.php')
+            .then(response => response.text())
+            .then(text => {
+              raveContainer.innerHTML = text;
+            })
+            .catch(error => console.error('Error loading rave.php:', error));
+        } else {
+          const raveContainer = document.getElementById('ravemode-container');
+          if (raveContainer) {
+            raveContainer.remove();
+          }
+        }
+      }
+    },
+    {
+      element: blindmode,
+      storageKey: 'blindmode',
+      updateUI: (checked) => {
+        const body = document.querySelector('body');
+        body.style.fontFamily = checked ? 'Braille, sans-serif' : '';
+      }
+    }
+  ];
+
+  toggledCheckboxes.forEach(toggle => {
+    if (localStorage.getItem(toggle.storageKey) !== null) {
+      toggle.element.checked = localStorage.getItem(toggle.storageKey) === 'true';
+      if (typeof toggle.updateUI === 'function') {
+        toggle.updateUI(toggle.element.checked);
+      }
+    }
+    toggle.element.addEventListener('click', () => {
+      localStorage.setItem(toggle.storageKey, toggle.element.checked);
+      if (typeof toggle.updateUI === 'function') {
+        toggle.updateUI(toggle.element.checked);
+      }
+    });
   });
+
 
 
   if (physToggle.checked) {
@@ -103,6 +159,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- INIT AOS (after any DOM tweaks) ----
   AOS.init();
-
 
 });

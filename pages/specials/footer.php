@@ -6,7 +6,7 @@
       ?>
   <div class="footer-content container">
     <div class="footer-left">
-      <img src="/images/logo_transparent.png" alt="Nick Esselman Logo" class="footer-logo">
+      <img src="/images/logo_transparent.png" alt="Nick Esselman Logo" class="logo footer-logo">
       <span>&copy; <?php echo date('Y'); ?> Nick Esselman</span>
       <a href="?page=contact" class="footer-contact">Contact</a>
     </div>

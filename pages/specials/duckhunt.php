@@ -66,7 +66,7 @@
     }
 </style>
 
-<div id="duckhunt-card" class="physics-fixed">
+<div id="duckhunt-card" class="sp-rave physics-fixed">
     <h2>Duck</h2>
     <div id="duckbox">
         <button id="duckbutton"></button>

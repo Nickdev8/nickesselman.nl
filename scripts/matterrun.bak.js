@@ -762,17 +762,12 @@ function createConfetti(x, y, count, disappearChance = 0, lifespanMs = 0) {
         div.style.transformOrigin = 'center center';
         document.body.appendChild(div);
 
-        // Track for syncing
         imageMappings.push({ elem: div, body: confBody, x0: x, y0: y });
 
-        // Maybe auto‐remove
         if (disappearChance > 0 && Math.random() < disappearChance) {
             setTimeout(() => {
-                // remove physics body
                 Matter.World.remove(world, confBody);
-                // remove DOM
                 div.remove();
-                // remove mapping
                 const idx = imageMappings.findIndex(m => m.body === confBody);
                 if (idx !== -1) imageMappings.splice(idx, 1);
             }, lifespanMs);
@@ -801,15 +796,12 @@ function spawnGlobalConfetti(count, disappearChance, lifespanMs) {
 
 function ballWentThroughHoop(otherBody) {
 
-    // Try to find and remove matching DOM element
     const index = imageMappings.findIndex(m => m.body === otherBody);
     if (index !== -1) {
-        // Always try to remove physics body
         Matter.Composite.remove(world, otherBody);
 
         const elem = imageMappings[index].elem;
 
-        // Safety: remove DOM node if it's still in the tree
         if (elem && elem.parentNode) {
             elem.parentNode.removeChild(elem);
         }
@@ -818,10 +810,8 @@ function ballWentThroughHoop(otherBody) {
         imageMappings.splice(index, 1);
     }
 
-    // Confetti burst at the sensor
     const p = hoopSensor.position;
     createConfetti(p.x, p.y, 10, 0.5, 1000);
-    // spawnGlobalConfetti(50, 0.5, 1000); commented out for lag :)
     if (Math.random() < 0.5) {
         addManyBalls(Math.floor(Math.random() * 3) + 1);
     }

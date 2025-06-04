@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Konami code: ↑↑↓↓←→←→ (also dev mode)
 (function () {
-    var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39]; //66, 65 BA
+    var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39];
     var konamiIndex = 0;
 
     document.addEventListener('keydown', function (e) {
@@ -43,19 +43,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log("Konami code activated – Dev mode toggled to", window.devMode ? "ON" : "OFF");
 
                 const devToggle = document.getElementById('devModeToggle');
-                if (devToggle) devToggle.checked = window.devMode;
+                if (devToggle)
+                    devToggle.checked = window.devMode;
 
                 const devOverlay = document.getElementById('devView');
                 if (devOverlay) {
                     devOverlay.style.display = window.devMode ? "block" : "none";
                 }
+
                 konamiIndex = 0;
             }
         } else {
             konamiIndex = 0;
         }
 
-        // switch gravity
         if (physToggle.checked && arrowgravity.checked) {
             switch (e.key) {
                 case 'ArrowUp':
@@ -79,8 +80,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
-
-
-
 })();

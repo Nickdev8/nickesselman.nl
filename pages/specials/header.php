@@ -10,7 +10,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'null';
        }
      ?>>
     <a href="index.php" class="logo">
-      <img src="./images/logo_transparent.png" alt="Logo" />
+      <img src="./images/logo_transparent.png" class="logo" alt="Logo" />
     </a>
     <ul class="nav-links">
       <li><a href="?page=home">Home</a></li>

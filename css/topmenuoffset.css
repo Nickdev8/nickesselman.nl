@@ -43,3 +43,14 @@
     width: 20rem;
     height: 20rem;
 }
+
+/* the actual hight is set in css/rave.css in 
+[data-aos="fall-down"].aos-animate */
+#discoball1{
+    top: -64rem;
+    left: 6rem;
+}
+#discoball2{
+    top: -64rem;
+    right: 6rem;
+}

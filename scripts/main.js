@@ -1,3 +1,4 @@
+//old, for random smilies
 const emoticons = [
   ":)",   // smile
   ":-)",  // smile (nose)

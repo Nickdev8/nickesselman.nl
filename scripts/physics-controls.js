@@ -1,7 +1,3 @@
-// physics-controls.js
-
-// (Make sure Matter.* and your physicsConfig are already loaded.)
-
 document.addEventListener('DOMContentLoaded', () => {
   const roofcollision = document.getElementById('roofcollision');
   const sleepToggle = document.getElementById('sleepToggle');
@@ -39,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.warn("No roof found to remove (window.roofBody is null).");
     }
   }
-  // 3) Sleep toggle
+  //  Sleep toggle
   sleepToggle.addEventListener('change', () => {
     engine.enableSleeping = sleepToggle.checked;
 
@@ -51,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     } else {
-      // Reset sleep‐counters so bodies can go to sleep afresh
+      // Reset sleep‐counters so bodies can go to sleep
       Composite.allBodies(world).forEach(body => {
         body.sleepCounter = 0;
       });

@@ -632,7 +632,6 @@ function setupCollisionHandlers() {
 
 // 5.8) “Default” custom objects that run inside enableMatter (previously your addObjects())
 function spawnCustomDefaults(config) {
-    world.gravity.scale = 0;
     let mainElem = document.querySelector("main");
     let cx = mainElem.offsetLeft + (mainElem.clientWidth / 2);
     let cy = mainElem.offsetTop + (mainElem.clientHeight / 2);
@@ -650,7 +649,7 @@ function spawnCustomDefaults(config) {
             attractors: [
                 function(ballA, otherBody) {
                     if (otherBody === ballA) return;
-                    const multiplier = 1e-6;
+                    const multiplier = 4e-6;
                     return {
                         x: (ballA.position.x - otherBody.position.x) * multiplier,
                         y: (ballA.position.y - otherBody.position.y) * multiplier
@@ -669,7 +668,6 @@ function spawnCustomDefaults(config) {
     });
     Composite.add(world, [ballA, ballB]);
     
-    // Attach ballA's image and change its color via CSS filter
     attachImageToBody(ballA, "images/specials/ball.png", 40, 40);
     const ballAMapping = imageMappings.find(mapping => mapping.body === ballA);
     if (ballAMapping && ballAMapping.elem) {

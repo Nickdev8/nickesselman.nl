@@ -1,4 +1,4 @@
-<div class="split objectToMoreToTheBackClasses separator container">
+<div class="split objectToMoreToTheBackClasses separator" style="margin: 0 10rem;">
     <div class="card container physics radibarcontainer small">
         <h2 class="headline">Nick Esselman</h2> <br><br>
         <div class="radial-bar">
@@ -22,45 +22,50 @@
     </div>
 
 
-    <div class="card objectToMoreToTheBackClasses container">
+    <div class="card wide objectToMoreToTheBackClasses container">
         <div class="physics physics-add-card" style="!important;width:fit-content; align-items:start;">
             <h2 class="headline parentonlypaddingwhenphysicsisactive">My story</h2>
         </div>
-        <!-- class="physics physics-add-card" -->
-        <div class="onlyspans">
-            <p class="objectToMoreToTheBackClasses onlyspans">
-                I am
-                <span class="physics">Coding for
-                    <?= floor((time() - strtotime('2017-09-02')) / (365.25 * 24 * 60 * 60) * 100) / 100; ?> years
-                    now.</span>
-                I stared back when i was 9.
-                <span class="physics">I learned on my own.</span>
-                by trial and error. And did this for a few years.
-                <br><br>
-                After high school I went to <span class="physics">Media College Amsterdam.</span> to <span
-                    class="physics">Study: full stack development.</span><br>
-                And in the first year <span class="physics">I joined HackClub, now
-                    <?= floor((time() - strtotime('2024-12-18')) / ((365.25 / 12) * 24 * 60 * 60) * 100) / 100; ?> months
-                    ago.</span>
-                where i experienced a lot fun of new things. For example,
-                <a href="?project=juice">juice!</a>
-                <br><br>
-                its worth your time to read if you are someone or know someone that has even the slightest interest in
-                coding. (and is below <strong>18</strong>)
-                <br>
-                At HackClub i met some incredible people and i went on trips to places like Shanghai and San Francisco.
-                Everything was paid for by HackClub.
-            </p>
-        </div>
+        <div class="split">
+            <!-- class="physics physics-add-card" -->
+            <div class="onlyspans">
+                <p class="objectToMoreToTheBackClasses onlyspans">
+                    I am
+                    <span class="physics">Coding for
+                        <?= floor((time() - strtotime('2017-09-02')) / (365.25 * 24 * 60 * 60) * 100) / 100; ?> years
+                        now.</span>
+                    I stared back when i was 9.
+                    <span class="physics">I learned on my own.</span>
+                    by trial and error. And did this for a few years.
+                    <br><br>
+                    After high school I went to <span class="physics">Media College Amsterdam.</span> to <span
+                        class="physics">Study: full stack development.</span><br>
+                    And in the first year <span class="physics">I joined HackClub, now
+                        <?= floor((time() - strtotime('2024-12-18')) / ((365.25 / 12) * 24 * 60 * 60) * 100) / 100; ?>
+                        months
+                        ago.</span>
+                    where i experienced a lot fun of new things. For example,
+                    <a href="?project=juice">juice</a>!
+                    <br><br>
+                    its worth your time to read if you are someone or know someone that has even the slightest interest
+                    in
+                    coding. (and is below <strong>18</strong>)
+                    <br>
+                    At HackClub i met some incredible people and i went on trips to places like Shanghai and San
+                    Francisco.
+                    Everything was paid for by HackClub.
+                </p>
+            </div>
 
-        <div class="right objectToMoreToTheBackClasses"
-            style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.125); border-radius: 1rem; padding:2rem 2rem; height: fit-content;">
-            <?php
-            include 'pages/specials/alltheprogramingluangages.html';
-            ?>
+            <div class="right objectToMoreToTheBackClasses"
+                style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.125); border-radius: 1rem; padding:2rem 2rem; max-width: 40rem; width: fit-content;">
+                <?php
+                include 'pages/specials/alltheprogramingluangages.html';
+                ?>
 
-            <style>
-            </style>
+                <style>
+                </style>
+            </div>
         </div>
     </div>
 </div>
