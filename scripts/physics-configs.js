@@ -1,5 +1,5 @@
 const physicsConfig = {
-    gravity: { x: 0, y: 1 },
+    gravity: { x: 0, y: 0 },
 
     dynamicSelectors: [
         {

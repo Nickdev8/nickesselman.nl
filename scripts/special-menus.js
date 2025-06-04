@@ -8,18 +8,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const menu = document.getElementById('specials-menu');
 
   const whatobjects = [menu, duckbox];
+  const allmenuitems = document.querySelectorAll('.overlay-menu')
 
   // Restore saved toggle states (localStorage stores only strings)
-  if (localStorage.getItem('physToggle')) {
-    physToggle.checked = localStorage.getItem('physToggle') === 'true';
-    if (physToggle.checked) {
-      gsap.to(specialPhysics, { duration: 2, autoAlpha: 1 });
-      gsap.to(mutebutton, { duration: 2, autoAlpha: 1 });
-      specialPhysics.style.display = 'unset';
-      mutebutton.style.display = 'unset';
-      enableMatter(physicsConfig);
-    }
-  }
+  // if (localStorage.getItem('physToggle')) {
+  //   physToggle.checked = localStorage.getItem('physToggle') === 'true';
+  //   if (physToggle.checked) {
+  //     gsap.to(specialPhysics, { duration: 2, autoAlpha: 1 });
+  //     gsap.to(mutebutton, { duration: 2, autoAlpha: 1 });
+  //     specialPhysics.style.display = 'unset';
+  //     mutebutton.style.display = 'unset';
+  //     enableMatter(physicsConfig);
+  //   }
+  // }
 
   if (localStorage.getItem('blindmode')) {
     blindmode.checked = localStorage.getItem('blindmode') === 'true';
@@ -29,22 +30,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- MENU TOGGLE (GSAP) ----
   checkbox.addEventListener('change', () => {
-    localStorage.setItem('checkbox', checkbox.checked);
     if (checkbox.checked) {
       whatobjects.forEach(obj => {
-        obj.style.display = 'unset';
-        gsap.to(obj, { duration: 0.2, autoAlpha: 1 });
+        gsap.to(obj, {
+          duration: 0.2,
+          autoAlpha: 1,
+          onStart: () => { obj.classList.remove('inactive'); }
+        });
       });
     } else if (physToggle.checked) {
       whatobjects.forEach(obj => {
-        obj.style.display = 'unset';
-        gsap.to(obj, { duration: 0.2, autoAlpha: 0.5 });
+        gsap.to(obj, {
+          duration: 0.2,
+          autoAlpha: 0.5,
+          onStart: () => { obj.classList.remove('inactive'); }
+        });
       });
     } else {
       whatobjects.forEach(obj => {
         gsap.to(obj, {
-          duration: 0.2, autoAlpha: 0,
-          onComplete: () => { obj.style.display = 'none'; }
+          duration: 0.2,
+          autoAlpha: 0,
+          onComplete: () => {
+            obj.classList.add('overlay-menu', 'inactive');
+          }
         });
       });
     }
@@ -54,10 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
   physToggle.addEventListener('click', () => {
     localStorage.setItem('physToggle', physToggle.checked);
     if (physToggle.checked) {
-      gsap.to(specialPhysics, { duration: 2, autoAlpha: 1 });
-      gsap.to(mutebutton, { duration: 2, autoAlpha: 1 });
-      specialPhysics.style.display = 'unset';
-      mutebutton.style.display = 'unset';
+      specialPhysics.style.opacity = 1;
+      mutebutton.style.opacity = 1;
+      specialPhysics.classList.remove('inactive');
+      mutebutton.classList.remove('inactive');
       enableMatter(physicsConfig);
     } else {
       location.reload();
@@ -72,13 +81,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   if (physToggle.checked) {
-    whatobjects.forEach(obj => {
-      if (obj.style.opacity == 0)
+    objectsopenonmenuclick.forEach(obj => {
+      if (obj.style.opacity == 0) {
         obj.style.opacity = 1;
-
+      }
     });
   }
+  allmenuitems.forEach(obj => {
+    if (parseFloat(window.getComputedStyle(obj).opacity) === 0) {
+      obj.classList.add('inactive');
+    }
+  });
 
   // ---- INIT AOS (after any DOM tweaks) ----
   AOS.init();
+
+
 });

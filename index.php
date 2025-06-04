@@ -15,7 +15,6 @@ $versionnum = "1.1.0";
     <title><?= $_GET['page'] ?></title>
     <link rel="stylesheet" href="https://css.hackclub.com/theme.css">
     <link rel="icon" type="image/png" href="./images/logo.png">
-    <script type="module" src="scripts/loadmoreimages.js" defer></script>
 
     <!-- libs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -32,6 +31,7 @@ $versionnum = "1.1.0";
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/matter-dom-plugin@1.0.0/build/matter-dom-plugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/matter-attractors@0.1.6/build/matter-attractors.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJk2+m3pvpvVzKDh4jHzKx3v57B+8H0E2eX+E=" crossorigin="anonymous"></script>
@@ -51,10 +51,7 @@ $versionnum = "1.1.0";
         ?>
         <link rel="stylesheet" href="<?php echo $cssFile; ?>?v=<?= $versionnum ?>">
     <?php endif;
-
-    if ($page == "home"): ?>
-        <script src="scripts/home.js" defer></script>
-    <?php endif; ?>
+    ?>
 
 </head>
 

@@ -1,3 +1,5 @@
+Matter.use(MatterAttractors);
+
 // ---------- 1) Collision‐category constants (you can add more as needed) ----------
 const CATEGORY_NONE = 0x0000;
 const CATEGORY_HOOP = 0x0001;
@@ -607,10 +609,15 @@ function setupCollisionHandlers() {
             );
             if (relVel < 2.5) return;
             if (bounceSoundCount >= BOUNCE_SOUND_LIMIT_PER_SECOND) return;
+
             let base = document.getElementById("bounceSound");
             if (base) {
                 let clone = base.cloneNode();
-                clone.volume = Math.min(0.9, relVel / 5);
+                let computedVolume = relVel / 5;
+                if (!isFinite(computedVolume)) {
+                    computedVolume = 0;
+                }
+                clone.volume = Math.min(0.9, computedVolume);
                 clone.playbackRate = 0.95 + Math.random() * 0.1;
                 clone.play().catch(() => { });
                 bounceSoundCount++;
@@ -640,6 +647,7 @@ function spawnCustomDefaults(config) {
             category: CATEGORY_MAP.BALL,
             mask: CATEGORY_MAP.PHYSICS | CATEGORY_MAP.BALL | CATEGORY_MAP.CORNER | CATEGORY_MAP.HOOP | CATEGORY_MAP.CAT
         }
+        
     });
     let ballB = Bodies.circle(cx + 25, cy, 20, {
         restitution: 0.5,

@@ -215,6 +215,8 @@ p {
 
 .physics-active {
     transition-duration: unset !important;
+    transition-timing-function: unset !important;   
+    transition-delay: unset !important;
     /* overflow: unset; */
     z-index: 999 !important;
 }
