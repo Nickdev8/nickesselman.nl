@@ -68,6 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
       specialPhysics.classList.remove('inactive');
       mutebutton.classList.remove('inactive');
       enableMatter(physicsConfig);
+
+      // Disable AOS animations:
+      AOS.init({ disable: true });
+      // Optionally, remove the data attribute and animation classes from any AOS element:
+      document.querySelectorAll('[data-aos]').forEach(el => {
+        el.removeAttribute('data-aos');
+        el.classList.remove('aos-init', 'aos-animate');
+      });
     } else {
       location.reload();
     }
