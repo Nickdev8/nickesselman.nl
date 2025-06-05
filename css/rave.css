@@ -22,6 +22,15 @@ button {
     background: aquamarine !important;
 }
 
+#duckbutton {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
+        inset 0 -0.8rem turquoise !important;
+}
+
+#duckbutton:active {
+    box-shadow: inset 0 1rem turquoise !important;
+}
+
 a {
     color: aquamarine !important;
 }
@@ -43,9 +52,11 @@ img:not(.dicoimage):not(.logo) {
 #discoball2 {
     opacity: 1 !important;
 }
-.site-header{
+
+.site-header {
     background: transparent !important;
 }
+
 .inner-main {
     background-color: black !important;
 }
@@ -85,9 +96,50 @@ main {
     height: 100vh;
     z-index: -1;
 }
-.site-footer{
+
+.site-footer {
     z-index: -2 !important;
 }
+
+.cone {
+    width: 0;
+    height: 0;
+    z-index: 1000;
+    opacity: 0.8;
+    position: fixed;
+    top: -4rem;
+    border-left: 20vh solid transparent;
+    border-right: 20vh solid transparent;
+    border-bottom: 120vh solid palevioletred;
+    transform-origin: top center;
+    animation: swing 3s infinite ease-in-out;
+    pointer-events: none !important;
+}
+
+#cone1 {
+    left: 15%;
+}
+
+#cone2 {
+    right: 15%;
+    animation-delay: -1s !important;
+}
+
+@keyframes swing {
+    0% {
+        transform: rotate(15deg);
+    }
+
+    50% {
+        transform: rotate(-15deg);
+    }
+
+    100% {
+        transform: rotate(15deg);
+    }
+}
+
+
 @keyframes danceFloor {
     0% {
         background:

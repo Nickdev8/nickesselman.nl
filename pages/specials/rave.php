@@ -8,3 +8,6 @@
 </div>
 
 <div class="dancefloor"></div>
+
+<div class="cone" id="cone1"></div>
+<div class="cone" id="cone2"></div>
