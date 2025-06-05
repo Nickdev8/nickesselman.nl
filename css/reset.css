@@ -74,7 +74,10 @@ body {
   flex-direction: column;
 }
 main {
+
+  overflow-y: hidden   !important;
   margin-bottom: auto;
+  min-height: 80vh !important;
 }
 
 
@@ -87,8 +90,4 @@ html, body {
   /* always allow vertical scroll, never hide overflow */
   overflow-x: hidden !important;
   overflow-y: auto   !important;
-}
-
-main{
-  overflow-y: hidden   !important;
 }

@@ -36,7 +36,7 @@
             <p>Bartender for almost 1 year.</p>
             <p>Started programming on my own when I was 9. and am now learning more in collage</p>
         </div>
-        <div class="cv-section">
+        <div class="cv-section projects">
             <h2>Projects</h2>
             <ul>
                 <li><strong>HackClub: <a href="/?project=juice">Juice</strong></a> - A 12-day hackathon project in
@@ -52,6 +52,7 @@
                     development using Unity and C#.</li>
                 <li><strong>HackClub: <a href="/?project=highseas">HighSeas</strong></a> - A team event project centered
                     around innovative project deployment.</li>
+            <a href="?page=projects"><button>See more</button></a>
             </ul>
         </div>
         <div class="cv-section iconholder">
@@ -121,7 +122,13 @@
         padding-bottom: 20px;
         margin-bottom: 20px;
     }
-
+    button{
+        background-color: black;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
     .personal-info {
         max-width: 60%;
     }

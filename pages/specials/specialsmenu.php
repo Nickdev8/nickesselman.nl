@@ -3,7 +3,7 @@
 </audio>
 
 <div id="muteicon" class="card overlay-menu physics-fixed">
-    <img id="hoop" src="images/specials/mute.png" unselectable="on" draggable="false" alt="">
+    <img id="muteiconimg" src="images/specials/mute.png" unselectable="on" draggable="false" alt="">
 </div>
 
 <div class="card overlay-menu physics-fixed specials" id="open-specials-menu" style="opacity:1;">
@@ -45,11 +45,18 @@
         </label>
         <h2>Rave/Party mode</h2>
     </div>
+    <div>
+        <label class="special-switch">
+            <input id="rulet" type="checkbox">
+            <span class="special-slider"></span>
+        </label>
+        <h2>Rulet Table</h2>
+    </div>
 </div>
 
-<div class="overlay-menu" id="bigpointyarrow">
+<!-- <div class="overlay-menu" id="bigpointyarrow">
     <img src="images/arrow.png" alt="">
-</div>
+</div> -->
 
 <div class="card overlay-menu physics-fixed specials" id="morephysics-menu">
     <h3 class="headline">Physics Options</h3>
@@ -101,7 +108,6 @@
 
         #muteicon {
             color: white;
-            display: none;
         }
 
         #muteicon img {

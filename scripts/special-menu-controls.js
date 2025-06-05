@@ -1,30 +1,3 @@
-window.devMode = false;
-
-document.addEventListener('DOMContentLoaded', () => {
-    const audio = document.getElementById('bounceSound');
-    const mutebutton = document.getElementById('muteicon');
-    const muteimg = mutebutton.querySelector('img');
-
-    // ---- MUTE / UNMUTE BUTTON ----
-    function updateButton() {
-        if (audio.muted) {
-            muteimg.src = 'images/specials/notmute.png';
-            audio.src = '';
-        } else {
-            muteimg.src = 'images/specials/mute.png';
-            audio.src = 'sounds/bounce.mp3';
-        }
-    }
-
-    mutebutton.addEventListener('click', () => {
-        audio.muted = !audio.muted;
-        updateButton();
-    });
-
-});
-
-
-
 
 // Konami code: ↑↑↓↓←→←→ (also dev mode)
 (function () {
