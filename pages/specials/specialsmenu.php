@@ -2,7 +2,13 @@
     Your browser does not support the audio element.
 </audio>
 
-<div id="muteicon" class="card overlay-menu physics-fixed">
+<div id="muteicon" class="card   const script = document.createElement('script');
+  script.src = 'path/to/your-script.js';
+  script.onload = () => {
+    // Optional: code to run after script loads
+    console.log('Script loaded!');
+  };
+  document.head.appendChild(script); physics-fixed">
     <img id="muteiconimg" src="images/specials/mute.png" unselectable="on" draggable="false" alt="">
 </div>
 
@@ -47,10 +53,10 @@
     </div>
     <div>
         <label class="special-switch">
-            <input id="rulet" type="checkbox">
+            <input id="pong" type="checkbox">
             <span class="special-slider"></span>
         </label>
-        <h2>Rulet Table</h2>
+        <h2>pong Table</h2>
     </div>
 </div>
 

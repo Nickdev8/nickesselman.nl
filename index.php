@@ -62,8 +62,6 @@ $versionnum = "1.1.2";
     ?>
     <main id="inner-main" class="inner-main">
         <?php
-
-
         $page = $_GET['page'] ?? null;
         $project = $_GET['project'] ?? null;
 

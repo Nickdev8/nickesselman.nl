@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const menu = document.getElementById('specials-menu');
   const ravemode = document.getElementById('ravemode');
   const devmode = document.getElementById('devModeToggle');
-  const rulet = document.getElementById('rulet');
+  const pong = document.getElementById('pong');
+  const pongtable = document.getElementById('pongtable');
   const audio = document.getElementById('bounceSound');
   const mutebutton = document.getElementById('muteicon');
   const muteimg = document.getElementById('muteiconimg');
@@ -17,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const whatobjects = [menu, duckbox];
   // const allmenuitems = document.querySelectorAll('.overlay-menu');
 
-  // Objects that should add what class when rave is on
+  // Objects that should add what class whesn rave is on
   whattochangetowhat = [
     { from: 'sp-rave', to: 'raveactive' },
     { from: 'card', to: 'raveactive' }
@@ -28,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
       element: checkbox,
       storageKey: 'mainmenucheckbox',
       remember: false,
-      onstart: true,
       updateUI: (checked) => {
         if (checked) {
           whatobjects.forEach(obj => {
@@ -157,22 +157,52 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     },
     {
-      element: rulet
+      element: pong,
+      storageKey: 'pong',
+      remember: true,
+      updateUI: (checked) => {
+        if (checked) {
+          let pongContainer = document.getElementById('pong-container');
+          if (!pongContainer) {
+            pongContainer = document.createElement('div');
+            pongContainer.id = 'pong-container';
+            document.body.insertAdjacentElement('afterbegin', pongContainer);
+          }
+          fetch('/pages/specials/pongloader.php')
+            .then(response => response.text())
+            .then(text => {
+              pongContainer.innerHTML = text;
+            })
+            .catch(error => console.error('Error loading pong.php:', error));
+        } else {
+          const pongContainer = document.getElementById('pong-container');
+          if (pongContainer) {
+            pongContainer.remove();
+          }
+        }
+      }
     }
   ];
 
   toggledCheckboxes.forEach(toggle => {
     let state;
-    if (toggle.element.tagName === 'INPUT') {
-        state = toggle.element.checked;
+    if (toggle.remember && localStorage.getItem(toggle.storageKey) !== null) {
+        state = localStorage.getItem(toggle.storageKey) === "true";
+        if (toggle.element.tagName === 'INPUT') {
+            toggle.element.checked = state;
+        }
     } else {
-        state = toggle.element.dataset.checked === "true" ? true : false;
+        if (toggle.element.tagName === 'INPUT') {
+            state = toggle.element.checked;
+        } else {
+            state = toggle.element.dataset.checked === "true";
+        }
     }
-    console.log(`Initial state for ${toggle.storageKey}: ${toggle.onstart}`);
-    if (typeof toggle.updateUI === 'function' && toggle.onstart) {
+    
+    if (toggle.remember) {
         toggle.updateUI(state);
-        console.log(`Loaded ${toggle.storageKey} state: ${state}`);
     }
+    
     toggle.element.addEventListener('click', () => {
         if (toggle.element.tagName === 'INPUT') {
             state = toggle.element.checked;
@@ -180,11 +210,12 @@ document.addEventListener('DOMContentLoaded', () => {
             state = !(toggle.element.dataset.checked === "true");
             toggle.element.dataset.checked = state;
         }
+        toggle.updateUI(state);
         if (toggle.remember) {
             localStorage.setItem(toggle.storageKey, state);
-        }
-        if (typeof toggle.updateUI === 'function') {
-            toggle.updateUI(state);
+            if (toggle.element.tagName === 'INPUT') {
+                toggle.element.checked = state;
+            }
         }
     });
   });

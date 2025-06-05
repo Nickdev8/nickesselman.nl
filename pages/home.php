@@ -1,5 +1,3 @@
-<script src="scripts/loadmoreimages.js"></script>
-
 <div class="main-top">
     <!-- <div id="particles-js" style="position:absolute;top:0;left:0;width:100%;height:auto;z-index:1;overflow:hidden;"></div> -->
     <div style="margin:auto; width: fit-content;">
