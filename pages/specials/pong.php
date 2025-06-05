@@ -16,7 +16,8 @@
     #pongtable {
         position: fixed;
         width: 70vw;
-        height: 70vh;
+        max-height: 80vh;
+        height: fit-content;
         top: 0;
         bottom: 0;
         left: 0;
@@ -49,7 +50,7 @@
 
     canvas {
         width: 100%;
-        max-height: 100%;
+        max-height: calc(80vh - 8vh);
 
         background: black;
         display: block;
@@ -60,10 +61,34 @@
 
 <script>
     const canvas = document.getElementById("pongcanvas");
+    const keys = {};
+    let canvasHovered = false;
+
+    // Track mouse hover state on the canvas
+    canvas.addEventListener("mouseenter", () => {
+        canvasHovered = true;
+    });
+    canvas.addEventListener("mouseleave", () => {
+        canvasHovered = false;
+    });
+
+    window.addEventListener("keydown", (e) => {
+        if (canvasHovered && ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+            e.preventDefault();
+        }
+        keys[e.key] = true;
+    });
+
+    window.addEventListener("keyup", (e) => {
+        keys[e.key] = false;
+    });
+
     if (!canvas) {
         console.error("pongCanvas element not found!");
     } else {
+        console.log("pongCanvas element found, initializing game...");
         const ctx = canvas.getContext("2d");
+        const maxBounceAngle = Math.PI / 4; // Define maxBounceAngle (45° in radians)
 
         const paddleWidth = 10,
             paddleHeight = 75;
@@ -84,16 +109,6 @@
                 vx: 3,
                 vy: 3,
             };
-
-        const keys = {};
-
-        window.addEventListener("keydown", (e) => {
-            keys[e.key] = true;
-        });
-
-        window.addEventListener("keyup", (e) => {
-            keys[e.key] = false;
-        });
 
         function update() {
             if (keys["w"] || keys["W"]) {
@@ -126,7 +141,22 @@
                 ball.y + ballSize >= leftPaddle.y &&
                 ball.y <= leftPaddle.y + paddleHeight
             ) {
-                ball.vx = -ball.vx;
+                // Find the collision point:
+                const paddleCenter = leftPaddle.y + paddleHeight / 2;
+                const ballCenter = ball.y + ballSize / 2;
+                const relativeIntersectY = ballCenter - paddleCenter;
+                // Normalize: -1 (top edge) to 1 (bottom edge)
+                const normalizedRelativeIntersectionY = relativeIntersectY / (paddleHeight / 2);
+                // Calculate bounce angle
+                const bounceAngle = normalizedRelativeIntersectionY * maxBounceAngle;
+
+                // Calculate the ball's speed (magnitude)
+                const speed = Math.sqrt(ball.vx * ball.vx + ball.vy * ball.vy);
+                // Reverse X velocity and update with angle
+                ball.vx = speed * Math.cos(bounceAngle);
+                ball.vy = speed * Math.sin(bounceAngle);
+
+                // Adjust ball.x to avoid sticking to the paddle
                 ball.x = leftPaddle.x + paddleWidth;
             }
 
@@ -135,7 +165,22 @@
                 ball.y + ballSize >= rightPaddle.y &&
                 ball.y <= rightPaddle.y + paddleHeight
             ) {
-                ball.vx = -ball.vx;
+                // Find the collision point:
+                const paddleCenter = rightPaddle.y + paddleHeight / 2;
+                const ballCenter = ball.y + ballSize / 2;
+                const relativeIntersectY = ballCenter - paddleCenter;
+                // Normalize: -1 (top edge) to 1 (bottom edge)
+                const normalizedRelativeIntersectionY = relativeIntersectY / (paddleHeight / 2);
+                // Calculate bounce angle
+                const bounceAngle = normalizedRelativeIntersectionY * maxBounceAngle;
+
+                // Calculate the ball's speed (magnitude)
+                const speed = Math.sqrt(ball.vx * ball.vx + ball.vy * ball.vy);
+                // Reverse X velocity (ball now heads left) and adjust with angle
+                ball.vx = -speed * Math.cos(bounceAngle);
+                ball.vy = speed * Math.sin(bounceAngle);
+
+                // Adjust ball.x to avoid sticking to the paddle
                 ball.x = rightPaddle.x - ballSize;
             }
 

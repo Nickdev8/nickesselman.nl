@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const ravemode = document.getElementById('ravemode');
   const devmode = document.getElementById('devModeToggle');
   const pong = document.getElementById('pong');
-  const pongtable = document.getElementById('pongtable');
   const audio = document.getElementById('bounceSound');
   const mutebutton = document.getElementById('muteicon');
   const muteimg = document.getElementById('muteiconimg');
@@ -137,8 +136,16 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.text())
             .then(text => {
               raveContainer.innerHTML = text;
+              // Find and run inline scripts
+              const scripts = raveContainer.querySelectorAll('script');
+              scripts.forEach(oldScript => {
+                const newScript = document.createElement('script');
+                newScript.text = oldScript.text;
+                document.body.appendChild(newScript);
+                document.body.removeChild(newScript);
+              });
             })
-            .catch(error => console.error('Error loading rave.php:', error));
+            .catch(error => console.error('Error loading pong.php:', error));
         } else {
           const raveContainer = document.getElementById('ravemode-container');
           if (raveContainer) {
@@ -168,10 +175,18 @@ document.addEventListener('DOMContentLoaded', () => {
             pongContainer.id = 'pong-container';
             document.body.insertAdjacentElement('afterbegin', pongContainer);
           }
-          fetch('/pages/specials/pongloader.php')
+          fetch('/pages/specials/pong.php')
             .then(response => response.text())
             .then(text => {
               pongContainer.innerHTML = text;
+              // Find and run inline scripts
+              const scripts = pongContainer.querySelectorAll('script');
+              scripts.forEach(oldScript => {
+                const newScript = document.createElement('script');
+                newScript.text = oldScript.text;
+                document.body.appendChild(newScript);
+                document.body.removeChild(newScript);
+              });
             })
             .catch(error => console.error('Error loading pong.php:', error));
         } else {
@@ -187,36 +202,36 @@ document.addEventListener('DOMContentLoaded', () => {
   toggledCheckboxes.forEach(toggle => {
     let state;
     if (toggle.remember && localStorage.getItem(toggle.storageKey) !== null) {
-        state = localStorage.getItem(toggle.storageKey) === "true";
-        if (toggle.element.tagName === 'INPUT') {
-            toggle.element.checked = state;
-        }
+      state = localStorage.getItem(toggle.storageKey) === "true";
+      if (toggle.element.tagName === 'INPUT') {
+        toggle.element.checked = state;
+      }
     } else {
-        if (toggle.element.tagName === 'INPUT') {
-            state = toggle.element.checked;
-        } else {
-            state = toggle.element.dataset.checked === "true";
-        }
+      if (toggle.element.tagName === 'INPUT') {
+        state = toggle.element.checked;
+      } else {
+        state = toggle.element.dataset.checked === "true";
+      }
     }
-    
+
     if (toggle.remember) {
-        toggle.updateUI(state);
+      toggle.updateUI(state);
     }
-    
+
     toggle.element.addEventListener('click', () => {
+      if (toggle.element.tagName === 'INPUT') {
+        state = toggle.element.checked;
+      } else {
+        state = !(toggle.element.dataset.checked === "true");
+        toggle.element.dataset.checked = state;
+      }
+      toggle.updateUI(state);
+      if (toggle.remember) {
+        localStorage.setItem(toggle.storageKey, state);
         if (toggle.element.tagName === 'INPUT') {
-            state = toggle.element.checked;
-        } else {
-            state = !(toggle.element.dataset.checked === "true");
-            toggle.element.dataset.checked = state;
+          toggle.element.checked = state;
         }
-        toggle.updateUI(state);
-        if (toggle.remember) {
-            localStorage.setItem(toggle.storageKey, state);
-            if (toggle.element.tagName === 'INPUT') {
-                toggle.element.checked = state;
-            }
-        }
+      }
     });
   });
 

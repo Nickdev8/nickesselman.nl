@@ -49,14 +49,14 @@
             <input id="ravemode" type="checkbox">
             <span class="special-slider"></span>
         </label>
-        <h2>Rave/Party mode</h2>
+        <h2>Party mode</h2>
     </div>
     <div>
         <label class="special-switch">
             <input id="pong" type="checkbox">
             <span class="special-slider"></span>
         </label>
-        <h2>pong Table</h2>
+        <h2>Pong</h2>
     </div>
 </div>
 
