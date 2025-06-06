@@ -195,35 +195,39 @@
 
 <script>
     const canvas = document.getElementById("pongcanvas");
-    const speedslider = document.getElementById("speedslider");// At the top of your <script> tag, add:
-    const bounceSound = new Audio('sounds/bounceoffwall.mp3');
-    const deathSound = new Audio('sounds/hit.mp3');
-    const keys = {};
-    let canvasHovered = false;
-
-    canvas.addEventListener("mouseenter", () => {
-        canvasHovered = true;
-    });
-    canvas.addEventListener("mouseleave", () => {
-        canvasHovered = false;
-    });
-
-    window.addEventListener("keydown", (e) => {
-        if (canvasHovered && ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-            e.preventDefault();
-        }
-        keys[e.key] = true;
-    });
-
-    window.addEventListener("keyup", (e) => {
-        keys[e.key] = false;
-    });
-
     if (!canvas) {
-        console.error("pongCanvas element not found!");
+        console.error("pongCanvas element not found. Aborting game and deleting pong container.");
+        const pongContainer = document.getElementById("pong-container");
+        if (pongContainer) {
+            pongContainer.remove();
+        }
     } else {
         console.log("pongCanvas element found, initializing game...");
         const ctx = canvas.getContext("2d");
+        const speedslider = document.getElementById("speedslider");
+        const bounceSound = new Audio('sounds/bounceoffwall.mp3');
+        const deathSound = new Audio('sounds/hit.mp3');
+        const keys = {};
+        let canvasHovered = false;
+    
+        canvas.addEventListener("mouseenter", () => {
+            canvasHovered = true;
+        });
+        canvas.addEventListener("mouseleave", () => {
+            canvasHovered = false;
+        });
+    
+        window.addEventListener("keydown", (e) => {
+            if (canvasHovered && ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+                e.preventDefault();
+            }
+            keys[e.key] = true;
+        });
+    
+        window.addEventListener("keyup", (e) => {
+            keys[e.key] = false;
+        });
+    
         const maxBounceAngle = Math.PI / 4;
 
         const paddleWidth = 10;

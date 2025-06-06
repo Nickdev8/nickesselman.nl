@@ -171,31 +171,31 @@ document.addEventListener('DOMContentLoaded', () => {
       remember: false,
       updateUI: (checked) => {
         if (checked) {
-          let pongContainer = document.getElementById('pong-container');
-          if (!pongContainer) {
-            pongContainer = document.createElement('div');
-            pongContainer.id = 'pong-container';
-            document.body.insertAdjacentElement('afterbegin', pongContainer);
-          }
-          fetch('/pages/specials/pong.php')
-            .then(response => response.text())
-            .then(text => {
-              pongContainer.innerHTML = text;
-              // Find and run inline scripts
-              const scripts = pongContainer.querySelectorAll('script');
-              scripts.forEach(oldScript => {
-                const newScript = document.createElement('script');
-                newScript.text = oldScript.text;
-                document.body.appendChild(newScript);
-                document.body.removeChild(newScript);
-              });
-            })
-            .catch(error => console.error('Error loading pong.php:', error));
+            let pongContainer = document.getElementById('pong-container');
+            if (!pongContainer) {
+                pongContainer = document.createElement('div');
+                pongContainer.id = 'pong-container';
+                document.body.insertAdjacentElement('afterbegin', pongContainer);
+            }
+            fetch('/pages/specials/pong.php')
+                .then(response => response.text())
+                .then(text => {
+                    pongContainer.innerHTML = text;
+                    const scripts = pongContainer.querySelectorAll('script');
+                    scripts.forEach(oldScript => {
+                        const newScript = document.createElement('script');
+                        newScript.text = oldScript.text;
+                        document.body.appendChild(newScript);
+                        document.body.removeChild(newScript);
+                    });
+                })
+                .catch(error => console.error('Error loading pong.php:', error));
         } else {
-          const pongContainer = document.getElementById('pong-container');
-          if (pongContainer) {
-            pongContainer.remove();
-          }
+            const pongContainer = document.getElementById('pong-container');
+            if (pongContainer) {
+                pongContainer.innerHTML = '';
+                pongContainer.remove();
+            }
         }
       }
     }
