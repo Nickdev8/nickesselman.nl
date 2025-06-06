@@ -95,7 +95,25 @@ document.addEventListener('DOMContentLoaded', () => {
             el.classList.remove('aos-init', 'aos-animate');
           });
         } else {
-          location.reload();
+          let lavaContainer = document.getElementById('lava-container');
+          if (!lavaContainer) {
+            lavaContainer = document.createElement('div');
+            lavaContainer.id = 'lava-container';
+            document.body.insertAdjacentElement('afterbegin', lavaContainer);
+          }
+          fetch('/pages/specials/lavatodestroyphysics.php')
+            .then(response => response.text())
+            .then(text => {
+              lavaContainer.innerHTML = text;
+              const scripts = lavaContainer.querySelectorAll('script');
+              scripts.forEach(oldScript => {
+                const newScript = document.createElement('script');
+                newScript.text = oldScript.text;
+                document.body.appendChild(newScript);
+                document.body.removeChild(newScript);
+              });
+            })
+            .catch(error => console.error('Error loading lavatodestroyphysics.php:', error));
         }
       }
     },
@@ -171,31 +189,31 @@ document.addEventListener('DOMContentLoaded', () => {
       remember: false,
       updateUI: (checked) => {
         if (checked) {
-            let pongContainer = document.getElementById('pong-container');
-            if (!pongContainer) {
-                pongContainer = document.createElement('div');
-                pongContainer.id = 'pong-container';
-                document.body.insertAdjacentElement('afterbegin', pongContainer);
-            }
-            fetch('/pages/specials/pong.php')
-                .then(response => response.text())
-                .then(text => {
-                    pongContainer.innerHTML = text;
-                    const scripts = pongContainer.querySelectorAll('script');
-                    scripts.forEach(oldScript => {
-                        const newScript = document.createElement('script');
-                        newScript.text = oldScript.text;
-                        document.body.appendChild(newScript);
-                        document.body.removeChild(newScript);
-                    });
-                })
-                .catch(error => console.error('Error loading pong.php:', error));
+          let pongContainer = document.getElementById('pong-container');
+          if (!pongContainer) {
+            pongContainer = document.createElement('div');
+            pongContainer.id = 'pong-container';
+            document.body.insertAdjacentElement('afterbegin', pongContainer);
+          }
+          fetch('/pages/specials/pong.php')
+            .then(response => response.text())
+            .then(text => {
+              pongContainer.innerHTML = text;
+              const scripts = pongContainer.querySelectorAll('script');
+              scripts.forEach(oldScript => {
+                const newScript = document.createElement('script');
+                newScript.text = oldScript.text;
+                document.body.appendChild(newScript);
+                document.body.removeChild(newScript);
+              });
+            })
+            .catch(error => console.error('Error loading pong.php:', error));
         } else {
-            const pongContainer = document.getElementById('pong-container');
-            if (pongContainer) {
-                pongContainer.innerHTML = '';
-                pongContainer.remove();
-            }
+          const pongContainer = document.getElementById('pong-container');
+          if (pongContainer) {
+            pongContainer.innerHTML = '';
+            pongContainer.remove();
+          }
         }
       }
     }
@@ -239,6 +257,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   toggledCheckboxes.find(toggle => toggle.element === checkbox).updateUI(false);
   toggledCheckboxes.find(toggle => toggle.element === mutebutton).updateUI(false);
+
+  specialPhysics.classList.add('inactive');
+  mutebutton.classList.add('inactive');
+  menu.classList.add('inactive');
+  duckbox.classList.add('inactive');
 
   AOS.init();
 
