@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
           });
         } else {
+          mutebutton.style.display = 'none';
           whatobjects.forEach(obj => {
             gsap.to(obj, {
               duration: 0.2,
@@ -82,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (checked) {
           specialPhysics.style.opacity = 1;
           mutebutton.style.opacity = 1;
+          mutebutton.style.display = 'unset';
           specialPhysics.classList.remove('inactive');
           mutebutton.classList.remove('inactive');
           enableMatter(physicsConfig);
@@ -166,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       element: pong,
       storageKey: 'pong',
-      remember: true,
+      remember: false,
       updateUI: (checked) => {
         if (checked) {
           let pongContainer = document.getElementById('pong-container');
@@ -235,7 +237,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---- INIT AOS (after any DOM tweaks) ----
+  toggledCheckboxes.find(toggle => toggle.element === checkbox).updateUI(false);
+  toggledCheckboxes.find(toggle => toggle.element === mutebutton).updateUI(false);
+
   AOS.init();
 
 });

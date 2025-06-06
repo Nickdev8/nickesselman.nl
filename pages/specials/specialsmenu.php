@@ -58,6 +58,13 @@
         </label>
         <h2>Pong</h2>
     </div>
+    <div>
+        <label class="special-switch">
+            <input id="devModeToggle" type="checkbox">
+            <span class="special-slider"></span>
+        </label>
+        <h2>Dev Mode</h2>
+    </div>
 </div>
 
 <!-- <div class="overlay-menu" id="bigpointyarrow">
@@ -66,13 +73,6 @@
 
 <div class="card overlay-menu physics-fixed specials" id="morephysics-menu">
     <h3 class="headline">Physics Options</h3>
-    <div>
-        <label class="special-switch">
-            <input id="devModeToggle" type="checkbox">
-            <span class="special-slider"></span>
-        </label>
-        <h2>Dev Mode</h2>
-    </div>
     <div>
         <label class="special-switch">
             <input id="arrowgravity" type="checkbox">
