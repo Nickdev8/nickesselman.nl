@@ -215,7 +215,7 @@ p {
 
 .physics-active {
     transition-duration: unset !important;
-    transition-timing-function: unset !important;   
+    transition-timing-function: unset !important;
     transition-delay: unset !important;
     /* overflow: unset; */
     z-index: 999 !important;
@@ -280,4 +280,107 @@ div.physics-active:has(.parentonlypaddingwhenphysicsisactive) {
     font-size: 2rem;
     display: none;
     z-index: 1000;
+}
+
+
+.popup {
+    color: black;
+    min-width: 200px;
+    height: auto;
+
+    /* overlaymenu overrides */
+    opacity: 1 !important;
+    padding: 0 !important;
+
+    font-size: 14px;
+    font-weight: 400;
+    
+    background: hsl(0deg 0% 75%);
+    box-shadow:
+        inset -1px -1px #292929,
+        inset 1px 1px #fff,
+        inset -2px -2px rgb(158, 158, 158),
+        inset 2px 2px #ffffff;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.popup *:not(.popup-header):not(.popup-close):not(.popup-button) {
+    pointer-events: none;
+}
+.popup-header{
+    font-weight: 600;
+    color: white;
+    background-color: #09246d;
+    padding: 2px 4px;
+    margin: 2px;
+    display: flex;
+    text-transform: uppercase;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.popup-close{
+    font-family: inherit;
+    border: none;
+    color: black;
+    align-self: center;
+    border-radius: 2px;
+    outline-offset: -4px;
+    cursor: pointer;
+    background: hsl(0deg 0% 75%);
+    box-shadow:
+        inset -1px -1px #292929,
+        inset 1px 1px #fff,
+        inset -2px -2px rgb(158, 158, 158),
+        inset 2px 2px #ffffff;
+    padding: 1px 3px;
+    font-size: 2rem;
+}
+
+.popup p{
+    margin: 1rem 2rem !important;
+}
+
+.popup-button-container{
+    margin: 0.7rem 0;
+    width: 100%;
+    text-align: center;
+}
+
+.popup-button {
+    color: black;
+    font-family: inherit;
+    border: none;
+    border-radius: 2px;
+    outline: 1px dotted rgb(37, 37, 37);
+    outline-offset: -4px;
+    cursor: pointer;
+    background: hsl(0deg 0% 75%);
+    box-shadow:
+        inset -1px -1px #292929,
+        inset 1px 1px #fff,
+        inset -2px -2px rgb(158, 158, 158),
+        inset 2px 2px #ffffff;
+    padding: 5px 30px;
+}
+
+.popup-close:active,
+.popup-button:active {
+    box-shadow:
+        inset -1px -1px #fff,
+        inset 1px 1px #292929,
+        inset -2px -2px #ffffff,
+        inset 2px 2px rgb(158, 158, 158);
+}
+
+.popup *:hover {
+    transform: scale(1);
+}
+
+.popup-header,
+.popup-close,
+.popup-button {
+    user-select: none;
 }

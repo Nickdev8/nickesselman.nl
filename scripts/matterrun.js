@@ -66,6 +66,7 @@ let colliderDivMappings = [];
  * Pass in your custom `physicsConfig` object (or modify it above).
  */
 function enableMatter(config) {
+    window.IsPhyiscsOn = true;
 
     engine.world.gravity.x = config.gravity.x;
     engine.world.gravity.y = config.gravity.y;
@@ -79,6 +80,11 @@ function enableMatter(config) {
     walls.length = 0;
     originalPositions.clear();
     fixedStyles.clear();
+
+    document.querySelectorAll(".popup").forEach(elem => {
+        elem.style.left = 0;
+        elem.style.top = 0;
+    });
 
     document.querySelectorAll(".physics-fixed").forEach(elem => {
         let r = elem.getBoundingClientRect();
@@ -113,6 +119,9 @@ function enableMatter(config) {
         let outer = elem.closest(".physics:not(.physics-nested)");
         if (outer && outer.parentNode) {
             outer.parentNode.insertBefore(elem, outer.nextSibling);
+        } else {
+            let mainElem = document.querySelector("main");
+            mainElem && mainElem.appendChild(elem);
         }
     });
     let mainElem = document.querySelector("main");
@@ -293,7 +302,7 @@ function createBodiesFromSelector(selector, options) {
             bodyOptions
         );
         Composite.add(world, body);
-        
+
         dynamicMappings.push({
             elem: elem,
             body: body,
@@ -574,7 +583,7 @@ function spawnCustomDefaults(config) {
         },
         plugin: {
             attractors: [
-                function(ballA, otherBody) {
+                function (ballA, otherBody) {
                     if (otherBody === ballA) return;
                     const multiplier = 4e-6;
                     return {
@@ -594,7 +603,7 @@ function spawnCustomDefaults(config) {
         }
     });
     Composite.add(world, [ballA, ballB]);
-    
+
     attachImageToBody(ballA, "images/specials/ball.png", 40, 40);
     const ballAMapping = imageMappings.find(mapping => mapping.body === ballA);
     if (ballAMapping && ballAMapping.elem) {

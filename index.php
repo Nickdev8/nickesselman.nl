@@ -25,6 +25,10 @@ $versionnum = "1.1.3";
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/elevator.js/elevator.min.js"></script>
     <script src="https://rawgit.com/WeiChiaChang/Easter-egg/master/easter-eggs-collection.js"></script>
+    <script src="scripts/comcastify.js"></script>
+
+    <!-- injects LightstreamerClient & Subscription into window -->
+    <script src="https://unpkg.com/lightstreamer-client-web/lightstreamer.min.js"></script>
 
     <!-- (Optional) Client-side validation script; see Section 3 -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
@@ -143,6 +147,7 @@ $versionnum = "1.1.3";
     </div>
 
     <?php if ($page != "cv"): ?>
+        <script src="scripts/unnecessary.js?v=<?= $versionnum ?>"></script>
         <script src="scripts/main.js?v=<?= $versionnum ?>"></script>
         <script src="scripts/special-menus.js?v=<?= $versionnum ?>"></script>
         <script src="scripts/matterrun.js?v=<?= $versionnum ?>"></script>

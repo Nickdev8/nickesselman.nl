@@ -24,15 +24,12 @@
     <img src="images/me.png" alt="Nick Essleman" class="img-cropped-wide">
 </div>
 
-
-<div class="container physics separator card narrow" matter data-aos="fade-up">
-
+<div class="physics container narrow card separator" matter data-aos="fade-up">
     <div class="card-3d">
         <link rel="stylesheet" href="css/luanguagesamination.css">
         <?php include 'pages/specials/alltheprogramingluangages.html'; ?>
     </div>
 </div>
-
 <!-- <div class="parallax-section">
   <div class="parallax-text">
     <h1 class="physics" id="randomemiji" style="background-color: var(--white); padding: 1rem; border-radius: 0.5rem">:></h1>
