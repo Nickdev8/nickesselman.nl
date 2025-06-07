@@ -2,7 +2,7 @@
     position: fixed;
     z-index: 999;
     opacity: 0;
-    padding: var(--spacing-3) !important;
+    padding: var(--spacing-3);
 }
 .overlay-menu.inactive {
     opacity: 0 !important;
