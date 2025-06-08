@@ -294,7 +294,7 @@ div.physics-active:has(.parentonlypaddingwhenphysicsisactive) {
 
     font-size: 14px;
     font-weight: 400;
-    
+
     background: hsl(0deg 0% 75%);
     box-shadow:
         inset -1px -1px #292929,
@@ -305,10 +305,18 @@ div.physics-active:has(.parentonlypaddingwhenphysicsisactive) {
     letter-spacing: 2px;
 }
 
-.popup *:not(.popup-header):not(.popup-close):not(.popup-button) {
+.popup * {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.popup img,
+.popup div:has(img) {
     pointer-events: none;
 }
-.popup-header{
+
+.popup-header {
     font-weight: 600;
     color: white;
     background-color: #09246d;
@@ -321,7 +329,7 @@ div.physics-active:has(.parentonlypaddingwhenphysicsisactive) {
     cursor: pointer;
 }
 
-.popup-close{
+.popup-close {
     font-family: inherit;
     border: none;
     color: black;
@@ -339,11 +347,12 @@ div.physics-active:has(.parentonlypaddingwhenphysicsisactive) {
     font-size: 2rem;
 }
 
-.popup p{
+.popup p {
     margin: 1rem 2rem !important;
+    max-width: 400px;
 }
 
-.popup-button-container{
+.popup-button-container {
     margin: 0.7rem 0;
     width: 100%;
     text-align: center;

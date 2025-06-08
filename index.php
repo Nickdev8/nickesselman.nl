@@ -3,7 +3,7 @@
 $cacheDuration = floor(86400 * 365.25); // 1 year
 header("Cache-Control: public, max-age={$cacheDuration}");
 header("Expires: " . gmdate("D, d M Y H:i:s", time() + $cacheDuration) . " GMT");
-$versionnum = "1.1.3";
+$versionnum = "1.1.4";
 ?>
 
 <!DOCTYPE html>

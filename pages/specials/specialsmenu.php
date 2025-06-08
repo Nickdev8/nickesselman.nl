@@ -72,6 +72,13 @@
         </label>
         <h2>Unnecessary Mode</h2>
     </div>
+    <div>
+        <label class="special-switch">
+            <input id="unnecessaryToggleStory" type="checkbox">
+            <span class="special-slider"></span>
+        </label>
+        <h2>Story Mode</h2>
+    </div>
 </div>
 
 <!-- <div class="overlay-menu" id="bigpointyarrow">

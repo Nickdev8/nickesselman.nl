@@ -84,6 +84,10 @@ function enableMatter(config) {
     document.querySelectorAll(".popup").forEach(elem => {
         elem.style.left = 0;
         elem.style.top = 0;
+        const closebutton = elem.querySelector(".popup-close");
+        const okbutton = elem.querySelector(".popup-button");
+        closebutton.style.pointerEvents = "none";
+        okbutton.style.pointerEvents = "none";
     });
 
     document.querySelectorAll(".physics-fixed").forEach(elem => {

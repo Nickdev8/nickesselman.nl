@@ -6,7 +6,7 @@
     /* overflow: unset; */
 
 
-/* Hide scrollbar for IE, Edge and Firefox */
+    /* Hide scrollbar for IE, Edge and Firefox */
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -20,7 +20,7 @@ html {
     font-size: 62.5%;
 }
 
-body{
+body {
     overflow: hidden;
 }
 
@@ -29,65 +29,102 @@ p,
 pre,
 span,
 li,
-a{
+a {
     font-size: 2rem;
 }
 
 
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
 }
+
 body {
-	line-height: 1;
+    line-height: 1;
 }
-ol, ul {
-	list-style: none;
+
+ol,
+ul {
+    list-style: none;
 }
-blockquote, q {
-	quotes: none;
+
+blockquote,
+q {
+    quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
 }
+
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 
 
-:root{
+:root {
     --myblue: #1f2d3d;
 }
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
-  /* Fallback for browsers that don't support dvh */
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
+    /* Fallback for browsers that don't support dvh */
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
 }
+
 main {
 
-  overflow-y: hidden   !important;
-  margin-bottom: auto;
-  min-height: 80vh !important;
+    overflow-y: hidden !important;
+    margin-bottom: auto;
+    min-height: 80vh !important;
 }
 
 
 
-html, body {
-  /* let the page grow taller than the viewport */
-  height: auto !important;
-  min-height: 100vh !important;
+html,
+body {
+    /* let the page grow taller than the viewport */
+    height: auto !important;
+    min-height: 100vh !important;
 
-  /* always allow vertical scroll, never hide overflow */
-  overflow-x: hidden !important;
-  overflow-y: auto   !important;
+    /* always allow vertical scroll, never hide overflow */
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+
+@media (max-width: 600px) {
+    /* html {
+        font-size: 31.25%;
+    } */
+
+    p,
+    pre,
+    span,
+    li,
+    a {
+        font-size: 1.5rem;
+    }
+
 }
