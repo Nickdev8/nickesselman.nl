@@ -1,12 +1,21 @@
 <script type="module" src="scripts/globerenderer.js"></script>
 
-<div class="objectToMoreToTheBackClasses mainthingprojects" data-aos="fade-up">
+<div class="projects-top">
+    <div data-aos="fade-down" style="margin:auto; width: fit-content;">
+        <h1 class="ultratitle physics"
+            style="background-color: var(--myblue); padding: 1rem; border-radius: 0.5rem">
+            Projects</h1>
+    </div>
+
+    <div class="physics" data-aos="fade-down"
+        style="margin:auto; width: fit-content; background-color: var(--myblue); padding: 1rem; border-radius: 0.5rem">
+        <span>This is a place for me to put all kinds of projects, events and creations</span>
+    </div>
+</div>
+
+<div class="objectToMoreToTheBackClasses mainthingprojects">
     <div class="weirdsplit">
-        <div class="conatiner objectToMoreToTheBackClasses card posfixed">
-            <div id="globe"></div>
-            <h1>hi</h1>
-        </div>
-        <div class="card objectToMoreToTheBackClasses">
+        <div class="card objectToMoreToTheBackClasses" data-aos="fade-up">
             <h2 class="headline">These are most of my personal Projects! And events I've contributed in</h2>
             <div class="projectgrid">
                 <?php
@@ -33,6 +42,10 @@
                 ?>
             </div>
         </div>
+        <div class="conatiner objectToMoreToTheBackClasses card posfixed" data-aos="fade-left">
+            <div id="globe"></div>
+            <h1>hi</h1>
+        </div>
     </div>
 </div>
 
@@ -56,9 +69,9 @@
         background: rgba(114, 186, 94, 0.05);
     }
 
-    .weirdsplit>div {
-    }
-    .posfixed{
+    .weirdsplit>div {}
+
+    .posfixed {
         position: sticky;
         top: 0;
     }
@@ -68,13 +81,18 @@
     }
 
     .posfixed {
-        /* max-width: fit-content; */
+        height: fit-content;
+        min-width: fit-content;
         position: sticky;
-        top: 0;
+        top: 12vh;
         background-color: yellow;
-        padding: 50px;
+        margin: 20px;
         font-size: 20px;
-        height: 40vh;
+    }
+
+    #globe {
+        width: 40vw;
+        height: 70vh;
     }
 
     .projectgrid {

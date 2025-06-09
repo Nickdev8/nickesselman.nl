@@ -1,3 +1,40 @@
+.projects-top {
+  background: var(--myblue);
+  color: var(--white);
+  padding: 4rem 0;
+  text-align: center;
+  justify-content: center;
+
+}
+
+.projects-top>p,
+.projects-top>h1,
+.projects-top>h2 {
+  color: var(--white) !important;
+  z-index: 20;
+  position: relative;
+}
+
+.projects-top,
+.projects-top * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.projects-top>h1 {
+  margin-bottom: 2rem;
+}
+
+.projects-top>div {
+  margin-bottom: 1rem;
+}
+
+
+
+
+
 .projectgrid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

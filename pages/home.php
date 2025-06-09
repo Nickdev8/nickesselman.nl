@@ -36,7 +36,7 @@
     <h1 class="physics" id="randomemiji" style="background-color: var(--white); padding: 1rem; border-radius: 0.5rem">:></h1>
   </div>
 </div> -->
-<link rel="stylesheet" href="css/projects.css">
+<!-- <link rel="stylesheet" href="css/projects.css"> -->
 <div class="card objectToMoreToTheBackClasses container" data-aos="fade-up">
     <h2 class="headline">My best: <a href="?page=projects">Projects</a></h2>
 
