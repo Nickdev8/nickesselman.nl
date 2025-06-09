@@ -15,7 +15,7 @@
             <li><span>Hours:</span><span id="hours-old">0</span></li>
             <li><span>Minutes:</span><span id="minutes-old">0</span></li>
             <li><span>Seconds:</span><span id="seconds-old">0</span></li>
-            <li><span>Miliseconds:</span><span id="miliseconds-old">0</span></li>
+            <li><span>Milliseconds:</span><span id="miliseconds-old">0</span></li>
         </ul>
         <div class="separator"></div>
         <h4 class="caption">*Orange circle is time till next birthday</h4>
@@ -34,9 +34,9 @@
                     <span class="physics">Coding for
                         <?= floor((time() - strtotime('2017-09-02')) / (365.25 * 24 * 60 * 60) * 100) / 100; ?> years
                         now.</span>
-                    I stared back when i was 9.
+                    I started back when I was 9.
                     <span class="physics">I learned on my own.</span>
-                    by trial and error. And did this for a few years.
+                    by trial and error and did this for a few years.
                     <br><br>
                     After high school I went to <span class="physics">Media College Amsterdam.</span> to <span
                         class="physics">Study: full stack development.</span><br>
@@ -44,23 +44,24 @@
                         <?= floor((time() - strtotime('2024-12-18')) / ((365.25 / 12) * 24 * 60 * 60) * 100) / 100; ?>
                         months
                         ago.</span>
-                    where i experienced a lot fun of new things. For example,
+                    where I experienced a lot of fun new things. For example,
                     <a href="?project=juice">juice</a>!
                     <br><br>
-                    its worth your time to read if you are someone or know someone that has even the slightest interest
+                    it’s worth your time to read if you are someone or know someone that has even the slightest interest
                     in
                     coding. (and is below <strong>18</strong>)
                     <br>
-                    At HackClub i met some incredible people and i went on trips to places like Shanghai and San
+                    At HackClub, I met some incredible people and I went on trips to places like ShanghaI and San
                     Francisco.
                     Everything was paid for by HackClub.
                 </p>
             </div>
 
-            <div class="right objectToMoreToTheBackClasses"
-                style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.125); border-radius: 1rem; padding:2rem 2rem; max-width: 40rem; width: fit-content;">
+            <div class="right objectToMoreToTheBackClasses card sunken iconholingholder">
                 <?php
                 include 'pages/specials/alltheprogramingluangages.html';
+                ?><br><br><br><?php
+                include 'pages/specials/aextralltheprogramingluangages.html';
                 ?>
 
                 <style>
@@ -75,6 +76,11 @@
     .PLIK {
         margin: 5px;
         transition: transform 0.2s;
+    }
+
+    .PLIKS {
+        filter:
+            grayscale(40%) /* sepia(100%) hue-rotate(200deg) saturate(500%); */
     }
 
     .PLIK:hover {
@@ -160,10 +166,32 @@
         font-weight: bold;
     }
 
+    .iconholingholder {
+        max-width: 60rem;
+        width: fit-content;
+    }
+
+    @media screen and (max-width: 1200px) {
+        .radibarcontainer {
+            display: none;
+        }
+
+        .iconholingholder {
+            max-width: 30rem;
+        }
+    }
 
     @media screen and (max-width: 900px) {
         .radibarcontainer {
             display: none;
+        }
+
+        .iconholingholder {
+            max-width: unset;
+        }
+
+        .split {
+            display: block;
         }
     }
 </style>

@@ -1,29 +1,38 @@
-<div class="card objectToMoreToTheBackClasses container" data-aos="fade-up">
-    <h2 class="headline">These are most of my personal Projects! And events I've contributed in</h2>
+<script type="module" src="scripts/globerenderer.js"></script>
 
-    <div class="projectgrid">
-        <?php
-        foreach ($projects as $project) {
-            // extract everything after the ":" (or use full title if no colon)
-            $title = $project['title'];
-            if (($pos = strpos($title, ':')) !== false) {
-                $badge = trim(substr($title, $pos + 1));
-            } else {
-                $badge = $title;
-            }
+<div class="objectToMoreToTheBackClasses mainthingprojects" data-aos="fade-up">
+    <div class="weirdsplit">
+        <div class="conatiner objectToMoreToTheBackClasses card posfixed">
+            <div id="globe"></div>
+            <h1>hi</h1>
+        </div>
+        <div class="card objectToMoreToTheBackClasses">
+            <h2 class="headline">These are most of my personal Projects! And events I've contributed in</h2>
+            <div class="projectgrid">
+                <?php
+                foreach ($projects as $project) {
+                    // extract everything after the ":" (or use full title if no colon)
+                    $title = $project['title'];
+                    if (($pos = strpos($title, ':')) !== false) {
+                        $badge = trim(substr($title, $pos + 1));
+                    } else {
+                        $badge = $title;
+                    }
 
-            echo '<a href="?project=' . $project['link'] . '" class="card projecttilt physics project project-link" data-aos="fade-up">';
-            echo '  <div class="img-ratio">';
-            echo '    <img src="/images/projectsimages/' . $project['image'] . '" alt="' . htmlspecialchars($title) . '" />';
-            // echo '    <span class="overlay-text">' . htmlspecialchars($badge) . '</span>';
-            echo '  </div>';
-            echo '  <div class="card-content">';
-            echo '    <h3>' . htmlspecialchars($title) . '</h3>';
-            echo '    <p>' . htmlspecialchars($project['description']) . '</p>';
-            echo '  </div>';
-            echo '</a>';
-        }
-        ?>
+                    echo '<a href="?project=' . $project['link'] . '" class="card projecttilt physics project project-link" data-aos="fade-up">';
+                    echo '  <div class="img-ratio">';
+                    echo '    <img src="/images/projectsimages/' . $project['image'] . '" alt="' . htmlspecialchars($title) . '" />';
+                    // echo '    <span class="overlay-text">' . htmlspecialchars($badge) . '</span>';
+                    echo '  </div>';
+                    echo '  <div class="card-content">';
+                    echo '    <h3>' . htmlspecialchars($title) . '</h3>';
+                    echo '    <p>' . htmlspecialchars($project['description']) . '</p>';
+                    echo '  </div>';
+                    echo '</a>';
+                }
+                ?>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -38,6 +47,36 @@
 </script>
 
 <style>
+    .weirdsplit {
+        border: 3px solid #fff;
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        border: 2px dashed rgba(114, 186, 94, 0.35);
+        background: rgba(114, 186, 94, 0.05);
+    }
+
+    .weirdsplit>div {
+    }
+    .posfixed{
+        position: sticky;
+        top: 0;
+    }
+
+    .mainthingprojects {
+        margin: 2rem;
+    }
+
+    .posfixed {
+        /* max-width: fit-content; */
+        position: sticky;
+        top: 0;
+        background-color: yellow;
+        padding: 50px;
+        font-size: 20px;
+        height: 40vh;
+    }
+
     .projectgrid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);

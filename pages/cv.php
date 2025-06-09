@@ -34,25 +34,22 @@
         <div class="cv-section">
             <h2>Experience</h2>
             <p>Bartender for almost 1 year.</p>
-            <p>Started programming on my own when I was 9. and am now learning more in collage</p>
+            <p>Started programming on my own when I was 9. I am now learning more in college.</p>
         </div>
         <div class="cv-section projects">
             <h2>Projects</h2>
             <ul>
-                <li><strong>HackClub: <a href="/?project=juice">Juice</strong></a> - A 12-day hackathon project in
-                    Shanghai.
-                </li>
-                <li><strong>Collection: <a href="/?project=stickers">My Sticker</strong></a> - A personal project
-                    showcasing my
-                    HackClub sticker collection.</li>
-                <li><strong>HackClub: <a href="/?project=neighborhood">Neighborhood</strong></a> - A 3-month housing
-                    program
-                    project in San Francisco.</li>
-                <li><strong>Game: <a href="/?project=monkeyswing">Monkey Swing</strong></a> - My introduction to game
+                <li><strong>HackClub: <a href="/?project=juice">Juice</a></strong> – A 12-day hackathon project in
+                    Shanghai.</li>
+                <li><strong>Collection: <a href="/?project=stickers">My Sticker</a></strong> – A personal project
+                    showcasing my HackClub sticker collection.</li>
+                <li><strong>HackClub: <a href="/?project=neighborhood">Neighborhood</a></strong> – A 3-month housing
+                    program project in San Francisco.</li>
+                <li><strong>Game: <a href="/?project=monkeyswing">Monkey Swing</a></strong> – My introduction to game
                     development using Unity and C#.</li>
-                <li><strong>HackClub: <a href="/?project=highseas">HighSeas</strong></a> - A team event project centered
+                <li><strong>HackClub: <a href="/?project=highseas">HighSeas</a></strong> – A team event project centered
                     around innovative project deployment.</li>
-            <a href="?page=projects"><button>See more</button></a>
+                <a href="?page=projects"><button>See more</button></a>
             </ul>
         </div>
         <div class="cv-section iconholder">
@@ -122,13 +119,15 @@
         padding-bottom: 20px;
         margin-bottom: 20px;
     }
-    button{
+
+    button {
         background-color: black;
         border: none;
         color: white;
         padding: 5px 10px;
         border-radius: 5px;
     }
+
     .personal-info {
         max-width: 60%;
     }
