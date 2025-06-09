@@ -1,7 +1,6 @@
 var totalTime = 0;
 const usedPopupPositions = [];
 
-
 document.addEventListener("DOMContentLoaded", () => {
   const unnecessaryToggle = document.getElementById("unnecessaryToggle");
   const unnecessaryToggleStory = document.getElementById("unnecessaryToggleStory");
@@ -184,7 +183,7 @@ function newPopup(timeoutInSec, [header, content, whatbuttonsaidstoclose = "OK",
           boxColor: 'hsl(0deg 0% 75%)'
         })();
 
-        fetch("https://api.nasa.gov/planetary/apod?api_key=FaOagYSAyEILqbNk51CPYfhm2xgaZBF6s1SUYQqx")
+        fetch("https://api.nasa.gov/planetary/apod?api_key=FaOagYSAyEILqbNk51CPYfhm2xgaZBF6s1SUYQqx")//+nasa_api)
           .then(response => response.json())
           .then(data => {
             potdImage.src = data.url;

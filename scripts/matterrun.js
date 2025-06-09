@@ -150,7 +150,7 @@ function enableMatter(config) {
         document.body.scrollHeight
     );
 
-    let bottomY = H - t / 2; // Adjust calculation to ensure proper placement
+    let bottomY = H - t / 2 - 30; // Adjust calculation to ensure proper placement
     let bottomWall = Bodies.rectangle(
         W / 2, bottomY, W, t,
         {
@@ -191,6 +191,8 @@ function enableMatter(config) {
     Composite.add(world, walls);
 
     devLog("Walls initialized:", walls);
+
+
 
     installScrollFilter();
     setupMouseControl();
