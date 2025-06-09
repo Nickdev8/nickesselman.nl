@@ -1,123 +1,97 @@
-
-// import * as THREE from 'https://unpkg.com/three@0.154.0/build/three.module.js';
-// import Globe from '/node_mudules/globe.gl';
-// import { OrbitControls } from 'https://unpkg.com/three@0.154.0/examples/jsm/controls/OrbitControls.js';
-// import { EffectComposer } from 'https://unpkg.com/three@0.154.0/examples/jsm/postprocessing/EffectComposer.js';
-// import { RenderPass } from 'https://unpkg.com/three@0.154.0/examples/jsm/postprocessing/RenderPass.js';
-// import { ShaderPass } from 'https://unpkg.com/three@0.154.0/examples/jsm/postprocessing/ShaderPass.js';
-// import { PixelShader } from 'https://unpkg.com/three@0.154.0/examples/jsm/shaders/PixelShader.js';
-
-// const image = "/images/specials/earth.jpg";
-
-const image = "//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg";
+// ——— Basics —————————————————————————————————————————————————————
+// const image = "//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg";
+const image = "/images/specials/earth.jpg";
 const globediv = document.getElementById('globe');
+const tooltip = document.getElementById('tooltip');
+const tooltip_name = tooltip.querySelector('.lead');
+const tooltip_label = tooltip.querySelector('.caption');
 
-const width = 40; //40vw
-const height = 80; //70vh
+console.log('[Init] globe container:', globediv);
 
-globediv.style.width = width.toString() + "vw";
-globediv.style.height = height.toString() + "vh";
+const width = 40;  // 40vw
+const height = 80;  // 80vh
+globediv.style.width = `${width}vw`;
+globediv.style.height = `${height}vh`;
 
-const myGlobe = new Globe(globediv)
+
+const markerSvg = `<svg viewBox="-4 0 36 36">
+    <path fill="currentColor" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path>
+    <circle fill="black" cx="14" cy="14" r="7"></circle>
+  </svg>`;
+
+const gData = [
+  { name: "Home", lat: 52.3676, lng: 4.9041, size: 40, color: 'red' },  // Amsterdam
+  { lat: 31.2304, lng: 121.4737, size: 40, color: 'blue' },  // Shanghai
+  { lat: 37.7749, lng: -122.4194, size: 40, color: 'green' }   // San Francisco
+];
+
+//for pontsofview => start view
+const AMSTERDAM = { lat: 35, lng: 4.9041, altitude: 2 };
+
+
+const world = new Globe(globediv)
   .globeImageUrl(image)
-  // .pointsData(myData);
-  .width(window.innerWidth * (width/100))
-  .height(window.innerHeight * (height/100))
+  .width(window.innerWidth * (width / 100))
+  .height(window.innerHeight * (height / 100))
+  .pointOfView(AMSTERDAM, 0)
+  .htmlElementsData(gData)
+  .htmlElement(d => {
+    const el = document.createElement('div');
+    el.innerHTML = markerSvg;
+    el.style.color = d.color;
+    el.style.width = `${d.size}px`;
+    el.style.transition = 'opacity 250ms';
+    el.style.pointerEvents = 'auto';
+    el.style.cursor = 'pointer';
 
-/*
-    // core three.js
-    // orbit controls
-    // postprocessing
-
-    // grab your container
-    const container = document.getElementById('globe');
-
-    // SCENE + CAMERA + RENDERER
-    const scene    = new THREE.Scene();
-    const camera   = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
-    camera.position.set(0, 0, 2.5);
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    container.appendChild(renderer.domElement);
-
-    // handle resize
-    window.addEventListener('resize', () => {
-      camera.aspect = container.clientWidth / container.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
-      composer.setSize(container.clientWidth, container.clientHeight);
-    });
-
-    // LIGHTS
-    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-    const pointA = new THREE.PointLight(0xffffff, 1);
-    pointA.position.set(10, 10, 10);
-    scene.add(pointA);
-    const pointB = new THREE.PointLight(0xffffff, 0.5);
-    pointB.position.set(-10, -10, -10);
-    scene.add(pointB);
-
-    // TRICOLOR SHADER
-    const tricolorShader = {
-      uniforms: {
-        uTexture: { value: new THREE.TextureLoader().load('/images/specials/earth.jpg') }
-      },
-      vertexShader: `
-        varying vec2 vUv;
-        void main() {
-          vUv = uv;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-      `,
-      fragmentShader: `
-        uniform sampler2D uTexture;
-        varying vec2 vUv;
-        void main() {
-          vec4 color = texture2D(uTexture, vUv);
-          if (color.r > 0.7 && color.g < 0.3 && color.b < 0.3) {
-            gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-            return;
-          }
-          float lum = dot(color.rgb, vec3(0.299, 0.587, 0.114));
-          float bw  = step(0.5, lum);
-          gl_FragColor = vec4(vec3(bw), 1.0);
-        }
-      `
+    el.onmouseenter = () => {
+      tooltip_name.innerHTML = d.name || '…';
+      tooltip_label.innerHTML = d.label || '';
+      tooltip.style.display = 'block';
     };
 
-    // GLOBE MESH
-    const globeGeo = new THREE.SphereGeometry(1, 64, 64);
-    const globeMat = new THREE.ShaderMaterial(tricolorShader);
-    const globe    = new THREE.Mesh(globeGeo, globeMat);
-    scene.add(globe);
+    el.onmousemove = ev => {
+      tooltip.style.left = (ev.pageX + 10) + 'px';
+      tooltip.style.top = (ev.pageY + 10) + 'px';
+    };
 
-    // OUTLINE
-    const outlineGeo = new THREE.SphereGeometry(1.008, 64, 64);
-    const outlineMat = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.BackSide });
-    const outline    = new THREE.Mesh(outlineGeo, outlineMat);
-    scene.add(outline);
+    el.onmouseleave = () => {
+      tooltip.style.display = 'none';
+    };
 
-    // ORBIT CONTROLS
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enablePan = false;
-    controls.minDistance = 1.5;
-    controls.maxDistance = 5;
+    el.onclick = () => console.info(d);
+    return el;
+  })
+  .htmlElementVisibilityModifier((el, isVisible) => {
+    el.style.opacity = isVisible ? 1 : 0;
+  });
+const controls = world.controls();           // get the underlying OrbitControls
+controls.autoRotate = true;                  // turn on auto-spin
+controls.autoRotateSpeed = 2;              // slow and steady
 
-    // POST-PROCESSING (PIXELATION)
-    const composer   = new EffectComposer(renderer);
-    const renderPass = new RenderPass(scene, camera);
-    composer.addPass(renderPass);
 
-    const pixelPass = new ShaderPass(PixelShader);
-    pixelPass.uniforms['granularity'].value = 6;
-    composer.addPass(pixelPass);
 
-    // ANIMATION LOOP
-    function animate() {
-      requestAnimationFrame(animate);
-      composer.render();
-    }
-    animate();
+const hint = document.createElement('div');
+hint.innerText = '⬢ Drag to explore';
+Object.assign(hint.style, {
+  position: 'absolute',
+  top: '10px',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  padding: '6px 12px',
+  background: 'rgba(0,0,0,0.6)',
+  color: '#fff',
+  borderRadius: '4px',
+  fontFamily: 'sans-serif',
+  fontSize: '0.9rem',
+  pointerEvents: 'none',
+  opacity: '1',
+  transition: 'opacity 1s ease-out'
+});
+globediv.parentElement.appendChild(hint);
 
-    */
+// fade out after 3 seconds
+setTimeout(() => { hint.style.opacity = '0'; }, 3000);
+setTimeout(() => { hint.remove(); }, 4000);
+
+

@@ -1,6 +1,22 @@
 <script src="//cdn.jsdelivr.net/npm/globe.gl"></script>
-
 <script type="module" src="scripts/globerenderer.js"></script>
+
+
+<div id="tooltip" style="
+        position: absolute;
+        pointer-events: none;
+        background: rgba(0,0,0,0.75);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-family: sans-serif;
+        font-size: 0.8rem;
+        display: block;
+        z-index: 9999;
+     ">
+     <h3 class="lead" style="margin: 0;"></h3>
+     <h4 class="caption"></h4>
+</div>
 <div class="projects-top">
     <div data-aos="fade-down" style="margin:auto; width: fit-content;">
         <h1 class="ultratitle physics" style="background-color: var(--myblue); padding: 1rem; border-radius: 0.5rem">
@@ -15,7 +31,7 @@
 
 <div class="objectToMoreToTheBackClasses mainthingprojects">
     <div class="weirdsplit">
-        <div class="card objectToMoreToTheBackClasses" data-aos="fade-up">
+        <div class="card objectToMoreToTheBackClasses" style="margin-right: 2rem;" data-aos="fade-up">
             <h2 class="headline">These are most of my personal Projects! And events I've contributed in</h2>
             <div class="projectgrid">
                 <?php
