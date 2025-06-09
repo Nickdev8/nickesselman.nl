@@ -399,3 +399,10 @@ div.physics-active:has(.parentonlypaddingwhenphysicsisactive) {
     background-color: black;
 }
 
+
+.weirdsplit {
+    border: 3px solid #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}

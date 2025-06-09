@@ -2,8 +2,7 @@
 
 <div class="projects-top">
     <div data-aos="fade-down" style="margin:auto; width: fit-content;">
-        <h1 class="ultratitle physics"
-            style="background-color: var(--myblue); padding: 1rem; border-radius: 0.5rem">
+        <h1 class="ultratitle physics" style="background-color: var(--myblue); padding: 1rem; border-radius: 0.5rem">
             Projects</h1>
     </div>
 
@@ -42,6 +41,7 @@
                 ?>
             </div>
         </div>
+        <link rel="stylesheet" href="/css/globe.css">
         <div class="conatiner objectToMoreToTheBackClasses card posfixed" data-aos="fade-left" data-aos-once="true">
             <div id="globe"></div>
             <h1>hi</h1>
@@ -58,43 +58,3 @@
         scale: 1.02
     });
 </script>
-
-<style>
-    .weirdsplit {
-        border: 3px solid #fff;
-        display: flex;
-        justify-content: space-around;
-        align-items: flex-start;
-    }
-
-    .posfixed {
-        position: sticky;
-        top: 0;
-    }
-
-    .mainthingprojects {
-        margin: 2rem;
-    }
-
-    .posfixed {
-        height: fit-content;
-        min-width: fit-content;
-        position: sticky;
-        top: 12vh;
-        background-color: yellow;
-        margin: 20px;
-        font-size: 20px;
-    }
-
-    #globe {
-        width: 40vw;
-        height: 70vh;
-    }
-
-    @media screen and (max-width: 1100px) {
-        
-    .weirdsplit {
-        display: block;
-    }
-    }
-</style>
