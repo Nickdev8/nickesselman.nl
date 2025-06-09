@@ -2,9 +2,6 @@
 // const image = "//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg";
 const image = "/images/specials/earth.jpg";
 const globediv = document.getElementById('globe');
-const tooltip = document.getElementById('tooltip');
-const tooltip_name = tooltip.querySelector('.lead');
-const tooltip_label = tooltip.querySelector('.caption');
 
 console.log('[Init] globe container:', globediv);
 
@@ -20,64 +17,70 @@ const markerSvg = `<svg viewBox="-4 0 36 36">
   </svg>`;
 
 const gData = [
-  { name: "Home", lat: 52.3676, lng: 4.9041, size: 40, color: 'red' },  // Amsterdam
-  { lat: 31.2304, lng: 121.4737, size: 40, color: 'blue' },  // Shanghai
-  { lat: 37.7749, lng: -122.4194, size: 40, color: 'green' }   // San Francisco
+  { name: "Home", label: "Amsterdam, NL", project_id: "monkeyswing", lat: 52.3676, lng: 4.9041, size: 0.15, color: 'red' },
+  { name: "Shanghai", label: "China", lat: 31.2304, lng: 121.4737, size: 0.15, color: 'blue' },
+  { name: "SanFranc", label: "California, USA", lat: 37.7749, lng: -122.4194, size: 0.15, color: 'green' }
 ];
 
 //for pontsofview => start view
 const AMSTERDAM = { lat: 35, lng: 4.9041, altitude: 2 };
 
-
 const world = new Globe(globediv)
   .globeImageUrl(image)
-  .width(window.innerWidth * (width / 100))
-  .height(window.innerHeight * (height / 100))
+  .backgroundColor("#fff")
+  .showAtmosphere(false)
+  .width(window.innerWidth * 0.4)
+  .height(window.innerHeight * 0.8)
   .pointOfView(AMSTERDAM, 0)
-  .htmlElementsData(gData)
-  .htmlElement(d => {
-    const el = document.createElement('div');
-    el.innerHTML = markerSvg;
-    el.style.color = d.color;
-    el.style.width = `${d.size}px`;
-    el.style.transition = 'opacity 250ms';
-    el.style.pointerEvents = 'auto';
-    el.style.cursor = 'pointer';
 
-    el.onmouseenter = () => {
-      tooltip_name.innerHTML = d.name || '…';
-      tooltip_label.innerHTML = d.label || '';
-      tooltip.style.display = 'block';
-    };
+  // 1) your data
+  .pointsData(gData)
+  .pointLat(d => (d.lat-12))
+  .pointLng(d => (d.lng-2))
+  .pointAltitude(d => d.size + 0.01)
+  .pointRadius(() => 2)
+  .pointColor(d => d.color)
 
-    el.onmousemove = ev => {
-      tooltip.style.left = (ev.pageX + 10) + 'px';
-      tooltip.style.top = (ev.pageY + 10) + 'px';
-    };
+  // 2) supply the hover-tooltip content
+  //    this string (or HTML) will be shown for you
+  .pointLabel(d =>
+    `<div class="lead" style="margin: 0;">${d.name}</div>
+     <div class="caption">${d.label}</div>`
+  )
 
-    el.onmouseleave = () => {
-      tooltip.style.display = 'none';
-    };
+  // 3) disable merging so hover/click events work
+  .pointsMerge(false)
+  .pointsTransitionDuration(0);  // snap new points into place
 
-    el.onclick = () => console.info(d);
-    return el;
-  })
-  .htmlElementVisibilityModifier((el, isVisible) => {
-    el.style.opacity = isVisible ? 1 : 0;
-  });
+// pixelation
+world.renderer().setPixelRatio(0.2);
 
+// optional: if you’d still like custom positioning instead
+// of the built-in label, you can tap these hooks:
+world.onPointClick(d => {
+  if (!d || !d.project_id) return;
+  const target = document.getElementById(d.project_id);
+  if (!target) return;
+  scrolltotarget(target);
+  console.info('clicked point:', d)
+});
 
-// choose your “pixel size” factor:
-//    1.0 = full-res (no pixelation)
-//    0.5 = half-res (mild pixelation)
-//    0.2 = 20% res (strong pixelation)
-const renderer = world.renderer();
-const pixelFactor = 0.2;
-renderer.setPixelRatio( pixelFactor );
+// auto-rotate, hint, etc…
+// const controls = world.controls();
+// controls.autoRotate = true;
+// controls.autoRotateSpeed = 2;
 
-const controls = world.controls();
-controls.autoRotate = true;                  // turn on auto-spin
-controls.autoRotateSpeed = 2;              // slow and steady
+// load your texture
+const earthTexture = new THREE.TextureLoader().load('/images/specials/earth.jpg');
+earthTexture.minFilter = THREE.NearestFilter;
+earthTexture.magFilter = THREE.NearestFilter;
+earthTexture.generateMipmaps = false;
+// create a purely emissive material
+const unlitMat = new THREE.MeshBasicMaterial({ map: earthTexture });
+
+// tell Globe.GL to use it instead of its default (MeshPhong) material
+world.globeMaterial(unlitMat);
+
 
 const hint = document.createElement('div');
 hint.innerText = '⬢ Drag to explore';
@@ -98,3 +101,56 @@ Object.assign(hint.style, {
   transition: 'opacity 1s ease-out'
 });
 globediv.parentElement.appendChild(hint);
+
+
+function scrolltotarget(target) {
+  // smoothly scroll so the target ends up centered vertically
+  target.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center',
+    inline: 'nearest'
+  });
+
+  // highlight it (optional)
+  target.classList.add('targetSelected');
+}
+
+
+
+
+// 1) create canvas & load image
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+const img = new Image();
+img.crossOrigin = '';        // if needed
+img.src = '/images/specials/earth.jpg';
+
+img.onload = () => {
+  // 2) size canvas to image
+  canvas.width = img.width;
+  canvas.height = img.height;
+  ctx.drawImage(img, 0, 0);
+
+  // 3) get its pixel data & threshold
+  const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const d = imgData.data;
+  for (let i = 0; i < d.length; i += 4) {
+    // since the image is already grayscale, r=g=b
+    const v = d[i] < 128 ? 0 : 255;
+    d[i] = v;  // R
+    d[i + 1] = v;  // G
+    d[i + 2] = v;  // B
+    // alpha (d[i+3]) stays at 255
+  }
+  ctx.putImageData(imgData, 0, 0);
+
+  // 4) make a Three.js texture from the canvas
+  const bwTexture = new THREE.CanvasTexture(canvas);
+  bwTexture.minFilter = THREE.NearestFilter;
+  bwTexture.magFilter = THREE.NearestFilter;
+  bwTexture.generateMipmaps = false;
+
+  // 5) swap in your unlit material
+  const bwMat = new THREE.MeshBasicMaterial({ map: bwTexture });
+  world.globeMaterial(bwMat);
+};

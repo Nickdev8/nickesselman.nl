@@ -1,33 +1,19 @@
+<script src="https://cdn.jsdelivr.net/npm/three@0.150.0/build/three.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/globe.gl"></script>
 <script type="module" src="scripts/globerenderer.js"></script>
 <script>
-    const hastriggerhintdisapearbefore = false;
+    let hastriggerhintdisapearbefore = false;
 
     function disapeartoptext() {
         if (!hastriggerhintdisapearbefore) {
             const hint = document.getElementById('hintidpleaseremovethisdotcom');
             setTimeout(() => { hint.style.opacity = '0'; }, 3000);
             setTimeout(() => { hint.remove(); }, 4000);
-            hastriggerhintdisapearbefore == true
+            hastriggerhintdisapearbefore = true;
         }
     }
 </script>
 
-<div id="tooltip" style="
-        position: absolute;
-        pointer-events: none;
-        background: rgba(0,0,0,0.75);
-        color: white;
-        padding: 4px 8px;
-        border-radius: 4px;
-        font-family: sans-serif;
-        font-size: 0.8rem;
-        display: block;
-        z-index: 9999;
-     ">
-    <h3 class="lead" style="margin: 0;"></h3>
-    <h4 class="caption"></h4>
-</div>
 <div class="projects-top">
     <div data-aos="fade-down" style="margin:auto; width: fit-content;">
         <h1 class="ultratitle physics" style="background-color: var(--myblue); padding: 1rem; border-radius: 0.5rem">
@@ -55,7 +41,7 @@
                         $badge = $title;
                     }
 
-                    echo '<a href="?project=' . $project['link'] . '" class="card projecttilt physics project project-link" data-aos="fade-up">';
+                    echo '<a href="?project=' . $project['link'] . '" id="' . $project['link'] . '" class="card projecttilt physics project project-link" data-aos="fade-up">';
                     echo '  <div class="img-ratio">';
                     echo '    <img src="/images/projectsimages/' . $project['image'] . '" alt="' . htmlspecialchars($title) . '" />';
                     // echo '    <span class="overlay-text">' . htmlspecialchars($badge) . '</span>';
