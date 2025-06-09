@@ -82,6 +82,12 @@
     min-height: 13rem;
 }
 
+@media screen and (max-width: 1100px) {
+    #hintidpleaseremovethisdotcom,
+    .headline{
+        display: none;
+    }
+}
 @media screen and (max-width: 1200px) {
     .projectgrid {
         grid-template-columns: repeat(3, 1fr);
@@ -142,13 +148,10 @@
   );
   background-size: 40px 40px;
 
-  /* animate the stripe‐tile sliding */
   animation: slide-stripes 4s linear infinite;
 
-  /* match your card rounding */
   border-radius: inherit;
 
-  /* paint this layer just behind your content */
   z-index: -1;
 }
 
@@ -156,4 +159,5 @@
 @keyframes slide-stripes {
   from { background-position:   0   0; }
   to   { background-position: 40px 40px; }
+  
 }

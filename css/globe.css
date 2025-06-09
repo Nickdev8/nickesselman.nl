@@ -12,7 +12,7 @@
     min-width: fit-content;
     position: sticky;
     top: 12vh;
-    background-color: black;
+    background-color: white;
     /* margin: 20px; */
     padding: 0;
     font-size: 20px;
@@ -22,4 +22,11 @@
     .weirdsplit {
         display: block;
     }
+
+    .posfixed {
+        width: 100vw;
+        position: unset !important;
+        font-size: 20px;
+    }
+
 }

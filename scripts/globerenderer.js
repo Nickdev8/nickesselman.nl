@@ -5,11 +5,21 @@ const globediv = document.getElementById('globe');
 
 console.log('[Init] globe container:', globediv);
 
-const width = 40;  // 40vw
-const height = 80;  // 80vh
+
+let width = 40;// vw & vh
+let height = 80;
+
+let globewidht;
+let globeheight;
+if (window.innerWidth < 1100) {
+  width = 100;// vw & vh
+  height = 50;
+}
+
+globewidht = window.innerWidth * width / 100;
+globeheight = window.innerHeight * height / 100;
 globediv.style.width = `${width}vw`;
 globediv.style.height = `${height}vh`;
-
 
 const markerSvg = `<svg viewBox="-4 0 36 36">
     <path fill="currentColor" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path>
@@ -29,14 +39,14 @@ const world = new Globe(globediv)
   .globeImageUrl(image)
   .backgroundColor("#fff")
   .showAtmosphere(false)
-  .width(window.innerWidth * 0.4)
-  .height(window.innerHeight * 0.8)
+  .width(globewidht)
+  .height(globeheight)
   .pointOfView(AMSTERDAM, 0)
 
   // 1) your data
   .pointsData(gData)
-  .pointLat(d => (d.lat-12))
-  .pointLng(d => (d.lng-2))
+  .pointLat(d => (d.lat - 12))
+  .pointLng(d => (d.lng - 2))
   .pointAltitude(d => d.size + 0.01)
   .pointRadius(() => 2)
   .pointColor(d => d.color)
@@ -53,7 +63,7 @@ const world = new Globe(globediv)
   .pointsTransitionDuration(0);  // snap new points into place
 
 // pixelation
-world.renderer().setPixelRatio(0.2);
+world.renderer().setPixelRatio(0.15);
 
 // optional: if you’d still like custom positioning instead
 // of the built-in label, you can tap these hooks:
