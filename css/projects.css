@@ -103,3 +103,10 @@
 .project-link:hover {
     text-decoration: none;
 }
+
+  /* 1) make sure the globe-canvas is pixelated when scaled up */
+  #globe canvas {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }

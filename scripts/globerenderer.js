@@ -65,14 +65,23 @@ const world = new Globe(globediv)
   .htmlElementVisibilityModifier((el, isVisible) => {
     el.style.opacity = isVisible ? 1 : 0;
   });
-const controls = world.controls();           // get the underlying OrbitControls
+
+
+// choose your “pixel size” factor:
+//    1.0 = full-res (no pixelation)
+//    0.5 = half-res (mild pixelation)
+//    0.2 = 20% res (strong pixelation)
+const renderer = world.renderer();
+const pixelFactor = 0.2;
+renderer.setPixelRatio( pixelFactor );
+
+const controls = world.controls();
 controls.autoRotate = true;                  // turn on auto-spin
 controls.autoRotateSpeed = 2;              // slow and steady
 
-
-
 const hint = document.createElement('div');
 hint.innerText = '⬢ Drag to explore';
+hint.id = 'hintidpleaseremovethisdotcom';
 Object.assign(hint.style, {
   position: 'absolute',
   top: '10px',
@@ -83,15 +92,9 @@ Object.assign(hint.style, {
   color: '#fff',
   borderRadius: '4px',
   fontFamily: 'sans-serif',
-  fontSize: '0.9rem',
+  fontSize: '1.9rem',
   pointerEvents: 'none',
   opacity: '1',
   transition: 'opacity 1s ease-out'
 });
 globediv.parentElement.appendChild(hint);
-
-// fade out after 3 seconds
-setTimeout(() => { hint.style.opacity = '0'; }, 3000);
-setTimeout(() => { hint.remove(); }, 4000);
-
-
