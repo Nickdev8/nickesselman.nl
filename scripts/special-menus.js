@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const audio = document.getElementById('bounceSound');
   const mutebutton = document.getElementById('muteicon');
   const muteimg = document.getElementById('muteiconimg');
-
+  const birdpoop = document.getElementById('triggerbirdpoop');
 
   // Add any other objects that should be toggled with the main menu checkbox
   const whatobjects = [menu, duckbox];
@@ -72,6 +72,21 @@ document.addEventListener('DOMContentLoaded', () => {
           audio.muted = false;
           muteimg.src = 'images/specials/notmute.png';
           audio.src = 'sounds/bounce.mp3';
+        }
+      }
+    },
+    {
+      element: birdpoop,
+      storageKey: 'birdpoop',
+      remember: false,
+      updateUI: (checked) => {
+        if (checked) {
+            poop = document.createElement('div');
+            poop.className = 'poop';
+            poop.classList.add("overlay-menu");
+            poop.style.top = (Math.random()*100)+"vh";
+            poop.style.left = (Math.random()*100)+"vw";
+            document.body.appendChild(poop);
         }
       }
     },

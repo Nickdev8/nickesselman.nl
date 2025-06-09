@@ -1,0 +1,24 @@
+{
+  "name": "nickesselman.nl",
+  "version": "1.0.0",
+  "description": "[![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fnickesselman.nl)](https://nickesselman.nl) [![Made with Matter.js](https://img.shields.io/badge/Made%20with-Matter.js-brightgreen)](https://brm.io/matter-js/) [![Built for Hack Club](https://img.shields.io/badge/Built%20for-Hack%20Club-red)](https://hackclub.com)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nickdev8/nickesselman.nl.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Nickdev8/nickesselman.nl/issues"
+  },
+  "homepage": "https://github.com/Nickdev8/nickesselman.nl#readme",
+  "dependencies": {
+    "three": "^0.177.0"
+  }
+}
