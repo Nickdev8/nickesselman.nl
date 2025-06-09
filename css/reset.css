@@ -95,7 +95,7 @@ body {
 
 main {
 
-    overflow-y: hidden !important;
+    /* overflow-y: hidden !important; */
     margin-bottom: auto;
     min-height: 80vh !important;
 }
@@ -109,8 +109,8 @@ body {
     min-height: 100vh !important;
 
     /* always allow vertical scroll, never hide overflow */
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
 }
 
 
