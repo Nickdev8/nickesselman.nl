@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Nickdev8/nickesselman.nl#readme",
   "dependencies": {
+    "globe.gl": "^2.41.6",
     "three": "^0.177.0"
   }
 }

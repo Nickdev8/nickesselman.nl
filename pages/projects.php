@@ -1,5 +1,6 @@
-<script type="module" src="scripts/globerenderer.js"></script>
+<script src="//cdn.jsdelivr.net/npm/globe.gl"></script>
 
+<script type="module" src="scripts/globerenderer.js"></script>
 <div class="projects-top">
     <div data-aos="fade-down" style="margin:auto; width: fit-content;">
         <h1 class="ultratitle physics" style="background-color: var(--myblue); padding: 1rem; border-radius: 0.5rem">
@@ -44,7 +45,6 @@
         <link rel="stylesheet" href="/css/globe.css">
         <div class="conatiner objectToMoreToTheBackClasses card posfixed" data-aos="fade-left" data-aos-once="true">
             <div id="globe"></div>
-            <h1>hi</h1>
         </div>
     </div>
 </div>

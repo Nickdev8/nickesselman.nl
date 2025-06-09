@@ -1,13 +1,33 @@
 
+// import * as THREE from 'https://unpkg.com/three@0.154.0/build/three.module.js';
+// import Globe from '/node_mudules/globe.gl';
+// import { OrbitControls } from 'https://unpkg.com/three@0.154.0/examples/jsm/controls/OrbitControls.js';
+// import { EffectComposer } from 'https://unpkg.com/three@0.154.0/examples/jsm/postprocessing/EffectComposer.js';
+// import { RenderPass } from 'https://unpkg.com/three@0.154.0/examples/jsm/postprocessing/RenderPass.js';
+// import { ShaderPass } from 'https://unpkg.com/three@0.154.0/examples/jsm/postprocessing/ShaderPass.js';
+// import { PixelShader } from 'https://unpkg.com/three@0.154.0/examples/jsm/shaders/PixelShader.js';
+
+// const image = "/images/specials/earth.jpg";
+
+const image = "//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg";
+const globediv = document.getElementById('globe');
+
+const width = 40; //40vw
+const height = 80; //70vh
+
+globediv.style.width = width.toString() + "vw";
+globediv.style.height = height.toString() + "vh";
+
+const myGlobe = new Globe(globediv)
+  .globeImageUrl(image)
+  // .pointsData(myData);
+  .width(window.innerWidth * (width/100))
+  .height(window.innerHeight * (height/100))
+
+/*
     // core three.js
-    import * as THREE from 'https://unpkg.com/three@0.154.0/build/three.module.js';
     // orbit controls
-    import { OrbitControls } from 'https://unpkg.com/three@0.154.0/examples/jsm/controls/OrbitControls.js';
     // postprocessing
-    import { EffectComposer } from 'https://unpkg.com/three@0.154.0/examples/jsm/postprocessing/EffectComposer.js';
-    import { RenderPass }     from 'https://unpkg.com/three@0.154.0/examples/jsm/postprocessing/RenderPass.js';
-    import { ShaderPass }     from 'https://unpkg.com/three@0.154.0/examples/jsm/postprocessing/ShaderPass.js';
-    import { PixelShader }    from 'https://unpkg.com/three@0.154.0/examples/jsm/shaders/PixelShader.js';
 
     // grab your container
     const container = document.getElementById('globe');
@@ -99,3 +119,5 @@
       composer.render();
     }
     animate();
+
+    */
