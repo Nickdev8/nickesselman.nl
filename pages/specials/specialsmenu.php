@@ -79,6 +79,13 @@
         </label>
         <h2>Story Mode</h2>
     </div>
+    <div>
+        <label class="special-switch">
+            <input id="triggerbirdpoop" type="checkbox">
+            <span class="special-slider"></span>
+        </label>
+        <h2>Trigger birdpoop</h2>
+    </div>
 </div>
 
 <!-- <div class="overlay-menu" id="bigpointyarrow">

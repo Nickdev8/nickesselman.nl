@@ -31,4 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const randomemiji = document.getElementById('randomemiji');
   if (randomemiji)
     randomemiji.innerHTML = emoticons[Math.floor(Math.random() * emoticons.length)];
+
+  const imgs = document.querySelectorAll('.iconholingholder img');
+
+  imgs.forEach(img => {
+    img.classList.add('physics', 'physics-nested')
+  });
 });

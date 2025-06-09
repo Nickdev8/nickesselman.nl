@@ -40,6 +40,7 @@ $versionnum = "1.1.4";
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJk2+m3pvpvVzKDh4jHzKx3v57B+8H0E2eX+E=" crossorigin="anonymous"></script>
 
+
     <!-- basic css -->
     <link rel="stylesheet" href="css/reset.css?v=<?= $versionnum ?>">
     <link rel="stylesheet" href="css/main.css?v=<?= $versionnum ?>">

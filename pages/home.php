@@ -21,7 +21,7 @@
             Every project and every line of code tells a story about my journey.
         </p>
     </div>
-    <img src="images/me.png" alt="Nick Essleman" class="img-cropped-wide">
+    <img src="images/me.png" alt="Nick Esselman" class="img-cropped-wide">
 </div>
 
 <div class="physics container narrow card separator" matter data-aos="fade-up">
@@ -30,6 +30,7 @@
         <?php include 'pages/specials/alltheprogramingluangages.html'; ?>
     </div>
 </div>
+
 <!-- <div class="parallax-section">
   <div class="parallax-text">
     <h1 class="physics" id="randomemiji" style="background-color: var(--white); padding: 1rem; border-radius: 0.5rem">:></h1>

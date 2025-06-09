@@ -2,21 +2,21 @@
 $projects = [
     [
         'title' => 'HackClub: Juice',
-        'description' => 'This was a 12 day long hackathon in shanghai, with Hackclub',
+        'description' => 'This was a 12-day hackathon in Shanghai with Hack Club.',
         'image' => 'juice.jpg',
         'link' => 'juice',
         'basiclayout' => 'false'
     ],
     [
         'title' => 'My Sticker Collection',
-        'description' => 'These are all of my own stickers i recived from hackclub.',
+        'description' => 'These are all the stickers I received from Hack Club.',
         'image' => 'stickers.jpg',
         'link' => 'stickers',
         'basiclayout' => 'false',
     ],
     [
         'title' => 'Game: Monkey Swing',
-        'description' => 'A game i made to learn C# and unity',
+        'description' => 'A game I made to learn C# and Unity.',
         'image' => 'monkeyswing.gif',
         'link' => 'monkeyswing',
         'basiclayout' => 'true',
@@ -30,7 +30,7 @@ $projects = [
                 'title' => 'Overview',
                 'content' => '
                 <p>
-                    The first time I sat down at my desk with a nice warm cup of thee,
+                    The first time I sat down at my desk with a nice warm cup of tea,
                     Unity’s interface glowing on my screen, I knew MonkeySwing would be more than
                     “just another 2D rage game.” I typed my first line of C# and felt my heart race:
                 </p>
@@ -40,10 +40,10 @@ $projects = [
                     }
                 </code></pre>
                 <p>
-                    Each swing of the monkey’s arm became a tiny victory; each unexpected face-plant,
+                    Each swing of the monkey’s arm became a tiny victory; each unexpected face-plant
                     a lesson learned. When my simple prototype—swinging vines
                     and one very impatient monkey—finally came together,
-                    Wrote a cheeky description, and hit “Publish” on <a href="https://nikkcc.itch.io/ms">itch.io</a>.
+                    I wrote a cheeky description and hit “Publish” on <a href="https://nikkcc.itch.io/ms">itch.io</a>.
                 </p>
                 <p>
                     Although it began as a simple prototype, MonkeySwing opened
@@ -67,12 +67,10 @@ $projects = [
                 ]
             ],
         ],
-
     ],
-
     [
         'title' => 'HackClub: HackPad',
-        'description' => 'I Designed, Solderd and Programmed a Micropad',
+        'description' => 'I designed, soldered, and programmed a macropad.',
         'image' => 'hackpad.jpg',
         'link' => 'hackpad',
         'basiclayout' => 'true',
@@ -86,17 +84,13 @@ $projects = [
                 'title' => 'Overview',
                 'content' => '
                 <p>
-                    This was a project i made with HackClub. <br>
-                    The event was: "Design a pcb for a micropad, and recieve the parts for it"<br>
-                    I made a pcb with a 4x4 matrics of Cherry MX Switches.<br>
-                    Find more information in my github repo <a href="https://github.com/Nickdev8/macropad">here</a><br>
-                    <br>
-                    I also made a Case for it in fusion 360, <br>
-                    this all took me only 1 days of work. <br>
-                    <br>
-                    I solderd this together with my grandpa, he teatched me how to solder.<br>
-                    and after only an hour or 2, I had a finished board.<br>
-                    Then came the programming. <br>and with support from chatGPT i had it working on notime.
+                    This was a project I made with Hack Club.<br>
+                    The event was: “Design a PCB for a macropad and receive the parts for it.”<br>
+                    I made a PCB with a 4×4 matrix of Cherry MX switches.<br>
+                    Find more information in my GitHub repo <a href="https://github.com/Nickdev8/macropad">here</a>.<br><br>
+                    I also made a case for it in Fusion 360; this all took me only one day of work.<br><br>
+                    I soldered this together with my grandpa; he taught me how to solder, and after only an hour or two, I had a finished board.<br>
+                    Then came the programming, and with support from ChatGPT, I had it working in no time.
                 </p>
                 ',
                 'image' => [
@@ -107,14 +101,14 @@ $projects = [
                 'title' => 'BOM',
                 'content' => '
                 <ul>
-                    <li>2x SK6812 MINI Leds</li>
-                    <li>1x XIAO RP2040</li>
-                    <li>16x Blank DSA Keycaps</li>
-                    <li>4x M3x16mm Bolt</li>
-                    <li>4x M3 Heatset</li>
-                    <li>16x 1N4148 Diodes</li>
+                    <li>2× SK6812 mini LEDs</li>
+                    <li>1× XIAO RP2040</li>
+                    <li>16× blank DSA keycaps</li>
+                    <li>4× M3×16 mm bolts</li>
+                    <li>4× M3 heat-set inserts</li>
+                    <li>16× 1N4148 diodes</li>
                 </ul>
-                <p>feel free to copy the files, modify it and make your own.',
+                <p>Feel free to copy the files, modify them, and make your own.</p>',
                 'image' => [
                     'images/innerprojects/hackpad/schematic.png',
                 ]
@@ -124,13 +118,11 @@ $projects = [
                     'images/innerprojects/hackpad/pcbback.jpg',
                 ]
             ],
-
         ],
     ],
-
     [
-        'title' => 'HackClub: neighborhood',
-        'description' => 'A 3 month long, housing program in sanfansico',
+        'title' => 'HackClub: Neighborhood',
+        'description' => 'A three-month housing program in San Francisco.',
         'image' => 'neighborhood.jpg',
         'link' => 'neighborhood',
         'basiclayout' => 'true',
@@ -144,14 +136,14 @@ $projects = [
                 'title' => 'Overview',
                 'content' => '
                     <p>
-                        Ready for a summer hackathon adventure in sunny San Francisco? In May 2025, Hackclub launched an exclusive housing program for programmers. running from June through August, and it’s not your average meet-up.
+                        Ready for a summer hackathon adventure in sunny San Francisco? In May 2025, Hack Club launched an exclusive housing program for programmers, running from June through August—it’s not your average meet-up.
                     </p>
                     <p>
                         Here’s the deal: you pick a passion project, sink at least 100 hours of code into it, and we’ve got you covered—flight, housing, meals, you name it! Imagine debugging with a view of the Golden Gate Bridge and jamming on your project poolside.
                     </p>
                     <p>
-                        For my contribution, I built this very website! <a href="https://NickEsselman.nl" target="_blank" rel="noopener">NickEsselman.nl</a>, to showcase all the wild ideas and late-night coding sessions.
-                        Oh, and to keep us honest, every week in San Francisco you must clock a minimum of 40 coding hours, tracked effortlessly through <a href="https://hackatime.hackclub.com/" target="_blank" rel="noopener">Hackatime</a> (Hack Club’s fork of WakaTime).
+                        For my contribution, I built this very website—<a href="https://NickEsselman.nl" target="_blank" rel="noopener">NickEsselman.nl</a>—to showcase all the wild ideas and late-night coding sessions.
+                        Oh, and to keep us honest, every week in San Francisco you must clock a minimum of 40 coding hours, tracked effortlessly through <a href="https://hackatime.hackclub.com/" target="_blank" rel="noopener">Hackatime</a>.
                     </p>
                 ',
             ],
@@ -169,7 +161,7 @@ $projects = [
                     </p>
                     <p>
                         There’s one golden rule: while you’re living the San Francisco coder life, you must log <strong>40 hours of code each week</strong>. We’ll keep track via <a href="https://hackatime.hackclub.com/" target="_blank" rel="noopener">Hackatime</a>.
-                        Miss the weekly quota, and it’s back home you go. so code hard and make every keystroke count!
+                        Miss the weekly quota, and it’s back home you go. So code hard and make every keystroke count!
                     </p>
                 ',
             ],
@@ -177,26 +169,25 @@ $projects = [
                 'title' => 'Follow My Journey',
                 'content' => '
                     <p>
-                        Crave insider access to my San Francisco summer? I’m launching a live blog show you, every twist and turn—sunrise stand-ups, late-night bug hunts, and all the caffeine-powered breakthroughs in between.
+                        Crave insider access to my San Francisco summer? I’m launching a live blog to show you every twist and turn—sunrise stand-ups, late-night bug hunts, and all the caffeine-powered breakthroughs in between.
                     </p>
                     <p>
                         I’ll drop the blog link right here as soon as it’s live, so keep your eyes peeled and your browser refreshed. Get ready for real-time updates straight from the Bay!
                     </p>
                 ',
-
             ]
         ]
     ],
     [
         'title' => 'Game: Gamejams',
-        'description' => 'Some games i made',
+        'description' => 'Some games I made.',
         'image' => 'gamejams.jpg',
         'link' => 'gamejams',
         'basiclayout' => 'true',
         'blocks' => [
             [
                 'title' => 'GMTK Game Jam 2024',
-                'content' => ' 
+                'content' => '
             <p>
                 In August 2024, I dove head-first into my very first game jam: the <a href="https://itch.io/jam/gmtk-2024" target="_blank" rel="noopener">GMTK Game Jam</a>!  
                 Theme: <strong>Built to Scale</strong>. My creation? <a href="https://nikkcc.itch.io/carsizer" target="_blank" rel="noopener">Car Sizer</a>—a quirky little driver where you continuously resize your car to dodge obstacles.  
@@ -206,11 +197,11 @@ $projects = [
                 'image' => 'images/innerprojects/gamejams/gmtk2024.jpg',
             ],
             [
-                'title' => 'Brackeys Jam 2024.2',
+                'title' => 'Brackeys Game Jam 2024.2',
                 'content' => '
             <p>
                 Next up: the <a href="https://itch.io/jam/brackeys-12" target="_blank" rel="noopener">Brackeys Game Jam 2024.2</a>, themed <em>Calm Before the Storm</em>.  
-                I hopped onto the Discord, pitched pixel art skills... and suddenly I was on Team Zeus:
+                I hopped onto Discord, pitched my pixel art skills, and suddenly I was on Team Zeus:
             </p>
             <ul>
                 <li><strong>Lead Programmer:</strong> Nan</li>
@@ -312,12 +303,11 @@ $projects = [
                     <img src="images/innerprojects/3dprint/old.jpg" class="img-cropped" alt="">
                     <img src="images/innerprojects/3dprint/camera.jpg" class="img-cropped" alt="">
                 </div>',
-
                 'split' => '
                 <div class="split">
-                <img src="images/innerprojects/3dprint/germo.jpg" class="img-cropped-small"alt="">
-                <img src="images/innerprojects/3dprint/telesoo.jpg" class="img-cropped-small"alt="">
-                <img src="images/innerprojects/3dprint/camera2.jpg" class="img-cropped-small"alt="">
+                <img src="images/innerprojects/3dprint/germo.jpg" class="img-cropped-small" alt="">
+                <img src="images/innerprojects/3dprint/telesoo.jpg" class="img-cropped-small" alt="">
+                <img src="images/innerprojects/3dprint/camera2.jpg" class="img-cropped-small" alt="">
                 </div>
                 <p>
                     Every print pushed my skills further and turned this Ender 3 V2 into a versatile fabrication station.
@@ -327,8 +317,8 @@ $projects = [
         ],
     ],
     [
-        'title' => 'Project: Discord Minecraft server bot',
-        'description' => 'I made a Discord bot for a multiplayer MC server',
+        'title' => 'Project: Discord Minecraft Server Bot',
+        'description' => 'I made a Discord bot for a multiplayer Minecraft server.',
         'image' => 'discord.jpg',
         'link' => 'dcmcbot',
         'basiclayout' => 'true',
@@ -339,10 +329,8 @@ $projects = [
             [
                 'title' => 'What?',
                 'content' => '<p>
-                Its a bot on discord so i can send commands 
-                like /serverOn or /serverReboot for easy distobutet management, 
-                so if a User want to boot the server, he Can! <br>
-                This was back in 2024.
+                It’s a bot on Discord so I can send commands like /serverOn or /serverReboot for easy distributed management.  
+                If a user wants to boot the server, they can! This was back in 2024.
                 </p>
                 <a href="https://github.com/Nickdev8/minercaftbot">The Repo!</a>
                 ',
@@ -351,7 +339,7 @@ $projects = [
     ],
     [
         'title' => 'HackClub: HighSeas',
-        'description' => 'I Designed, Solderd and Programmed a Micropad',
+        'description' => 'A winter-long Hack Club event where participants earned rewards by publishing projects.',
         'image' => 'highseas.jpg',
         'link' => 'highseas',
         'basiclayout' => 'true',
@@ -359,42 +347,34 @@ $projects = [
             [
                 'title' => 'Overview',
                 'content' => '<p>
-                    <a href="https://highseas.hackclub.com/">HighSeas</a> was a winter long HackClub event, <br>
-                    where we had to count our hours making projects, set sail to those projects (publish) <br>
-                    We would recieve doubloons (points), calculated from the amount of votes from other hackclubbers. <br>
-                    And with these doubloons you could redeem prices. For example, you could claim:<br>
-                    raspberry pi 5, 3d printer, solder kit, Blahåj, System76 Keeb, and so many more! <br>
-                    <br>
-                    You sould defently take a look at <a href="https://highseas.hackclub.com/">highseas.hackclub.com</a>
-                    <br>
-                    but unfortunatly its over now.
+                    <a href="https://highseas.hackclub.com/">HighSeas</a> was a winter-long Hack Club event where we tracked our hours on projects and “set sail” by publishing them.<br>
+                    We received doubloons (points) based on votes from other Hack Clubbers. With these doubloons, you could redeem prizes: a Raspberry Pi 5, a 3D printer, a soldering kit, a Blahaj, a System76 keyboard, and many more!<br><br>
+                    You should definitely take a look at <a href="https://highseas.hackclub.com/">highseas.hackclub.com</a>, but unfortunately it’s over now.
                 </p>'
             ],
             [
-                'title' => 'What i Claimed',
+                'title' => 'What I Claimed',
                 'content' => '<div style="display:grid; grid-template-columns: repeat(3, 1fr);">
-                <p>Github Stanly tumblr<br><img src="images/innerprojects/highseas/stanly.jpg" class="img-cropped"></p>
+                <p>GitHub Stanley tumbler<br><img src="images/innerprojects/highseas/stanly.jpg" class="img-cropped"></p>
                 <p>Logitech MX Master 3S mouse<br><img src="images/innerprojects/highseas/mouse.jpg" class="img-cropped"></p>
-                <p>Raspberry pi zero<br><img src="images/innerprojects/highseas/rasp.jpg" class="img-cropped"></p>
-                <p>And many, MANY stickers. See the Stickers Projects for more info
-                <a href="/?project=stickers">My Stickers</a></p>
+                <p>Raspberry Pi Zero<br><img src="images/innerprojects/highseas/rasp.jpg" class="img-cropped"></p>
+                <p>And many, many stickers. See the <a href="/?project=stickers">My Sticker Collection</a> for more info.</p>
                 </div>'
             ],
             [
                 'title' => 'Mystic Tavern',
                 'content' => '
-                <p>Afer HighSeas was over, they orginized an event for everyone that took part in highseas to meet up with other hackclubbers in your area.<br>
-                So i went to Utecht to meet with 13 hackclubber were 6 showed up, (inc me). We went there and just walked arount the city, talking about the projects we made and the things we do.
-                <br><br>
-                Here i met: jsw08, Tuna, Emma, Verduijn, whacky, Fela and ArtyH</p>
+                <p>After HighSeas was over, they organized an event for everyone who took part to meet up with other Hack Clubbers in their area.<br>
+                So I went to Utrecht to meet with 13 Hack Clubbers, of whom six showed up (including me). We walked around the city, talking about our projects and what we do.
+                </p>
                 <img src="images/innerprojects/highseas/group2.jpg" class="img">
                 <img src="images/innerprojects/highseas/group1.jpg" class="img">'
             ]
         ]
     ],
     [
-        'title' => 'Website: jazzdesign',
-        'description' => 'I made the website, for my sisters company',
+        'title' => 'Website: JazzDesign',
+        'description' => 'I made the website for my sister’s company.',
         'image' => 'jazzdesign.jpg',
         'link' => 'jazzdesign',
         'basiclayout' => 'true',
@@ -403,21 +383,22 @@ $projects = [
                 'image' => 'images/innerprojects/jazzdesign/mainpage.png'
             ],
             [
-                'title' => 'What`s JazzDesign?',
+                'title' => 'What’s JazzDesign?',
                 'content' => '
-                
                 <div class="split">
                     <div>
                         <p>
-                            <a href="https://jazzdesign.nl">JazzDesign</a> is my sister Jessie`s fashion design studio, specializing in custom clothing for both businesses and individuals. When she approached me in 2024 to create her website, I jumped at the opportunity!
+                            <a href="https://jazzdesign.nl">JazzDesign</a> is my sister Jessie’s fashion design studio, specializing in custom clothing for businesses and individuals. When she approached me in 2024 to create her website, I jumped at the opportunity!
                         </p>
                         <h3 class="subheadline">The Challenge</h3>
                         <p>
                             While I had built websites before, this was my first time creating one for a real client. 
                             Working with my sister meant balancing:
-                            - Professional needs vs. creative freedom
-                            - Fashion-forward design vs. usability
-                            - Client expectations vs. technical constraints
+                            <ul>
+                              <li>Professional needs vs. creative freedom</li>
+                              <li>Fashion-forward design vs. usability</li>
+                              <li>Client expectations vs. technical constraints</li>
+                            </ul>
                         </p>
                     </div>
                     <div>
@@ -427,17 +408,15 @@ $projects = [
 
                 <h3 class="subheadline">Behind The Scenes</h3>
                 <p>
-                    My favorite part was setting up the infrastructure - configuring hosting, managing SSL certificates, and ensuring everything runs smoothly behind the scenes. The design process was equally rewarding, translating Jessie`s fashion aesthetic into a digital experience.
+                    My favorite part was setting up the infrastructure—configuring hosting, managing SSL certificates, and ensuring everything runs smoothly behind the scenes. The design process was equally rewarding, translating Jessie’s fashion aesthetic into a digital experience.
                 </p>
-
 
                 <h3 class="subheadline">Outcome</h3>
                 <p>
-                    The site has helped Jessie showcase her work to potential clients and streamline her booking process. It`s been a great learning experience in client communication and real-world web development.
+                    The site has helped Jessie showcase her work to potential clients and streamline her booking process. It’s been a great learning experience in client communication and real-world web development.
                 </p>',
             ],
             [
-
                 'image' => 'images/innerprojects/jazzdesign/about.png'
             ]
         ]
@@ -485,44 +464,41 @@ $projects = [
             ],
         ],
     ],
-
     [
-
         'title' => 'School: EcoNest',
-        'description' => 'Ardiono project for a School assintment',
+        'description' => 'Arduino project for a school assignment',
         'image' => 'econest.jpg',
         'link' => 'econest',
         'basiclayout' => 'true',
         'blocks' => [
             [
                 'title' => 'Overview',
-                'content' => '<p>For school, I got the assintmend named "Duurzaam huis".<br>
-                It was about making a breadboard with led, ldr`s and th11 sensors. <br>
-                I did this together with Bram & Jesper. and we came up with <a href="https://38406.hosts2.ma-cloud.nl/EcoNest/index.php">Econest.com</a>
-                <br><br>
-                And altho I did almost everything with ardeono and the website. I had a blast doing it.<br>
-                I make a single page website with mutlible include statments in php.
+                'content' => '<p>For school, I got the assignment named “Duurzaam huis.”<br>
+                It was about building a breadboard with LEDs, LDRs, and TH11 sensors.<br>
+                I did this together with Bram & Jesper, and we created <a href="https://38406.hosts2.ma-cloud.nl/EcoNest/index.php">EcoNest.com</a>.<br><br>
+                Although I handled almost all of the Arduino work and the website, I had a blast doing it.<br>
+                I made a single-page website with multiple include statements in PHP.
                 </p>',
                 'image' => 'images/innerprojects/econest/image.png',
             ],
         ]
     ],
     [
-        'title' => 'Project: My tree',
-        'description' => 'This is an idea i had for visualising the prjects i made',
+        'title' => 'Project: My Tree',
+        'description' => 'This is an idea I had for visualizing the projects I’ve made.',
         'image' => 'mytree.jpg',
         'link' => 'mytree',
         'basiclayout' => 'false',
     ],
     [
         'title' => 'Project: Party VR',
-        'description' => 'This is the game i made for Juice',
+        'description' => 'This is the game I made for Juice.',
         'image' => 'partyvr.jpg',
         'link' => 'partyvr',
         'basiclayout' => 'false',
     ],
     [
-        'title' => 'template',
+        'title' => 'Template',
         'description' => 'Description of template',
         'image' => 'template.jpg',
         'link' => 'template',
