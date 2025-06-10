@@ -34,7 +34,7 @@ include_once 'basicscopy.php';
 </div>
 
 <div class="wide container separator img-wide">
-    <img src="images/projectsimages/stickers.jpg" alt="" class="img-cropped-wide">
+    <img src="images/projectsimages/stickers.png" alt="" class="img-cropped-wide">
 </div>
 <div class="card container separator">
     <h2 class="headline">In Short</h2>
@@ -50,46 +50,46 @@ include_once 'basicscopy.php';
 </div>
 
 <div class="container separator img-wide">
-    <img src="images/innerprojects/stickers/main.jpg" alt="" class="img-cropped-wide">
+    <img src="images/innerprojects/stickers/main.png" alt="" class="img-cropped-wide">
 </div>
 
 <div class="card container separator">
     <div class="grid" id="imageGrid">
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker2.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker3.jpg" alt="Image"></div>
-        <div class="media"><img src="images/innerprojects/stickers/sticker8.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker4.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker2.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker3.png" alt="Image"></div>
+        <div class="media"><img src="images/innerprojects/stickers/sticker8.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker4.png" alt="Image"></div>
 
-        <div class="media"><img src="images/innerprojects/stickers/sticker1.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker5.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker6.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker7.jpg" alt="Image"></div>
+        <div class="media"><img src="images/innerprojects/stickers/sticker1.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker5.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker6.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker7.png" alt="Image"></div>
 
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker9.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker10.jpg" alt="Image"></div>
-        <div class="media"><img src="images/innerprojects/stickers/sticker11.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker12.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker9.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker10.png" alt="Image"></div>
+        <div class="media"><img src="images/innerprojects/stickers/sticker11.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker12.png" alt="Image"></div>
 
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker13.jpg" alt="Image"></div>
-        <div class="media"><img src="images/innerprojects/stickers/sticker15.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker14.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker16.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker13.png" alt="Image"></div>
+        <div class="media"><img src="images/innerprojects/stickers/sticker15.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker14.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker16.png" alt="Image"></div>
 
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker17.jpg" alt="Image"></div>
-        <div class="media"><img src="images/innerprojects/stickers/sticker18.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker19.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/patch1.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker17.png" alt="Image"></div>
+        <div class="media"><img src="images/innerprojects/stickers/sticker18.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker19.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/patch1.png" alt="Image"></div>
 
-        <div class="media"><img src="images/innerprojects/stickers/patch2.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/patch3.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/patch4.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/sticker3.jpg" alt="Image"></div>
+        <div class="media"><img src="images/innerprojects/stickers/patch2.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/patch3.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/patch4.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/sticker3.png" alt="Image"></div>
 
-        <div class="media landscape"><img src="images/innerprojects/stickers/post1.jpg" alt="Image"></div>
-        <div class="media"><img src="images/innerprojects/stickers/post2.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/post3.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/post4.jpg" alt="Image"></div>
-        <div class="media landscape"><img src="images/innerprojects/stickers/post5.jpg" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/post1.png" alt="Image"></div>
+        <div class="media"><img src="images/innerprojects/stickers/post2.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/post3.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/post4.png" alt="Image"></div>
+        <div class="media landscape"><img src="images/innerprojects/stickers/post5.png" alt="Image"></div>
 
         <img src="" alt="">
     </div>

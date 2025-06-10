@@ -16,9 +16,9 @@ $excludedDirs = [
     'images/specials/',
 ];
 
-$imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+$imageExtensions = ['png', 'jpeg', 'png', 'gif'];
 $videoExtensions = ['mp4', 'webm'];
-$panoExtensions = ['pano', 'PANO.jpg'];
+$panoExtensions = ['pano', 'PANO.png'];
 $baseDirectory = './images';
 
 if (!isset($_SESSION['gallery_images'])) {
