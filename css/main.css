@@ -95,6 +95,38 @@ p {
     border-radius: 2rem;
 }
 
+.sub-top {
+    background: var(--myblue);
+    color: var(--white);
+    padding-bottom: 4rem;
+    text-align: center;
+    justify-content: center;
+
+}
+
+.sub-top>p,
+.sub-top>h1,
+.sub-top>h2 {
+    color: var(--white) !important;
+    z-index: 20;
+    position: relative;
+}
+
+.sub-top,
+.sub-top * {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.sub-top>h1 {
+    margin-bottom: 2rem;
+}
+
+.sub-top>div {
+    margin-bottom: 1rem;
+}
 
 /* images */
 

@@ -16,7 +16,7 @@
     }
 </script>
 
-<div class="projects-top">
+<div class="sub-top">
     <div data-aos="fade-down" style="margin:auto; width: fit-content;">
         <h1 class="ultratitle physics" style="background-color: var(--myblue); padding: 1rem; border-radius: 0.5rem">
             Projects</h1>

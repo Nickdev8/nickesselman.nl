@@ -8,7 +8,7 @@ let width = 40;// vw & vh
 let height = 70;
 
 let globewidht;
-let globeheight;
+let globeheight;2
 if (window.innerWidth < 1100) {
   width = 100;// vw & vh
   height = 70;
