@@ -45,3 +45,4 @@ Special thanks to:
 ---
 
 <p align="center">Made with ❤️ by Nick Esselman</p>
+<h6 align="center">minor parts were vibe coded.</h6>
