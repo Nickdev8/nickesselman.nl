@@ -3,14 +3,14 @@ $projects = [
     [
         'title' => 'HackClub: Juice',
         'description' => 'This was a 12-day hackathon in Shanghai with Hack Club.',
-        'image' => 'juice.jpg',
+        'image' => 'juice.png',
         'link' => 'juice',
         'basiclayout' => 'false'
     ],
     [
         'title' => 'My Sticker Collection',
         'description' => 'These are all the stickers I received from Hack Club.',
-        'image' => 'stickers.jpg',
+        'image' => 'stickers.png',
         'link' => 'stickers',
         'basiclayout' => 'false',
     ],
@@ -71,13 +71,13 @@ $projects = [
     [
         'title' => 'HackClub: HackPad',
         'description' => 'I designed, soldered, and programmed a macropad.',
-        'image' => 'hackpad.jpg',
+        'image' => 'hackpad.png',
         'link' => 'hackpad',
         'basiclayout' => 'true',
         'blocks' => [
             [
                 'image' => [
-                    'images/innerprojects/hackpad/pcbfront.jpg',
+                    'images/innerprojects/hackpad/pcbfront.png',
                 ]
             ],
             [
@@ -115,7 +115,7 @@ $projects = [
             ],
             [
                 'image' => [
-                    'images/innerprojects/hackpad/pcbback.jpg',
+                    'images/innerprojects/hackpad/pcbback.png',
                 ]
             ],
         ],
@@ -123,13 +123,13 @@ $projects = [
     [
         'title' => 'HackClub: Neighborhood',
         'description' => 'A three-month housing program in San Francisco.',
-        'image' => 'neighborhood.jpg',
+        'image' => 'neighborhood.png',
         'link' => 'neighborhood',
         'basiclayout' => 'true',
         'blocks' => [
             [
                 'image' => [
-                    'images/innerprojects/neighborhood/top.jpg',
+                    'images/innerprojects/neighborhood/top.png',
                 ]
             ],
             [
@@ -181,7 +181,7 @@ $projects = [
     [
         'title' => 'Game: Gamejams',
         'description' => 'Some games I made.',
-        'image' => 'gamejams.jpg',
+        'image' => 'gamejams.png',
         'link' => 'gamejams',
         'basiclayout' => 'true',
         'blocks' => [
@@ -194,7 +194,7 @@ $projects = [
                 Was it perfect? Far from it. But it was my launchpad into the wild world of rapid-fire game creation.
             </p>
         ',
-                'image' => 'images/innerprojects/gamejams/gmtk2024.jpg',
+                'image' => 'images/innerprojects/gamejams/gmtk2024.png',
             ],
             [
                 'title' => 'Brackeys Game Jam 2024.2',
@@ -214,7 +214,7 @@ $projects = [
                 Demo hiccups aside, every thunderclap taught me something new.
             </p>
         ',
-                'image' => 'images/innerprojects/gamejams/brackeys2024_2.jpg',
+                'image' => 'images/innerprojects/gamejams/brackeys2024_2.png',
             ],
             [
                 'title' => 'Fisherman’s Storm',
@@ -225,7 +225,7 @@ $projects = [
                 I crafted seaside sprites and stormy backdrops—nothing beats pixel waves crashing under a moody sky!
             </p>
         ',
-                'image' => 'images/innerprojects/gamejams/fishermans_storm.jpg',
+                'image' => 'images/innerprojects/gamejams/fishermans_storm.png',
             ],
             [
                 'title' => 'Boss Rush Jam 2025',
@@ -236,7 +236,7 @@ $projects = [
                 Teammates went MIA, so we never finished—but I still designed eerie forest tiles and kicked off the first level.  
                 Every pixel sharpened my skills, jams or no jams!
             </p>',
-                'image' => 'images/innerprojects/gamejams/bossrush2025.jpg',
+                'image' => 'images/innerprojects/gamejams/bossrush2025.png',
             ],
             [
                 'title' => 'Let’s Team Up!',
@@ -252,13 +252,13 @@ $projects = [
     [
         'title' => 'Project: 3D Printing Journey',
         'description' => 'From an off-brand clearance printer to a fully upgraded Ender 3 V2',
-        'image' => '3dprinter.jpg',
+        'image' => '3dprinter.png',
         'link' => '3dprinting',
         'basiclayout' => 'true',
         'blocks' => [
             [
                 'image' => [
-                    'images/projectsimages/3dprinter.jpg',
+                    'images/projectsimages/3dprinter.png',
                 ],
             ],
             [
@@ -300,14 +300,14 @@ $projects = [
                     <li><strong>Enclosure Mods:</strong> A custom, clip-together enclosure with built-in dust filter and LED strip mounts.</li>
                 </ul>
                 <div class="split">
-                    <img src="images/innerprojects/3dprint/old.jpg" class="img-cropped" alt="">
-                    <img src="images/innerprojects/3dprint/camera.jpg" class="img-cropped" alt="">
+                    <img src="images/innerprojects/3dprint/old.png" class="img-cropped" alt="">
+                    <img src="images/innerprojects/3dprint/camera.png" class="img-cropped" alt="">
                 </div>',
                 'split' => '
                 <div class="split">
-                <img src="images/innerprojects/3dprint/germo.jpg" class="img-cropped-small" alt="">
-                <img src="images/innerprojects/3dprint/telesoo.jpg" class="img-cropped-small" alt="">
-                <img src="images/innerprojects/3dprint/camera2.jpg" class="img-cropped-small" alt="">
+                <img src="images/innerprojects/3dprint/germo.png" class="img-cropped-small" alt="">
+                <img src="images/innerprojects/3dprint/telesoo.png" class="img-cropped-small" alt="">
+                <img src="images/innerprojects/3dprint/camera2.png" class="img-cropped-small" alt="">
                 </div>
                 <p>
                     Every print pushed my skills further and turned this Ender 3 V2 into a versatile fabrication station.
@@ -319,7 +319,7 @@ $projects = [
     [
         'title' => 'Project: Discord Minecraft Server Bot',
         'description' => 'I made a Discord bot for a multiplayer Minecraft server.',
-        'image' => 'discord.jpg',
+        'image' => 'discord.png',
         'link' => 'dcmcbot',
         'basiclayout' => 'true',
         'blocks' => [
@@ -340,7 +340,7 @@ $projects = [
     [
         'title' => 'HackClub: HighSeas',
         'description' => 'A winter-long Hack Club event where participants earned rewards by publishing projects.',
-        'image' => 'highseas.jpg',
+        'image' => 'highseas.png',
         'link' => 'highseas',
         'basiclayout' => 'true',
         'blocks' => [
@@ -355,9 +355,9 @@ $projects = [
             [
                 'title' => 'What I Claimed',
                 'content' => '<div style="display:grid; grid-template-columns: repeat(3, 1fr);">
-                <p>GitHub Stanley tumbler<br><img src="images/innerprojects/highseas/stanly.jpg" class="img-cropped"></p>
-                <p>Logitech MX Master 3S mouse<br><img src="images/innerprojects/highseas/mouse.jpg" class="img-cropped"></p>
-                <p>Raspberry Pi Zero<br><img src="images/innerprojects/highseas/rasp.jpg" class="img-cropped"></p>
+                <p>GitHub Stanley tumbler<br><img src="images/innerprojects/highseas/stanly.png" class="img-cropped"></p>
+                <p>Logitech MX Master 3S mouse<br><img src="images/innerprojects/highseas/mouse.png" class="img-cropped"></p>
+                <p>Raspberry Pi Zero<br><img src="images/innerprojects/highseas/rasp.png" class="img-cropped"></p>
                 <p>And many, many stickers. See the <a href="/?project=stickers">My Sticker Collection</a> for more info.</p>
                 </div>'
             ],
@@ -367,15 +367,15 @@ $projects = [
                 <p>After HighSeas was over, they organized an event for everyone who took part to meet up with other Hack Clubbers in their area.<br>
                 So I went to Utrecht to meet with 13 Hack Clubbers, of whom six showed up (including me). We walked around the city, talking about our projects and what we do.
                 </p>
-                <img src="images/innerprojects/highseas/group2.jpg" class="img">
-                <img src="images/innerprojects/highseas/group1.jpg" class="img">'
+                <img src="images/innerprojects/highseas/group2.png" class="img">
+                <img src="images/innerprojects/highseas/group1.png" class="img">'
             ]
         ]
     ],
     [
         'title' => 'Website: JazzDesign',
         'description' => 'I made the website for my sister’s company.',
-        'image' => 'jazzdesign.jpg',
+        'image' => 'jazzdesign.png',
         'link' => 'jazzdesign',
         'basiclayout' => 'true',
         'blocks' => [
@@ -424,7 +424,7 @@ $projects = [
     [
         'title' => 'Game: Weird Chess',
         'description' => 'A hilarious chess variant that breaks all the rules',
-        'image' => 'chess.jpg',
+        'image' => 'chess.png',
         'link' => 'chess',
         'basiclayout' => 'true',
         'blocks' => [
@@ -467,7 +467,7 @@ $projects = [
     [
         'title' => 'School: EcoNest',
         'description' => 'Arduino project for a school assignment',
-        'image' => 'econest.jpg',
+        'image' => 'econest.png',
         'link' => 'econest',
         'basiclayout' => 'true',
         'blocks' => [
@@ -486,21 +486,21 @@ $projects = [
     [
         'title' => 'Project: My Tree',
         'description' => 'This is an idea I had for visualizing the projects I’ve made.',
-        'image' => 'mytree.jpg',
+        'image' => 'mytree.png',
         'link' => 'mytree',
         'basiclayout' => 'false',
     ],
     [
         'title' => 'Project: Party VR',
         'description' => 'This is the game I made for Juice.',
-        'image' => 'partyvr.jpg',
+        'image' => 'partyvr.png',
         'link' => 'partyvr',
         'basiclayout' => 'false',
     ],
     [
         'title' => 'Template',
         'description' => 'Description of template',
-        'image' => 'template.jpg',
+        'image' => 'template.png',
         'link' => 'template',
         'basiclayout' => 'true',
         'blocks' => [
@@ -515,7 +515,7 @@ $projects = [
             [
                 'title' => 'Gallery',
                 'content' => '<p>Here is a screenshot from Project 2.</p>',
-                'image' => 'images/innerprojects/project2-1.jpg',
+                'image' => 'images/innerprojects/project2-1.png',
             ],
         ],
     ],

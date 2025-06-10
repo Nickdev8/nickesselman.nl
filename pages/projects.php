@@ -10,6 +10,8 @@
             setTimeout(() => { hint.style.opacity = '0'; }, 3000);
             setTimeout(() => { hint.remove(); }, 4000);
             hastriggerhintdisapearbefore = true;
+
+            window.myGlobeControls.autoRotate = false;
         }
     }
 </script>
@@ -30,7 +32,7 @@
     <div class="weirdsplit">
         <link rel="stylesheet" href="/css/globe.css">
         <div class="conatiner objectToMoreToTheBackClasses card posfixed" data-aos="fade-left" data-aos-once="true">
-            <div onmouseover="disapeartoptext();" id="globe"></div>
+            <div onmousedown="disapeartoptext();" id="globe"></div>
             <div id="lagenda">
                 <ul>
                     <li>

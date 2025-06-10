@@ -217,13 +217,11 @@ p {
     transition-duration: unset !important;
     transition-timing-function: unset !important;
     transition-delay: unset !important;
-    /* overflow: unset; */
     z-index: 999 !important;
 }
 
 .physics-inactive {
     transition-duration: .8s !important;
-    /* overflow: unset; */
 }
 
 .physics-nested {
@@ -236,13 +234,10 @@ span.physics-active {
     will-change: transform;
 }
 
-/* If you still need to temporarily suppress animations/etc
-   when physics is active, but DON’T want to kill scrolling: */
 *:has(.physics.physics-active) {
-    /* remove only animation pauses, but retain overflow */
     animation-play-state: paused;
     animation-duration: 0s;
-    /* no overflow: unset here! */
+    /* overflow: unset NO!*/
 }
 
 div.physics-active:has(.parentonlypaddingwhenphysicsisactive) {
@@ -261,7 +256,6 @@ div.physics-active:has(.parentonlypaddingwhenphysicsisactive) {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0) !important;
 }
 
-/* “Kill-switch” overrides both transform & cursor */
 .no-hover .media>img:hover {
     transform: none !important;
     cursor: default !important;
