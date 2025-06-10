@@ -6,7 +6,3 @@ I’m typing this while racing to hit 100 hours of work on my website project-on
 
 ## What Happened Today
 When the trains went on strike today, everyone switched to online classes. Normally we’d get the day off, but apparently we’ve been too “rested” lately. So here I am-Zooming away, coffee in hand, multitasking like a champ while jotting down these notes.
-
-### hello 6/11
-## hi
-this is hello
