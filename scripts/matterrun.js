@@ -150,7 +150,7 @@ function enableMatter(config) {
         document.body.scrollHeight
     );
 
-    let bottomY = H - t / 2 - 30; // Adjust calculation to ensure proper placement
+    let bottomY = H - t / 2 - 10; // Adjust calculation to ensure proper placement
     let bottomWall = Bodies.rectangle(
         W / 2, bottomY, W, t,
         {
@@ -561,7 +561,7 @@ function setupCollisionHandlers() {
             let base = document.getElementById("bounceSound");
             if (base) {
                 let clone = base.cloneNode();
-                let computedVolume = relVel / 5;
+                let computedVolume = relVel / 10;
                 if (!isFinite(computedVolume)) {
                     computedVolume = 0;
                 }

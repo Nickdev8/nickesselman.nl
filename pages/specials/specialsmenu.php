@@ -2,13 +2,7 @@
     Your browser does not support the audio element.
 </audio>
 
-<div id="muteicon" class="card   const script = document.createElement('script');
-  script.src = 'path/to/your-script.js';
-  script.onload = () => {
-    // Optional: code to run after script loads
-    console.log('Script loaded!');
-  };
-  document.head.appendChild(script); physics-fixed">
+<div id="muteicon" class="card physics-fixed overlay-menu specials">
     <img id="muteiconimg" src="images/specials/mute.png" unselectable="on" draggable="false" alt="">
 </div>
 

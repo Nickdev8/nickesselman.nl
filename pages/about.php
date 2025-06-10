@@ -15,7 +15,7 @@
             <li><span>Hours:</span><span id="hours-old">0</span></li>
             <li><span>Minutes:</span><span id="minutes-old">0</span></li>
             <li><span>Seconds:</span><span id="seconds-old">0</span></li>
-            <li><span>Milliseconds:</span><span id="miliseconds-old">0</span></li>
+            <li><span>Millisec:</span><span id="miliseconds-old">0</span></li>
         </ul>
         <div class="separator"></div>
         <h4 class="caption">*Orange circle is time till next birthday</h4>
@@ -55,6 +55,10 @@
                     Francisco.
                     Everything was paid for by HackClub.
                 </p>
+                <span class="physics">
+                    <img src="https://github-readme-stats.vercel.app/api?username=nickdev8&theme=graywhite&show_icons=true&hide_border=true&count_private=true"
+                        alt="nickdev8's GitHub Stats" />
+                </span>
             </div>
 
             <div class="right objectToMoreToTheBackClasses card sunken iconholingholder">
@@ -80,7 +84,8 @@
 
     .PLIKS {
         filter:
-            grayscale(40%) /* sepia(100%) hue-rotate(200deg) saturate(500%); */
+            grayscale(40%)
+            /* sepia(100%) hue-rotate(200deg) saturate(500%); */
     }
 
     .PLIK:hover {
