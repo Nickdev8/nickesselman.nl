@@ -1,4 +1,3 @@
-
 <div class="cat physics">
     <div class="loader">
         <div class="wrapper">
@@ -27,9 +26,13 @@
 <style>
     .cat {
         position: absolute;
-        bottom: 6rem;
+        bottom: 4rem;
         right: 15rem;
         z-index: 999;
+        cursor: crosshair;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
 
     .loader {
@@ -127,9 +130,9 @@
     }
 
 
-@media screen and (max-width: 1100px) {
-    .cat{
-        display: none;
+    @media screen and (max-width: 1100px) {
+        .cat {
+            display: none;
+        }
     }
-}
 </style>

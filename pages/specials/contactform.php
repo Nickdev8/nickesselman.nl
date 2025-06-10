@@ -1,4 +1,4 @@
-<form class="form contact-form" action="contact.php" method="POST">
+<form class="form disabled contact-form" action="contact.php" method="POST">
     <h3 class="headline">Contact me</h3>
 
     <!-- Display validation errors, if any -->
@@ -19,19 +19,19 @@
 
     <!-- Name field -->
     <label for="name">Your Name:</label>
-    <input  class="input" type="text" id="name" name="name" placeholder="John Doe"
+    <input disabled class="input" type="text" id="name" name="name" placeholder="John Doe"
         value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>" required>
 
     <!-- Email field -->
     <label for="email">Your Email:</label>
-    <input class="input" type="email" id="email" name="email" placeholder="you@example.com"
+    <input disabled class="input" type="email" id="email" name="email" placeholder="you@example.com"
         value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>" required>
 
     <!-- Message field -->
     <label for="message">Your Message:</label>
-    <textarea id="message" name="message" placeholder="Write your message here..."
+    <textarea disabled id="message" name="message" placeholder="Write your message here..."
         required><?php echo isset($message) ? htmlspecialchars($message) : ''; ?></textarea>
 
     <!-- Submit button -->
-    <button type="cta submit">Send Message</button>
+    <button disabled type="cta submit">Send Message</button>
 </form>

@@ -1,5 +1,5 @@
 <div class="container physics separator header-overlay" matter>
-    <img src="images/projectsimages/contact.jpg" alt="Contact background">
+    <img src="images/projectsimages/contact.png" alt="Contact background">
     <div class="overlay-text">
         <h1>Contact</h1>
         <p>Where to find me</p>
@@ -36,7 +36,7 @@
                 nick.esselman@gmail.com</a>
         </div>
     </div>
-    <div class="card physics" matter>
+    <div disabled class="card physics" matter>
         <?php include_once 'pages/specials/contactform.php'; ?>
     </div>
     <?php
@@ -162,7 +162,8 @@
         }
 
         .header-overlay {
-            display: none;
+            aspect-ratio: 5 / 1;
+            /* display: none; */
         }
     }
 

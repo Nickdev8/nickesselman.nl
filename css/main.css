@@ -448,3 +448,45 @@ div.physics-active:has(.parentonlypaddingwhenphysicsisactive) {
     }
 
 }
+
+
+*:disabled:not(div),
+*[disabled]:not(div){
+  border: 1px solid #888;
+  background-color: #999;
+  color: #333;
+  transform: scale(1) !important;
+  cursor: not-allowed;
+}
+div:disabled,
+div[disabled]{
+  border: 1px solid #999;
+  background-color: #ccc;
+  color: #666;
+
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+div:disabled,
+div[disabled]::after{
+  content: "Under Construction";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(to bottom right, transparent 45%, #bbb 45%, #bbb 55%, transparent 55%),
+    linear-gradient(to top right, transparent 45%, #bbb 45%, #bbb 55%, transparent 55%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  text-align: center;
+  align-content: center;
+  font-size: 4em;
+  color: white;
+  font-weight: 700;
+  cursor: context-menu;
+}
