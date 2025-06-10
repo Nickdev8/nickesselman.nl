@@ -7,13 +7,13 @@ console.log('[Init] globe container:', globediv);
 
 
 let width = 40;// vw & vh
-let height = 80;
+let height = 70;
 
 let globewidht;
 let globeheight;
 if (window.innerWidth < 1100) {
   width = 100;// vw & vh
-  height = 50;
+  height = 70;
 }
 
 globewidht = window.innerWidth * width / 100;
@@ -27,11 +27,16 @@ const markerSvg = `<svg viewBox="-4 0 36 36">
   </svg>`;
 
 const gData = [
-  { name: "Home", label: "Amsterdam, NL", project_id: "monkeyswing", lat: 52.3676, lng: 4.9041, size: 0.15, color: 'red' },
-  { name: "Shanghai", label: "China", lat: 31.2304, lng: 121.4737, size: 0.15, color: 'blue' },
-  { name: "SanFranc", label: "California, USA", lat: 37.7749, lng: -122.4194, size: 0.15, color: 'green' }
-];
+  { name: "Home", label: "Amsterdam, NL", img:"me.png", project_id: "monkeyswing", lat: 52.3676, lng: 4.9041, size: 0.15, color: 'red' },
 
+  { name: "Shanghai", label: "This is where Juice took place", img:"innerprojects/juice/group.jpg", project_id: "juice", lat: 31.2304, lng: 121.4737, size: 0.15, color: 'blue' },
+  { name: "SanFranc",  label: "This is where Neighborhood took place", img:"", project_id: "neighborhood",  lat: 37.7749, lng: -122.4194, size: 0.05, color: 'blue' },
+
+  { name: "Oslo", label: "Norway",img:"map/norway.png", lat: 59.9139, lng: 10.7522, size: 0.05, color: 'orange' },
+  { name: "Majorca", label: "Spain", img:"map/mar.png", lat: 39.6953, lng: 3.0176, size: 0.05, color: 'orange' },
+  { name: "Stockholm", label: "Sweden", img:"map/oslso.png", lat: 59.3293, lng: 18.0686, size: 0.05, color: 'orange' },
+  { name: "Lyon", label: "France", img:"map/lyon.png", lat: 45.7640, lng: 4.8357, size: 0.05, color: 'orange' }
+];
 //for pontsofview => start view
 const AMSTERDAM = { lat: 35, lng: 4.9041, altitude: 2 };
 
@@ -55,7 +60,8 @@ const world = new Globe(globediv)
   //    this string (or HTML) will be shown for you
   .pointLabel(d =>
     `<div class="lead" style="margin: 0;">${d.name}</div>
-     <div class="caption">${d.label}</div>`
+     <div class="caption">${d.label}</div>
+     <img src="images/${d.img}">`
   )
 
   // 3) disable merging so hover/click events work
@@ -63,7 +69,7 @@ const world = new Globe(globediv)
   .pointsTransitionDuration(0);  // snap new points into place
 
 // pixelation
-world.renderer().setPixelRatio(0.15);
+world.renderer().setPixelRatio(0.2);
 
 // optional: if you’d still like custom positioning instead
 // of the built-in label, you can tap these hooks:
@@ -120,7 +126,7 @@ function scrolltotarget(target) {
     block: 'center',
     inline: 'nearest'
   });
-
+  if (document.querySelector('.targetSelected')) document.querySelector('.targetSelected').classList.remove('targetSelected');
   // highlight it (optional)
   target.classList.add('targetSelected');
 }

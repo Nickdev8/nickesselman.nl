@@ -31,6 +31,22 @@
         <link rel="stylesheet" href="/css/globe.css">
         <div class="conatiner objectToMoreToTheBackClasses card posfixed" data-aos="fade-left" data-aos-once="true">
             <div onmouseover="disapeartoptext();" id="globe"></div>
+            <div id="lagenda">
+                <ul>
+                    <li>
+                        <div id="red"></div>
+                        <h3>Home</h3>
+                    </li>
+                    <li>
+                        <div id="orange"></div>
+                        <h3>Vacations</h3>
+                    </li>
+                    <li>
+                        <div id="blue"></div>
+                        <h3>HackClub events</h3>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="card objectToMoreToTheBackClasses" style="margin-right: 2rem;" data-aos="fade-up">
             <h2 class="headline">These are most of my personal Projects! And events I've contributed in</h2>
