@@ -8,13 +8,6 @@ $projects = [
         'basiclayout' => 'false'
     ],
     [
-        'title' => 'My Sticker Collection',
-        'description' => 'These are all the stickers I received from Hack Club.',
-        'image' => 'stickers.png',
-        'link' => 'stickers',
-        'basiclayout' => 'false',
-    ],
-    [
         'title' => 'Game: Monkey Swing',
         'description' => 'A game I made to learn C# and Unity.',
         'image' => 'monkeyswing.gif',
@@ -120,7 +113,7 @@ $projects = [
             ],
         ],
     ],
-    [
+    /*[
         'title' => 'HackClub: Neighborhood',
         'description' => 'A three-month housing program in San Francisco.',
         'image' => 'neighborhood.png',
@@ -177,7 +170,7 @@ $projects = [
                 ',
             ]
         ]
-    ],
+    ],*/
     [
         'title' => 'Game: Gamejams',
         'description' => 'Some games I made.',
@@ -315,6 +308,13 @@ $projects = [
                 </p>',
             ],
         ],
+    ],
+    [
+        'title' => 'My Sticker Collection',
+        'description' => 'These are all the stickers I received from Hack Club.',
+        'image' => 'stickers.png',
+        'link' => 'stickers',
+        'basiclayout' => 'false',
     ],
     [
         'title' => 'Project: Discord Minecraft Server Bot',

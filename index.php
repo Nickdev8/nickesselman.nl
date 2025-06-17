@@ -17,14 +17,28 @@ $versionnum = "1.1.5";
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
-    <title><?= $_GET['page'] ?></title>
-    <link rel="stylesheet" href="https://css.hackclub.com/theme.css">
+    <!-- seo -->
+    <title>
+        <?php
+        $page = isset($_GET['page']) ? ucfirst(htmlspecialchars($_GET['page'])) . ' | ' : '';
+        echo $page;
+        ?>
+        Nick Esselman – Developer Portfolio & Projects
+    </title>
+
+    <meta name="description"
+        content="Discover the work of Nick Esselman | a creative developer with 20+ projects and experience in Hack Club events. Explore his skills, portfolio, and programming journey." />
+
     <link rel="icon" type="image/png" href="./images/logo.png">
+
+    <!-- the css.hackclub.com styling -->
+    <link rel="stylesheet" href="https://css.hackclub.com/theme.css">
 
     <!-- libs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+    <!-- animaitions -->
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -32,19 +46,14 @@ $versionnum = "1.1.5";
     <script src="https://rawgit.com/WeiChiaChang/Easter-egg/master/easter-eggs-collection.js"></script>
     <script src="scripts/comcastify.js"></script>
 
-    <!-- injects LightstreamerClient & Subscription into window -->
+    <!-- Client-side validation -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
     <script src="https://unpkg.com/lightstreamer-client-web/lightstreamer.min.js"></script>
 
-    <!-- (Optional) Client-side validation script; see Section 3 -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-
+    <!-- Physics system + plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/matter-dom-plugin@1.0.0/build/matter-dom-plugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/matter-attractors@0.1.6/build/matter-attractors.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJk2+m3pvpvVzKDh4jHzKx3v57B+8H0E2eX+E=" crossorigin="anonymous"></script>
-
 
     <!-- basic css -->
     <link rel="stylesheet" href="css/reset.css?v=<?= $versionnum ?>">
