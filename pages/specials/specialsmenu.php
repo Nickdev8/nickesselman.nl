@@ -145,8 +145,13 @@
         }
 
         #open-specials-menu {
+            /* padding: 0 !important; */
             height: max-content;
         }
+
+        /* #open-specials-menu label>div {
+            margin: var(--spacing-3);
+        } */
 
         #morephysics-menu {
             padding: 1rem;

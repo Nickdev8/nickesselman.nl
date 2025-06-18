@@ -22,6 +22,11 @@
 #open-specials-menu {
     bottom: 8rem;
     left: 2rem;
+    border: 4px dotted black;
+}
+
+#open-specials-menu:hover {
+    border: 4px solid black;
 }
 
 #morephysics-menu {
