@@ -26,90 +26,165 @@
     preg_match_all($pattern, $md, $blocks, PREG_SET_ORDER);
 
     $hyphenToEmDash = fn(string $txt) => str_replace(' - ', ' — ', $txt);
-    $escapeAndStrong = fn(string $txt) => preg_replace('/\*\*(.+?)\*\*/', '<strong>$1</strong>', htmlspecialchars($txt, ENT_QUOTES));
+    $escapeAndStrong = fn(string $txt) =>
+        preg_replace('/\*\*(.+?)\*\*/', '<strong>$1</strong>', htmlspecialchars($txt, ENT_QUOTES));
 
     echo '<div class="liveblogcontainer">';
-    foreach (array_reverse($blocks) as $blk) {
+
+    foreach (array_reverse($blocks) as $index => $blk) {
         list(, $rawTitle, $rawDate, $rawText) = $blk;
 
+        // → Card headline
         $dt = DateTime::createFromFormat('n/j', $rawDate);
         $formatted = $dt ? ucfirst(strtolower($dt->format('M j'))) : '';
-        $h = ucfirst($escapeAndStrong($rawTitle)) .
-            ($formatted ? ' <span class="date">' . $formatted . '</span>' : '');
+        $h = ucfirst($escapeAndStrong($rawTitle))
+            . ($formatted ? ' <span class="date">' . $formatted . '</span>' : '');
 
+        // → Hero-image after ###?
         $imgHtml = '';
         $content = trim($rawText);
         $lines = explode("\n", $content);
-
-        // Check if first line is an image line (after ###)
-        if (preg_match('/^!\[(.*?)\]\((.*?)\)\{(.*?)\}$/i', trim($lines[0]), $imgMatch)) {
-            $alt = htmlspecialchars($imgMatch[1]);
-            $src = htmlspecialchars($imgMatch[2]);
+        if (preg_match('/^!\[(.*?)\]\((.*?)\)\{(.*?)\}$/i', trim($lines[0]), $m)) {
+            $alt = htmlspecialchars($m[1], ENT_QUOTES);
+            $src = htmlspecialchars($m[2], ENT_QUOTES);
             $classList = array_map(
                 fn($c) => 'float-' . preg_replace('/[^a-z0-9_-]/i', '', strtolower($c)),
-                preg_split('/\s+/', trim($imgMatch[3]))
+                preg_split('/\s+/', $m[3])
             );
-            $classes = implode(' ', $classList);
-            $imgHtml = "<img src=\"$src\" alt=\"$alt\" class=\"$classes\">";
-            array_shift($lines); // remove image line from content
+            $imgHtml = "<img src=\"$src\" alt=\"$alt\" class=\"" . implode(' ', $classList) . "\">";
+            array_shift($lines);
         }
 
+        // → Prepare output vs hidden
         $output = '';
+        $hidden = '';
         $inSpan = false;
+        $inHidden = false;
+        $moreId = "more-block-$index";
 
         for ($i = 0; $i < count($lines); $i++) {
             $line = ucfirst(trim($lines[$i]));
             if ($line === '') {
-                if ($inSpan)
-                    $output .= '<br>';
+                if ($inSpan) {
+                    if ($inHidden)
+                        $hidden .= '<br>';
+                    else
+                        $output .= '<br>';
+                }
                 continue;
             }
 
-            // ## Subheading
-            if (preg_match('/^##\s+(.+)$/', $line, $matches)) {
+            //
+            // 1) Single-# heading → hidden subheadline + optional image
+            //
+            if (preg_match('/^#\s+(.+)$/', $line, $m1)) {
+                // close any open span
                 if ($inSpan) {
-                    $output .= '</span>';
+                    if ($inHidden)
+                        $hidden .= '</span>';
+                    else
+                        $output .= '</span>';
                     $inSpan = false;
                 }
+                $inHidden = true;
+                $hidden .= '<h3 class="subheadline">' . htmlspecialchars($m1[1], ENT_QUOTES) . '</h3>';
 
-                $output .= '<h3 class="subheadline">' . $matches[1] . '</h3>';
-
-                // Look ahead for image after ##
-                if (isset($lines[$i + 1]) && preg_match('/^!\[(.*?)\]\((.*?)\)\{(.*?)\}$/i', trim($lines[$i + 1]), $imgMatch)) {
-                    $alt = htmlspecialchars($imgMatch[1]);
-                    $src = htmlspecialchars($imgMatch[2]);
+                // look ahead for image right after this #
+                if (
+                    isset($lines[$i + 1]) &&
+                    preg_match('/^!\[(.*?)\]\((.*?)\)\{(.*?)\}$/i', trim($lines[$i + 1]), $mImg)
+                ) {
+                    $alt = htmlspecialchars($mImg[1], ENT_QUOTES);
+                    $src = htmlspecialchars($mImg[2], ENT_QUOTES);
                     $classList = array_map(
                         fn($c) => 'float-' . preg_replace('/[^a-z0-9_-]/i', '', strtolower($c)),
-                        preg_split('/\s+/', trim($imgMatch[3]))
+                        preg_split('/\s+/', $mImg[3])
                     );
-                    $classList[] = 'img-cropped';
-                    $classes = implode(' ', $classList);
-                    $output .= "<img src=\"$src\" alt=\"$alt\" class=\"$classes\">";
+                    $hidden .= "<img src=\"$src\" alt=\"$alt\" class=\"" . implode(' ', $classList) . "\">";
                     $i++; // skip image line
                 }
-
-            } else {
-                if (!$inSpan) {
-                    $output .= '<span>';
-                    $inSpan = true;
-                }
-                $output .= $escapeAndStrong($hyphenToEmDash($line)) . '<br>';
+                continue;
             }
+
+            //
+            // 2) Double-## subheadline → placed in either output or hidden
+            //
+            if (preg_match('/^##\s+(.+)$/', $line, $m2)) {
+                if ($inSpan) {
+                    if ($inHidden)
+                        $hidden .= '</span>';
+                    else
+                        $output .= '</span>';
+                    $inSpan = false;
+                }
+                $target = $inHidden ? 'hidden' : 'output';
+                $$target .= '<h3 class="subheadline">' . htmlspecialchars($m2[1], ENT_QUOTES) . '</h3>';
+
+                // image right after ##
+                if (
+                    isset($lines[$i + 1]) &&
+                    preg_match('/^!\[(.*?)\]\((.*?)\)\{(.*?)\}$/i', trim($lines[$i + 1]), $mImg2)
+                ) {
+                    $alt = htmlspecialchars($mImg2[1], ENT_QUOTES);
+                    $src = htmlspecialchars($mImg2[2], ENT_QUOTES);
+                    $classList = array_map(
+                        fn($c) => 'float-' . preg_replace('/[^a-z0-9_-]/i', '', strtolower($c)),
+                        preg_split('/\s+/', $mImg2[3])
+                    );
+                    $classList[] = 'img-cropped';
+                    $$target .= "<img src=\"$src\" alt=\"$alt\" class=\"" . implode(' ', $classList) . "\">";
+                    $i++;
+                }
+                continue;
+            }
+
+            //
+            // 3) Regular paragraph text
+            //
+            if (!$inSpan) {
+                if ($inHidden)
+                    $hidden .= '<span>';
+                else
+                    $output .= '<span>';
+                $inSpan = true;
+            }
+            $text = $escapeAndStrong($hyphenToEmDash($line)) . '<br>';
+            if ($inHidden)
+                $hidden .= $text;
+            else
+                $output .= $text;
         }
 
+        // close any open span
         if ($inSpan) {
-            $output .= '</span>';
+            if ($inHidden)
+                $hidden .= '</span>';
+            else
+                $output .= '</span>';
         }
 
+        // → Render the card
         echo "<div class=\"card container separator liveblogcontext\">\n";
         echo "  <h3 class=\"headline\">{$h}</h3>\n";
         if ($imgHtml)
             echo "  {$imgHtml}\n";
         echo "  {$output}\n";
+
+        // → More button if hidden content exists
+        if (trim($hidden) !== '') {
+            echo "  <div id=\"$moreId\" class=\"hidden-content\" style=\"display:none;\">\n$hidden\n  </div>\n";
+            echo "  <button class=\"more-btn\" onclick=\"\n"
+                . "    document.getElementById('$moreId').style.display='block';\n"
+                . "    this.style.display='none';\n"
+                . "\">More...</button>\n";
+        }
+
         echo "</div>\n\n";
     }
+
     echo '</div>';
     ?>
+
 </div>
 <?php
 include_once './pages/specials/totopbutton.php';
@@ -138,6 +213,7 @@ include_once './pages/specials/totopbutton.php';
     }
 
     .liveblogcontext img {
+        object-fit: cover;
         border-radius: 8px;
     }
 
@@ -160,7 +236,34 @@ include_once './pages/specials/totopbutton.php';
     }
 
     .float-vertical {
+        object-fit: cover;
         width: 22rem;
         height: 30rem;
+    }
+
+    .float-horizantal {
+        object-fit: cover;
+        width: 30rem;
+        height: 22rem;
+    }
+    
+
+
+    .more-btn {
+        background-color: var(--myblue);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+    .more-btn:hover {
+        background-color: #005999;
+    }
+
+    .liveblogcontainer .container {
+        padding-bottom: var(--spacing-3);
     }
 </style>

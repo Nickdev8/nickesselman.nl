@@ -25,7 +25,6 @@ Touchdown in San Francisco! But of course, my story couldn’t be that smooth, b
 
 After explaining Hack Club, convincing them I’m not a threat to national security, and answering a few curious questions, they gave me the green light.
 
-## BART & The Hike
 I took the BART (Bay Area metro) into the city, and then walked nearly 3 miles uphill with my backpack and suitcase. Welcome to San Francisco: the city of tech dreams.
 
 ## Pizza party
@@ -79,19 +78,40 @@ Last night’s setup, rock-hard couch pillow and a too-small airplane blanket—
 So I went on a heroic quest to Target, hunting for something softer, warmer, and just… not awful.
 It wasn’t exactly a luxury hotel haul, but it was a major upgrade. Mission: *mostly* successful.
 
-## Grosry shopping
-us 5 went a a nearby store to get some breakfast and other things to eat, but because we all have soch difference in culture, we could not really decide on what we wanted, but after foolishly looking around for 10 minuts we finali decided to make a list if the items we wanted to get, and then we split up to get all of the items. my job was.. get appels and bannanas. and since we were litterly standing next to the fruit, i got it in less than 10 secodns.
+# Grocery Chaos
+Later in the day, the five of us decided to stock up on breakfast and other essentials. Easy, right?
+Wrong. Turns out that when you mix five people from five different cultures in one grocery store, decision-making becomes a whole thing.
 
-after all of that we went back home, and becouse it was already around 7pm i was really hungry, and what do you do if you want to eat... i went to bed untill 11pm becouse i was still so fucking tired with little to no sleep.
+We aimlessly wandered around for ten solid minutes debating cereal vs. oats vs. whatever. Eventually, someone had the genius idea to make a list. Once that was done, we split up into mini-missions. My assignment? Apples and bananas.
+And where were we standing? Literally next to the fruit section. Mission time: 10 seconds. Personal record.
 
-## Midnight dinner
-I woke up at 11pm and still needed to eat something. and i decited eat a pb&j sanwich, just some peanet butter and jam onto a slice of bread, thats it, that was by dinner.
+By the time we got back, it was already pushing 7pm, and I was starving. So naturally… I went to bed. Because when you’re running on two hours of sleep and existential dread, hunger takes a backseat to unconsciousness.
 
+# Midnight Dinner
+I woke up around 11pm, still groggy and definitely still hungry. I stumbled into the kitchen, grabbed some bread, peanut butter, and jelly, and crafted the most basic—but strangely satisfying—PB&J sandwich.
+That was dinner. No plate. No ceremony. Just survival.
 
-
+Right as I was about to crash again, a few new roommates arrived. We’re now at 7 people in the house. Things are getting cozy.
 
 
 
 ### Day 3, feeling better
-## Morning
-I woke up arount 6am becouse the jetlag was still hitting me. and since i did not want to wake someone up, i directly went on a walk with my fruit a bought the day before. And i called my family back home to tell them that i was feeling, much much better here, yesterday i felt really down and sad becouse i did not feel it was any fun. but with my adventure yesterday and the morning walk, I reallized that i have to make my own fun, do more advientures and
+## Morning Reset
+![alt text](images/liveblog/morningwalk.png){hole}
+Woke up at 6am again—jet lag still doing its thing. I didn’t want to wake anyone, so I grabbed some fruit I heroically acquired the day before and went for a solo walk.
+
+While walking, I called my family back home and told them something important:
+**“I’m feeling way better today.”**
+
+Yesterday hit hard. I was overwhelmed, lonely, and seriously questioning why I came. But after wandering LinkedIn HQ, grabbing Target blankets, and eating a midnight PB&J in silence, something clicked.
+
+I realized I can’t just wait for the fun to find me—I have to go after it.
+
+Paolo had told me there might be a rule where attending events counts as programming time—just show proof, and it counts for 2 hours to the counter. I’m definitely down for that. Less time behind a screen, more time exploring.
+
+# Target Trip, Part II
+![alt text](images/liveblog/target.png){right horizantal}
+After my walk, I really wanted to shower… but I didn’t have a towel. So off we went—Target, round two. This time with four of us. We loaded up on towels, dish soap, plates, and whatever else we forgot during round one.
+
+Now I’m back at the house, took my shower and finally sitting down to write this. Catching up on yesterday. Reflecting on today.
+Finally feeling like I’m finding my rhythm. 

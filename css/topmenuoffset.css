@@ -22,12 +22,8 @@
 #open-specials-menu {
     bottom: 8rem;
     left: 2rem;
-    border: 4px dotted black;
 }
 
-#open-specials-menu:hover {
-    border: 4px solid black;
-}
 
 #morephysics-menu {
     bottom: 8rem;
@@ -58,4 +54,17 @@
 #discoball2{
     top: -64rem;
     right: 6rem;
+}
+
+
+
+
+@media (max-width: 600px) {
+#open-specials-menu {
+    bottom: 2rem;
+}
+
+  .totopbutton {
+    bottom: 3rem !important;
+  }
 }
