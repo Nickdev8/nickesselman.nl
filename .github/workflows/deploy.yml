@@ -8,7 +8,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/ssh-agent@v0.9.1                                   # checkout code :contentReference[oaicite:3]{index=3}
+      - uses: actions/checkout@v4                                  # checkout code :contentReference[oaicite:3]{index=3}
 
       - name: Load SSH key into agent
         uses: webfactory/ssh-agent@v0.9.1                          # updated to latest :contentReference[oaicite:4]{index=4}
