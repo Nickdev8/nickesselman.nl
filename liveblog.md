@@ -78,40 +78,60 @@ Last night’s setup, rock-hard couch pillow and a too-small airplane blanket—
 So I went on a heroic quest to Target, hunting for something softer, warmer, and just… not awful.
 It wasn’t exactly a luxury hotel haul, but it was a major upgrade. Mission: *mostly* successful.
 
-# Grocery Chaos
+## Grocery Chaos
 Later in the day, the five of us decided to stock up on breakfast and other essentials. Easy, right?
-Wrong. Turns out that when you mix five people from five different cultures in one grocery store, decision-making becomes a whole thing.
+Turns out, not so much. With five people from different cultures, everyone had totally different ideas of what to buy. After aimlessly wandering for ten minutes, we finally made a list and split up.
 
-We aimlessly wandered around for ten solid minutes debating cereal vs. oats vs. whatever. Eventually, someone had the genius idea to make a list. Once that was done, we split up into mini-missions. My assignment? Apples and bananas.
-And where were we standing? Literally next to the fruit section. Mission time: 10 seconds. Personal record.
+My task? Apples and bananas. And—no joke—we were standing right next to the fruit section.
+Mission complete in under 10 seconds.
 
-By the time we got back, it was already pushing 7pm, and I was starving. So naturally… I went to bed. Because when you’re running on two hours of sleep and existential dread, hunger takes a backseat to unconsciousness.
+By the time we got home it was nearly 7pm, and I was starving. But I was so exhausted I just went to bed instead. Food could wait—sleep couldn’t
 
-# Midnight Dinner
-I woke up around 11pm, still groggy and definitely still hungry. I stumbled into the kitchen, grabbed some bread, peanut butter, and jelly, and crafted the most basic—but strangely satisfying—PB&J sandwich.
-That was dinner. No plate. No ceremony. Just survival.
+## Midnight Dinner
+I woke up around 11pm, still tired but now super hungry. I made a PB&J sandwich—nothing fancy, just bread, peanut butter, and jelly.
+That was dinner. Simple, but it did the trick.
 
-Right as I was about to crash again, a few new roommates arrived. We’re now at 7 people in the house. Things are getting cozy.
+Right as I finished, new roommates showed up. We're now 7 people in the house. It’s getting cozy!
 
 
-
-### Day 3, feeling better
-## Morning Reset
+### Day 3 – Feeling Better
 ![alt text](images/liveblog/morningwalk.png){hole}
-Woke up at 6am again—jet lag still doing its thing. I didn’t want to wake anyone, so I grabbed some fruit I heroically acquired the day before and went for a solo walk.
 
-While walking, I called my family back home and told them something important:
-**“I’m feeling way better today.”**
+## Morning Reset
+Woke up at 6am again—jet lag still doing its thing. I didn’t want to wake anyone, so I grabbed some fruit and went for a quiet walk.
 
-Yesterday hit hard. I was overwhelmed, lonely, and seriously questioning why I came. But after wandering LinkedIn HQ, grabbing Target blankets, and eating a midnight PB&J in silence, something clicked.
+I called home and said something important:
+**"I'm feeling way better today."**
 
-I realized I can’t just wait for the fun to find me—I have to go after it.
+Yesterday was rough, but I realized I can’t wait for things to be fun—I have to make them fun.
+Paolo mentioned that attending events could count as programming time if we show proof—2 hours per event. That sounded perfect. I was in.
 
-Paolo had told me there might be a rule where attending events counts as programming time—just show proof, and it counts for 2 hours to the counter. I’m definitely down for that. Less time behind a screen, more time exploring.
-
-# Target Trip, Part II
+## Target Trip, Part II
 ![alt text](images/liveblog/target.png){right horizantal}
-After my walk, I really wanted to shower… but I didn’t have a towel. So off we went—Target, round two. This time with four of us. We loaded up on towels, dish soap, plates, and whatever else we forgot during round one.
+Realized I still didn’t have a towel. So, back to Target! This time with four of us, picking up towels, dish soap, plates—everything we forgot the first time.
 
-Now I’m back at the house, took my shower and finally sitting down to write this. Catching up on yesterday. Reflecting on today.
-Finally feeling like I’m finding my rhythm. 
+After a much-needed shower, I wrote down yesterday’s and today’s notes. Then we went to the Hack Club workspace downtown, where I worked on my own operating system—**NickOS**—and finally got it running on my laptop.
+
+## Thomas’s Curry Night
+On my way back home, I got a DM:
+
+> "Thomas is cooking dinner for everyone at 7pm at Lower Haight."
+
+By the time I arrived, Thomas, Paolo, and Nick A were cooking curry for **20 people**.
+Smoke alarms went off (a lot), but people kept showing up—4, then 8, then 14… eventually over 20 crammed into the house!
+It was chaos, but so much fun—and the curry? Surprisingly great.
+
+
+# Game Night
+![alt text](images/liveblog/mariocard.png){hole}
+Later, Paolo pulled out his Nintendo Switch, and we played Mario Kart and some wild tower-stacking game. Laughter, yelling, and close finishes everywhere.
+
+# Cards from Home
+![alt text](images/liveblog/gamesonfloor.png){hole}
+I brought out a special deck of playing cards from my grandparents.
+We played some chill games on the floor with music in the background. A small moment, but it felt really nice.
+
+
+### Day 4 – 6/19
+![alt text](images/liveblog/morningwalkv2.png){left horizantal}
+**Work in progress…**
