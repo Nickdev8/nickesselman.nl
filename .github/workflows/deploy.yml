@@ -11,7 +11,7 @@ jobs:
       - name: SSH & pull on Pi
         uses: appleboy/ssh-action@v0.1.6
         with:
-          host: ${{ nickesselman.nl }}
+          host: ${{ 85.145.168.142 }}
           username: ${{ secrets.PI_USER }}
           key: ${{ secrets.PI_DEPLOY_KEY }}
           script: git pull origin main
