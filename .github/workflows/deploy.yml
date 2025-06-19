@@ -12,6 +12,7 @@ jobs:
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.PI_HOST }}
+          port:     2222
           username: ${{ secrets.PI_USER }}
           key: ${{ secrets.PI_DEPLOY_KEY }}
           script: git pull origin main
