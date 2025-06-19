@@ -8,17 +8,19 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4                                  # checkout code :contentReference[oaicite:3]{index=3}
+      - uses: actions/ssh-agent@v0.9.1                                   # checkout code :contentReference[oaicite:3]{index=3}
 
       - name: Load SSH key into agent
         uses: webfactory/ssh-agent@v0.9.1                          # updated to latest :contentReference[oaicite:4]{index=4}
         with:
           ssh-private-key: ${{ secrets.PI_DEPLOY_KEY }}            # your private key secret :contentReference[oaicite:5]{index=5}
 
-      - name: Pull & deploy on Pi
+      - name: Debug SSH agent & keys
         run: |
-          echo "Running git pull on ${{ secrets.PI_HOST }}…"
-          ssh -o StrictHostKeyChecking=no \
+          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK"
+          ps aux | grep ssh-agent
+          ssh-add -l                             # list identities in agent
+          ssh -vvv -o IdentitiesOnly=yes \
               -p 2222 \
               ${{ secrets.PI_USER }}@${{ secrets.PI_HOST }} \
-              "cd /var/www/nickesselman.nl/html && git pull origin main"
+              "echo hello"
