@@ -134,4 +134,4 @@ We played some chill games on the floor with music in the background. A small mo
 
 ### Day 4 – 6/19
 ![alt text](images/liveblog/morningwalkv2.png){left horizantal}
-**Work in progress…** <3 <3
+**Work in progress…** <3 <3 <3 anither test
