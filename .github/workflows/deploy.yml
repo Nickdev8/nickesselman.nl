@@ -8,14 +8,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: SSH & pull on Pi
-        uses: appleboy/ssh-action@v0.1.6
+      - uses: actions/checkout@v4
+
+      - name: Load SSH key
+        uses: webfactory/ssh-agent@v0.8.1
         with:
-          host: ${{ secrets.PI_HOST }}
-          port:     2222
-          username: ${{ secrets.PI_USER }}
-          key: ${{ secrets.PI_DEPLOY_KEY }}
-          script: |
-            echo "Running git pull…"
-            cd /var/www/nickesselman.nl/html
-            git pull origin main
+          ssh-private-key: ${{ secrets.PI_DEPLOY_KEY }}
+
+      - name: Pull and deploy
+        run: |
+          echo "Running git pull on $PI_HOST…"
+          ssh -o StrictHostKeyChecking=no \
+              -p 2222 \
+              ${{ secrets.PI_USER }}@${{ secrets.PI_HOST }} \
+              "cd /var/www/nickesselman.nl/html && git pull origin main"
