@@ -8,16 +8,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4                                  # checkout code :contentReference[oaicite:3]{index=3}
 
-      - name: Load SSH key
-        uses: webfactory/ssh-agent@v0.8.1
+      - name: Load SSH key into agent
+        uses: webfactory/ssh-agent@v0.9.1                          # updated to latest :contentReference[oaicite:4]{index=4}
         with:
-          ssh-private-key: ${{ secrets.PI_DEPLOY_KEY }}
+          ssh-private-key: ${{ secrets.PI_DEPLOY_KEY }}            # your private key secret :contentReference[oaicite:5]{index=5}
 
-      - name: Pull and deploy
+      - name: Pull & deploy on Pi
         run: |
-          echo "Running git pull on $PI_HOST…"
+          echo "Running git pull on ${{ secrets.PI_HOST }}…"
           ssh -o StrictHostKeyChecking=no \
               -p 2222 \
               ${{ secrets.PI_USER }}@${{ secrets.PI_HOST }} \
