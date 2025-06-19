@@ -2,33 +2,34 @@ name: Deploy to Pi
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout without overriding SSH
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
 
-      # 2. Start ssh-agent & load your private key
-      - name: Load SSH key
-        uses: webfactory/[email protected]
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.9.1
         with:
           ssh-private-key: ${{ secrets.PI_DEPLOY_KEY }}
 
-      # 3. Add Pi’s host key for strict checking
       - name: Add Pi to known_hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H -p 2222 "${{ secrets.PI_HOST }}" >> ~/.ssh/known_hosts
+          ssh-keyscan -p 2222 ${{ secrets.PI_HOST }} >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
 
-      # 4. Deploy: SSH in and pull latest
+      - name: Debug SSH agent & keys
+        run: |
+          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK"
+          ssh-add -l
+
       - name: Pull & deploy on Pi
         run: |
           ssh -o StrictHostKeyChecking=yes \
+              -o IdentitiesOnly=yes \
               -p 2222 \
               "${{ secrets.PI_USER }}@${{ secrets.PI_HOST }}" \
               "cd /var/www/nickesselman.nl/html && git pull origin main"
