@@ -79,6 +79,7 @@ So I went on a heroic quest to Target, hunting for something softer, warmer, and
 It wasn’t exactly a luxury hotel haul, but it was a major upgrade. Mission: *mostly* successful.
 
 ## Grocery Chaos
+![alt text](images/liveblog/morningwalkv2.png){left horizantal}
 Later in the day, the five of us decided to stock up on breakfast and other essentials. Easy, right?
 Turns out, not so much. With five people from different cultures, everyone had totally different ideas of what to buy. After aimlessly wandering for ten minutes, we finally made a list and split up.
 
@@ -117,7 +118,7 @@ On my way back home, I got a DM:
 
 > "Thomas is cooking dinner for everyone at 7pm at Lower Haight."
 
-By the time I arrived, Thomas, Paolo, and Nick A were cooking curry for **20 people**.
+By the time I arrived, Thomas, Paolo, and Nick A, were cooking curry for **20 people**.
 Smoke alarms went off (a lot), but people kept showing up—4, then 8, then 14… eventually over 20 crammed into the house!
 It was chaos, but so much fun—and the curry? Surprisingly great.
 
@@ -130,8 +131,19 @@ Later, Paolo pulled out his Nintendo Switch, and we played Mario Kart and some w
 ![alt text](images/liveblog/gamesonfloor.png){hole}
 I brought out a special deck of playing cards from my grandparents.
 We played some chill games on the floor with music in the background. A small moment, but it felt really nice.
+Here’s a polished, more readable version of your **Day 4 – 6/19** entry, keeping it casual and fun for your family:
 
 
 ### Day 4 – 6/19
-![alt text](images/liveblog/morningwalkv2.png){left horizantal}
-**Work in progress…** <3 <3
+![alt text](images/liveblog/goldendridge.png){hole}
+## Golden Gate Bridge Adventure
+![alt text](images/liveblog/pier.png){right}
+For most of the day, not much really happened. But around 6pm, things picked up—we all headed out to visit the Golden Gate Bridge.
+
+Our group of 8 was the first to arrive, so we walked partway across the bridge while waiting for the others. Eventually, about 14 of us were there.
+
+At one point, I realized I was unintentionally leading the group—just walking ahead with no idea where I was going. So, naturally, I picked a random path… and somehow ended up at a pier.
+
+We joked that it felt like we were in a *Lemmings* game—everyone just blindly following along!
+
+Along the way, I talked with a few people and ended up having a blast hanging out with **Elliot** and **Om**—super chill and hilarious guys. Definitely a highlight of the day.
