@@ -150,4 +150,5 @@ Along the way, I talked with a few people and ended up having a blast hanging ou
 
 # frozen pizza
 ![alt text](images/liveblog/frozenpizza.png){right}
-All of us did not feel like cooking and wanded something simple before going to the bridge. So, WE GOT PIZZAS! 6 of them actualy. but only some of the group wanted pizzas and so we had like half a pizza left and did not use 2 other pizzas. So we have some leftovers for another day!
+All of us did not feel like cooking and wanded something simple before going to the bridge. So, WE GOT **PIZZAS**! 6 of them actualy. but only some of the group wanted pizzas and so we had like half a pizza left and did not use 2 other pizzas. 
+So we have more leftovers for another day!
