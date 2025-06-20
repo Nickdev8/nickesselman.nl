@@ -119,8 +119,8 @@ On my way back home, I got a DM:
 > "Thomas is cooking dinner for everyone at 7pm at Lower Haight."
 
 By the time I arrived, Thomas, Paolo, and Nick A, were cooking curry for **20 people**.
-Smoke alarms went off (a lot), but people kept showing up—4, then 8, then 14… eventually over 20 crammed into the house!
-It was chaos, but so much fun—and the curry? Surprisingly great.
+Smoke alarms went off (a lot), but people kept showing up, 4, then 8, then 14… eventually over 20 crammed into the house!
+It was chaos, but so much fun. And the curry? Surprisingly great.
 
 
 # Game Night
@@ -138,12 +138,12 @@ Here’s a polished, more readable version of your **Day 4 – 6/19** entry, kee
 ![alt text](images/liveblog/goldendridge.png){hole}
 ## Golden Gate Bridge Adventure
 ![alt text](images/liveblog/pier.png){right}
-For most of the day, not much really happened. But around 6pm, things picked up—we all headed out to visit the Golden Gate Bridge.
+For most of the day, not much really happened. But around 6pm, things picked up, we all headed out to visit the Golden Gate Bridge.
 
 Our group of 8 was the first to arrive, so we walked partway across the bridge while waiting for the others. Eventually, about 14 of us were there.
 
 At one point, I realized I was unintentionally leading the group—just walking ahead with no idea where I was going. So, naturally, I picked a random path… and somehow ended up at a pier.
 
-We joked that it felt like we were in a *Lemmings* game—everyone just blindly following along!
+We joked that it felt like we were in a *Lemmings* game, everyone just blindly following along!
 
 Along the way, I talked with a few people and ended up having a blast hanging out with **Elliot** and **Om**—super chill and hilarious guys. Definitely a highlight of the day.

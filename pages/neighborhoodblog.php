@@ -26,8 +26,11 @@
     preg_match_all($pattern, $md, $blocks, PREG_SET_ORDER);
 
     $hyphenToEmDash = fn(string $txt) => str_replace(' - ', ' — ', $txt);
-    $escapeAndStrong = fn(string $txt) =>
-        preg_replace('/\*\*(.+?)\*\*/', '<strong>$1</strong>', htmlspecialchars($txt, ENT_QUOTES));
+    $formatText = function (string $txt): string {
+        $escaped = htmlspecialchars($txt, ENT_QUOTES);
+        $withBold = preg_replace('/\*\*(.+?)\*\*/', '<strong>$1</strong>', $escaped);
+        return preg_replace('/\*(?!\*)(.+?)(?<!\*)\*/', '<em>$1</em>', $withBold);
+    };
 
     echo '<div class="liveblogcontainer">';
 
@@ -37,7 +40,7 @@
         // → Card headline
         $dt = DateTime::createFromFormat('n/j', $rawDate);
         $formatted = $dt ? ucfirst(strtolower($dt->format('M j'))) : '';
-        $h = ucfirst($escapeAndStrong($rawTitle))
+        $h = ucfirst($formatText($rawTitle))
             . ($formatted ? ' <span class="date">' . $formatted . '</span>' : '');
 
         // → Hero-image after ###?
@@ -148,7 +151,7 @@
                     $output .= '<span>';
                 $inSpan = true;
             }
-            $text = $escapeAndStrong($hyphenToEmDash($line)) . '<br>';
+            $text = $formatText($hyphenToEmDash($line)) . '<br>';
             if ($inHidden)
                 $hidden .= $text;
             else
@@ -246,7 +249,7 @@ include_once './pages/specials/totopbutton.php';
         width: 30rem;
         height: 22rem;
     }
-    
+
 
 
     .more-btn {
