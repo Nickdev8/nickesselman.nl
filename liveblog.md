@@ -155,26 +155,45 @@ So we have more leftovers for another day!
 
 ### Day 5. ٩(ˊᗜˋ )و
 ## I dind't do anything interesting today
+Here’s a polished and engaging version of your **Day 6** liveblog entry, with the Apple Vision Pro review integrated and cleaned up for flow and clarity:
 
-### Day 6 6/212
+
+### Day 6 – 6/21
 ![alt text](images/liveblog/salesforcepark.png){right}
+
 ## City Adventure!
-In the morning, i went on my normal morning walk and we decided to go to market street to find a place to code on our 40 hours. we tried multible places but because it was a saturday, most places were closed. exept the salesforce park. there were a lot of salesforce's buildings and an elevated park with a cable car to the top. and there was a little band playing some country music. we vibed there for a bit and walked further to get some place to work.
+The day started with my usual morning walk, and then we decided to head to Market Street to find a good spot to work on our 40 programming hours.
+
+We tried multiple locations, but since it was Saturday, most places were closed—except **Salesforce Park**. It's this elevated park surrounded by Salesforce buildings, with a cable car leading up and even a small band playing country music. We hung out there for a bit and enjoyed the vibe before continuing our search.
 
 ## .
 ![alt text](images/liveblog/uno.png){left nobottommargin disapearat500px}
 
-## Apple Vision.
+## Apple Vision Pro Experience
 ![alt text](images/liveblog/applevision.png){right bigasmain}
-We came ascoss some interesting shops. like one of the only nintendo stores. and an apple store, we saw the apple vision pro. and there was an option to reserve a booking. there were spaces for in an hour, so we went to china town nearby. got some icecream and played uno in a nice sun. and soon enough it was time to try the vision pro. here is my honest review:
 
-put a sumarry of the review here.
+On our walk, we stumbled across a couple of cool stores—one of the only Nintendo locations in the area, and of course, an Apple Store.
+
+Inside, we saw the **Apple Vision Pro** on display and noticed they had open booking slots… in just one hour. So we killed some time in Chinatown, grabbed ice cream, and played a game of UNO in the sun. Then it was time to try Apple’s $3,500 goggles.
+
+## My Honest Review:
+
+1) I honestly can’t think of anyone who’d *really* benefit from owning one in day-to-day life.
+2) Gaming? Not great. The only thing I managed to play was **3D solitaire**.
+3) I tried opening Excel and it felt clunky—not ideal for real work.
+4) **BUT** the eye tracking? Super slick. Your eyes act like a mouse, and you can “pinch” your fingers anywhere to click. It felt smart and surprisingly smooth.
+
+Will I go back to play with it again? Absolutely. You can book as many sessions as you want, and I definitely will.
+
 
 ## Midnight Programming
 ![alt text](images/liveblog/midnightprogramming.png){left vertical}
-Since we all dit not anything close to the 40 hours, we were all still up still late at night, around 2pm is when i called it quits. We just vibed for the most part, and i tried to work further on a game, where you have to escape an escaperoom with friends online. and we just talked untill i realized it was already very late at night, and i despretetly needed some sleep. 
 
-but in the end. I make **18 hours** of *programming* ** * ** this week. out of the **40 hours**.
+Since most of us were *nowhere near* the 40-hour mark, we all ended up staying up way past midnight trying to catch up. Around 2am, I finally called it quits.
 
-I dont feel like I'm going to get kicked out. 
-but after today we will know, I guess. **(• - •)ゝ**
+I spent most of that time working on my multiplayer escape room game—where you solve puzzles with friends online—and chatting with others until I realized how late it was.
+
+Final count for me this week? **18 hours** of “programming.” Out of the goal of 40.
+Do I feel like I’m getting kicked out?
+Not really…
+But I guess we’ll find out soon. **(• - •)ゝ**
