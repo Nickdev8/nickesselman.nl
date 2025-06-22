@@ -135,7 +135,7 @@
                         preg_split('/\s+/', $mImg2[3])
                     );
                     $classList[] = 'img-cropped';
-                    $$target .= "<img src=\"$src\" alt=\"$alt\" class=\"" . implode(' ', $classList) . "\">";
+                    $$target .= "<img src=\"$src\" alt=\"$alt\" class=\"media" . implode(' ', $classList) . "\">";
                     $i++;
                 }
                 continue;
@@ -209,6 +209,24 @@ include_once './pages/specials/totopbutton.php';
 </script>
 
 <style>
+    .sub-top {
+        background-image: url("/images/liveblog/goldendridge.png");
+        background-repeat: no-repeat;
+        background-size: 130% auto;
+        background-position-x: 60%;
+        background-position-y: 20%;
+        height: unset;
+        aspect-ratio: 6976/1599;
+
+        padding-left: 45%;
+        padding-top: 1%;
+    }
+
+    .sub-top * {
+        background-color: unset !important;
+        color: #2d2c36;
+    }
+
     .liveblogcontext .subheadline {
         font-size: 2em;
         margin-top: var(--spacing-3);
@@ -278,16 +296,25 @@ include_once './pages/specials/totopbutton.php';
     }
 
 
+    @media (max-width: 1070px) {
+        .sub-top {
+            padding: 0;
+            align-content: center;
+        }
+        .sub-top * {
+            color: white;}
+    }
+
     @media (max-width: 500px) {
         .float-disapearat500px {
             display: none;
         }
 
-    .liveblogcontext img {
-        width: unset !important;
-        height: unset !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-    }
+        .liveblogcontext img {
+            width: unset !important;
+            height: unset !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+        }
     }
 </style>
