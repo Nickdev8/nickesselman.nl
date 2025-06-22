@@ -250,7 +250,14 @@ include_once './pages/specials/totopbutton.php';
         height: 22rem;
     }
 
+    .float-bigasmain {
+        width: unset;
+        height: unset;
+    }
 
+    .float-nobottommargin {
+        margin-bottom: 0 !important;
+    }
 
     .more-btn {
         background-color: var(--myblue);
@@ -268,5 +275,19 @@ include_once './pages/specials/totopbutton.php';
 
     .liveblogcontainer .container {
         padding-bottom: var(--spacing-3);
+    }
+
+
+    @media (max-width: 500px) {
+        .float-disapearat500px {
+            display: none;
+        }
+
+    .liveblogcontext img {
+        width: unset !important;
+        height: unset !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
     }
 </style>

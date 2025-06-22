@@ -152,3 +152,29 @@ Along the way, I talked with a few people and ended up having a blast hanging ou
 ![alt text](images/liveblog/frozenpizza.png){right}
 All of us did not feel like cooking and wanded something simple before going to the bridge. So, WE GOT **PIZZAS**! 6 of them actualy. but only some of the group wanted pizzas and so we had like half a pizza left and did not use 2 other pizzas. 
 So we have more leftovers for another day!
+
+### Day 5. ٩(ˊᗜˋ )و
+## I dind't do anything interesting today
+
+### Day 6 6/212
+![alt text](images/liveblog/salesforcepark.png){right}
+## City Adventure!
+In the morning, i went on my normal morning walk and we decided to go to market street to find a place to code on our 40 hours. we tried multible places but because it was a saturday, most places were closed. exept the salesforce park. there were a lot of salesforce's buildings and an elevated park with a cable car to the top. and there was a little band playing some country music. we vibed there for a bit and walked further to get some place to work.
+
+## .
+![alt text](images/liveblog/uno.png){left nobottommargin disapearat500px}
+
+## Apple Vision.
+![alt text](images/liveblog/applevision.png){right bigasmain}
+We came ascoss some interesting shops. like one of the only nintendo stores. and an apple store, we saw the apple vision pro. and there was an option to reserve a booking. there were spaces for in an hour, so we went to china town nearby. got some icecream and played uno in a nice sun. and soon enough it was time to try the vision pro. here is my honest review:
+
+put a sumarry of the review here.
+
+## Midnight Programming
+![alt text](images/liveblog/midnightprogramming.png){left vertical}
+Since we all dit not anything close to the 40 hours, we were all still up still late at night, around 2pm is when i called it quits. We just vibed for the most part, and i tried to work further on a game, where you have to escape an escaperoom with friends online. and we just talked untill i realized it was already very late at night, and i despretetly needed some sleep. 
+
+but in the end. I make **18 hours** of *programming* ** * ** this week. out of the **40 hours**.
+
+I dont feel like I'm going to get kicked out. 
+but after today we will know, I guess. **(• - •)ゝ**
