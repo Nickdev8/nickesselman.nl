@@ -217,6 +217,7 @@ include_once './pages/specials/totopbutton.php';
         background-position-y: 20%;
         height: unset;
         aspect-ratio: 6976/1599;
+        background-color: unset !important;
 
         padding-left: 45%;
         padding-top: 1%;
