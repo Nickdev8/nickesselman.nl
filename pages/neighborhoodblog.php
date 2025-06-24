@@ -25,6 +25,7 @@
     $pattern = '/^###\s*(.+?)(?:\s+(\d{1,2}\/\d{1,2}))?\r?\n([\s\S]*?)(?=^###\s|\z)/m';
     preg_match_all($pattern, $md, $blocks, PREG_SET_ORDER);
 
+    // Helper functions
     $hyphenToEmDash = fn(string $txt) => str_replace(' - ', ' — ', $txt);
     $formatText = function (string $txt): string {
         $escaped = htmlspecialchars($txt, ENT_QUOTES);
@@ -32,33 +33,78 @@
         return preg_replace('/\*(?!\*)(.+?)(?<!\*)\*/', '<em>$1</em>', $withBold);
     };
 
-    echo '<div class="liveblogcontainer">';
-
-    foreach (array_reverse($blocks) as $index => $blk) {
-        list(, $rawTitle, $rawDate, $rawText) = $blk;
-
-        // → Card headline
-        $dt = DateTime::createFromFormat('n/j', $rawDate);
-        $formatted = $dt ? ucfirst(strtolower($dt->format('M j'))) : '';
-        $h = ucfirst($formatText($rawTitle))
-            . ($formatted ? ' <span class="date">' . $formatted . '</span>' : '');
-
-        // → Hero-image after ###?
-        $imgHtml = '';
-        $content = trim($rawText);
-        $lines = explode("\n", $content);
-        if (preg_match('/^!\[(.*?)\]\((.*?)\)\{(.*?)\}$/i', trim($lines[0]), $m)) {
+    // Helper function to process media (images and videos)
+    $processMedia = function (string $line): ?string {
+        // Image pattern: ![alt](src){classes}
+        if (preg_match('/^!\[(.*?)\]\((.*?)\)\{(.*?)\}$/i', $line, $m)) {
             $alt = htmlspecialchars($m[1], ENT_QUOTES);
             $src = htmlspecialchars($m[2], ENT_QUOTES);
             $classList = array_map(
                 fn($c) => 'float-' . preg_replace('/[^a-z0-9_-]/i', '', strtolower($c)),
                 preg_split('/\s+/', $m[3])
             );
-            $imgHtml = "<img src=\"$src\" alt=\"$alt\" class=\"" . implode(' ', $classList) . "\">";
-            array_shift($lines);
+            
+            // Check if it's a video file
+            $isVideo = preg_match('/\.(mp4|webm|ogg)$/i', $src);
+            
+            if ($isVideo) {
+                return "<video src=\"$src\" controls class=\"" . implode(' ', $classList) . "\" alt=\"$alt\"></video>";
+            } else {
+                return "<img src=\"$src\" alt=\"$alt\" class=\"" . implode(' ', $classList) . "\">";
+            }
+        }
+        
+        // Video pattern: ![alt](src){classes} for videos
+        if (preg_match('/^@\[(.*?)\]\((.*?)\)\{(.*?)\}$/i', $line, $m)) {
+            $alt = htmlspecialchars($m[1], ENT_QUOTES);
+            $src = htmlspecialchars($m[2], ENT_QUOTES);
+            $classList = array_map(
+                fn($c) => 'float-' . preg_replace('/[^a-z0-9_-]/i', '', strtolower($c)),
+                preg_split('/\s+/', $m[3])
+            );
+            
+            return "<video src=\"$src\" controls class=\"" . implode(' ', $classList) . "\" alt=\"$alt\"></video>";
+        }
+        
+        return null;
+    };
+
+    // Helper function to close spans
+    $closeSpan = function (bool $inSpan, bool $inHidden, string &$output, string &$hidden): bool {
+        if ($inSpan) {
+            if ($inHidden) {
+                $hidden .= '</span>';
+            } else {
+                $output .= '</span>';
+            }
+            return false;
+        }
+        return $inSpan;
+    };
+
+    echo '<div class="liveblogcontainer">';
+
+    foreach (array_reverse($blocks) as $index => $blk) {
+        list(, $rawTitle, $rawDate, $rawText) = $blk;
+
+        // Card headline
+        $dt = DateTime::createFromFormat('n/j', $rawDate);
+        $formatted = $dt ? ucfirst(strtolower($dt->format('M j'))) : '';
+        $h = ucfirst($formatText($rawTitle))
+            . ($formatted ? ' <span class="date">' . $formatted . '</span>' : '');
+
+        // Hero media after ###?
+        $heroMedia = '';
+        $content = trim($rawText);
+        $lines = explode("\n", $content);
+        if (isset($lines[0])) {
+            $heroMedia = $processMedia(trim($lines[0]));
+            if ($heroMedia) {
+                array_shift($lines);
+            }
         }
 
-        // → Prepare output vs hidden
+        // Prepare output vs hidden
         $output = '';
         $hidden = '';
         $inSpan = false;
@@ -69,111 +115,82 @@
             $line = ucfirst(trim($lines[$i]));
             if ($line === '') {
                 if ($inSpan) {
-                    if ($inHidden)
+                    if ($inHidden) {
                         $hidden .= '<br>';
-                    else
+                    } else {
                         $output .= '<br>';
+                    }
                 }
                 continue;
             }
 
-            //
-            // 1) Single-# heading → hidden subheadline + optional image
-            //
+            // Single-# heading → hidden subheadline + optional media
             if (preg_match('/^#\s+(.+)$/', $line, $m1)) {
-                // close any open span
-                if ($inSpan) {
-                    if ($inHidden)
-                        $hidden .= '</span>';
-                    else
-                        $output .= '</span>';
-                    $inSpan = false;
-                }
+                $inSpan = $closeSpan($inSpan, $inHidden, $output, $hidden);
                 $inHidden = true;
                 $hidden .= '<h3 class="subheadline">' . htmlspecialchars($m1[1], ENT_QUOTES) . '</h3>';
 
-                // look ahead for image right after this #
-                if (
-                    isset($lines[$i + 1]) &&
-                    preg_match('/^!\[(.*?)\]\((.*?)\)\{(.*?)\}$/i', trim($lines[$i + 1]), $mImg)
-                ) {
-                    $alt = htmlspecialchars($mImg[1], ENT_QUOTES);
-                    $src = htmlspecialchars($mImg[2], ENT_QUOTES);
-                    $classList = array_map(
-                        fn($c) => 'float-' . preg_replace('/[^a-z0-9_-]/i', '', strtolower($c)),
-                        preg_split('/\s+/', $mImg[3])
-                    );
-                    $hidden .= "<img src=\"$src\" alt=\"$alt\" class=\"" . implode(' ', $classList) . "\">";
-                    $i++; // skip image line
+                // Look ahead for media right after this #
+                if (isset($lines[$i + 1])) {
+                    $media = $processMedia(trim($lines[$i + 1]));
+                    if ($media) {
+                        $hidden .= $media;
+                        $i++; // skip media line
+                    }
                 }
                 continue;
             }
 
-            //
-            // 2) Double-## subheadline → placed in either output or hidden
-            //
+            // Double-## subheadline → placed in either output or hidden
             if (preg_match('/^##\s+(.+)$/', $line, $m2)) {
-                if ($inSpan) {
-                    if ($inHidden)
-                        $hidden .= '</span>';
-                    else
-                        $output .= '</span>';
-                    $inSpan = false;
-                }
+                $inSpan = $closeSpan($inSpan, $inHidden, $output, $hidden);
                 $target = $inHidden ? 'hidden' : 'output';
                 $$target .= '<h3 class="subheadline">' . htmlspecialchars($m2[1], ENT_QUOTES) . '</h3>';
 
-                // image right after ##
-                if (
-                    isset($lines[$i + 1]) &&
-                    preg_match('/^!\[(.*?)\]\((.*?)\)\{(.*?)\}$/i', trim($lines[$i + 1]), $mImg2)
-                ) {
-                    $alt = htmlspecialchars($mImg2[1], ENT_QUOTES);
-                    $src = htmlspecialchars($mImg2[2], ENT_QUOTES);
-                    $classList = array_map(
-                        fn($c) => 'float-' . preg_replace('/[^a-z0-9_-]/i', '', strtolower($c)),
-                        preg_split('/\s+/', $mImg2[3])
-                    );
-                    $classList[] = 'img-cropped';
-                    $$target .= "<img src=\"$src\" alt=\"$alt\" class=\"media" . implode(' ', $classList) . "\">";
-                    $i++;
+                // Media right after ##
+                if (isset($lines[$i + 1])) {
+                    $media = $processMedia(trim($lines[$i + 1]));
+                    if ($media) {
+                        // Add img-cropped class for images in subheadlines
+                        if (strpos($media, '<img') !== false) {
+                            $media = str_replace('class="', 'class="img-cropped ', $media);
+                        }
+                        $$target .= $media;
+                        $i++;
+                    }
                 }
                 continue;
             }
 
-            //
-            // 3) Regular paragraph text
-            //
+            // Regular paragraph text
             if (!$inSpan) {
-                if ($inHidden)
+                if ($inHidden) {
                     $hidden .= '<span>';
-                else
+                } else {
                     $output .= '<span>';
+                }
                 $inSpan = true;
             }
             $text = $formatText($hyphenToEmDash($line)) . '<br>';
-            if ($inHidden)
+            if ($inHidden) {
                 $hidden .= $text;
-            else
+            } else {
                 $output .= $text;
+            }
         }
 
-        // close any open span
-        if ($inSpan) {
-            if ($inHidden)
-                $hidden .= '</span>';
-            else
-                $output .= '</span>';
-        }
+        // Close any open span
+        $closeSpan($inSpan, $inHidden, $output, $hidden);
 
-        // → Render the card
+        // Render the card
         echo "<div class=\"card container separator liveblogcontext\">\n";
         echo "  <h3 class=\"headline\">{$h}</h3>\n";
-        if ($imgHtml)
-            echo "  {$imgHtml}\n";
+        if ($heroMedia) {
+            echo "  {$heroMedia}\n";
+        }
         echo "  {$output}\n";
 
-        // → More button if hidden content exists
+        // More button if hidden content exists
         if (trim($hidden) !== '') {
             echo "  <div id=\"$moreId\" class=\"hidden-content\" style=\"display:none;\">\n$hidden\n  </div>\n";
             echo "  <button class=\"more-btn\" onclick=\"\n"
@@ -196,11 +213,11 @@ include_once './pages/specials/totopbutton.php';
     document.addEventListener('DOMContentLoaded', () => {
         const toggle = document.getElementById('sortToggle');
         const label = document.getElementById('sortLabel');
-        const container = document.querySelector('div.liveblogcontainer'); // you can give it a class if needed
+        const container = document.querySelector('.liveblogcontainer');
 
         toggle.addEventListener('change', () => {
             const cards = Array.from(container.querySelectorAll('.card'));
-            cards.reverse(); // toggle order
+            cards.reverse();
             container.innerHTML = '';
             cards.forEach(card => container.appendChild(card));
             label.textContent = toggle.checked ? 'Oldest First' : 'Newest First';
@@ -218,7 +235,6 @@ include_once './pages/specials/totopbutton.php';
         height: unset;
         aspect-ratio: 6976/1599;
         background-color: unset !important;
-
         padding-left: 45%;
         padding-top: 1%;
     }
@@ -234,9 +250,14 @@ include_once './pages/specials/totopbutton.php';
         margin-bottom: var(--spacing-1);
     }
 
-    .liveblogcontext img {
+    .liveblogcontext img,
+    .liveblogcontext video {
         object-fit: cover;
         border-radius: 8px;
+    }
+
+    .liveblogcontext video {
+        background-color: #000;
     }
 
     .float-left {
@@ -286,6 +307,7 @@ include_once './pages/specials/totopbutton.php';
         border-radius: 0.5rem;
         cursor: pointer;
         margin-top: 1rem;
+        transition: background-color 0.2s ease;
     }
 
     .more-btn:hover {
@@ -296,14 +318,14 @@ include_once './pages/specials/totopbutton.php';
         padding-bottom: var(--spacing-3);
     }
 
-
     @media (max-width: 1070px) {
         .sub-top {
             padding: 0;
             align-content: center;
         }
         .sub-top * {
-            color: white;}
+            color: white;
+        }
     }
 
     @media (max-width: 500px) {
@@ -311,7 +333,8 @@ include_once './pages/specials/totopbutton.php';
             display: none;
         }
 
-        .liveblogcontext img {
+        .liveblogcontext img,
+        .liveblogcontext video {
             width: unset !important;
             height: unset !important;
             max-width: 100% !important;

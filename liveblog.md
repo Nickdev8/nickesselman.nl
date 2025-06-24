@@ -135,9 +135,8 @@ Here’s a polished, more readable version of your **Day 4 – 6/19** entry, kee
 
 
 ### Day 4 – 6/19
-![alt text](images/liveblog/goldendridge.png){hole}
-## Golden Gate Bridge Adventure
 ![alt text](images/liveblog/pier.png){right}
+## Golden Gate Bridge Adventure
 For most of the day, not much really happened. But around 6pm, things picked up, we all headed out to visit the Golden Gate Bridge.
 
 Our group of 8 was the first to arrive, so we walked partway across the bridge while waiting for the others. Eventually, about 14 of us were there.
@@ -155,8 +154,6 @@ So we have more leftovers for another day!
 
 ### Day 5. ٩(ˊᗜˋ )و
 ## I dind't do anything interesting today
-Here’s a polished and engaging version of your **Day 6** liveblog entry, with the Apple Vision Pro review integrated and cleaned up for flow and clarity:
-
 
 ### Day 6 – 6/21
 ![alt text](images/liveblog/salesforcepark.png){right}
@@ -197,3 +194,35 @@ Final count for me this week? **18 hours** of “programming.” Out of the goal
 Do I feel like I’m getting kicked out?
 Not really…
 But I guess we’ll find out soon. **(• - •)ゝ**
+
+### Day 7 – 6/22
+![alt text](images/liveblog/paolokikflip.mp4){right}
+
+## Sunday Vibes & Burritos
+We woke up around 9am and went on our usual mini morning walk (ᵔ◡ᵔ)
+Not long after, we got a message from Thomas:
+
+> **"Meet at 12pm in Dolores Park to kick off the new week and eat burritos!"**
+
+Sounded like a perfect plan.
+Before heading out, I had a super encouraging call with my mom and brother about my new game idea—a 2D online escape room with physics. It really got me hyped to build something fun!
+
+When we arrived at Dolores Park, all the Hack Club houses had gathered—about **36 people** in total! We lounged in the sun, chatted, and devoured some *chicken burritos*
+Eventually, about half of us decided to head to the open workspace downtown to get some hours in.
+
+## Battery Crisis (ಥ﹏ಥ)
+Once we got there… we realized something.
+**None of the Europeans brought their power adapters.**
+So while we all set up our laptops, they started dying. One by one. Slowly. Tragically.
+Before long, all our batteries were dead and we had to head home to grab our adapters.
+
+When we finally returned, the workspace was already closing—it shuts at 6pm. So we had to pivot.
+
+## Hotel Coding Session
+We wandered around and ended up finding a random hotel with a comfy lobby where we could sit and code (´｡• ᵕ •｡\`)
+Honestly? It was kind of perfect.
+
+There, I clocked **8.4 hours** of focused programming—working more on my online escape room game. Felt good to finally make solid progress toward my weekly goal.
+
+While coding, I even got a surprise video call from none other than **Paperclip**! (╯✧▽✧)╯
+We chatted for a bit… about nothing particularly important, but it was still a fun little moment to wrap up a weird, wandering, productive day.

@@ -1,5 +1,4 @@
 <?php
-// filepath: /home/nick/Documents/HackClub/projects/nickesselman.nl/index.php
 $cacheDuration = floor(86400 * 365.25); // 1 year
 header("Cache-Control: public, max-age={$cacheDuration}");
 header("Expires: " . gmdate("D, d M Y H:i:s", time() + $cacheDuration) . " GMT");
