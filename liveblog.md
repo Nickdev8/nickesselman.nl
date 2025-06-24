@@ -145,7 +145,7 @@ At one point, I realized I was unintentionally leading the group—just walking 
 
 We joked that it felt like we were in a *Lemmings* game, everyone just blindly following along!
 
-Along the way, I talked with a few people and ended up having a blast hanging out with **Elliot** and **Om**—super chill and hilarious guys. Definitely a highlight of the day.
+Along the way, I talked with a few people and ended up having a blast hanging out with **Elliott** and **Om**—super chill and hilarious guys. Definitely a highlight of the day.
 
 # frozen pizza
 ![alt text](images/liveblog/frozenpizza.png){right}
@@ -210,14 +210,14 @@ Before heading out, I had a super encouraging call with my mom and brother about
 When we arrived at Dolores Park, all the Hack Club houses had gathered—about **36 people** in total! We lounged in the sun, chatted, and devoured some *chicken burritos*
 Eventually, about half of us decided to head to the open workspace downtown to get some hours in.
 
-## Battery Crisis (ಥ﹏ಥ)
+## Battery Crisis
+![alt text](images/liveblog/paolosleeping.mp4){left}
 Once we got there… we realized something.
 **None of the Europeans brought their power adapters.**
 So while we all set up our laptops, they started dying. One by one. Slowly. Tragically.
 Before long, all our batteries were dead and we had to head home to grab our adapters.
 
 When we finally returned, the workspace was already closing—it shuts at 6pm. So we had to pivot.
-
 ## Hotel Coding Session
 We wandered around and ended up finding a random hotel with a comfy lobby where we could sit and code (´｡• ᵕ •｡\`)
 Honestly? It was kind of perfect.
@@ -226,3 +226,28 @@ There, I clocked **8.4 hours** of focused programming—working more on my onlin
 
 While coding, I even got a surprise video call from none other than **Paperclip**! (╯✧▽✧)╯
 We chatted for a bit… about nothing particularly important, but it was still a fun little moment to wrap up a weird, wandering, productive day.
+### Day 8 – Time Flies
+![alt text](images/liveblog/somecarsonthestreet.mp4){left}
+## Wait… it’s already Day 8?!
+
+Today it hit me—**I’ve already been here for 8 days**. Time is flying way too fast!
+We decided to start planning a few things since it’s the **last week for Om** (*nooo*). So we made two awesome plans:
+
+1. Apply for an event about **ComfyUI** at **GitHub HQ**
+2. Plan a visit to **Paperclip**, who’s nearby this week!
+
+I’m super excited for both! (≧◡≦)/
+
+## Back to LinkedIn HQ
+![alt text](images/liveblog/linkeditagain.png){right}
+In the morning, Om and I headed straight to **LinkedIn HQ** to get in some serious programming time. A bit later, **Elliott** joined us too.
+We ended up staying there for **5 full hours** of coding! That brings my total to...
+
+**12 HOURS!!** ヽ(・∀・)ﾉ
+
+I’m currently **#2 on the leaderboard**, with the top person already at 23 hours
+Still, I’ve got a solid lead on #3, so I’m feeling good about where I’m at!
+
+## Grilled Cheese Break & More Coding
+After our LinkedIn coding session, we went back home for a quick grilled cheese recharge
+Then—back out again to the open workspace to put in even more hours. Gotta keep the momentum going!

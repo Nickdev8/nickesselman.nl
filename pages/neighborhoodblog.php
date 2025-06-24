@@ -48,13 +48,27 @@
             $isVideo = preg_match('/\.(mp4|webm|ogg)$/i', $src);
             
             if ($isVideo) {
-                return "<video src=\"$src\" controls class=\"" . implode(' ', $classList) . "\" alt=\"$alt\"></video>";
+                // Check if dontautostart is in the class list
+                $dontAutostart = in_array('dontautostart', array_map('strtolower', preg_split('/\s+/', $m[3])));
+                
+                // Remove dontautostart from class list for CSS
+                $classList = array_filter($classList, fn($c) => $c !== 'float-dontautostart');
+                
+                $videoAttrs = 'class="' . implode(' ', $classList) . '" alt="' . $alt . '"';
+                
+                if (!$dontAutostart) {
+                    $videoAttrs .= ' autoplay muted loop playsinline';
+                } else {
+                    $videoAttrs .= ' controls';
+                }
+                
+                return "<video src=\"$src\" $videoAttrs></video>";
             } else {
                 return "<img src=\"$src\" alt=\"$alt\" class=\"" . implode(' ', $classList) . "\">";
             }
         }
         
-        // Video pattern: ![alt](src){classes} for videos
+        // Video pattern: @[alt](src){classes} for videos
         if (preg_match('/^@\[(.*?)\]\((.*?)\)\{(.*?)\}$/i', $line, $m)) {
             $alt = htmlspecialchars($m[1], ENT_QUOTES);
             $src = htmlspecialchars($m[2], ENT_QUOTES);
@@ -63,7 +77,21 @@
                 preg_split('/\s+/', $m[3])
             );
             
-            return "<video src=\"$src\" controls class=\"" . implode(' ', $classList) . "\" alt=\"$alt\"></video>";
+            // Check if dontautostart is in the class list
+            $dontAutostart = in_array('dontautostart', array_map('strtolower', preg_split('/\s+/', $m[3])));
+            
+            // Remove dontautostart from class list for CSS
+            $classList = array_filter($classList, fn($c) => $c !== 'float-dontautostart');
+            
+            $videoAttrs = 'class="' . implode(' ', $classList) . '" alt="' . $alt . '"';
+            
+            if (!$dontAutostart) {
+                $videoAttrs .= ' autoplay muted loop playsinline';
+            } else {
+                $videoAttrs .= ' controls';
+            }
+            
+            return "<video src=\"$src\" $videoAttrs></video>";
         }
         
         return null;
@@ -297,6 +325,12 @@ include_once './pages/specials/totopbutton.php';
 
     .float-nobottommargin {
         margin-bottom: 0 !important;
+    }
+
+    .float-squished {
+        width: 100% !important;
+        height: 50% !important;
+        object-fit: cover !important;
     }
 
     .more-btn {
