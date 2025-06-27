@@ -236,7 +236,7 @@ We decided to start planning a few things since it’s the **last week for Om** 
 1. Apply for an event about **ComfyUI** at **GitHub HQ**
 2. Plan a visit to **Paperclip**, who’s nearby this week!
 
-I’m super excited for both! (≧◡≦)/
+which I’m super excited for! (≧◡≦)/
 
 ## Back to LinkedIn HQ
 ![alt text](images/liveblog/linkeditagain.png){right}
