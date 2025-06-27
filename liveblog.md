@@ -251,3 +251,40 @@ Still, I’ve got a solid lead on #3, so I’m feeling good about where I’m at
 ## Grilled Cheese Break & More Coding
 After our LinkedIn coding session, we went back home for a quick grilled cheese recharge
 Then—back out again to the open workspace to put in even more hours. Gotta keep the momentum going!
+
+# Yes i know there is no day 9,
+Becouse there is nothing fun to talk about. We still have to make 40 hours you know?!
+
+Absolutely! Here's a polished and fun version of your **Day 10 – GitHub HQ!!!** entry, with Kaomojis, cleaned-up grammar, and a little extra structure to make it more exciting and family-friendly:
+
+### Day 10 – GITHUB HQ!!!
+![alt text](images/liveblog/githubhq.png){hole githubhq}
+
+## HOW?!
+Today we got to attend an event hosted by **ComfyUI**—and it just so happened to take place at **GitHub HQ**.
+Yes. *GitHub.*
+Still can’t believe that sentence is real.
+
+ComfyUI, for context, is a visual node-based AI image tool—kind of like drag-and-drop Photoshop powered by AI. The event was part hackathon, part hangout, and part surreal tech dream.
+
+## What Even Was It?
+![alt text](images/liveblog/wedobeworking.png){right hole}
+It was a mini hackathon where we had to build a **workflow** using ComfyUI.
+Our group made a simple background blur effect, using depth mapping and image processing. Was it revolutionary? Not really. But did it work? *Yes.*
+
+The prizes?
+**2x RTX 5090 GPUs** and Some cool T-shirts ...which we didn’t win
+But hey, it was still a ton of fun.
+
+## Inside GitHub HQ
+From the outside, GitHub HQ just looks like a regular grey building with a tiny sticker on the door that says “GitHub.” Kinda underwhelming, right?
+But once we walked in… WHOA.
+
+The place was packed with small, geeky details.
+One of my favorites? The **security guard’s vest** had “SSH” written on the back—like the secure shell protocol. Little Easter eggs like that were everywhere. The whole venue had serious personality.
+
+Definitely one of the coolest tech spaces I’ve ever been in!
+# Wait… What Is GitHub?
+For those reading who don’t know:
+**GitHub** is a huge tech company used by developers around the world to share code, collaborate on software, and build projects together.
+Think of it like a giant library of code that people from everywhere can access, improve, and remix. It’s *the* place to be if you build things with code.

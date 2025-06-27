@@ -43,31 +43,31 @@
                 fn($c) => 'float-' . preg_replace('/[^a-z0-9_-]/i', '', strtolower($c)),
                 preg_split('/\s+/', $m[3])
             );
-            
+
             // Check if it's a video file
             $isVideo = preg_match('/\.(mp4|webm|ogg)$/i', $src);
-            
+
             if ($isVideo) {
                 // Check if dontautostart is in the class list
                 $dontAutostart = in_array('dontautostart', array_map('strtolower', preg_split('/\s+/', $m[3])));
-                
+
                 // Remove dontautostart from class list for CSS
                 $classList = array_filter($classList, fn($c) => $c !== 'float-dontautostart');
-                
+
                 $videoAttrs = 'class="' . implode(' ', $classList) . '" alt="' . $alt . '"';
-                
+
                 if (!$dontAutostart) {
                     $videoAttrs .= ' autoplay muted loop playsinline';
                 } else {
                     $videoAttrs .= ' controls';
                 }
-                
+
                 return "<video src=\"$src\" $videoAttrs></video>";
             } else {
                 return "<img src=\"$src\" alt=\"$alt\" class=\"" . implode(' ', $classList) . "\">";
             }
         }
-        
+
         // Video pattern: @[alt](src){classes} for videos
         if (preg_match('/^@\[(.*?)\]\((.*?)\)\{(.*?)\}$/i', $line, $m)) {
             $alt = htmlspecialchars($m[1], ENT_QUOTES);
@@ -76,38 +76,38 @@
                 fn($c) => 'float-' . preg_replace('/[^a-z0-9_-]/i', '', strtolower($c)),
                 preg_split('/\s+/', $m[3])
             );
-            
+
             // Check if dontautostart is in the class list
             $dontAutostart = in_array('dontautostart', array_map('strtolower', preg_split('/\s+/', $m[3])));
-            
+
             // Remove dontautostart from class list for CSS
             $classList = array_filter($classList, fn($c) => $c !== 'float-dontautostart');
-            
+
             $videoAttrs = 'class="' . implode(' ', $classList) . '" alt="' . $alt . '"';
-            
+
             if (!$dontAutostart) {
                 $videoAttrs .= ' autoplay muted loop playsinline';
             } else {
                 $videoAttrs .= ' controls';
             }
-            
+
             return "<video src=\"$src\" $videoAttrs></video>";
         }
-        
+
         return null;
     };
 
-    // Helper function to close spans
-    $closeSpan = function (bool $inSpan, bool $inHidden, string &$output, string &$hidden): bool {
-        if ($inSpan) {
+    // Helper function to close paragraphs
+    $closeParagraph = function (bool $inParagraph, bool $inHidden, string &$output, string &$hidden): bool {
+        if ($inParagraph) {
             if ($inHidden) {
-                $hidden .= '</span>';
+                $hidden .= '</p>';
             } else {
-                $output .= '</span>';
+                $output .= '</p>';
             }
             return false;
         }
-        return $inSpan;
+        return $inParagraph;
     };
 
     echo '<div class="liveblogcontainer">';
@@ -135,28 +135,24 @@
         // Prepare output vs hidden
         $output = '';
         $hidden = '';
-        $inSpan = false;
+        $inParagraph = false;
         $inHidden = false;
         $moreId = "more-block-$index";
 
         for ($i = 0; $i < count($lines); $i++) {
             $line = ucfirst(trim($lines[$i]));
             if ($line === '') {
-                if ($inSpan) {
-                    if ($inHidden) {
-                        $hidden .= '<br>';
-                    } else {
-                        $output .= '<br>';
-                    }
+                if ($inParagraph) {
+                    $inParagraph = $closeParagraph($inParagraph, $inHidden, $output, $hidden);
                 }
                 continue;
             }
 
             // Single-# heading → hidden subheadline + optional media
             if (preg_match('/^#\s+(.+)$/', $line, $m1)) {
-                $inSpan = $closeSpan($inSpan, $inHidden, $output, $hidden);
+                $inParagraph = $closeParagraph($inParagraph, $inHidden, $output, $hidden);
                 $inHidden = true;
-                $hidden .= '<h3 class="subheadline">' . htmlspecialchars($m1[1], ENT_QUOTES) . '</h3>';
+                $hidden .= '<h2 class="lead">' . htmlspecialchars($m1[1], ENT_QUOTES) . '</h2>';
 
                 // Look ahead for media right after this #
                 if (isset($lines[$i + 1])) {
@@ -171,9 +167,9 @@
 
             // Double-## subheadline → placed in either output or hidden
             if (preg_match('/^##\s+(.+)$/', $line, $m2)) {
-                $inSpan = $closeSpan($inSpan, $inHidden, $output, $hidden);
+                $inParagraph = $closeParagraph($inParagraph, $inHidden, $output, $hidden);
                 $target = $inHidden ? 'hidden' : 'output';
-                $$target .= '<h3 class="subheadline">' . htmlspecialchars($m2[1], ENT_QUOTES) . '</h3>';
+                $$target .= '<h2 class="lead">' . htmlspecialchars($m2[1], ENT_QUOTES) . '</h2>';
 
                 // Media right after ##
                 if (isset($lines[$i + 1])) {
@@ -191,13 +187,13 @@
             }
 
             // Regular paragraph text
-            if (!$inSpan) {
+            if (!$inParagraph) {
                 if ($inHidden) {
-                    $hidden .= '<span>';
+                    $hidden .= '<p>';
                 } else {
-                    $output .= '<span>';
+                    $output .= '<p>';
                 }
-                $inSpan = true;
+                $inParagraph = true;
             }
             $text = $formatText($hyphenToEmDash($line)) . '<br>';
             if ($inHidden) {
@@ -207,12 +203,12 @@
             }
         }
 
-        // Close any open span
-        $closeSpan($inSpan, $inHidden, $output, $hidden);
+        // Close any open paragraph
+        $closeParagraph($inParagraph, $inHidden, $output, $hidden);
 
         // Render the card
         echo "<div class=\"card container separator liveblogcontext\">\n";
-        echo "  <h3 class=\"headline\">{$h}</h3>\n";
+        echo "  <h2 class=\"headline\">{$h}</h2>\n";
         if ($heroMedia) {
             echo "  {$heroMedia}\n";
         }
@@ -224,7 +220,13 @@
             echo "  <button class=\"more-btn\" onclick=\"\n"
                 . "    document.getElementById('$moreId').style.display='block';\n"
                 . "    this.style.display='none';\n"
+                . "    document.getElementById('less-$moreId').style.display='inline-block';\n"
                 . "\">More...</button>\n";
+            echo "  <button id=\"less-$moreId\" class=\"less-btn\" style=\"display:none;\" onclick=\"\n"
+                . "    document.getElementById('$moreId').style.display='none';\n"
+                . "    this.style.display='none';\n"
+                . "    this.parentNode.querySelector('.more-btn').style.display='inline-block';\n"
+                . "\">Less...</button>\n";
         }
 
         echo "</div>\n\n";
@@ -263,28 +265,33 @@ include_once './pages/specials/totopbutton.php';
         height: unset;
         aspect-ratio: 6976/1599;
         background-color: unset !important;
-        padding-left: 45%;
-        padding-top: 1%;
     }
+
 
     .sub-top * {
         background-color: unset !important;
-        color: #2d2c36;
     }
 
-    .liveblogcontext .subheadline {
-        font-size: 2em;
-        margin-top: var(--spacing-3);
-        margin-bottom: var(--spacing-1);
+    .lead {
+        font-weight: 600;
+        margin-top: var(--spacing-4) !important;
+        margin-bottom: var(--spacing-1) !important;
     }
 
-    .liveblogcontext img,
-    .liveblogcontext video {
+    p {
+        max-width: unset !important;
+        line-height: 1.6;
+        margin-top: 0;
+        margin-bottom: var(--spacing-2);
+    }
+
+    img,
+    video {
         object-fit: cover;
         border-radius: 8px;
     }
 
-    .liveblogcontext video {
+    video {
         background-color: #000;
     }
 
@@ -333,6 +340,16 @@ include_once './pages/specials/totopbutton.php';
         object-fit: cover !important;
     }
 
+    .float-githubhq {
+        background-image: url(images/liveblog/githubhqpanorrama2.png);
+        background-repeat: no-repeat;
+        background-size: 122% auto;
+        background-position-x: 48%;
+        background-position-y: 83%;
+        aspect-ratio: 6976 / 1599;
+        background-color: unset !important;
+    }
+
     .more-btn {
         background-color: var(--myblue);
         color: white;
@@ -348,15 +365,30 @@ include_once './pages/specials/totopbutton.php';
         background-color: #005999;
     }
 
+    .less-btn {
+        background-color: var(--myblue);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: background-color 0.2s ease;
+    }
+
+    .less-btn:hover {
+        background-color: #005999;
+    }
+
     .liveblogcontainer .container {
         padding-bottom: var(--spacing-3);
     }
 
     @media (max-width: 1070px) {
         .sub-top {
-            padding: 0;
             align-content: center;
         }
+
         .sub-top * {
             color: white;
         }
