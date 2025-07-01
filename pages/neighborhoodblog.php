@@ -59,7 +59,7 @@
                 if (!$dontAutostart) {
                     $videoAttrs .= ' autoplay muted loop playsinline';
                 } else {
-                    $videoAttrs .= ' controls';
+                    $videoAttrs .= ' controls muted';
                 }
 
                 return "<video src=\"$src\" $videoAttrs></video>";
@@ -88,7 +88,7 @@
             if (!$dontAutostart) {
                 $videoAttrs .= ' autoplay muted loop playsinline';
             } else {
-                $videoAttrs .= ' controls';
+                $videoAttrs .= ' controls muted';
             }
 
             return "<video src=\"$src\" $videoAttrs></video>";
@@ -259,7 +259,7 @@ include_once './pages/specials/totopbutton.php';
     .sub-top {
         background-image: url("/images/liveblog/goldendridge.png");
         background-repeat: no-repeat;
-        background-size: 130% auto;
+        background-size: 150% auto;
         background-position-x: 60%;
         background-position-y: 20%;
         height: unset;

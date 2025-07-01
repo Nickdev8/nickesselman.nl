@@ -288,3 +288,61 @@ Definitely one of the coolest tech spaces I’ve ever been in!
 For those reading who don’t know:
 **GitHub** is a huge tech company used by developers around the world to share code, collaborate on software, and build projects together.
 Think of it like a giant library of code that people from everywhere can access, improve, and remix. It’s *the* place to be if you build things with code.
+
+Here’s your **Day 11 – Talk with Thomas!** entry, fully polished and edited for clarity, flow, and formatting. I compacted the Freedom Week announcement into a clear summary, added Kaomojis for style, and fixed grammar issues while keeping your original vibe:
+
+### Day 11 – Talk with Thomas!
+![alt text](images/liveblog/interviewqiththomas.png){right vertical}
+
+## A Chat with Thomas
+The day before, we noticed a few things that felt off—like how San Francisco is this city full of events and energy, but the **40-hour system** kind of discourages going out and exploring. Also, things like research or design work didn’t count toward the time tracker, which felt limiting.
+
+So me, **Elliott**, and **Om** put together a list of points and asked Thomas if we could talk. As soon as we brought up our concerns, he smiled and said,
+
+> “Let me show you something I’ve been cooking up…”
+
+## 🦅 FREEDOM WEEK 🇺🇸
+Thomas announced an upcoming experiment called **Freedom Week**, 
+starting **Monday, June 30st – July 6th**
+
+No hour tracking, No 40 hours. Start a **brand new project** from scratch and make a **5+ minute YouTube video**
+
+It’s totally optional—but of course I’m doing it.
+**Let’s goooo!! (ง🔥Д🔥)ง**
+
+## Other Stuff We Talked About
+We also talked about
+
+> Juice merch (coming… eventually)
+> Buying furniture for the house
+If you're a Juice person and curious about merch updates—DM me on Slack! but dont be hyped
+
+## The Interview
+![alt text](images/liveblog/ominterview.mp4){left}
+Later that day, we headed over to the **Atrium on 2nd Street**, and got a surprise call from **Paolo**.
+
+He wanted to film a quick interview with us before Om leaves Neighborhood. It went pretty well!
+Another memory locked in.
+
+Here’s your **Day 12** entry, cleaned up, formatted nicely, and made more fun and readable—with a few Kaomojis sprinkled in for that extra charm:
+
+
+### Day 12 – Poker & People
+![Poker!](images/liveblog/pokernight.png){right}
+
+## Poker Night!
+
+I brought a deck of cards from back home and decided to play some games with **Om**—we played **Swedish Bullying** and good old **Texas Hold'em**.
+
+Not gonna lie… Om may have turned me into a bit of a gambling addict (*in the fun way*, I promise)
+I *loved* the strategy, the bluffing, the chaos. 
+Aond… **I won a whole bunch!**
+
+## New Faces, Temporary Chaos
+![New faces](images/liveblog/temporairypeople.png){left}
+
+Some new people arrived in SF today, but they didn’t have a place to stay just yet—so they crashed at our house for one night.
+
+Let’s just say… it was **really** busy.
+Loud, packed, and kind of fun in a chaotic way.
+
