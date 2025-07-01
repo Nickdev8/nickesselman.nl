@@ -291,7 +291,7 @@ Think of it like a giant library of code that people from everywhere can access,
 
 Here’s your **Day 11 – Talk with Thomas!** entry, fully polished and edited for clarity, flow, and formatting. I compacted the Freedom Week announcement into a clear summary, added Kaomojis for style, and fixed grammar issues while keeping your original vibe:
 
-### Day 11 – Talk with Thomas!
+### Day 12 – Talk with Thomas!
 ![alt text](images/liveblog/interviewqiththomas.png){right vertical}
 
 ## A Chat with Thomas
@@ -324,10 +324,7 @@ Later that day, we headed over to the **Atrium on 2nd Street**, and got a surpri
 He wanted to film a quick interview with us before Om leaves Neighborhood. It went pretty well!
 Another memory locked in.
 
-Here’s your **Day 12** entry, cleaned up, formatted nicely, and made more fun and readable—with a few Kaomojis sprinkled in for that extra charm:
-
-
-### Day 12 – Poker & People
+### Day 13 – Poker & People
 ![Poker!](images/liveblog/pokernight.png){right}
 
 ## Poker Night!
@@ -350,7 +347,7 @@ Loud, packed, and kind of fun in a chaotic way.
 Today maked the end of the week and we has to show what we made that day.
 
 
-### Day 13 – The Birth of *Pao*
+### Day 14 – The Birth of *Pao*
 ## Idea Storm
 
 Today was a **full-on brainstorming marathon**. I woke up at 10am and went to bed around 2am—with a working prototype and a chaotic, hilarious idea for a game.
