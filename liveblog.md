@@ -289,7 +289,6 @@ For those reading who don’t know:
 **GitHub** is a huge tech company used by developers around the world to share code, collaborate on software, and build projects together.
 Think of it like a giant library of code that people from everywhere can access, improve, and remix. It’s *the* place to be if you build things with code.
 
-Here’s your **Day 11 – Talk with Thomas!** entry, fully polished and edited for clarity, flow, and formatting. I compacted the Freedom Week announcement into a clear summary, added Kaomojis for style, and fixed grammar issues while keeping your original vibe:
 
 ### Day 12 – Talk with Thomas!
 ![alt text](images/liveblog/interviewqiththomas.png){right vertical}
