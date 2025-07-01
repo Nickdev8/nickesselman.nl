@@ -29,7 +29,15 @@
     $hyphenToEmDash = fn(string $txt) => str_replace(' - ', ' — ', $txt);
     $formatText = function (string $txt): string {
         $escaped = htmlspecialchars($txt, ENT_QUOTES);
-        $withBold = preg_replace('/\*\*(.+?)\*\*/', '<strong>$1</strong>', $escaped);
+
+        // Convert markdown links: [text](url)
+        $withLinks = preg_replace_callback(
+            '/\[(.*?)\]\((https?:\/\/[^\s)]+)\)/',
+            fn($m) => '<a href="' . htmlspecialchars($m[2], ENT_QUOTES) . '" target="_blank" rel="noopener noreferrer">' . htmlspecialchars($m[1], ENT_QUOTES) . '</a>',
+            $escaped
+        );
+
+        $withBold = preg_replace('/\*\*(.+?)\*\*/', '<strong>$1</strong>', $withLinks);
         return preg_replace('/\*(?!\*)(.+?)(?<!\*)\*/', '<em>$1</em>', $withBold);
     };
 
@@ -59,7 +67,8 @@
                 if (!$dontAutostart) {
                     $videoAttrs .= ' autoplay muted loop playsinline';
                 } else {
-                    $videoAttrs .= ' controls muted';
+                    // Add controls, allow fullscreen, volume, etc.
+                    $videoAttrs .= ' controls muted controlsList="nodownload"';
                 }
 
                 return "<video src=\"$src\" $videoAttrs></video>";
@@ -88,7 +97,8 @@
             if (!$dontAutostart) {
                 $videoAttrs .= ' autoplay muted loop playsinline';
             } else {
-                $videoAttrs .= ' controls muted';
+                // Add controls, allow fullscreen, volume, etc.
+                $videoAttrs .= ' controls muted controlsList="nodownload"';
             }
 
             return "<video src=\"$src\" $videoAttrs></video>";
@@ -259,10 +269,9 @@ include_once './pages/specials/totopbutton.php';
     .sub-top {
         background-image: url("/images/liveblog/goldendridge.png");
         background-repeat: no-repeat;
-        background-size: 150% auto;
+        background-size: 150% 140%;
         background-position-x: 60%;
         background-position-y: 20%;
-        height: unset;
         aspect-ratio: 6976/1599;
         background-color: unset !important;
     }

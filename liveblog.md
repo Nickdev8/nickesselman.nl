@@ -346,3 +346,31 @@ Some new people arrived in SF today, but they didn’t have a place to stay just
 Let’s just say… it was **really** busy.
 Loud, packed, and kind of fun in a chaotic way.
 
+## Ship Sunday
+Today maked the end of the week and we has to show what we made that day.
+
+
+### Day 13 – The Birth of *Pao*
+## Idea Storm
+
+Today was a **full-on brainstorming marathon**. I woke up at 10am and went to bed around 2am—with a working prototype and a chaotic, hilarious idea for a game.
+And honestly? It’s *super fun to play* already!
+
+The idea? A game you play with friends where you have to **eliminate your target by secretly taking a selfie with them** in the background.
+Simple, sneaky, and *a little evil*
+
+## Introducing: **Pao**
+> A real-life game of betrayal… with selfies.
+> *It’s like Among Us, but in the real world.*
+
+You get a secret target, sneak a selfie with them in frame, and **boom—they’re out.**
+You take their target. Game continues.
+Last one standing is crowned **The Pao Champion™**
+
+You can read the full README [right here](https://github.com/AleksanderGPL/pao), 
+
+here’s the TL;DR:
+# Pao in 3 Sentences:
+> It’s a real-world, multiplayer game of stealth selfies.
+> You eliminate your target by snapping a picture with them in the background.
+> It’s funny, sneaky, chaotic—and you’ll never trust your friends again.
