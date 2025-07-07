@@ -1,4 +1,4 @@
-### Day -8, The Days Leading Up to SF 6/10
+### 8 Days before, The Days Leading Up to SF 6/10
 ![alt text](images/liveblog/panorama.png){hole}
 ## Almost There!
 
@@ -219,7 +219,8 @@ Before long, all our batteries were dead and we had to head home to grab our ada
 
 When we finally returned, the workspace was already closing—it shuts at 6pm. So we had to pivot.
 ## Hotel Coding Session
-We wandered around and ended up finding a random hotel with a comfy lobby where we could sit and code (´｡• ᵕ •｡\`)
+We wandered around and ended up finding a random hotel with a comfy lobby where we could sit and code (´｡• ᵕ •｡`)
+
 Honestly? It was kind of perfect.
 
 There, I clocked **8.4 hours** of focused programming—working more on my online escape room game. Felt good to finally make solid progress toward my weekly goal.
@@ -370,3 +371,96 @@ here’s the TL;DR:
 > It’s a real-world, multiplayer game of stealth selfies.
 > You eliminate your target by snapping a picture with them in the background.
 > It’s funny, sneaky, chaotic—and you’ll never trust your friends again.
+
+
+### Day 15 – Just Paolo Being Smart
+![alt text](images/liveblog/paolobeingsmart.mp4){hole}
+A quiet day overall, but I caught Paolo doing something incredibly smart and totally in-the-zone.
+That’s it. That’s the post. (✿´‿\`)
+
+
+### Day 16 – Noicebridge Vibes
+![alt text](images/liveblog/noicebridgepanorama.png){hole}
+
+## We Went to Noicebridge
+![alt text](images/liveblog/paoloplayinggituar.mp4){dontautostart hole}
+
+**Noicebridge** is one of San Francisco’s most iconic hackerspaces. It's a big, open community workshop where anyone can build, tinker, code, 3D print, paint, sew—you name it.
+
+The whole space is run by volunteers and totally open to the public. The vibe? Super creative and weird in the best way possible. (｡•̀ᴗ-)✧
+While there, Paolo even played a bit of guitar 🎸
+
+
+## *Pao* Lives On
+![alt text](images/liveblog/pao.mp4){dontautostart left}
+We’re still working on **Pao**—testing it with friends, laughing a ton, and fine-tuning the chaos.
+So far: lots of eliminations, sneaky selfies, and betrayal. Perfect.
+
+
+### Day 17 – Chair-Carrying Chaos
+![alt text](images/liveblog/firsttimeluandrymat.mp4){left}
+
+## We Carried 5 Chairs + a Big Table… Through SF
+![alt text](images/liveblog/tablecarrying.mp4){left}
+Yes. We really carried 5 chairs *and* a table across San Francisco—including on the metro.
+Why? Because Hack Club housing is DIY to the core.
+
+## More Pao Testing
+![alt text](images/liveblog/pao3.mp4){dontautostart left}
+More eliminations. More laughter. More paranoia.
+**Pao is life.**
+
+
+### Day 18 – 🇺🇸 Fourth of July
+![alt text](images/liveblog/panorama4thofjuly.png){hole}
+
+## 🎆 So Many People
+![alt text](images/liveblog/populated.mp4){hole}
+
+## 😮 Coolest Things We Saw
+![alt text](images/liveblog/someonejumpingoverisac.mp4){hole}
+There was a guy doing flips *over* another Hack Clubber.
+The fireworks, crowds, and chaos made for one unforgettable night.
+
+### Day 19 – Chill Mode
+## Walk in the Park
+![alt text](images/liveblog/hackclubinpineconed.png){horizantal left}
+
+## Starbucks Stop
+![alt text](images/liveblog/starbucks.png){horizantal left}
+Not every day is loud and crazy. This one was just nice, quiet, and full of coffee and trees. (▰˘︹˘▰)
+
+### Day 20 – Grinding & Cleaning
+![alt text](images/liveblog/train.png){horizantal left}
+
+## Late-Night Coding
+![alt text](images/liveblog/programmig.png){horizantal left}
+Sorry for all the photo/video-only updates. I honestly didn’t feel like writing this week. But trust me—we’ve been coding, building, and shipping. Late nights, good snacks, and progress.
+
+### Day 20 (continued) – **Cleaning Day From Hell**
+## When You’re the Only One Who Cares
+Someone clogged the toilet *and* left without saying anything. Another person? Clogged the shower.
+No one cleaned. No one even said sorry.
+So yeah—I cleaned both.
+
+## 16 Minutes of Toilet Hell
+![alt text](images/liveblog/plumming.mp4){horizantal left}
+I woke up to **Alexander screaming at me** next to my bed:
+
+> “You’re the leader of the house—you clean the toilet.”
+> 🤬
+
+He loves arguing and never listens to others. I already disliked him, but now\... I *really* dislike him.
+
+I wouldn’t mind doing the cleaning if people actually appreciated it—but with him? All the “thank you”s feel hollow.
+
+## The Shower Saga
+![alt text](images/liveblog/showerrusult.mp4){right}
+The shower was clogged so badly that I had to call a plumber. Turns out: someone’s hair had blocked the whole thing.
+We paid up front (don’t worry—the landlord reimbursed us), but after the plumber left, the shower was *disgusting.*
+So I scrubbed it for nearly an hour to make it usable again.
+
+## Final Thoughts
+People in Neighborhood don’t clean up after themselves nearly enough.
+It’s gross.
+And I’m tired. (￣ヘ￣;)
