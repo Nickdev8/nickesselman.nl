@@ -328,11 +328,11 @@ include_once './pages/specials/totopbutton.php';
             localStorage.setItem('hideReadToggle', hideReadToggle.checked ? '1' : '0');
         });
 
-        // Mark stories as read after 10 seconds
+        // Mark stories as read after 30 seconds
         setTimeout(() => {
             markStoriesRead(getStoryIds());
-            console.log('[Liveblog] All stories marked as read after 10 seconds.');
-        }, 10000);
+            console.log('[Liveblog] All stories marked as read after 30 seconds.');
+        }, 30000);
 
         // Initial UI update
         updateReadUI();
