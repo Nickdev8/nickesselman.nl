@@ -414,10 +414,10 @@ More eliminations. More laughter. More paranoia.
 ### Day 18 – 🇺🇸 Fourth of July
 ![alt text](images/liveblog/panorama4thofjuly.png){hole}
 
-## 🎆 So Many People
+## So Many People
 ![alt text](images/liveblog/populated.mp4){hole}
 
-## 😮 Coolest Things We Saw
+## Coolest Things We Saw
 ![alt text](images/liveblog/someonejumpingoverisac.mp4){hole}
 There was a guy doing flips *over* another Hack Clubber.
 The fireworks, crowds, and chaos made for one unforgettable night.
@@ -428,7 +428,8 @@ The fireworks, crowds, and chaos made for one unforgettable night.
 
 ## Starbucks Stop
 ![alt text](images/liveblog/starbucks.png){horizantal left}
-Not every day is loud and crazy. This one was just nice, quiet, and full of coffee and trees. (▰˘︹˘▰)
+Not every day is loud and crazy. This one was just nice, quiet, and full of coffee and trees. 
+(▰˘︹˘▰)
 
 ### Day 20 – Grinding & Cleaning
 ![alt text](images/liveblog/train.png){horizantal left}
@@ -464,3 +465,28 @@ So I scrubbed it for nearly an hour to make it usable again.
 People in Neighborhood don’t clean up after themselves nearly enough.
 It’s gross.
 And I’m tired. (￣ヘ￣;)
+
+
+### Day 21 – Game Making
+## Game Dev with Kai Ling
+![alt text](images/liveblog/openworkspace.png){right vertical}
+Yesterday, **Kai Ling** made an announcement:
+
+> "Come to 55 2nd Street to follow a Godot game-making course. 
+From 10am to 6pm—lunch and dinner included!"
+Of course I went!
+
+I’ve been making games since I was 9 years old—mostly in Unity—building everything from **Mario Party knockoffs** to **multiplayer VR experiments**. But since starting college, I haven’t had much time to work on my passion.
+
+So between **Juice last April** and this week in San Francisco, I’ve finally found space to reconnect with game design.
+
+And honestly? I love it so much.
+It feels like coming home.
+
+## Dinner & Dancing
+![alt text](images/liveblog/elliottDancing.mp4){left}
+After a solid **8 hours of straight programming**, we headed to a nearby park to wind down and enjoy some well-earned dinner.
+
+The weather was perfect, the food hit just right, and the vibe was pure chill. Then we noticed a group nearby dancing—and of course, **me, Elliott, and Johan** jumped in and joined them for one dance.
+
+A perfect way to end a long, productive day.
