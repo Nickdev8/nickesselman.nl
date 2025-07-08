@@ -16,6 +16,11 @@
             <span class="special-slider"></span>
         </label>
         <h2 style="margin: 0;">Sort: <span id="sortLabel">Newest First</span></h2>
+        <label class="special-switch" style="margin-left:2rem;">
+            <input id="hideReadToggle" type="checkbox">
+            <span class="special-slider"></span>
+        </label>
+        <h2 style="margin: 0;">Hide Read Stories</h2>
     </div>
 </div>
 <div>
@@ -131,6 +136,10 @@
         $h = ucfirst($formatText($rawTitle))
             . ($formatted ? ' <span class="date">' . $formatted . '</span>' : '');
 
+        // Generate a slug for the story id
+        $slug = strtolower(preg_replace('/[^a-z0-9]+/', '-', strip_tags($rawTitle)));
+        $slug = trim($slug, '-');
+
         // Hero media after ###?
         $heroMedia = '';
         $content = trim($rawText);
@@ -216,8 +225,9 @@
         // Close any open paragraph
         $closeParagraph($inParagraph, $inHidden, $output, $hidden);
 
-        // Render the card
-        echo "<div class=\"card container separator liveblogcontext\">\n";
+        // Render the card with data-story-id
+        echo "<div class=\"card container separator liveblogcontext\" data-story-id=\"$slug\">\n";
+        echo "  <div class=\"read-indicator\" style=\"display:none;\"><span class=\"read-label\"><svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' style='vertical-align:middle; margin-right:4px;'><path fill='currentColor' d='M12 5c-7.633 0-11 6.5-11 7s3.367 7 11 7 11-6.5 11-7-3.367-7-11-7zm0 12c-5.177 0-8.241-3.93-9.05-5 .809-1.07 3.873-5 9.05-5s8.241 3.93 9.05 5c-.809 1.07-3.873 5-9.05 5zm0-8c-1.654 0-3 1.346-3 3s1.346 3 3 3 3-1.346 3-3-1.346-3-3-3zm0 4c-.552 0-1-.449-1-1s.448-1 1-1 1 .449 1 1-.448 1-1 1z'/></svg>READ</span><span class=\"read-x\" title=\"Mark as unread\">&#10005;</span></div>\n";
         echo "  <h2 class=\"headline\">{$h}</h2>\n";
         if ($heroMedia) {
             echo "  {$heroMedia}\n";
@@ -249,18 +259,112 @@
 <?php
 include_once './pages/specials/totopbutton.php';
 ?>
+<div style="text-align:center; margin:2rem 0 1rem 0;">
+    <span id="clearReadStories" style="color:#888; font-size:0.95em; cursor:pointer; text-decoration:underline;">Clear read stories</span>
+    <span id="markAllRead" style="color:#888; font-size:0.95em; cursor:pointer; text-decoration:underline; margin-left:1.5em;">Mark all stories as read</span>
+</div>
 <script>
+    function getStoryIds() {
+        return Array.from(document.querySelectorAll('.card[data-story-id]')).map(card => card.getAttribute('data-story-id'));
+    }
+    function markStoriesRead(ids) {
+        let read = JSON.parse(localStorage.getItem('readStories') || '{}');
+        ids.forEach(id => { read[id] = true; });
+        localStorage.setItem('readStories', JSON.stringify(read));
+    }
+    function getReadStories() {
+        return JSON.parse(localStorage.getItem('readStories') || '{}');
+    }
+    function updateReadUI() {
+        const read = getReadStories();
+        document.querySelectorAll('.card[data-story-id]').forEach(card => {
+            if (read[card.getAttribute('data-story-id')]) {
+                card.classList.add('read-story');
+                const ind = card.querySelector('.read-indicator');
+                if (ind) ind.style.display = 'flex';
+            } else {
+                card.classList.remove('read-story');
+                const ind = card.querySelector('.read-indicator');
+                if (ind) ind.style.display = 'none';
+            }
+        });
+    }
+    function updateHideReadUI() {
+        const hide = document.getElementById('hideReadToggle').checked;
+        document.querySelectorAll('.card[data-story-id]').forEach(card => {
+            if (hide && card.classList.contains('read-story')) {
+                card.style.display = 'none';
+            } else {
+                card.style.display = '';
+            }
+        });
+    }
     document.addEventListener('DOMContentLoaded', () => {
-        const toggle = document.getElementById('sortToggle');
-        const label = document.getElementById('sortLabel');
+        const sortToggle = document.getElementById('sortToggle');
+        const sortLabel = document.getElementById('sortLabel');
         const container = document.querySelector('.liveblogcontainer');
+        const hideReadToggle = document.getElementById('hideReadToggle');
+        const clearReadBtn = document.getElementById('clearReadStories');
+        const markAllReadBtn = document.getElementById('markAllRead');
 
-        toggle.addEventListener('change', () => {
+        // Restore toggles
+        if (localStorage.getItem('sortToggle') === '1') sortToggle.checked = true;
+        if (localStorage.getItem('hideReadToggle') === '1') hideReadToggle.checked = true;
+        sortLabel.textContent = sortToggle.checked ? 'Oldest First' : 'Newest First';
+
+        // Sort toggle
+        sortToggle.addEventListener('change', () => {
             const cards = Array.from(container.querySelectorAll('.card'));
             cards.reverse();
             container.innerHTML = '';
             cards.forEach(card => container.appendChild(card));
-            label.textContent = toggle.checked ? 'Oldest First' : 'Newest First';
+            sortLabel.textContent = sortToggle.checked ? 'Oldest First' : 'Newest First';
+            localStorage.setItem('sortToggle', sortToggle.checked ? '1' : '0');
+        });
+
+        // Hide read toggle
+        hideReadToggle.addEventListener('change', () => {
+            updateHideReadUI();
+            localStorage.setItem('hideReadToggle', hideReadToggle.checked ? '1' : '0');
+        });
+
+        // Mark stories as read after 10 seconds
+        setTimeout(() => {
+            markStoriesRead(getStoryIds());
+            console.log('[Liveblog] All stories marked as read after 10 seconds.');
+        }, 10000);
+
+        // Initial UI update
+        updateReadUI();
+        updateHideReadUI();
+
+        // Clear read stories
+        clearReadBtn.addEventListener('click', () => {
+            localStorage.removeItem('readStories');
+            updateReadUI();
+            updateHideReadUI();
+        });
+
+        // Mark all stories as read (debug)
+        markAllReadBtn.addEventListener('click', () => {
+            markStoriesRead(getStoryIds());
+            updateReadUI();
+            updateHideReadUI();
+        });
+
+        // Add event delegation for X on read-indicator
+        document.querySelector('.liveblogcontainer').addEventListener('click', function(e) {
+            if (e.target.classList.contains('read-x')) {
+                const card = e.target.closest('.card[data-story-id]');
+                if (card) {
+                    const id = card.getAttribute('data-story-id');
+                    let read = getReadStories();
+                    delete read[id];
+                    localStorage.setItem('readStories', JSON.stringify(read));
+                    updateReadUI();
+                    updateHideReadUI();
+                }
+            }
         });
     });
 </script>
@@ -415,5 +519,51 @@ include_once './pages/specials/totopbutton.php';
             max-width: 100% !important;
             margin: 0 !important;
         }
+    }
+
+    .read-story { opacity: 0.6; filter: grayscale(0.7); }
+    #clearReadStories:hover { color: #444; }
+    .read-indicator {
+        position: absolute;
+        top: 0.5em;
+        right: 1em;
+        background: rgba(255,255,255,0.92);
+        color: #1a1a1a;
+        border-radius: 1em;
+        font-size: 0.98em;
+        font-weight: 600;
+        align-items: center;
+        gap: 0.5em;
+        padding: 0.2em 0.8em 0.2em 0.5em;
+        z-index: 2;
+        box-shadow: 0 2px 8px 0 rgba(0,0,0,0.04);
+        cursor: default;
+    }
+    .read-label {
+        display: inline-flex;
+        align-items: center;
+    }
+    .read-x {
+        margin-left: 0.7em;
+        color: #d00;
+        font-size: 2em;
+        font-weight: 900;
+        cursor: pointer;
+        line-height: 1;
+        transition: color 0.15s, text-shadow 0.15s;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        padding: 0 0.1em;
+        border-radius: 0.2em;
+        background: rgba(255,255,255,0.7);
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,0.07);
+        display: inline-block;
+    }
+    .read-x:hover {
+        color: #fff;
+        background: #d00;
+        text-shadow: 0 2px 12px #d00;
+    }
+    .card[data-story-id] {
+        position: relative;
     }
 </style>
