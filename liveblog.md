@@ -95,7 +95,7 @@ That was dinner. Simple, but it did the trick.
 Right as I finished, new roommates showed up. We're now 7 people in the house. It’s getting cozy!
 
 
-### Day 3 – Feeling Better
+### Day 3 Feeling Better
 ![alt text](images/liveblog/morningwalk.png){hole}
 
 ## Morning Reset
@@ -131,10 +131,10 @@ Later, Paolo pulled out his Nintendo Switch, and we played Mario Kart and some w
 ![alt text](images/liveblog/gamesonfloor.png){hole}
 I brought out a special deck of playing cards from my grandparents.
 We played some chill games on the floor with music in the background. A small moment, but it felt really nice.
-Here’s a polished, more readable version of your **Day 4 – 6/19** entry, keeping it casual and fun for your family:
+Here’s a polished, more readable version of your **Day 4 6/19** entry, keeping it casual and fun for your family:
 
 
-### Day 4 – 6/19
+### Day 4 6/19
 ![alt text](images/liveblog/pier.png){right}
 ## Golden Gate Bridge Adventure
 For most of the day, not much really happened. But around 6pm, things picked up, we all headed out to visit the Golden Gate Bridge.
@@ -155,7 +155,7 @@ So we have more leftovers for another day!
 ### Day 5. ٩(ˊᗜˋ )و
 ## I dind't do anything interesting today
 
-### Day 6 – 6/21
+### Day 6 6/21
 ![alt text](images/liveblog/salesforcepark.png){right}
 
 ## City Adventure!
@@ -195,7 +195,7 @@ Do I feel like I’m getting kicked out?
 Not really…
 But I guess we’ll find out soon. **(• - •)ゝ**
 
-### Day 7 – 6/22
+### Day 7 6/22
 ![alt text](images/liveblog/paolokikflip.mp4){right}
 
 ## Sunday Vibes & Burritos
@@ -227,7 +227,7 @@ There, I clocked **8.4 hours** of focused programming—working more on my onlin
 
 While coding, I even got a surprise video call from none other than **Paperclip**! (╯✧▽✧)╯
 We chatted for a bit… about nothing particularly important, but it was still a fun little moment to wrap up a weird, wandering, productive day.
-### Day 8 – Time Flies
+### Day 8 Time Flies
 ![alt text](images/liveblog/somecarsonthestreet.mp4){left}
 ## Wait… it’s already Day 8?!
 
@@ -256,9 +256,9 @@ Then—back out again to the open workspace to put in even more hours. Gotta kee
 # Yes i know there is no day 9,
 Becouse there is nothing fun to talk about. We still have to make 40 hours you know?!
 
-Absolutely! Here's a polished and fun version of your **Day 10 – GitHub HQ!!!** entry, with Kaomojis, cleaned-up grammar, and a little extra structure to make it more exciting and family-friendly:
+Absolutely! Here's a polished and fun version of your **Day 10 GitHub HQ!!!** entry, with Kaomojis, cleaned-up grammar, and a little extra structure to make it more exciting and family-friendly:
 
-### Day 10 – GITHUB HQ!!!
+### Day 10 GITHUB HQ!!!
 ![alt text](images/liveblog/githubhq.png){hole githubhq}
 
 ## HOW?!
@@ -291,7 +291,7 @@ For those reading who don’t know:
 Think of it like a giant library of code that people from everywhere can access, improve, and remix. It’s *the* place to be if you build things with code.
 
 
-### Day 12 – Talk with Thomas!
+### Day 12 Talk with Thomas!
 ![alt text](images/liveblog/interviewqiththomas.png){right vertical}
 
 ## A Chat with Thomas
@@ -303,7 +303,7 @@ So me, **Elliott**, and **Om** put together a list of points and asked Thomas if
 
 ## 🦅 FREEDOM WEEK 🇺🇸
 Thomas announced an upcoming experiment called **Freedom Week**, 
-starting **Monday, June 30st – July 6th**
+starting **Monday, June 30st July 6th**
 
 No hour tracking, No 40 hours. Start a **brand new project** from scratch and make a **5+ minute YouTube video**
 
@@ -324,7 +324,7 @@ Later that day, we headed over to the **Atrium on 2nd Street**, and got a surpri
 He wanted to film a quick interview with us before Om leaves Neighborhood. It went pretty well!
 Another memory locked in.
 
-### Day 13 – Poker & People
+### Day 13 Poker & People
 ![Poker!](images/liveblog/pokernight.png){right}
 
 ## Poker Night!
@@ -347,7 +347,7 @@ Loud, packed, and kind of fun in a chaotic way.
 Today maked the end of the week and we has to show what we made that day.
 
 
-### Day 14 – The Birth of *Pao*
+### Day 14 The Birth of *Pao*
 ## Idea Storm
 
 Today was a **full-on brainstorming marathon**. I woke up at 10am and went to bed around 2am—with a working prototype and a chaotic, hilarious idea for a game.
@@ -373,13 +373,13 @@ here’s the TL;DR:
 > It’s funny, sneaky, chaotic—and you’ll never trust your friends again.
 
 
-### Day 15 – Just Paolo Being Smart
+### Day 15 Just Paolo Being Smart
 ![alt text](images/liveblog/paolobeingsmart.mp4){hole}
 A quiet day overall, but I caught Paolo doing something incredibly smart and totally in-the-zone.
 That’s it. That’s the post. (✿´‿\`)
 
 
-### Day 16 – Noicebridge Vibes
+### Day 16 Noicebridge Vibes
 ![alt text](images/liveblog/noicebridgepanorama.png){hole}
 
 ## We Went to Noicebridge
@@ -397,7 +397,7 @@ We’re still working on **Pao**—testing it with friends, laughing a ton, and 
 So far: lots of eliminations, sneaky selfies, and betrayal. Perfect.
 
 
-### Day 17 – Chair-Carrying Chaos
+### Day 17 Chair-Carrying Chaos
 ![alt text](images/liveblog/firsttimeluandrymat.mp4){left}
 
 ## We Carried 5 Chairs + a Big Table… Through SF
@@ -411,7 +411,7 @@ More eliminations. More laughter. More paranoia.
 **Pao is life.**
 
 
-### Day 18 – 🇺🇸 Fourth of July
+### Day 18 🇺🇸 Fourth of July
 ![alt text](images/liveblog/panorama4thofjuly.png){hole}
 
 ## So Many People
@@ -422,7 +422,7 @@ More eliminations. More laughter. More paranoia.
 There was a guy doing flips *over* another Hack Clubber.
 The fireworks, crowds, and chaos made for one unforgettable night.
 
-### Day 19 – Chill Mode
+### Day 19 Chill Mode
 ## Walk in the Park
 ![alt text](images/liveblog/hackclubinpineconed.png){horizantal left}
 
@@ -431,14 +431,14 @@ The fireworks, crowds, and chaos made for one unforgettable night.
 Not every day is loud and crazy. This one was just nice, quiet, and full of coffee and trees. 
 (▰˘︹˘▰)
 
-### Day 20 – Grinding & Cleaning
+### Day 20 Grinding & Cleaning
 ![alt text](images/liveblog/train.png){horizantal left}
 
 ## Late-Night Coding
 ![alt text](images/liveblog/programmig.png){horizantal left}
 Sorry for all the photo/video-only updates. I honestly didn’t feel like writing this week. But trust me—we’ve been coding, building, and shipping. Late nights, good snacks, and progress.
 
-### Day 20 (continued) – **Cleaning Day From Hell**
+### Day 20 (continued) **Cleaning Day From Hell**
 ## When You’re the Only One Who Cares
 Someone clogged the toilet *and* left without saying anything. Another person? Clogged the shower.
 No one cleaned. No one even said sorry.
@@ -467,7 +467,7 @@ It’s gross.
 And I’m tired. (￣ヘ￣;)
 
 
-### Day 21 – Game Making
+### Day 21 Game Making 7/7
 ## Game Dev with Kai Ling
 ![alt text](images/liveblog/openworkspace.png){right vertical}
 Yesterday, **Kai Ling** made an announcement:
@@ -490,3 +490,91 @@ After a solid **8 hours of straight programming**, we headed to a nearby park to
 The weather was perfect, the food hit just right, and the vibe was pure chill. Then we noticed a group nearby dancing—and of course, **me, Elliott, and Johan** jumped in and joined them for one dance.
 
 A perfect way to end a long, productive day.
+
+### Day 22 7/8
+## Paolo
+![alt text](images/liveblog/paolobeinggoated.mp4){right}
+I went back to the Atrium today to keep working on my game, but I didn’t get far before getting completely distracted by the new ping pong table. Classic.
+
+## Game Progress
+I still managed to put in some time on my project. You can check it out [here](https://nick.hackclub.app/canopy/build/).
+It’s a "simple" tower defense game where you play as an old man living on an island, defending your home from waves of bats and birds with the help of programmable bots.
+
+## Gameplay
+![alt text](images/liveblog/gameplayofmygame.mp4){left dontautostart}
+The prototype is shaping up nicely, and it’s already fun to play.
+
+### Day 23 7/9
+## CRP
+Today started quietly. I was one of the first to wake up and went on my usual morning walk. When I got back, things had turned chaotic.
+
+We found out that Child Protective Services had been called on one of the other Hack Club houses. Panic broke out. Almost everyone at our house fled, except me and Alice. One guy even packed everything and left for home.
+
+After about an hour, the situation calmed. Police had visited the other house, but according to Thomas, they were simply checking in due to how unusual this kind of student hackerspace looked. They talked with students and parents and left peacefully.
+
+## It’s Over
+Later that evening, Thomas made an announcement:
+"With everything that has happened lately, the police being called was the final straw. I’ve made the difficult decision to end Neighborhood."
+
+Just like that, the program was over. People felt confused, heartbroken, even angry. The announcement hit hard.
+
+Everyone was asked to book their return flights by July 18. Thomas said he would help with bookings starting the next day.
+
+## Thomas
+![alt text](images/liveblog/theEnd.mp4){left dontautostart}
+Watching him deliver the message in person felt surreal. This community changed a lot of people’s lives—including mine.
+
+### Day 24 A Small Comeback 7/10
+## I Can Stay?
+The next morning, Thomas made another announcement. He said twelve people would be allowed to stay. He dropped a form, and the selection would be based on grant weight and impact.
+
+I signed up right away.
+
+So did Asker, a thoughtful and enthusiastic person
+Elliott, someone I really respect and look up to
+And Alice, one of the kindest, most grounded people I’ve ever met
+
+## I Got In
+That night, I was added to a group chat with 18 others.
+Elliott and Asker were in.
+But Alice wasn’t.
+
+I kept refreshing, hoping she’d appear. But she didn’t.
+It hurt more than I expected.
+
+I didn’t want to say something rash to Thomas in the moment, but I did write him a message. Just to be honest.
+
+# Dear Thomas
+![alt text](images/liveblog/goldengatepark.mp4){right}
+*Sent at 1:22 AM, July 11, 2025*
+
+I'm in kind of a pickle.
+I only want to stay if I know I’ll really be happy here.
+
+Oscar wants to move to Lower Haight. Elliott is still deciding between Orlando and here.
+But what’s hitting me hardest is Alice not getting selected.
+
+I genuinely believe she is more mature and emotionally grounded than anyone else in the program—including me.
+
+Over the past few nights, we’ve grown close. She’s been a calming presence during all this chaos. I don’t think I can do this program without her.
+
+I also don’t think it’s too late to reconsider.
+Four people in Lower Haight won’t feel like a community. Six or seven would.
+
+And with her parents not being home right now, she might not even have a stable place to return to. She’s also one of the original organizers.
+
+She deserves this more than I do.
+
+I’d love to hear your side of things and maybe help however I can.
+I’m going to bed now, and I’ll see how I feel in the morning.
+
+Best,
+Nick
+
+# Tomorrow Is Undercity
+Tomorrow is Undercity, another Hack Club event. It’s a multi-day hackathon held at GitHub HQ.
+
+It’s probably where I’ll say goodbye to a lot of people.
+It feels like the right place to end this chapter.
+
+Let me know if you'd like help writing your final blog post, a reflection, or a summary of your entire Neighborhood experience.
