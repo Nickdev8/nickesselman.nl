@@ -577,4 +577,31 @@ Tomorrow is Undercity, another Hack Club event. It’s a multi-day hackathon hel
 It’s probably where I’ll say goodbye to a lot of people.
 It feels like the right place to end this chapter.
 
-Let me know if you'd like help writing your final blog post, a reflection, or a summary of your entire Neighborhood experience.
+### Day 1 of Undercity
+
+![alt text](images/liveblog/startpressetasion.png){right}
+
+## Good Morning
+
+I set my alarm for 9am… so obviously I slept through it. Woke up late, totally rushed, and with barely enough time to get ready.
+
+When I finally did wake up, Thomas was already at the house, helping people book their flights home. I helped out for a bit, watched everyone slowly leave, and then grabbed my stuff and headed to **Undercity**.
+
+Metro ride. Quick walk.
+And now—I’m here. In a giant room filled with almost **200 other hackers**. Let’s go.
+
+## What Is Undercity?
+
+**Undercity** is a multi-day hackathon hosted by Hack Club, taking place at **GitHub HQ** in San Francisco. It's the latest in a series of events tied to **Highway**, a summer-long program built to give high school hackers everything they need—space, mentorship, friends, and time—to create amazing things.
+
+While **Highway** is more of a long-form, choose-your-own-adventure kind of summer, **Undercity** is fast-paced and high-energy. Think:
+
+* Dozens of teams
+* Around-the-clock building
+* Cool sponsors
+* Real shipping goals
+* And a ton of late-night chaos
+
+People here are working on everything from games and apps to art projects and hardware hacks. It’s competitive, collaborative, and absolutely buzzing with energy.
+
+It’s going to be intense. But it’s also the perfect place to wrap up the last leg of this wild summer adventure.
