@@ -1,7 +1,7 @@
 # Nick's Portfolio
 
 [![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fnickesselman.nl)](https://nickesselman.nl)
-[![Made with Matter.js](https://img.shields.io/badge/Made%20with-Matter.js-brightgreen)](https://brm.io/matter-js/)
+[![Made with PHP](https://img.shields.io/badge/Made%20with-Matter.js-brightgreen)](https://php.net)
 [![Built for Hack Club](https://img.shields.io/badge/Built%20for-Hack%20Club-red)](https://hackclub.com)
 
 Welcome! I'm **Nick**, a developer passionate about creating immersive web experiences where creativity meets physics simulation.
