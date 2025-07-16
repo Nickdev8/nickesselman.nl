@@ -599,7 +599,7 @@ Undercity is intense, inspiring, and packed with projects. Think:
 * And more unforgettable moments than you can count
 
 ## I Met Paperclip
-![alt text](images/liveblog/paperclipissmall.png){right}
+![alt text](images/liveblog/paperclipissmall.png){right vertical}
 
 At the start of the event, **Paperclip** announced:
 
