@@ -521,7 +521,7 @@ include_once './pages/specials/totopbutton.php';
         }
     }
 
-    .read-story { opacity: 0.6; filter: grayscale(0.7); }
+    .read-story { opacity: 1; filter: grayscale(0); }
     #clearReadStories:hover { color: #444; }
     .read-indicator {
         position: absolute;
