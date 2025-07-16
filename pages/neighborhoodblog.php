@@ -312,6 +312,18 @@ include_once './pages/specials/totopbutton.php';
         if (localStorage.getItem('hideReadToggle') === '1') hideReadToggle.checked = true;
         sortLabel.textContent = sortToggle.checked ? 'Oldest First' : 'Newest First';
 
+        // Initial UI update
+        updateReadUI();
+        updateHideReadUI();
+
+        // Initial sort update
+        if (sortToggle.checked) {
+            const cards = Array.from(container.querySelectorAll('.card'));
+            cards.reverse();
+            container.innerHTML = '';
+            cards.forEach(card => container.appendChild(card));
+        }
+
         // Sort toggle
         sortToggle.addEventListener('change', () => {
             const cards = Array.from(container.querySelectorAll('.card'));
