@@ -621,7 +621,7 @@ The opening presentation set the tone for everything to come:
 
 I didn’t officially join a team. I just wanted to enjoy the experience and get away from what Neighborhood had become. I loosely teamed with **SPC**, but mostly I floated and had fun. And honestly? That worked out really well.
 
-## The Rest of Day 1
+# The Rest of Day 1
 ![alt text](images/liveblog/picwithpaoankei.png){right}
 
 The rest of the day I mostly spent with Paperclip. helping with badges, talking with people, just having a great time.
@@ -631,7 +631,7 @@ The rest of the day I mostly spent with Paperclip. helping with badges, talking 
 
 ## Morning Vibes
 Despite sleeping on the floor, I had a surprisingly great night's sleep. My hip hurt a bit from laying on my side, but it was still a good night.
-Right after waking up, the demos started. Paperclip’s team built a working **chocolate 3D printer**. Yes, really. Chocolate. It was incredible.
+Right after waking up, the demos started. Paperclip’s team (Evan & Samith) built a working **chocolate 3D printer**. Yes, really. Chocolate. It was incredible to see it working.
 
 ## Refresh and Reset
 ![alt text](images/liveblog/dogersvssanfransico.png){left}
@@ -643,7 +643,7 @@ Ik hou van je, opa.
 
 ### Day 3 of Undercity
 ## Time Flies
-This day went by so fast. Most of it was spent with Paperclip again. Her energy is just contagious. Being around her made everything feel lighter, happier, and more exciting.
+These Days all just went to fast, and with a blink of an eye. its already day 3
 
 ## I Had Lunch with Paperclip and John Cohn
 I met [John Cohn](https://en.wikipedia.org/wiki/John_Cohn) without realizing who he was. We grabbed Chipotle together. me, him, and Paperclip. and had some amazing conversations.
@@ -697,7 +697,7 @@ I didn’t expect that. I came here after the chaos of Neighborhood, just hoping
 
 Spending time with these people, building, laughing, dancing, sitting on the floor writing code at 1am... it felt like I belonged in a way I haven’t felt in a long time.
 
-And Paperclip. she made it all even more special. Her energy, her joy, her way of making everyone feel seen. I’ll miss her. A lot.
+And Paperclip. she made it all even more special. Her energy, her joy, her way of making everyone feel seen.
 
 It hurts to let go of this.
 But I know I’ll carry it with me.
@@ -705,3 +705,35 @@ The people. The memories. The feeling of building something that matters.
 
 Thank you, Undercity.
 You changed me.
+
+Here’s your final entry—**Het Einde**—edited and shaped into a fitting, emotional closing message for your blog. It wraps everything up with clarity, warmth, and your voice preserved:
+
+
+### Het Einde — 7/17
+## And just like that, it’s over
+Thomas announced that **Post-Neighborhood** is being canceled too. The landlord decided to evict us, and we all had to leave the house just two days after hearing the news.
+
+So now I’m here, writing this last entry **from home**.
+Waiting for Hack Club to announce whatever comes next.
+
+This was my first time writing a blog.
+The first time I really shared something like this. raw, unfiltered, personal.
+
+If you’ve made it this far, through **739 lines** of stories, chaos, joy, frustration, and everything in between.
+Please, send me a quick DM, an email, anything. Just let me know:
+
+**Why did you read this?**
+Was it the writing?
+Was it curiosity about what Neighborhood was like?
+Were you looking for inspiration to join something like this someday?
+Were you hoping to meet me?
+Or maybe, *just because.*
+
+Whatever your reason
+**Thank you.**
+Truly.
+
+This time in San Francisco was chaotic and life-changing and full of unexpected beauty.
+And I’m so, so grateful to have lived it.
+
+– Nick Esselman
