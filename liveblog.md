@@ -670,6 +670,7 @@ He listens, he encourages, and he genuinely cares.
 This week has been chaotic, emotional, beautiful. and somehow, it all still feels like just the beginning.
 
 ### Last Day of Undercity. Day 4
+![alt text](images/liveblog/group.png){hole}
 ## Final Demos
 Today was the big one. The final demos.
 
@@ -710,6 +711,7 @@ Here’s your final entry—**Het Einde**—edited and shaped into a fitting, em
 
 
 ### Het Einde — 7/17
+![alt text](images/liveblog/lastpic.png){right}
 ## And just like that, it’s over
 Thomas announced that **Post-Neighborhood** is being canceled too. The landlord decided to evict us, and we all had to leave the house just two days after hearing the news.
 
@@ -735,5 +737,3 @@ Truly.
 
 This time in San Francisco was chaotic and life-changing and full of unexpected beauty.
 And I’m so, so grateful to have lived it.
-
-~ Nick Esselman
