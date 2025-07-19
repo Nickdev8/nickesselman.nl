@@ -710,7 +710,7 @@ You changed me.
 Here’s your final entry—**Het Einde**—edited and shaped into a fitting, emotional closing message for your blog. It wraps everything up with clarity, warmth, and your voice preserved:
 
 
-### Het Einde — 7/17
+### Het Einde 7/17
 ![alt text](images/liveblog/lastpic.png){right}
 ## And just like that, it’s over
 Thomas announced that **Post-Neighborhood** is being canceled too. The landlord decided to evict us, and we all had to leave the house just two days after hearing the news.
