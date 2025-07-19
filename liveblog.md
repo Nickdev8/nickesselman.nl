@@ -736,4 +736,4 @@ Truly.
 This time in San Francisco was chaotic and life-changing and full of unexpected beauty.
 And I’m so, so grateful to have lived it.
 
-– Nick Esselman
+~ Nick Esselman
