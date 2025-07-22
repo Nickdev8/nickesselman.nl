@@ -740,8 +740,11 @@ And I’m so, so grateful to have lived it.
 
 
 
+### A better version of these stories
 
-### There is an way better version of my stories on my other website
-## blog.nickesselman.nl
-There is an way better version of my stories on my other website
-read it here: (blog.nickesselman.nl)[blog.nickesselman.nl]
+Want something a bit more polished?
+
+There’s a much cleaner, more organized version of all my stories over on my other blog:
+**[blog.nickesselman.nl](https://blog.nickesselman.nl)**
+
+Go read it there if you want the *director’s cut* version.
