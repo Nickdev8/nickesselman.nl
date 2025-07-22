@@ -1,8 +1,3 @@
-<?php
-header('Location: https://blog.nickesselman.nl/neighborhood', true, 302);
-exit;
-?>
-<!-- 
 <div class="sub-top">
     <div data-aos="fade-down" style="margin:auto; width: fit-content;">
         <h1 class="ultratitle physics" style="background-color: var(--myblue); padding: 1rem; border-radius: 0.5rem">
@@ -29,7 +24,7 @@ exit;
     </div>
 </div>
 <div>
-    ?php
+    <?php
     $md = file_get_contents(__DIR__ . '/../liveblog.md');
 
     $pattern = '/^###\s*(.+?)(?:\s+(\d{1,2}\/\d{1,2}))?\r?\n([\s\S]*?)(?=^###\s|\z)/m';
@@ -583,5 +578,4 @@ include_once './pages/specials/totopbutton.php';
     .card[data-story-id] {
         position: relative;
     }
-</style> 
--->
+</style>
