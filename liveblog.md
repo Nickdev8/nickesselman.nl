@@ -737,3 +737,11 @@ Truly.
 
 This time in San Francisco was chaotic and life-changing and full of unexpected beauty.
 And I’m so, so grateful to have lived it.
+
+
+
+
+### There is an way better version of my stories on my other website
+## blog.nickesselman.nl
+There is an way better version of my stories on my other website
+read it here: (blog.nickesselman.nl)[blog.nickesselman.nl]
