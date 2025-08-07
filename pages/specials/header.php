@@ -13,7 +13,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'null';
       <img src="./images/logo_transparent.png" class="logo" alt="Logo" />
     </a>
     <ul class="nav-links">
-      <li><a href="?page=neighborhoodblog"><span>⦿ LIVE </span>Blog</a></li>
+      <li><a href="?page=redirecttoblogwebsite"><span>⦿ LIVE </span>Blog</a></li>
       <li><a href="?page=home">Home</a></li>
       <li><a href="?page=about">Skills & About</a></li>
       <li><a href="?page=projects">Projects</a></li>
