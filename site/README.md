@@ -1,42 +1,38 @@
-# Nick's Portfolio
+# Nick Esselman - Portfolio refresh
 
-[![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fnickesselman.nl)](https://nickesselman.nl)
-[![Made with PHP](https://img.shields.io/badge/Made%20with-Matter.js-brightgreen)](https://php.net)
-[![Built for Hack Club](https://img.shields.io/badge/Built%20for-Hack%20Club-red)](https://hackclub.com)
+This repo contains the full source for [nickesselman.nl](https://nickesselman.nl), now rebuilt with a lean PHP front controller, a tiny router, and custom CSS.
 
-Welcome! I'm **Nick**, a developer passionate about creating immersive web experiences where creativity meets physics simulation.
+## Highlights
 
-## Features
+- **New MVC-lite structure** - `index.php` boots an autoloaded `App` namespace with controllers, data files, and reusable helpers stored in `/app`.
+- **Content-first views** - Blade-style PHP views live in `/resources/views`, keeping layout/partials/pages separate.
+- **Single CSS entrypoint** - `/css/app.css` holds the new visual language (Space Grotesk + neon accents) without any third-party frameworks.
+- **Vanilla JS sprinkles** - `/scripts/app.js` powers nav toggles, project filtering, clipboard actions, and the interactive project tree.
 
-- **:)** Check out the "sectret settings" on the bottom left.
+## Structure
 
-## Tech Stack
+```
+site/
+- app/                # bootstrap, router, controllers, data
+- resources/views/    # layout, partials, and page templates
+- css/app.css         # global styles
+- scripts/app.js      # lightweight UI behaviour
+- images/, fonts/, ...  # static assets
+- index.php           # single entry point
+```
 
-- **Frontend**: HTML5, CSS3, JavaScript, php
-- **Physics Engine**: Matter.js
-- **Animation**: GSAP
-- **Effects**: Particles.js, AOS
-- Backend: PHP
+## Local usage
 
-## Getting Started
+Serve the `site/` directory with PHP 8.1+:
 
-Go to [nickesselman.nl](https://nickesselman.nl)...
+```bash
+php -S localhost:8080 -t site
+```
 
-## About The Project
+Navigate to [http://localhost:8080](http://localhost:8080) to explore the new build.
 
-Originally built for the Hack Club Neighborhood event, this portfolio doubles as an experimental playground for web physics. And learning more modual ways of writing a website without a framework
+## Contact
 
-## Connect With Me
-
-- Portfolio: [nickesselman.nl](https://nickesselman.nl)
-- Email: [nick.esselman@gmail.com](mailto:nick.esselman@gmail.com)
-- Hack Club Slack: [@nick](https://hackclub.com)
-
-## Acknowledgments
-
-Special thanks to:
-- [Hack Club](https://hackclub.com) community
-
----
-
-<p align="center">Made by Nick Esselman :></p>
+- Email: [info@nickesselman.nl](mailto:info@nickesselman.nl)
+- GitHub: [@Nickdev8](https://github.com/Nickdev8)
+- Discord: `@nikkcc.nick`
