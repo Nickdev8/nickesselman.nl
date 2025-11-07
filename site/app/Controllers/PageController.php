@@ -224,7 +224,7 @@ class PageController
 
     private function meta(string $title, string $description = ''): array
     {
-        $fullTitle = $title ? "{$title} — Nick Esselman" : 'Nick Esselman';
+        $fullTitle = $title ? "{$title} - Nick Esselman" : 'Nick Esselman';
 
         return [
             'title' => $fullTitle,

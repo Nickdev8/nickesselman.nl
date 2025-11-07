@@ -9,7 +9,7 @@
                 and contract work for small studios.
             </p>
             <p>
-                My favourite projects mix storytelling with tech — VR parties, interactive trees, or custom hardware that
+                My favourite projects mix storytelling with tech - VR parties, interactive trees, or custom hardware that
                 ships with a narrative. Community keeps me accountable, so I document everything publicly.
             </p>
             <div class="about-actions">

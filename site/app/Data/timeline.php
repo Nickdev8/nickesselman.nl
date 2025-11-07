@@ -35,7 +35,7 @@ return [
         'year' => '2024 – 2025',
         'title' => 'Game jams + experiments',
         'summary' => 'Jumped into GMTK, Brackeys, Boss Rush, and countless weekend sprints.',
-        'details' => 'Switching between art, code, and sound keeps me flexible — and fills my notebook with new mechanics.',
+        'details' => 'Switching between art, code, and sound keeps me flexible - and fills my notebook with new mechanics.',
         'tags' => ['game'],
     ],
 ];

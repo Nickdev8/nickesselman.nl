@@ -707,7 +707,7 @@ The people. The memories. The feeling of building something that matters.
 Thank you, Undercity.
 You changed me.
 
-Here’s your final entry—**Het Einde**—edited and shaped into a fitting, emotional closing message for your blog. It wraps everything up with clarity, warmth, and your voice preserved:
+Here’s your final entry-**Het Einde**-edited and shaped into a fitting, emotional closing message for your blog. It wraps everything up with clarity, warmth, and your voice preserved:
 
 
 ### Het Einde 7/17

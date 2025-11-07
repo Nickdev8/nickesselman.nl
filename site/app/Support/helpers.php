@@ -20,7 +20,7 @@ if (!function_exists('render')) {
         $content = ob_get_clean();
 
         $meta = array_merge([
-            'title' => 'Nick Esselman — Creative developer',
+            'title' => 'Nick Esselman - Creative developer',
             'description' => 'Portfolio, experiments, and projects from Nick Esselman.',
             'image' => '/images/logo.png',
         ], $meta);

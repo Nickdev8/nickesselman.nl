@@ -7,7 +7,7 @@ return [
         'slug' => 'juice',
         'title' => 'Hack Club: Juice',
         'subtitle' => '100 teenage builders, 12 days in Shanghai, one VR party game',
-        'summary' => 'Hack Club flew me to Shanghai where I prototyped PartyVR — a chaotic multiplayer party built in just 100 hours.',
+        'summary' => 'Hack Club flew me to Shanghai where I prototyped PartyVR - a chaotic multiplayer party built in just 100 hours.',
         'description' => 'Juice was Hack Club’s residency-style hackathon hosted in Shanghai. We clocked 100 hours of focused building and ended the week with an open café where locals could try whatever we shipped.',
         'year' => 2024,
         'location' => 'Shanghai, CN',
@@ -35,7 +35,7 @@ return [
             [
                 'heading' => 'Shipping PartyVR in 100 hours',
                 'body' => <<<'HTML'
-<p>I landed in Shanghai with a Quest headset, a sketchbook full of chaotic party ideas, and a promise to demo something fun at the end of the trip. I built PartyVR — a living-room-sized playground filled with throwable cakes, physics-based mini games, and a soundtrack that gets louder the more players join.</p>
+<p>I landed in Shanghai with a Quest headset, a sketchbook full of chaotic party ideas, and a promise to demo something fun at the end of the trip. I built PartyVR - a living-room-sized playground filled with throwable cakes, physics-based mini games, and a soundtrack that gets louder the more players join.</p>
 <p>The hardest part was networking. Every avatar needed to stay in sync, but late-night builds kept desyncing unless I rewrote entire systems. By day three I had authoritative movement, synced props, and a cheeky lobby that doubled as a tutorial.</p>
 HTML,
                 'media' => [
@@ -66,7 +66,7 @@ HTML,
 <ul>
     <li>Scoping ruthlessly so a multiplayer idea actually ships.</li>
     <li>Designing onboarding for people who have never tried VR.</li>
-    <li>Documenting progress in public — every day mattered.</li>
+    <li>Documenting progress in public - every day mattered.</li>
 </ul>
 HTML,
             ],
@@ -83,7 +83,7 @@ HTML,
         'title' => 'PartyVR',
         'subtitle' => 'A living-room-sized VR party built with Unity + Meta XR',
         'summary' => 'The multiplayer game I prototyped at Juice kept evolving into a polished VR playground.',
-        'description' => 'PartyVR is a networked party room with throwable props, rhythm-based minigames, and a goofy vibe that makes demos fun — even for first-time VR players.',
+        'description' => 'PartyVR is a networked party room with throwable props, rhythm-based minigames, and a goofy vibe that makes demos fun - even for first-time VR players.',
         'year' => 2024,
         'location' => 'Remote',
         'status' => 'In progress',
@@ -199,7 +199,7 @@ HTML,
             [
                 'heading' => 'Hardware weekend with grandpa',
                 'body' => <<<'HTML'
-<p>We soldered everything together in an afternoon — he taught me the “heat the pad, feed the solder” trick that made the joints look factory clean. Firmware was written in CircuitPython so I could iterate keys without reflashing.</p>
+<p>We soldered everything together in an afternoon - he taught me the “heat the pad, feed the solder” trick that made the joints look factory clean. Firmware was written in CircuitPython so I could iterate keys without reflashing.</p>
 HTML,
                 'media' => [
                     [
@@ -216,7 +216,7 @@ HTML,
         'title' => 'Game Jam Run',
         'subtitle' => 'Three jams, dozens of teammates, and lots of late nights',
         'summary' => 'A collection of jam entries ranging from glitchy racers to atmospheric boss fights.',
-        'description' => 'I jump into jams whenever I can — it keeps my art, audio, and communication muscles fresh. These are my favourite stories.',
+        'description' => 'I jump into jams whenever I can - it keeps my art, audio, and communication muscles fresh. These are my favourite stories.',
         'year' => 2024,
         'location' => 'Remote',
         'status' => 'Shipped',
@@ -224,7 +224,7 @@ HTML,
         'categories' => ['game', 'collaboration'],
         'sections' => [
             [
-                'heading' => 'GMTK Jam — Car Sizer',
+                'heading' => 'GMTK Jam - Car Sizer',
                 'body' => <<<'HTML'
 <p>The theme was <em>Built to Scale</em>. I built a racer where you constantly resize your car to squeeze through gates. Shader graph handled the squash-and-stretch effect while a single script orchestrated collisions.</p>
 HTML,
@@ -237,7 +237,7 @@ HTML,
                 ],
             ],
             [
-                'heading' => 'Brackeys Jam — Zeus Wrath',
+                'heading' => 'Brackeys Jam - Zeus Wrath',
                 'body' => <<<'HTML'
 <p>I teamed up via Discord, took on UI + pixel art, and helped tune the second phase of the boss battle. Even when the jam demo build broke on stream, the collab energy was unmatched.</p>
 HTML,
@@ -250,7 +250,7 @@ HTML,
                 ],
             ],
             [
-                'heading' => 'Boss Rush Jam — Witchlight Woods',
+                'heading' => 'Boss Rush Jam - Witchlight Woods',
                 'body' => <<<'HTML'
 <p>The team ghosted halfway through, so I focused on building atmospheric tile sets and a reusable dialogue system. Not every jam ships, but every jam leaves tools behind.</p>
 HTML,
@@ -310,7 +310,7 @@ HTML,
         'slug' => 'stickers',
         'title' => 'Sticker Wall',
         'subtitle' => 'Hack Club envelopes, laptop stickers, and patches',
-        'summary' => 'I keep every sticker Hack Club mails me — here’s the archive.',
+        'summary' => 'I keep every sticker Hack Club mails me - here’s the archive.',
         'description' => 'Between HighSeas, Juice, and random mail drops I have a drawer full of Hack Club art. My laptop lid holds 28 stickers (one duplicate, oops).',
         'year' => 2024,
         'location' => 'Laptop lid',
@@ -400,7 +400,7 @@ HTML,
             [
                 'heading' => 'Mystic Tavern meetups',
                 'body' => <<<'HTML'
-<p>After the event we hosted mini meetups. I rode a train to Utrecht to hang with local Hack Clubbers — we swapped stickers, ate stroopwafels, and planned future builds.</p>
+<p>After the event we hosted mini meetups. I rode a train to Utrecht to hang with local Hack Clubbers - we swapped stickers, ate stroopwafels, and planned future builds.</p>
 HTML,
                 'media' => [
                     [
@@ -433,7 +433,7 @@ HTML,
             [
                 'heading' => 'Low-maintenance CMS',
                 'body' => <<<'HTML'
-<p>Projects, rates, and availability live in structured includes. Updating the site means editing a single PHP array — no dashboards, no waiting on me.</p>
+<p>Projects, rates, and availability live in structured includes. Updating the site means editing a single PHP array - no dashboards, no waiting on me.</p>
 HTML,
             ],
         ],

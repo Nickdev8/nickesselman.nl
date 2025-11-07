@@ -1,6 +1,6 @@
 # Agents Playbook
 
-Welcome to **nickesselman.nl**. This document is for whoever jumps in next—follow it to keep the site cohesive, fast, and fun.
+Welcome to **nickesselman.nl**. This document is for whoever jumps in next-follow it to keep the site cohesive, fast, and fun.
 
 ---
 

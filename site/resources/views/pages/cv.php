@@ -11,7 +11,7 @@
 <section class="cv-grid">
     <article>
         <h2>Education</h2>
-        <p><strong>Mediacollege Amsterdam</strong> — Software Development (2022 – present)</p>
+        <p><strong>Mediacollege Amsterdam</strong> - Software Development (2022 – present)</p>
         <p>Focus on full-stack web, .NET, and product thinking.</p>
     </article>
     <article>
@@ -19,7 +19,7 @@
         <ul>
             <li>Freelance creative developer (web + Unity)</li>
             <li>Hack Club contributor & event participant</li>
-            <li>Former bartender — honed hospitality & teamwork</li>
+            <li>Former bartender - honed hospitality & teamwork</li>
         </ul>
     </article>
     <article>
@@ -27,7 +27,7 @@
         <ul>
             <?php foreach ($highlightProjects as $project): ?>
                 <li>
-                    <strong><?= htmlspecialchars($project['title']); ?></strong> — <?= htmlspecialchars($project['summary']); ?> <a href="<?= project_url($project['slug']); ?>">→</a>
+                    <strong><?= htmlspecialchars($project['title']); ?></strong> - <?= htmlspecialchars($project['summary']); ?> <a href="<?= project_url($project['slug']); ?>">→</a>
                 </li>
             <?php endforeach; ?>
         </ul>
