@@ -51,7 +51,7 @@
                             <span><?= htmlspecialchars($tag); ?></span>
                         <?php endforeach; ?>
                     </div>
-                    <a class="inline-link" href="<?= project_url($project['slug']); ?>">Read the case study</a>
+                    <a class="inline-link" href="<?= project_url($project['slug']); ?>">Read the Project!</a>
                 </div>
             </article>
         <?php endforeach; ?>

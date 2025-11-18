@@ -17,11 +17,6 @@ return [
             'copy' => true,
         ],
         [
-            'label' => 'Discord',
-            'value' => '@nikkcc.nick',
-            'url' => 'https://discordapp.com/users/452409871300558848',
-        ],
-        [
             'label' => 'LinkedIn',
             'value' => 'nick-esselman',
             'url' => 'https://www.linkedin.com/in/nick-esselman/',
@@ -37,5 +32,5 @@ return [
             'url' => 'https://www.instagram.com/nick.esselman/',
         ],
     ],
-    'note' => 'I reply fastest on email or Discord. Feel free to send build logs, jam invites, or homework-crisis questions.',
+    'note' => 'I reply fastest on email or WhatsApp. Feel free to send build logs, jam invites, or homework-crisis questions.',
 ];

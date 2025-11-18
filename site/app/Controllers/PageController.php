@@ -120,7 +120,7 @@ class PageController
                 'note' => $this->contact['note'] ?? '',
                 'now' => $this->now,
             ],
-            'meta' => $this->meta('Contact', 'Reach out via email, Discord, or LinkedIn.'),
+            'meta' => $this->meta('Contact', 'Reach out via email, WhatsApp, or LinkedIn.'),
         ];
     }
 

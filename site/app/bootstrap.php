@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Support\ProjectRepository;
+
 if (!defined('ROOT_PATH')) {
     define('ROOT_PATH', realpath(__DIR__ . '/..'));
 }
@@ -33,7 +35,7 @@ spl_autoload_register(function (string $class): void {
 require_once __DIR__ . '/Support/helpers.php';
 
 return [
-    'projects' => require __DIR__ . '/Data/projects.php',
+    'projects' => (new ProjectRepository(ROOT_PATH . '/content/projects'))->all(),
     'timeline' => require __DIR__ . '/Data/timeline.php',
     'now' => require __DIR__ . '/Data/now.php',
     'contact' => require __DIR__ . '/Data/contact.php',
