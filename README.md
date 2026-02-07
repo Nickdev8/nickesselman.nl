@@ -45,4 +45,4 @@ Run the site in Docker:
 docker compose up
 ```
 
-Open: `http://localhost:8080`
+Open: `http://localhost:3010`
