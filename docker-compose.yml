@@ -9,8 +9,8 @@ services:
     environment:
       NODE_ENV: production
       HOST: 0.0.0.0
-      PORT: 3000
-      ORIGIN: ${ORIGIN:-http://localhost:3000}
+      PORT: 3012
+      ORIGIN: ${ORIGIN:-http://localhost:3012}
     ports:
-      - '3000:3000'
+      - '3012:3012'
     restart: unless-stopped
