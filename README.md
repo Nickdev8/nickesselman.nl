@@ -1,42 +1,28 @@
-# sv
+# nickesselman.nl
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+## Local dev
 
 ```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-npx sv create --template minimal --types ts --add prettier tailwindcss="plugins:forms" sveltekit-adapter="adapter:auto" --install npm .
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
+## Production build
 
 ```sh
 npm run build
+npm run start
 ```
 
-You can preview the production build with `npm run preview`.
+## Docker
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Build and run with Docker Compose:
+
+```sh
+docker compose up --build
+```
+
+The app will be available at `http://localhost:3000`.
+
+Environment variables are loaded from `.env` through `docker-compose.yml`.
+For production, make sure `ORIGIN` matches your public URL (for example `https://nickesselman.nl`).
