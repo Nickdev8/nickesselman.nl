@@ -24,3 +24,25 @@ Visit the site at [nickesselman.nl](https://nickesselman.nl) to explore my work!
 
 Thanks for stopping by!  
 — Nick
+
+## Local Development
+
+### Option 1: npm
+
+Run the PHP built-in dev server:
+
+```bash
+npm run dev
+```
+
+Open: `http://localhost:8000`
+
+### Option 2: Docker Compose
+
+Run the site in Docker:
+
+```bash
+docker compose up
+```
+
+Open: `http://localhost:8080`

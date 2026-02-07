@@ -1,0 +1,11 @@
+{
+  "name": "nickesselman-nl-legacy",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Legacy PHP portfolio site",
+  "scripts": {
+    "dev": "php -S 0.0.0.0:8000 -t .",
+    "docker:up": "docker compose up",
+    "docker:down": "docker compose down"
+  }
+}

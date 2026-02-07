@@ -1,2 +1,20 @@
-/.assets
-/images/*
+/.assets/
+
+# Dependencies
+/node_modules/
+
+# Build outputs
+/.svelte-kit/
+/build/
+/dist/
+
+# Local media
+/images/**
+!/images/.gitkeep
+/sounds/**
+!/sounds/.gitkeep
+
+# Editor / OS clutter
+/.vscode/
+.DS_Store
+*.log
