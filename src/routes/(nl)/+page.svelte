@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { CONTACT_URL } from '$lib/contact-url';
+</script>
+
 <svelte:head>
 	<title>Nick Esselman | Lokale tech persoon in Haarlem, Amsterdam en Spaarndam</title>
 	<meta
@@ -28,7 +32,7 @@
 
 		<div class="actions">
 			<a class="button button-primary" href="/wat-ik-kan-helpen">Waar ik mee kan helpen</a>
-			<a class="button button-secondary" href="/contact">Stel gewoon je vraag</a>
+			<a class="button button-secondary" href={CONTACT_URL}>Stel gewoon je vraag</a>
 		</div>
 
 		<ul class="chip-list">

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { CONTACT_URL } from '$lib/contact-url';
+
 	let { children } = $props();
 </script>
 
@@ -17,7 +19,7 @@
 				<li><a href="/">Home</a></li>
 				<li><a href="/over-mij">Over mij</a></li>
 				<li><a href="/wat-ik-kan-helpen">Wat ik kan helpen</a></li>
-				<li><a href="/contact">Contact</a></li>
+				<li><a href={CONTACT_URL}>Contact</a></li>
 			</ul>
 		</nav>
 
@@ -31,7 +33,7 @@
 	<footer class="site-footer">
 		<p><strong>Nick Esselman</strong> · de lokale tech persoon</p>
 		<p>Spaarndam · werkgebied: Haarlem, Amsterdam en Spaarndam</p>
-		<p><a href="/contact">Stuur gerust een bericht (ook als je alleen een vraag hebt)</a></p>
+		<p><a href={CONTACT_URL}>Stuur gerust een bericht (ook als je alleen een vraag hebt)</a></p>
 		<small>Geen marketingpraat, gewoon eerlijk advies en duidelijke bouwstappen.</small>
 	</footer>
 </div>

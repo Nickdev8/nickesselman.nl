@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { CONTACT_URL } from '$lib/contact-url';
+
 	let { children } = $props();
 </script>
 
@@ -17,7 +19,7 @@
 				<li><a href="/en">Home</a></li>
 				<li><a href="/en/about">About</a></li>
 				<li><a href="/en/how-i-help">How I help</a></li>
-				<li><a href="/en/contact">Contact</a></li>
+				<li><a href={CONTACT_URL}>Contact</a></li>
 			</ul>
 		</nav>
 
@@ -31,7 +33,7 @@
 	<footer class="site-footer">
 		<p><strong>Nick Esselman</strong> · your local tech person</p>
 		<p>Spaarndam · working in Haarlem, Amsterdam and Spaarndam</p>
-		<p><a href="/en/contact">Feel free to message me, even if it is just a question</a></p>
+		<p><a href={CONTACT_URL}>Feel free to message me, even if it is just a question</a></p>
 		<small>No sales language, just honest advice and practical build steps.</small>
 	</footer>
 </div>
