@@ -2,6 +2,20 @@
 
 Minimal personal site built with React, Vite, and Tailwind CSS.
 
+## Docker
+
+```bash
+docker compose up --build -d
+```
+
+The site will be available at `http://localhost:3012`.
+
+If Docker on your machine is missing the `buildx` plugin, use:
+
+```bash
+DOCKER_BUILDKIT=0 COMPOSE_DOCKER_CLI_BUILD=0 docker compose up --build -d
+```
+
 ## Run
 
 ```bash
