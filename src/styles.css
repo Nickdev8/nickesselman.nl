@@ -1,1 +1,37 @@
 @import "tailwindcss";
+
+:root {
+  --color-bg-start: #f3efe6;
+  --color-bg-mid: #dce7e4;
+  --color-bg-end: #a9c1be;
+  --color-text-primary: #102a2a;
+  --color-text-secondary: #355554;
+  --color-text-muted: #5e7b79;
+  --color-surface: rgba(250, 246, 240, 0.92);
+  --color-surface-strong: #f6f0e8;
+  --color-surface-soft: #e7efec;
+  --color-surface-cool: rgba(243, 247, 245, 0.9);
+  --color-surface-cool-strong: #e7efec;
+  --color-surface-cool-deep: #d8e4e0;
+  --color-border: rgba(83, 119, 116, 0.24);
+  --color-border-strong: rgba(38, 72, 71, 0.6);
+  --color-accent: #d96f4b;
+  --color-accent-soft: rgba(217, 111, 75, 0.18);
+  --color-accent-softer: rgba(217, 111, 75, 0.1);
+  --color-accent-contrast: #fff8f3;
+  --color-panel-dark: #173433;
+  --color-panel-dark-soft: #224544;
+  --color-panel-dark-border: rgba(209, 227, 223, 0.14);
+  --shadow-soft: 0 24px 80px rgba(16, 42, 42, 0.12);
+  --shadow-strong: 0 24px 80px rgba(16, 42, 42, 0.22);
+}
+
+body {
+  color: var(--color-text-primary);
+  background: radial-gradient(
+    circle at top,
+    var(--color-bg-start),
+    var(--color-bg-mid) 45%,
+    var(--color-bg-end) 100%
+  );
+}

@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="mt-10 border-t border-stone-200 py-6 text-sm text-stone-500">
+    <footer className="mt-10 border-t border-[var(--color-border)] py-6 text-sm text-[var(--color-text-muted)]">
       © {new Date().getFullYear()} Nick Esselman
     </footer>
   );

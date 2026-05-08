@@ -2,17 +2,28 @@ import Footer from "./components/Footer";
 import FitbitWidget from "./components/FitbitWidget";
 import Hero from "./components/Hero";
 import Links from "./components/Links";
+import PortfolioPage from "./components/PortfolioPage";
+
+function HomePage() {
+  return (
+    <>
+      <main className="flex-1 space-y-6">
+        <Hero />
+        <Links />
+        <FitbitWidget />
+      </main>
+      <Footer />
+    </>
+  );
+}
 
 export default function App() {
+  const isPortfolioPage = window.location.pathname === "/portfolio";
+
   return (
-    <div className="min-h-screen bg-stone-50 px-6 py-10 text-stone-900 antialiased sm:px-8">
-      <div className="mx-auto flex min-h-screen max-w-5xl flex-col font-serif">
-        <main className="flex-1 space-y-6">
-          <Hero />
-          <Links />
-          <FitbitWidget />
-        </main>
-        <Footer />
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_var(--color-bg-start),_var(--color-bg-mid)_45%,_var(--color-bg-end)_100%)] px-6 py-8 text-[var(--color-text-primary)] antialiased sm:px-8 sm:py-10">
+      <div className="mx-auto flex min-h-screen max-w-6xl flex-col font-serif">
+        {isPortfolioPage ? <PortfolioPage /> : <HomePage />}
       </div>
     </div>
   );
