@@ -32,9 +32,9 @@ const links = [
     icon: Mail,
   },
   {
-    name: "Portfolio",
+    name: "SpaceHey",
     href: "https://spacehey.com/profile?id=4533565",
-    eyebrow: "Showcase",
+    eyebrow: "aka myspace",
     icon: Briefcase,
   },
 ];
