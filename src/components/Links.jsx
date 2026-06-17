@@ -31,6 +31,12 @@ const links = [
     eyebrow: "Reach out",
     icon: Mail,
   },
+  {
+    name: "Portfolio",
+    href: "https://spacehey.com/profile?id=4533565",
+    eyebrow: "Showcase",
+    icon: Briefcase,
+  },
 ];
 
 export default function Links() {
