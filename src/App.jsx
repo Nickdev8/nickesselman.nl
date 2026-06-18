@@ -3,6 +3,7 @@ import FitbitWidget from "./components/FitbitWidget";
 import Hero from "./components/Hero";
 import Links from "./components/Links";
 import PortfolioPage from "./components/PortfolioPage";
+import SpotifyWidget from "./components/SpotifyWidget";
 
 function HomePage() {
   return (
@@ -10,7 +11,10 @@ function HomePage() {
       <main className="flex-1 space-y-6">
         <Hero />
         <Links />
-        <FitbitWidget />
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+          <SpotifyWidget />
+          <FitbitWidget />
+        </div>
       </main>
       <Footer />
     </>
