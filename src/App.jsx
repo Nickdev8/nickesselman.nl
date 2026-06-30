@@ -1,5 +1,6 @@
 import Footer from "./components/Footer";
 import FitbitWidget from "./components/FitbitWidget";
+import GithubWidget from "./components/GithubWidget";
 import Hero from "./components/Hero";
 import Links from "./components/Links";
 import PortfolioPage from "./components/PortfolioPage";
@@ -15,6 +16,7 @@ function HomePage() {
           <SpotifyWidget />
           <FitbitWidget />
         </div>
+        <GithubWidget />
       </main>
       <Footer />
     </>
