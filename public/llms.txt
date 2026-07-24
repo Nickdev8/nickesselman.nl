@@ -1,0 +1,20 @@
+# Nick Esselman
+
+Nick Esselman is a Netherlands-based full-stack developer and maker working across software, virtual reality, games, hardware, LED systems and custom PCB design.
+
+## Primary pages
+
+- [Portfolio](https://nickesselman.nl/): Profile, selected work and current activity.
+- [PartyVR](https://nickesselman.nl/projects/partyvr/): Room-scale multiplayer VR platform with host and spectator systems.
+- [LAMP](https://nickesselman.nl/projects/lamp/): RP2040 controller for chained LED panels.
+- [MYMacropad](https://nickesselman.nl/projects/mymacropad/): Custom 4×4 macropad, from PCB and firmware to enclosure.
+- [Shelly Control Board](https://nickesselman.nl/projects/kennemer/): Local-first control interface for Shelly-powered devices.
+- [Monkey Swing](https://nickesselman.nl/projects/monkey-swing/): A finished Unity swing game.
+- [Blipstorm](https://nickesselman.nl/projects/blipstorm/): A playable Godot island-defence prototype.
+
+## Profiles
+
+- [GitHub](https://github.com/nickdev8/)
+- [LinkedIn](https://www.linkedin.com/in/nick-esselman/)
+- [Blog](https://blog.nickesselman.nl)
+- [Contact](https://contact.nickesselman.nl)
