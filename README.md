@@ -29,6 +29,15 @@ npm run dev
 npm run build
 ```
 
+The build produces prerendered HTML for the homepage and every project case study. JavaScript
+hydrates the carousels and live widgets after the static content is visible.
+
+Optional privacy-first traffic measurement uses Cloudflare Web Analytics:
+
+```bash
+VITE_CLOUDFLARE_ANALYTICS_TOKEN=your-token npm run build
+```
+
 ## Tailwind Setup
 
 If you start from a fresh Vite React app, install Tailwind and its Vite plugin:

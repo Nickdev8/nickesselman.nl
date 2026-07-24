@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Footer from "./components/Footer";
 import GithubWidget from "./components/GithubWidget";
@@ -8,17 +8,33 @@ import ProjectGallery from "./components/ProjectGallery";
 import SpotifyWidget from "./components/SpotifyWidget";
 import FitbitWidget from "./components/FitbitWidget";
 
-export default function App() {
-  const [headerIsScrolled, setHeaderIsScrolled] = useState(false);
+function DeferredWidget({ children, className }) {
+  const ref = useRef(null);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    document.title = "Nick Esselman — developer & maker";
-
-    if (window.location.pathname === "/portfolio") {
-      window.history.replaceState({}, "", "/#work");
-      requestAnimationFrame(() => document.querySelector("#work")?.scrollIntoView());
+    if (!ref.current || !("IntersectionObserver" in window)) {
+      setReady(true);
+      return undefined;
     }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setReady(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "350px 0px" },
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
   }, []);
+
+  return <div ref={ref} className={className}>{ready ? children : <span className="signal-message">Waiting for live data…</span>}</div>;
+}
+
+export default function App() {
+  const [headerIsScrolled, setHeaderIsScrolled] = useState(false);
 
   useEffect(() => {
     const updateHeader = () => setHeaderIsScrolled(window.scrollY > 24);
@@ -30,13 +46,11 @@ export default function App() {
   return (
     <div className="site-shell">
       <header className={`site-header${headerIsScrolled ? " is-scrolled" : ""}`}>
-        <a className="brand-mark" href="#top" aria-label="Nick Esselman, back to top">
-          NE
-        </a>
+          <span className="brand-space" aria-hidden="true" />
         <nav aria-label="Main navigation">
-          <a href="#work">work <span aria-hidden="true">→</span></a>
-          <a href="#links">links <span aria-hidden="true">→</span></a>
-          <a href="#about">about <span aria-hidden="true">→</span></a>
+          <a href="/#work">work <span aria-hidden="true">→</span></a>
+          <a href="/#links">links <span aria-hidden="true">→</span></a>
+          <a href="/#about">about <span aria-hidden="true">→</span></a>
           <a className="contact-link" href="https://contact.nickesselman.nl">contact <span aria-hidden="true">↗</span></a>
         </nav>
       </header>
@@ -50,15 +64,11 @@ export default function App() {
           <div className="about-heading">
             <p className="section-index">03 / about</p>
           </div>
-          {/* <p className="about-manifesto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris.
-          </p> */}
           <p className="about-manifesto">
-            Me. I'm a Fullstack Developer at heart, Maker by nature. <br/>
-            I love to start new project and try new things. 
-            {/* Im a fast learner and try to understand everything around me */}
+            I’m a full-stack developer at heart and a maker by nature. I like projects where
+            software meets the physical world: multiplayer VR, games, custom electronics,
+            LED installations and PCBs. I learn by building the whole thing, testing it in the
+            real setting, and shipping a version people can use.
           </p>
         </section>
 
@@ -68,10 +78,10 @@ export default function App() {
             <p>Small live signals from my corner of the internet.</p>
           </div>
           <div className="live-grid">
-            <SpotifyWidget />
-            <FitbitWidget />
+            <DeferredWidget className="deferred-signal"><SpotifyWidget /></DeferredWidget>
+            <DeferredWidget className="deferred-signal"><FitbitWidget /></DeferredWidget>
           </div>
-          <GithubWidget />
+          <DeferredWidget className="deferred-github"><GithubWidget /></DeferredWidget>
         </section>
       </main>
       <Footer />

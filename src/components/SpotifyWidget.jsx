@@ -53,7 +53,7 @@ export default function SpotifyWidget() {
       <div className="signal-label"><span>listening</span><span>{spotify?.is_playing ? "live" : "paused"}</span></div>
       {state === "ready" && track ? (
         <>
-          <img src={art} alt={`Album art for ${track.name}`} />
+          <img src={art} alt={`Album art for ${track.name}`} width="640" height="640" loading="lazy" decoding="async" />
           <div className="signal-body">
             <p>{track.artists?.map((artist) => artist.name).join(", ")}</p>
             <h3>{track.name}</h3>

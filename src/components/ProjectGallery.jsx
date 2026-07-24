@@ -1,224 +1,116 @@
 import { useEffect, useRef, useState } from "react";
 
-const SHOW_PROJECT_DETAILS = false;
+import { projectPath, projects } from "../data/projects";
 
-const projects = [
-  {
-    title: "PartyVR",
-    type: "VR party platform",
-    year: "active",
-    description: "Room-scale multiplayer games with a server-authoritative LAN setup and a spectator screen for everyone outside the headset.",
-    media: [
-      {
-        type: "image",
-        src: "/projects/partyvr/development.webp",
-        alt: "PartyVR rendering and device logs during development",
-      },
-      {
-        type: "image",
-        src: "/projects/partyvr/host-panel.webp",
-        alt: "PartyVR host panel for rounds, players, and hardware",
-      },
-      {
-        type: "image",
-        src: "/projects/partyvr/multiplayer-debug.webp",
-        alt: "PartyVR multi-client avatar and synchronization test",
-      },
-      {
-        type: "image",
-        src: "/projects/partyvr/avatar-workshop.webp",
-        alt: "PartyVR avatars and cosmetics being developed in Blender",
-      },
-    ],
-    href: "https://github.com/Nickdev8/PartyVR",
-    action: "open repo",
-  },
-  {
-    title: "LAMP",
-    type: "LED hardware",
-    year: "PCB ready",
-    description: "A custom RP2040 board for driving chains of LED panels and large xLights-style installations.",
-    media: [
-      {
-        type: "image",
-        src: "/projects/lamp/bench-prototype.webp",
-        alt: "LAMP LED panel and controller prototype on a workbench",
-      },
-      {
-        type: "image",
-        src: "/projects/lamp/floor-test.webp",
-        alt: "Multiple LAMP LED panels connected for a floor test",
-      },
-      {
-        type: "image",
-        src: "/projects/lamp/installed-display.webp",
-        alt: "LAMP display running behind a development laptop",
-      },
-      {
-        type: "image",
-        src: "/projects/lamp/assembled-panel.webp",
-        alt: "Assembled LAMP panel showing multicolored LEDs",
-      },
-    ],
-    href: "https://github.com/Nickdev8/LedScreen",
-    action: "open repo",
-  },
-  {
-    title: "MYMacropad",
-    type: "custom input device",
-    year: "built",
-    description: "A 4×4 macropad designed from PCB to case, including firmware, switches and soldering.",
-    media: [
-      {
-        type: "image",
-        src: "/projects/mymacropad/finished-case.webp",
-        alt: "Finished MYMacropad with coral keycaps and blue enclosure",
-      },
-      {
-        type: "image",
-        src: "/projects/mymacropad/pcb-back.webp",
-        alt: "Back of the MYMacropad PCB with custom artwork",
-      },
-      {
-        type: "image",
-        src: "/projects/mymacropad/assembled-board.webp",
-        alt: "Assembled MYMacropad circuit board held in one hand",
-      },
-    ],
-    href: "https://github.com/Nickdev8/macropad",
-    action: "open repo",
-  },
-  {
-    title: "Shelly Control Board",
-    type: "local event system",
-    year: "active",
-    description: "Kennemer is a local-first control surface for running a room full of Shelly-powered devices without relying on the cloud.",
-    media: [
-      {
-        type: "image",
-        src: "/projects/kennemer/control-interface.webp",
-        alt: "Shelly Control Board interface running on a portable display",
-      },
-      {
-        type: "image",
-        src: "/projects/kennemer/shelly-hardware.webp",
-        alt: "Hand-wired Shelly relay and button control board",
-      },
-    ],
-    href: "https://github.com/Nickdev8/kennemer",
-    action: "open repo",
-  },
-  {
-    title: "Monkey Swing",
-    type: "2D game",
-    year: "shipped",
-    description: "My first finished Unity game: repeated faceplants, one swinging monkey, and a lesson in shipping small things.",
-    media: [
-      {
-        type: "image",
-        src: "/projects/monkey-swing/gameplay.webp",
-        alt: "Monkey Swing gameplay in a pixel-art forest",
-      },
-      {
-        type: "video",
-        src: "/projects/monkey-swing/gameplay.mp4",
-        poster: "/projects/monkey-swing/gameplay.webp",
-        label: "Monkey Swing gameplay video",
-      },
-    ],
-    href: "https://nikkcc.itch.io/ms",
-    action: "play game",
-  },
-  {
-    title: "Blipstorm",
-    type: "island defence game",
-    year: "playable",
-    description: "A Godot island-defence prototype where small bots do the fighting and birds remain deeply annoying.",
-    media: [
-      {
-        type: "image",
-        src: "/projects/blipstorm/gameplay-close.webp",
-        alt: "Blipstorm bots defending the island from chickens",
-      },
-      {
-        type: "image",
-        src: "/projects/blipstorm/island-overview.webp",
-        alt: "Overview of the Blipstorm island and its defenders",
-      },
-    ],
-    href: "https://nickdev8.github.io/",
-    action: "play game",
-  },
-];
+function ResponsiveImage({ media, priority = false }) {
+  const base = media.src.replace(/\.webp$/, "");
+  return (
+    <picture>
+      <source
+        type="image/avif"
+        srcSet={`${base}-320.avif 320w, ${base}-640.avif 640w, ${base}-960.avif 960w`}
+        sizes="(max-width: 680px) calc(100vw - 36px), (max-width: 980px) 48vw, 31vw"
+      />
+      <source
+        type="image/webp"
+        srcSet={`${base}-320.webp 320w, ${base}-640.webp 640w, ${base}-960.webp 960w`}
+        sizes="(max-width: 680px) calc(100vw - 36px), (max-width: 980px) 48vw, 31vw"
+      />
+      <img
+        src={media.src}
+        alt={media.alt}
+        width="960"
+        height="1280"
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
+        decoding="async"
+      />
+    </picture>
+  );
+}
 
-function VideoSlide({ media, active }) {
+function VideoSlide({ media, active, enabled }) {
   const videoRef = useRef(null);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-
-    if (active) {
-      video.play().catch(() => {});
-      return;
-    }
-
-    video.pause();
-    video.currentTime = 0;
-  }, [active]);
+    if (active && enabled) video.play().catch(() => {});
+    else video.pause();
+  }, [active, enabled]);
 
   return (
     <video
       ref={videoRef}
-      src={media.src}
       poster={media.poster}
       aria-label={media.label}
-      autoPlay={active}
+      autoPlay={active && enabled}
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="none"
       disablePictureInPicture
       controlsList="nodownload noplaybackrate noremoteplayback"
-    />
+    >
+      {enabled && <source src={media.src} type="video/mp4" />}
+    </video>
   );
+}
+
+function useNearViewport(ref) {
+  const [near, setNear] = useState(false);
+
+  useEffect(() => {
+    if (!ref.current || !("IntersectionObserver" in window)) {
+      setNear(true);
+      return undefined;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setNear(entry.isIntersecting),
+      { rootMargin: "300px 0px" },
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [ref]);
+
+  return near;
 }
 
 function ProjectCarousel({ project, index }) {
   const [slide, setSlide] = useState(0);
   const [paused, setPaused] = useState(false);
-  const slides = project.media ?? [1, 2, 3].map((number) => ({
-    type: "image",
-    src: project.image,
-    alt: `${project.title} placeholder ${number}`,
-    placeholder: true,
-  }));
+  const articleRef = useRef(null);
+  const nearViewport = useNearViewport(articleRef);
+  const slides = project.media;
 
   useEffect(() => {
-    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    if (!nearViewport || paused || slides.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return undefined;
+    }
 
     let intervalId;
-    const startDelay = 1400 + index * 713;
-    const interval = 4200 + ((index * 977) % 2100);
     const startId = window.setTimeout(() => {
       setSlide((current) => (current + 1) % slides.length);
-      intervalId = window.setInterval(() => {
-        setSlide((current) => (current + 1) % slides.length);
-      }, interval);
-    }, startDelay);
+      intervalId = window.setInterval(
+        () => setSlide((current) => (current + 1) % slides.length),
+        4700 + ((index * 733) % 1300),
+      );
+    }, 1700 + index * 260);
 
     return () => {
       window.clearTimeout(startId);
       if (intervalId) window.clearInterval(intervalId);
     };
-  }, [index, paused, slides.length]);
+  }, [index, nearViewport, paused, slides.length]);
 
   function move(direction) {
+    setPaused(true);
     setSlide((current) => (current + direction + slides.length) % slides.length);
   }
 
   return (
     <article
+      ref={articleRef}
       className="project-carousel"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -229,60 +121,55 @@ function ProjectCarousel({ project, index }) {
     >
       <div className="carousel-viewport">
         <div className="carousel-media">
-          <div className="carousel-track" style={{ transform: `translateX(-${slide * 100}%)` }}>
-            {slides.map((media, mediaIndex) => (
+          {slides.map((media, mediaIndex) => {
+            const distance = Math.abs(mediaIndex - slide);
+            const shouldMount = mediaIndex === 0 || (nearViewport && (distance <= 1 || distance === slides.length - 1));
+            if (!shouldMount) return null;
+            return (
               <div
-                className={`carousel-slide carousel-slide-${mediaIndex + 1}${media.placeholder ? " carousel-slide-placeholder" : ""}`}
-                key={media.src + mediaIndex}
+                className={`carousel-slide${slide === mediaIndex ? " is-active" : ""}`}
+                key={media.src}
                 aria-hidden={slide !== mediaIndex}
               >
                 {media.type === "video" ? (
-                  <VideoSlide media={media} active={slide === mediaIndex} />
+                  <VideoSlide media={media} active={slide === mediaIndex} enabled={nearViewport && slide === mediaIndex} />
                 ) : (
-                  <img src={media.src} alt={media.alt} />
+                  <ResponsiveImage media={media} priority={index === 0 && mediaIndex === 0} />
                 )}
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
 
-        <button type="button" className="carousel-arrow carousel-arrow-left" onClick={() => move(-1)} aria-label={`Previous ${project.title} image`}>←</button>
-        <button type="button" className="carousel-arrow carousel-arrow-right" onClick={() => move(1)} aria-label={`Next ${project.title} image`}>→</button>
-        <span className="carousel-counter">{slide + 1} / {slides.length}</span>
-
-        {SHOW_PROJECT_DETAILS && (
-          <div className="carousel-details">
-            <div>
-              <p>{project.type} — {project.year}</p>
-              <h2>{project.title}</h2>
-            </div>
-            <p>{project.description}</p>
-            <span className="project-action">{project.action} ↗</span>
-          </div>
+        {slides.length > 1 && (
+          <>
+            <button type="button" className="carousel-arrow carousel-arrow-left" onClick={() => move(-1)} aria-label={`Previous ${project.title} image`}>←</button>
+            <button type="button" className="carousel-arrow carousel-arrow-right" onClick={() => move(1)} aria-label={`Next ${project.title} image`}>→</button>
+            <span className="carousel-counter" aria-hidden="true">{slide + 1} / {slides.length}</span>
+          </>
         )}
+        <a className="project-card-link" href={projectPath(project)} aria-label={`Read the ${project.title} case study`} />
       </div>
+
       <div className="project-caption">
         <span>{String(index + 1).padStart(2, "0")}</span>
-        <span>{project.title}</span>
-        <span>{project.year}</span>
+        <div>
+          <h3><a href={projectPath(project)}>{project.title}</a></h3>
+          <p>{project.summary}</p>
+        </div>
+        <span>{project.status}</span>
       </div>
-      <a
-        className="project-card-link"
-        href={project.href}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`${project.action}: ${project.title}`}
-      />
     </article>
   );
 }
 
 export default function ProjectGallery() {
   return (
-    <section className="projects-section" id="work">
+    <section className="projects-section" id="work" aria-labelledby="work-heading">
+      <h2 className="visually-hidden" id="work-heading">Selected work</h2>
       <div className="project-grid">
         {projects.map((project, index) => (
-          <ProjectCarousel project={project} index={index} key={project.title} />
+          <ProjectCarousel project={project} index={index} key={project.slug} />
         ))}
       </div>
     </section>
