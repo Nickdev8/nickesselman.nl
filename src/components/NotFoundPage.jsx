@@ -5,7 +5,7 @@ export default function NotFoundPage() {
       <div>
         <p>404</p>
         <h1>This page is not here.</h1>
-        <a href="/">Return to the portfolio →</a>
+        <a href="/">Return to the portfolio</a>
       </div>
     </main>
   );
