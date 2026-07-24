@@ -2,7 +2,7 @@ const links = [
   { name: "GitHub", detail: "code & projects", href: "https://github.com/nickdev8/" },
   { name: "LinkedIn", detail: "work & experience", href: "https://www.linkedin.com/in/nick-esselman/" },
   { name: "Instagram", detail: "photos & places", href: "https://www.instagram.com/nick.esselman/" },
-  { name: "Blog", detail: "notes & stories", href: "https://blog.nickesselman.nl" },
+  { name: "Nick Esselman’s Blog", detail: "travel journals & build notes", href: "https://blog.nickesselman.nl" },
   { name: "SpaceHey", detail: "the old internet", href: "https://spacehey.com/profile?id=4533565" },
 ];
 
@@ -22,7 +22,7 @@ export default function Links() {
       </nav>
       <a className="links-contact" href="https://contact.nickesselman.nl">
         <span></span>
-        <strong>Let’s talk ↗</strong>
+        <strong>Contact Nick Esselman ↗</strong>
       </a>
     </section>
   );

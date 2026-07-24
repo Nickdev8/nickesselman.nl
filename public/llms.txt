@@ -16,5 +16,5 @@ Nick Esselman is a Netherlands-based full-stack developer and maker working acro
 
 - [GitHub](https://github.com/nickdev8/)
 - [LinkedIn](https://www.linkedin.com/in/nick-esselman/)
-- [Blog](https://blog.nickesselman.nl)
-- [Contact](https://contact.nickesselman.nl)
+- [Nick Esselman’s Blog](https://blog.nickesselman.nl): Travel journals and build notes.
+- [Contact Nick Esselman](https://contact.nickesselman.nl): Official contact page.

@@ -72,7 +72,7 @@ export default function App() {
           </p>
         </section>
 
-        <section className="now-section" id="now">
+        <section className="now-section" id="now" data-nosnippet>
           <div className="section-heading-row">
             <p className="section-index">04 / now</p>
             <p>Small live signals from my corner of the internet.</p>

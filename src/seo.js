@@ -40,6 +40,7 @@ export function routeMeta(path, project = null) {
           "@id": websiteId,
           url: `${site.url}/`,
           name: site.name,
+          alternateName: "nickesselman.nl",
           inLanguage: "en",
           publisher: { "@id": personId },
         },
