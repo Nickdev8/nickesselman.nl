@@ -1,50 +1,31 @@
-import { ArrowDownRight, Briefcase } from "lucide-react";
-import { useEffect } from "react";
-
-import heroImage from "../assets/me.png";
+const symbols = [
+  <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="42"/><path d="M50 8v84M22 25c18 7 25 25 28 67M78 25C60 32 53 50 50 92M17 63h66M25 80h50"/></svg>,
+  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M8 49 20 20h60l12 29-14 31H22z"/><circle cx="34" cy="50" r="11"/><circle cx="66" cy="50" r="11"/><path d="M45 70h10"/></svg>,
+  <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="10"/><path d="M50 40V5M58 43l25-25M60 50h35M58 57l25 25M50 60v35M42 57 17 82M40 50H5M42 43 17 18"/></svg>,
+  <svg viewBox="0 0 100 100" aria-hidden="true"><rect x="20" y="20" width="60" height="60" rx="4"/><path d="M20 40H8v20h12M80 40h12v20H80M40 20V8h20v12M40 80v12h20V80"/><rect x="39" y="38" width="22" height="24" rx="5"/></svg>,
+  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M9 52c10-19 22-19 35 0-13-6-23-6-35 0ZM56 52c10-19 22-19 35 0-13-6-23-6-35 0Z"/><path d="M50 35 67 50 50 65 33 50Z"/><path d="M18 68v23M32 65v26M68 65v26M82 68v23"/></svg>,
+  <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="42"/><circle cx="50" cy="35" r="8"/><path d="M15 25c6 25 19 32 35 32s29-7 35-32M50 57 29 86M50 57l21 29"/></svg>,
+  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M24 16v68M76 16v68M12 50h76"/><circle cx="24" cy="50" r="15"/><circle cx="76" cy="50" r="15"/><path d="M36 50h28"/></svg>,
+  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M20 14c18 0 30 11 30 28v44M80 14C62 14 50 25 50 42"/><path d="M10 55c8-18 21-18 29 0-11-5-18-5-29 0ZM61 55c8-18 21-18 29 0-11-5-18-5-29 0Z"/><path d="M23 67c15 16 39 16 54 0"/></svg>,
+  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="m50 5 9 27 28-10-16 24 24 16-30 1 2 30-18-24-21 21 5-29-30-4 26-14-13-26 27 12Z"/></svg>,
+];
 
 export default function Hero() {
-  useEffect(() => {
-    document.title = "Nick Esselman";
-  }, []);
-
   return (
-    <section className="grid gap-8 overflow-hidden rounded-[1.25rem] border border-[var(--color-border)] bg-[var(--color-surface-cool)] p-6 shadow-[var(--shadow-soft)] sm:p-8 lg:grid-cols-[1.35fr_0.85fr] lg:items-stretch">
-      <div className="flex flex-col justify-center text-center lg:text-left">
-        <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-accent)]">Link hub</p>
-        <h1 className="mt-4 text-5xl font-semibold tracking-[-0.04em] sm:text-6xl">
-          Nick Esselman
-        </h1>
-        <p className="mt-4 max-w-xl text-base leading-7 text-[var(--color-text-secondary)] sm:text-lg">
-          Developer, maker, and photographer. The fastest way to find my work, socials, and the
-          places I actually post.
+    <section className="hero" id="top">
+      <div className="symbol-field">
+        <p className="hero-copy">
+          Netherlands based full-stack developer and maker working across software, games, VR,
+          hardware and PCB design.
         </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:justify-start">
-          <a
-            href="#links"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--color-accent)] bg-[var(--color-accent)] px-5 py-3 text-sm font-medium text-[var(--color-accent-contrast)] transition-colors hover:bg-[color:color-mix(in_oklab,var(--color-accent)_86%,black)]"
-          >
-            <ArrowDownRight size={16} aria-hidden="true" />
-            Open my links
-          </a>
-          <a
-            href="/portfolio"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--color-border-strong)] px-5 py-3 text-sm font-medium text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-text-primary)]"
-          >
-            <Briefcase size={16} aria-hidden="true" />
-            View portfolio
-          </a>
-        </div>
+        {symbols.map((symbol, index) => (
+          <div className={`hero-symbol hero-symbol-${index + 1}`} key={index}>{symbol}</div>
+        ))}
       </div>
-      <div className="mx-auto w-full max-w-sm lg:max-w-none">
-        <div className="relative h-full min-h-[24rem] overflow-hidden rounded-[1.25rem] border border-[var(--color-border)] bg-[linear-gradient(145deg,var(--color-surface-cool-strong),var(--color-surface-soft)_48%,var(--color-surface-cool-deep))] p-4 sm:p-5">
-          <div className="absolute inset-x-6 top-4 h-24 rounded-full bg-[var(--color-accent-softer)] blur-3xl" />
-          <img
-            src={heroImage}
-            alt="Portrait of Nick Esselman"
-            className="relative h-full w-full rounded-[1rem] object-cover"
-          />
-        </div>
+      <h1>Nick Esselman</h1>
+      <div className="recent-work-row">
+        <a href="#work">recent work</a>
+        <a href="#work">view all</a>
       </div>
     </section>
   );
