@@ -48,9 +48,9 @@ export default function App() {
       <header className={`site-header${headerIsScrolled ? " is-scrolled" : ""}`}>
           <span className="brand-space" aria-hidden="true" />
         <nav aria-label="Main navigation">
-          <a href="/#work">work <span aria-hidden="true">→</span></a>
-          <a href="/#links">links <span aria-hidden="true">→</span></a>
-          <a href="/#about">about <span aria-hidden="true">→</span></a>
+          <a href="/#work">work</a>
+          <a href="/#links">links</a>
+          <a href="/#about">about</a>
           <a className="contact-link" href="https://contact.nickesselman.nl">contact <span aria-hidden="true">↗</span></a>
         </nav>
       </header>

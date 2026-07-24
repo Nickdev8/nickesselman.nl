@@ -99,7 +99,7 @@ export default function ProjectPage({ project }) {
           <h2>Continue with {project.title}</h2>
           <div>
             {project.links.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label} ↗</a>)}
-            <a href="/#work">More projects →</a>
+            <a href="/#work">More projects</a>
           </div>
         </section>
       </main>

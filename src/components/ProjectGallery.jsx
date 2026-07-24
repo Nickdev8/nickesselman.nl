@@ -144,7 +144,7 @@ function ProjectCarousel({ project, index }) {
         {slides.length > 1 && (
           <>
             <button type="button" className="carousel-arrow carousel-arrow-left" onClick={() => move(-1)} aria-label={`Previous ${project.title} image`}>←</button>
-            <button type="button" className="carousel-arrow carousel-arrow-right" onClick={() => move(1)} aria-label={`Next ${project.title} image`}>→</button>
+            <button type="button" className="carousel-arrow carousel-arrow-right" onClick={() => move(1)} aria-label={`Next ${project.title} image`}>next</button>
             <span className="carousel-counter" aria-hidden="true">{slide + 1} / {slides.length}</span>
           </>
         )}
