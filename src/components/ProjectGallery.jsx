@@ -57,6 +57,15 @@ function VideoSlide({ media, active, enabled }) {
   );
 }
 
+function CarouselChevron({ direction }) {
+  const path = direction === "previous" ? "M15.5 4.5 8 12l7.5 7.5" : "M8.5 4.5 16 12l-7.5 7.5";
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d={path} />
+    </svg>
+  );
+}
+
 function useNearViewport(ref) {
   const [near, setNear] = useState(false);
 
@@ -143,9 +152,12 @@ function ProjectCarousel({ project, index }) {
 
         {slides.length > 1 && (
           <>
-            <button type="button" className="carousel-arrow carousel-arrow-left" onClick={() => move(-1)} aria-label={`Previous ${project.title} image`}>←</button>
-            <button type="button" className="carousel-arrow carousel-arrow-right" onClick={() => move(1)} aria-label={`Next ${project.title} image`}>next</button>
-            <span className="carousel-counter" aria-hidden="true">{slide + 1} / {slides.length}</span>
+            <button type="button" className="carousel-arrow carousel-arrow-left" onClick={() => move(-1)} aria-label={`Previous ${project.title} image`}>
+              <CarouselChevron direction="previous" />
+            </button>
+            <button type="button" className="carousel-arrow carousel-arrow-right" onClick={() => move(1)} aria-label={`Next ${project.title} image`}>
+              <CarouselChevron direction="next" />
+            </button>
           </>
         )}
         <a className="project-card-link" href={projectPath(project)} aria-label={`Read the ${project.title} case study`} />

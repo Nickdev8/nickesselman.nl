@@ -120,39 +120,36 @@ button { color: inherit; }
 .carousel-arrow {
   position: absolute;
   z-index: 6;
-  top: 12px;
+  top: 50%;
   display: grid;
   place-items: center;
   width: 44px;
-  height: 44px;
+  height: 64px;
   padding: 0;
   border: 0;
-  border-radius: 50%;
-  background: var(--paper);
-  font-size: 18px;
-  line-height: 1;
+  background: transparent;
+  color: rgba(242, 242, 240, 0.72);
   cursor: pointer;
   opacity: 0;
-  transition: opacity 150ms ease, background-color 150ms ease, color 150ms ease;
+  transform: translateY(-50%);
+  transition: opacity 150ms ease, color 150ms ease;
 }
-.carousel-arrow:hover, .carousel-arrow:focus-visible { color: var(--paper); background: var(--ink); outline: none; }
-.carousel-arrow-left { left: 10px; }
-.carousel-arrow-right { right: 10px; }
-.carousel-counter {
-  position: absolute;
-  z-index: 5;
-  top: 17px;
-  left: 50%;
-  padding: 3px 6px;
-  color: var(--ink);
-  background: rgba(242, 242, 240, 0.82);
-  font-size: 12px;
-  opacity: 0;
-  transform: translateX(-50%);
-  transition: opacity 150ms ease;
+.carousel-arrow svg {
+  width: 23px;
+  height: 23px;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 1px 3px rgba(5, 5, 5, 0.72));
 }
-.project-carousel:hover .carousel-arrow, .project-carousel:focus-within .carousel-arrow,
-.project-carousel:hover .carousel-counter, .project-carousel:focus-within .carousel-counter { opacity: 1; }
+.carousel-arrow:hover, .carousel-arrow:focus-visible { color: var(--paper); outline: none; }
+.carousel-arrow:focus-visible { outline: 1px solid rgba(242, 242, 240, 0.8); outline-offset: -3px; }
+.carousel-arrow-left { left: 8px; }
+.carousel-arrow-right { right: 8px; }
+.project-carousel:hover .carousel-arrow, .project-carousel:focus-within .carousel-arrow { opacity: 1; }
 .project-caption { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; padding: 12px 2px 32px; font-size: 14px; }
 .project-caption h3, .project-caption p { margin: 0; }
 .project-caption h3 { font-size: 16px; font-weight: 650; }
@@ -324,7 +321,7 @@ footer { display: flex; justify-content: space-between; padding: 22px 3.4vw 34px
   .projects-section { padding: 0 18px 90px; }
   .project-grid { grid-template-columns: 1fr; gap: 12px; }
   .carousel-viewport { border-radius: 8px; }
-  .carousel-arrow, .carousel-counter { opacity: 1; }
+  .carousel-arrow { opacity: 1; }
   .project-caption { padding-bottom: 22px; }
   .about-section { padding: 34px 18px 78px; }
   .about-heading { padding-bottom: 14px; }
