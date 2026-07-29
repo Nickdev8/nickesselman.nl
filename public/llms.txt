@@ -10,7 +10,7 @@ Nick Esselman is a Netherlands-based full-stack developer and maker working acro
 - [MYMacropad](https://github.com/Nickdev8/macropad): Custom 4×4 macropad, from PCB and firmware to enclosure.
 - [Shelly Control Board](https://github.com/Nickdev8/kennemer): Local-first control interface for Shelly-powered devices.
 - [Monkey Swing](https://nikkcc.itch.io/ms): A finished Unity swing game.
-- [Blipstorm](https://nickdev8.github.io/): A playable Godot island-defence prototype.
+- [Blipstorm](https://nikkcc.itch.io/blipstorm): A playable Godot island-defence prototype.
 
 ## Profiles
 

@@ -135,7 +135,7 @@ export const projects = [
       "A Godot island-defence prototype where small bots do the fighting and birds remain deeply annoying.",
     role: "Solo game development",
     technologies: ["Godot", "Game AI", "3D gameplay", "Browser build"],
-    links: [{ label: "Play the game", href: "https://nickdev8.github.io/" }],
+    links: [{ label: "Play the game", href: "https://nikkcc.itch.io/blipstorm" }],
     challenge:
       "The game needed to make a small island feel busy and readable while autonomous units defend it. The player should understand what the bots are doing without controlling every individual action.",
     approach:
