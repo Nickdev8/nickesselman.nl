@@ -1,7 +1,7 @@
 export const site = {
   name: "Nick Esselman",
   url: "https://nickesselman.nl",
-  title: "Nick Esselman — Full-Stack Developer & Maker",
+  title: "Nick Esselman",
   description:
     "Portfolio of Nick Esselman, a Netherlands-based full-stack developer and maker building software, VR games, hardware, LED systems and custom PCBs.",
   image: "/og/nick-esselman.jpg",
