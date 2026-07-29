@@ -5,15 +5,7 @@ import { pathToFileURL } from "node:url";
 const root = resolve(import.meta.dirname, "..");
 const template = await readFile(resolve(root, "dist/index.html"), "utf8");
 const { render } = await import(pathToFileURL(resolve(root, "dist-ssr/entry-server.js")));
-const routes = [
-  "/",
-  "/projects/partyvr/",
-  "/projects/lamp/",
-  "/projects/mymacropad/",
-  "/projects/kennemer/",
-  "/projects/monkey-swing/",
-  "/projects/blipstorm/",
-];
+const routes = ["/"];
 
 function escapeAttribute(value) {
   return value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");

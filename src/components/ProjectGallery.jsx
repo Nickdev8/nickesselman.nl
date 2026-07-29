@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import { projectPath, projects } from "../data/projects";
+import { projects } from "../data/projects";
 
 function ResponsiveImage({ media, priority = false }) {
   const base = media.src.replace(/\.webp$/, "");
@@ -91,6 +91,7 @@ function ProjectCarousel({ project, index }) {
   const articleRef = useRef(null);
   const nearViewport = useNearViewport(articleRef);
   const slides = project.media;
+  const primaryLink = project.links[0];
 
   useEffect(() => {
     if (!nearViewport || paused || slides.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -160,13 +161,19 @@ function ProjectCarousel({ project, index }) {
             </button>
           </>
         )}
-        <a className="project-card-link" href={projectPath(project)} aria-label={`Read the ${project.title} case study`} />
+        <a
+          className="project-card-link"
+          href={primaryLink.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${primaryLink.label}: ${project.title}`}
+        />
       </div>
 
       <div className="project-caption">
         <span>{String(index + 1).padStart(2, "0")}</span>
         <div>
-          <h3><a href={projectPath(project)}>{project.title}</a></h3>
+          <h3><a href={primaryLink.href} target="_blank" rel="noreferrer">{project.title}</a></h3>
           <p>{project.summary}</p>
         </div>
         <span>{project.status}</span>
