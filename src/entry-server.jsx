@@ -7,6 +7,6 @@ import "./styles.css";
 export function render(path) {
   return {
     html: renderToString(<Site url={path} />),
-    meta: path === "/" ? routeMeta("/") : null,
+    meta: routeMeta(path),
   };
 }

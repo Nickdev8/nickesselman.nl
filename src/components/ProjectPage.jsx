@@ -1,5 +1,7 @@
 import Footer from "./Footer";
 import { projectPath } from "../data/projects";
+import SiteHeader from "./SiteHeader";
+import { localizeProject, localePath, t, useLocale } from "../locale";
 
 function Media({ media, project, priority }) {
   if (media.type === "video") {
@@ -49,15 +51,15 @@ function Media({ media, project, priority }) {
 }
 
 export default function ProjectPage({ project }) {
+  const locale = useLocale();
+  project = localizeProject(locale, project);
+  const hasMedia = project.media?.length > 0;
   return (
     <div className="case-shell">
-      <header className="case-header">
-        <span className="brand-space" aria-hidden="true" />
-        <a href="/#work">all work ←</a>
-      </header>
+      <SiteHeader />
       <main>
         <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <a href="/">Nick Esselman</a><span aria-hidden="true">/</span><span>{project.title}</span>
+          <a href={localePath("/", locale)}>Nick Esselman</a><span aria-hidden="true">/</span><span>{project.title}</span>
         </nav>
         <section className="case-intro">
           <div>
@@ -67,24 +69,26 @@ export default function ProjectPage({ project }) {
           <p className="case-summary">{project.summary}</p>
         </section>
 
-        <figure className="case-lead">
-          <Media media={project.media[0]} project={project} priority />
-          <figcaption>{project.media[0].alt ?? project.media[0].label}</figcaption>
-        </figure>
+        {hasMedia ? (
+          <figure className="case-lead">
+            <Media media={project.media[0]} project={project} priority />
+            <figcaption>{project.media[0].alt ?? project.media[0].label}</figcaption>
+          </figure>
+        ) : null}
 
         <section className="case-facts" aria-label="Project facts">
-          <div><h2>Role</h2><p>{project.role}</p></div>
-          <div><h2>Tools</h2><p>{project.technologies.join(", ")}</p></div>
-          <div><h2>Status</h2><p>{project.status}</p></div>
+          <div><h2>{t(locale, "Role")}</h2><p>{project.role}</p></div>
+          <div><h2>{t(locale, "Tools")}</h2><p>{project.technologies.join(", ")}</p></div>
+          <div><h2>{t(locale, "Status")}</h2><p>{project.status}</p></div>
         </section>
 
         <div className="case-story">
-          <section><h2>The challenge</h2><p>{project.challenge}</p></section>
-          <section><h2>The approach</h2><p>{project.approach}</p></section>
-          <section><h2>The result</h2><p>{project.outcome}</p></section>
+          <section><h2>{t(locale, "The challenge")}</h2><p>{project.challenge}</p></section>
+          <section><h2>{t(locale, "The approach")}</h2><p>{project.approach}</p></section>
+          <section><h2>{t(locale, "The result")}</h2><p>{project.outcome}</p></section>
         </div>
 
-        {project.media.length > 1 && (
+        {hasMedia && project.media.length > 1 && (
           <section className="case-gallery" aria-label={`${project.title} project media`}>
             {project.media.slice(1).map((media, index) => (
               <figure key={media.src}>
@@ -96,10 +100,10 @@ export default function ProjectPage({ project }) {
         )}
 
         <section className="case-links">
-          <h2>Continue with {project.title}</h2>
+          <h2>{t(locale, "Continue with")} {project.title}</h2>
           <div>
             {project.links.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label} ↗</a>)}
-            <a href="/#work">More projects</a>
+            <a href={localePath("/work/", locale)}>{t(locale, "More projects")}</a>
           </div>
         </section>
       </main>

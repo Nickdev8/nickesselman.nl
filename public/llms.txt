@@ -1,16 +1,18 @@
 # Nick Esselman
 
-Nick Esselman is a Netherlands-based full-stack developer and maker working across software, virtual reality, games, hardware, LED systems and custom PCB design.
+Nick Esselman is a Netherlands-based full-stack software and hardware developer. He builds custom websites, web applications, virtual reality experiences, games, hardware prototypes, LED systems and custom PCBs.
 
 ## Primary pages
 
 - [Portfolio](https://nickesselman.nl/): Profile, selected work and current activity.
-- [PartyVR](https://github.com/Nickdev8/PartyVR): Room-scale multiplayer VR platform with host and spectator systems.
-- [LAMP](https://github.com/Nickdev8/LedScreen): RP2040 controller for chained LED panels.
-- [MYMacropad](https://github.com/Nickdev8/macropad): Custom 4×4 macropad, from PCB and firmware to enclosure.
-- [Shelly Control Board](https://github.com/Nickdev8/kennemer): Local-first control interface for Shelly-powered devices.
-- [Monkey Swing](https://nikkcc.itch.io/ms): A finished Unity swing game.
-- [Blipstorm](https://nikkcc.itch.io/blipstorm): A playable Godot island-defence prototype.
+- [Selected work](https://nickesselman.nl/work/): Websites, web applications, VR, hardware and game projects.
+- [Work with Nick](https://nickesselman.nl/work-with-me/): Custom web development and technical project capabilities.
+- [PartyVR](https://nickesselman.nl/projects/partyvr/): Room-scale multiplayer VR platform with host and spectator systems.
+- [LAMP](https://nickesselman.nl/projects/lamp/): RP2040 controller for chained LED panels.
+- [MYMacropad](https://nickesselman.nl/projects/mymacropad/): Custom 4×4 macropad, from PCB and firmware to enclosure.
+- [Shelly Control Board](https://nickesselman.nl/projects/kennemer/): Local-first control interface for Shelly-powered devices.
+- [Monkey Swing](https://nickesselman.nl/projects/monkey-swing/): A finished Unity swing game.
+- [Blipstorm](https://nickesselman.nl/projects/blipstorm/): A playable Godot island-defence prototype.
 
 ## Profiles
 

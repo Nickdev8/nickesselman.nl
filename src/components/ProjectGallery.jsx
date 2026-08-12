@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
-import { projects } from "../data/projects";
+import { featuredProjects, projectPath } from "../data/projects";
+import { localizeProject, t, useLocale } from "../locale";
 
 function ResponsiveImage({ media, priority = false }) {
   const base = media.src.replace(/\.webp$/, "");
@@ -85,13 +86,15 @@ function useNearViewport(ref) {
   return near;
 }
 
-function ProjectCarousel({ project, index }) {
+function ProjectCarousel({ project, index, locale }) {
   const [slide, setSlide] = useState(0);
   const [paused, setPaused] = useState(false);
   const articleRef = useRef(null);
   const nearViewport = useNearViewport(articleRef);
+  project = localizeProject(locale, project);
   const slides = project.media;
   const primaryLink = project.links[0];
+  const caseStudyPath = projectPath(project, locale);
 
   useEffect(() => {
     if (!nearViewport || paused || slides.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -163,32 +166,29 @@ function ProjectCarousel({ project, index }) {
         )}
         <a
           className="project-card-link"
-          href={primaryLink.href}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={`${primaryLink.label}: ${project.title}`}
+          href={caseStudyPath}
+          aria-label={locale === "nl" ? `Lees de case van ${project.title}` : `Read the ${project.title} case study`}
         />
       </div>
 
       <div className="project-caption">
-        <span>{String(index + 1).padStart(2, "0")}</span>
         <div>
-          <h3><a href={primaryLink.href} target="_blank" rel="noreferrer">{project.title}</a></h3>
+          <h3><a href={caseStudyPath}>{project.title}</a></h3>
           <p>{project.summary}</p>
         </div>
-        <span>{project.status}</span>
       </div>
     </article>
   );
 }
 
 export default function ProjectGallery() {
+  const locale = useLocale();
   return (
     <section className="projects-section" id="work" aria-labelledby="work-heading">
-      <h2 className="visually-hidden" id="work-heading">Selected work</h2>
+      <h2 className="visually-hidden" id="work-heading">{t(locale, "Selected work")}</h2>
       <div className="project-grid">
-        {projects.map((project, index) => (
-          <ProjectCarousel project={project} index={index} key={project.slug} />
+        {featuredProjects.map((project, index) => (
+          <ProjectCarousel project={project} index={index} locale={locale} key={project.slug} />
         ))}
       </div>
     </section>

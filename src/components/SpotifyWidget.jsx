@@ -8,6 +8,21 @@ function formatDuration(ms = 0) {
   return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
 }
 
+export function SpotifySkeleton() {
+  return (
+    <section className="signal spotify-signal" aria-busy="true" aria-label="Loading listening activity">
+      <div className="signal-label"><span>listening</span><i className="skeleton skeleton-status" /></div>
+      <i className="skeleton skeleton-art" />
+      <div className="signal-body skeleton-signal-body">
+        <i className="skeleton skeleton-line skeleton-line-short" />
+        <i className="skeleton skeleton-line skeleton-track-title" />
+        <div className="track-line skeleton"><i /></div>
+        <i className="skeleton skeleton-line skeleton-time" />
+      </div>
+    </section>
+  );
+}
+
 export default function SpotifyWidget() {
   const [spotify, setSpotify] = useState(null);
   const [lastFetchedAt, setLastFetchedAt] = useState(0);
@@ -48,6 +63,8 @@ export default function SpotifyWidget() {
   }, [duration, lastFetchedAt, now, spotify?.is_playing, spotify?.progress_ms]);
   const art = track?.album?.images?.[0]?.url || vinylRecord;
 
+  if (state === "loading") return <SpotifySkeleton />;
+
   return (
     <section className="signal spotify-signal">
       <div className="signal-label"><span>listening</span><span>{spotify?.is_playing ? "live" : "paused"}</span></div>
@@ -61,9 +78,7 @@ export default function SpotifyWidget() {
             <p className="track-time">{formatDuration(progress)} / {formatDuration(duration)}</p>
           </div>
         </>
-      ) : (
-        <p className="signal-message">{state === "error" ? "Spotify is being quiet right now." : "Tuning in…"}</p>
-      )}
+      ) : <p className="signal-message">Spotify is being quiet right now.</p>}
     </section>
   );
 }

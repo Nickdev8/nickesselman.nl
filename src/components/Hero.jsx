@@ -1,16 +1,16 @@
+import { localePath, t, useLocale } from "../locale";
+
 export default function Hero() {
+  const locale = useLocale();
   return (
     <section className="hero" id="top">
       <div className="symbol-field">
-        <p className="hero-copy">
-          Netherlands based full-stack developer and maker working across software, games, VR,
-          hardware and PCB design.
-        </p>
+        <span aria-hidden="true" />
       </div>
       <h1>Nick Esselman</h1>
       <div className="recent-work-row">
-        <a href="#work">recent work</a>
-        <a href="#work">view all</a>
+        <span className="recent-work-label">{t(locale, "recent work")}</span>
+        <a href={localePath("/work/", locale)}>{t(locale, "view all")}</a>
       </div>
     </section>
   );

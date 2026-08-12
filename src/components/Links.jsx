@@ -1,3 +1,5 @@
+import { t, useLocale } from "../locale";
+
 const links = [
   { name: "GitHub", detail: "code & projects", href: "https://github.com/nickdev8/" },
   { name: "LinkedIn", detail: "work & experience", href: "https://www.linkedin.com/in/nick-esselman/" },
@@ -7,22 +9,20 @@ const links = [
 ];
 
 export default function Links() {
+  const locale = useLocale();
   return (
     <section className="links-section" id="links">
-      <div className="links-intro">
-        <p>02 / links</p>
-      </div>
       <nav className="link-list" aria-label="Find Nick elsewhere">
         {links.map((link) => (
           <a key={link.name} href={link.href} target="_blank" rel="noreferrer">
-            <span>{link.name} ↗</span>
-            <span>{link.detail}</span>
+            <span>{t(locale, link.name)} ↗</span>
+            <span>{t(locale, link.detail)}</span>
           </a>
         ))}
       </nav>
-      <a className="links-contact" href="https://contact.nickesselman.nl">
+      <a className="links-contact" href={`https://contact.nickesselman.nl${locale === "nl" ? "/nl/" : "/"}`}>
         <span></span>
-        <strong>Contact Nick Esselman ↗</strong>
+        <strong>{t(locale, "Contact Nick Esselman ↗")}</strong>
       </a>
     </section>
   );

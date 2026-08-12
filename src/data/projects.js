@@ -3,12 +3,13 @@ export const site = {
   url: "https://nickesselman.nl",
   title: "Nick Esselman",
   description:
-    "Portfolio of Nick Esselman, a Netherlands-based full-stack developer and maker building software, VR games, hardware, LED systems and custom PCBs.",
+    "Portfolio of Nick Esselman, a Netherlands-based full-stack developer building custom websites, web applications, VR games, hardware, LED systems and custom PCBs.",
   image: "/og/nick-esselman.jpg",
   portrait: "/images/nick-esselman.webp",
   sameAs: [
     "https://github.com/nickdev8/",
     "https://www.linkedin.com/in/nick-esselman/",
+    "https://nikkcc.itch.io/",
     "https://www.instagram.com/nick.esselman/",
     "https://blog.nickesselman.nl",
     "https://spacehey.com/profile?id=4533565",
@@ -149,8 +150,81 @@ export const projects = [
   },
 ];
 
-export const projectBySlug = Object.fromEntries(projects.map((project) => [project.slug, project]));
+// Jazz Design remains stored here for the planned redesign, but is not public yet.
+export const clientProjects = [
+  {
+    slug: "maria-hoogland",
+    title: "AMH, Architect Maria Hoogland",
+    category: "Architecture portfolio website",
+    status: "Live",
+    summary: "A custom portfolio website and simple editing system for architect Maria Hoogland, built to help local clients discover her work and get in touch.",
+    role: "Wireframing, custom website development, admin development and hosting",
+    technologies: ["SvelteKit", "Custom admin", "Cloudflare DNS", "Self-hosting"],
+    links: [{ label: "Visit the live website", href: "https://mariahoogland.nl/" }],
+    challenge: "Maria had outgrown a slow WordPress-based setup and wanted a website that felt like her own practice: professional, individual and easy for a potential local client to understand. The first job was to turn that feeling into a clear, practical direction without a long agency process.",
+    approach: "I made a working wireframe in one day, then used it as the shared foundation for the finished SvelteKit website. The result includes a custom admin area so Maria can update text and choose or upload images herself. I also set up the site for responsive use, search visibility and Google Search Console. For bigger changes, I remain available to work directly with her.",
+    outcome: "Maria now has one clear place to introduce AMH and her work without taking unnecessary time away from clients. The website is live at mariahoogland.nl, fully custom-built by me and hosted on my own hardware, with the domain at Hostinger and DNS managed through Cloudflare.",
+    keywords: ["architecture portfolio website development", "SvelteKit architecture website", "custom website developer Netherlands"],
+    draft: false,
+    media: [
+      {
+        type: "image",
+        src: "/projects/maria-hoogland/timmermans-werkplaats.webp",
+        alt: "Timmermans Werkplaats building in Haarlem, photographed for the Maria Hoogland Architectuur website case study",
+      },
+    ],
+  },
+  {
+    slug: "robijn-fotografie",
+    title: "Robijn Fotografie",
+    category: "Photography portfolio and booking website",
+    status: "Live",
+    summary: "A custom photography portfolio website and editing system that helps Robijn Fotografie turn social discovery into enquiries.",
+    role: "Custom website, responsive gallery and admin development",
+    technologies: ["SvelteKit", "Custom admin", "Responsive image delivery", "Docker"],
+    links: [{ label: "Visit the live website", href: "https://robijnfotografie.nl/" }],
+    challenge: "Robijn wanted a website that could turn people discovering her through social media into future clients. She had a clear visual idea and drew it out herself; the challenge was to make that direction real while keeping the site and its editing tools straightforward.",
+    approach: "I built the website in SvelteKit from Robijn’s visual direction. The custom admin lets her edit text, images and photo categories, and add pages for new work without having to touch code. The site is responsive, Docker-containerised and uses multiple image sizes so photography loads appropriately on different devices.",
+    outcome: "Robijn now has a custom, editable home for her work at robijnfotografie.nl. It is built to help visitors remember her work, browse it easily and reach out when they are ready. The public case study intentionally uses no photography from the site until image permission is confirmed.",
+    keywords: ["photography portfolio website development", "booking website developer", "SvelteKit website developer Netherlands"],
+    draft: false,
+    media: [
+      {
+        type: "image",
+        src: "/projects/robijn-fotografie/portrait.webp",
+        alt: "Photography presented on the Robijn Fotografie website",
+      },
+    ],
+  },
+  {
+    slug: "jazz-design",
+    title: "Jazz Design",
+    category: "Custom clothing and print website",
+    status: "Draft case study",
+    summary: "A custom website for a small custom-clothing and textile-print studio, built to present services, portfolio work and enquiries.",
+    role: "Custom website development",
+    technologies: ["Astro", "Svelte", "Responsive web development"],
+    links: [{ label: "Visit the live website", href: "https://jazzdesign.nl/" }],
+    challenge: "Lorem ipsum — add the original brief and the specific customer journey the website needed to support.",
+    approach: "Lorem ipsum — explain the information structure, responsive build and any custom features you implemented.",
+    outcome: "Lorem ipsum — replace with a factual outcome after the planned redesign is complete.",
+    keywords: ["custom business website development", "small business website developer", "Astro Svelte developer Netherlands"],
+    draft: true,
+    media: [],
+  },
+];
 
-export function projectPath(project) {
-  return `/projects/${project.slug}/`;
+export const allProjects = [clientProjects[0], clientProjects[1], ...projects];
+export const featuredProjects = [
+  clientProjects[0],
+  clientProjects[1],
+  projects[0],
+  projects[1],
+  projects[2],
+  projects[3],
+];
+export const projectBySlug = Object.fromEntries(allProjects.map((project) => [project.slug, project]));
+
+export function projectPath(project, locale = "en") {
+  return `${locale === "nl" ? "/nl" : ""}/projects/${project.slug}/`;
 }

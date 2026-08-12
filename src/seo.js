@@ -1,27 +1,77 @@
-import { projects, site } from "./data/projects.js";
-
-export const routes = ["/"];
+import { allProjects, featuredProjects, projectBySlug, projects, site } from "./data/projects.js";
+import { localeFromPath, stripLocale } from "./locale.js";
 
 const personId = `${site.url}/#person`;
 const websiteId = `${site.url}/#website`;
+const projectRoutes = allProjects.map((project) => `/projects/${project.slug}/`);
+
+const englishRoutes = ["/", "/about/", "/work/", "/work-with-me/", ...projectRoutes];
+export const routes = [...englishRoutes, ...englishRoutes.map((route) => `/nl${route}`)];
+export const indexedRoutes = [
+  "/",
+  "/work/",
+  "/work-with-me/",
+  ...allProjects.map((project) => `/projects/${project.slug}/`),
+];
 
 function absolute(path) {
   return path.startsWith("http") ? path : `${site.url}${path}`;
 }
 
-export function routeMeta() {
-  const canonical = `${site.url}/`;
-  const title = site.title;
-  const description = site.description;
-  const image = absolute(site.image);
+function pageMeta({ path, title, description, graph = [], noindex = false }) {
+  return {
+    canonical: `${site.url}${path}`,
+    title,
+    description,
+    image: absolute(site.image),
+    graph,
+    noindex,
+  };
+}
 
-  const graph = [
+function projectMeta(project) {
+  const path = `/projects/${project.slug}/`;
+  const schema = {
+    "@type": "CreativeWork",
+    "@id": `${site.url}${path}#project`,
+    url: `${site.url}${path}`,
+    name: project.title,
+    description: project.summary,
+    creator: { "@id": personId },
+    keywords: [...project.technologies, ...(project.keywords ?? [])].join(", "),
+    about: project.category,
+    sameAs: project.links.map((link) => link.href),
+  };
+  return pageMeta({
+    path,
+    title: `${project.title} — ${project.category} | Nick Esselman`,
+    description: project.summary,
+    graph: [schema],
+    noindex: Boolean(project.draft),
+  });
+}
+
+export function routeMeta(pathname = "/") {
+  const locale = localeFromPath(pathname);
+  const localizedPath = pathname.replace(/\/+$/, "") || "/";
+  const normalized = stripLocale(localizedPath).replace(/\/+$/, "") || "/";
+  const localize = (meta) => ({
+    ...meta,
+    canonical: `${site.url}${locale === "nl" ? `/nl${normalized === "/" ? "/" : `${normalized}/`}` : normalized === "/" ? "/" : `${normalized}/`}`,
+    locale,
+  });
+  if (normalized === "/") {
+    return localize(pageMeta({
+      path: "/",
+      title: "Nick Esselman — Custom Web Developer, VR & Hardware",
+      description: site.description,
+      graph: [
         {
           "@type": "WebSite",
           "@id": websiteId,
           url: `${site.url}/`,
           name: site.name,
-          alternateName: "nickesselman.nl",
+          alternateName: ["nickesselman.nl", "Nickdev8", "nikkcc"],
           inLanguage: "en",
           publisher: { "@id": personId },
         },
@@ -38,26 +88,67 @@ export function routeMeta() {
           "@type": "Person",
           "@id": personId,
           name: site.name,
+          alternateName: ["Nickdev8", "nikkcc"],
           url: `${site.url}/`,
           image: absolute(site.portrait),
-          jobTitle: "Full-Stack Developer and Maker",
+          jobTitle: "Full-Stack Software and Hardware Developer",
           homeLocation: { "@type": "Country", name: "Netherlands" },
-          knowsAbout: ["Full-stack development", "Virtual reality", "Game development", "Hardware prototyping", "PCB design", "LED systems"],
+          knowsAbout: [
+            "Custom web development",
+            "Web applications",
+            "Virtual reality",
+            "Game development",
+            "Hardware prototyping",
+            "PCB design",
+            "Embedded systems",
+            "Firmware development",
+            "LED systems",
+          ],
           sameAs: site.sameAs,
         },
         {
           "@type": "ItemList",
           "@id": `${site.url}/#projects`,
           name: "Selected projects by Nick Esselman",
-          numberOfItems: projects.length,
-          itemListElement: projects.map((item, index) => ({
+          numberOfItems: featuredProjects.length,
+          itemListElement: featuredProjects.map((item, index) => ({
             "@type": "ListItem",
             position: index + 1,
-            url: item.links[0]?.href,
+            url: `${site.url}/projects/${item.slug}/`,
             name: item.title,
           })),
         },
-      ];
-
-  return { canonical, title, description, image, graph };
+      ],
+    }));
+  }
+  if (normalized === "/work") {
+    return localize(pageMeta({
+      path: "/work/",
+      title: "Selected Work — Nick Esselman",
+      description: "Selected custom websites, web applications, VR experiences, hardware and game projects by Nick Esselman.",
+    }));
+  }
+  if (normalized === "/about") return localize(pageMeta({ path: "/about/", title: "About Nick Esselman", description: "About Nick Esselman, an independent Dutch full-stack developer and maker." }));
+  if (normalized === "/work-with-me") {
+    return localize(pageMeta({
+      path: "/work-with-me/",
+      title: "Work With Nick — Custom Websites & Technical Projects",
+      description: "Hire Nick Esselman for custom-coded websites, web applications, interactive experiences, hardware prototypes and embedded systems.",
+      graph: [{
+        "@type": "Service",
+        name: "Custom software and hardware development",
+        provider: { "@id": personId },
+        areaServed: "Worldwide",
+        serviceType: ["Custom website development", "Web application development", "Interactive experience development", "Hardware prototyping"],
+      }],
+    }));
+  }
+  const match = normalized.match(/^\/projects\/([^/]+)$/);
+  if (match && projectBySlug[match[1]]) return localize(projectMeta(projectBySlug[match[1]]));
+  return localize(pageMeta({
+    path: "/404.html",
+    title: "Page not found — Nick Esselman",
+    description: "The requested page could not be found.",
+    noindex: true,
+  }));
 }

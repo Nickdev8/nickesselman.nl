@@ -4,6 +4,18 @@ function batteryPercentage(device) {
   return Number.isFinite(device?.batteryPercent) ? `${Math.round(device.batteryPercent)}%` : "—";
 }
 
+export function FitbitSkeleton() {
+  const labels = ["steps", "bpm", "calories", "laptop battery", "phone battery"];
+  return (
+    <section className="signal fitbit-signal" aria-busy="true" aria-label="Loading movement activity">
+      <div className="signal-label"><span>moving</span><span>today</span></div>
+      <div className="fitbit-stats">
+        {labels.map((label) => <div key={label}><i className="skeleton skeleton-stat" /><span>{label}</span></div>)}
+      </div>
+    </section>
+  );
+}
+
 export default function FitbitWidget() {
   const [data, setData] = useState(null);
   const [state, setState] = useState("loading");
@@ -36,6 +48,8 @@ export default function FitbitWidget() {
       window.clearInterval(intervalId);
     };
   }, []);
+
+  if (state === "loading" && !devices) return <FitbitSkeleton />;
 
   return (
     <section className="signal fitbit-signal">

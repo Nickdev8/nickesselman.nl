@@ -1,0 +1,32 @@
+:root {
+  --paper: #f2f2f0;
+  --ink: #050505;
+  --accent: #f15a24;
+  --muted: #62615d;
+  --line: rgba(5, 5, 5, 0.24);
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: auto; background: var(--paper); }
+section[id] { scroll-margin-top: 70px; }
+body { margin: 0; min-width: 320px; background: var(--paper); }
+body, button, input { font: inherit; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { color: inherit; }
+::selection { background: var(--ink); color: var(--paper); }
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

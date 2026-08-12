@@ -10,6 +10,21 @@ function buildWeeks(days = []) {
   return weeks;
 }
 
+export function GithubSkeleton() {
+  return (
+    <div className="github-signal" aria-busy="true" aria-label="Loading GitHub activity">
+      <div>
+        <span>building</span>
+        <i className="skeleton skeleton-contribution-total" />
+      </div>
+      <div className="contribution-grid contribution-skeleton" aria-hidden="true">
+        {Array.from({ length: 38 }, (_, week) => <div key={week}>{Array.from({ length: 7 }, (_, day) => <i key={day} />)}</div>)}
+      </div>
+      <span>GitHub ↗</span>
+    </div>
+  );
+}
+
 export default function GithubWidget() {
   const [calendar, setCalendar] = useState(null);
   const weeks = useMemo(() => buildWeeks(calendar?.days), [calendar]);

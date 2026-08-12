@@ -1,0 +1,10 @@
+.links-section { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, .38fr); gap: 4vw; padding: 44px 3.4vw 72px; background: var(--accent); color: var(--ink); border-block: 1px solid var(--ink); }
+.link-list { border-top: 2px solid var(--ink); }
+.link-list a { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 18px; padding: 10px 0 12px; border-bottom: 1px solid var(--ink); transition: background-color 150ms ease, padding-inline 150ms ease; }
+.link-list a span:first-child { font-size: clamp(32px, 4.2vw, 72px); line-height: 0.95; letter-spacing: -0.06em; }
+.link-list a span:last-child { font-size: 13px; white-space: nowrap; }
+.link-list a:hover, .link-list a:focus-visible { padding-inline: 12px; background: var(--paper); outline: none; }
+.links-contact { display: flex; flex-direction: column; justify-content: space-between; align-self: stretch; padding: 15px; background: var(--ink); color: var(--paper); }
+.links-contact span { font-size: 13px; }
+.links-contact strong { font-size: clamp(25px, 2.7vw, 48px); font-weight: 600; line-height: 0.94; letter-spacing: -0.05em; }
+footer { display: flex; justify-content: space-between; padding: 22px 3.4vw 34px; font-size: 13px; }
