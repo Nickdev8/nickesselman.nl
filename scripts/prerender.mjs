@@ -33,7 +33,7 @@ function head(meta) {
     `<meta property="og:url" content="${meta.canonical}">`,
     `<meta property="og:image" content="${meta.image}">`,
     '<meta property="og:image:width" content="1200">',
-    '<meta property="og:image:height" content="630">',
+    '<meta property="og:image:height" content="1200">',
     '<meta name="twitter:card" content="summary_large_image">',
     `<meta name="twitter:title" content="${escapeAttribute(meta.title)}">`,
     `<meta name="twitter:description" content="${escapeAttribute(meta.description)}">`,

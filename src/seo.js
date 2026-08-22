@@ -44,7 +44,7 @@ function projectMeta(project) {
   };
   return pageMeta({
     path,
-    title: `${project.title} — ${project.category} | Nick Esselman`,
+    title: `Nick Esselman, Project: ${project.title}`,
     description: project.summary,
     graph: [schema],
     noindex: Boolean(project.draft),
