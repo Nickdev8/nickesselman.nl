@@ -63,7 +63,7 @@ export function routeMeta(pathname = "/") {
   if (normalized === "/") {
     return localize(pageMeta({
       path: "/",
-      title: "Nick Esselman — Custom Web Developer, VR & Hardware",
+      title: "Nick Esselman",
       description: site.description,
       graph: [
         {
@@ -124,7 +124,7 @@ export function routeMeta(pathname = "/") {
   if (normalized === "/work") {
     return localize(pageMeta({
       path: "/work/",
-      title: "Selected Work — Nick Esselman",
+      title: "Nick, All Work",
       description: "Selected custom websites, web applications, VR experiences, hardware and game projects by Nick Esselman.",
     }));
   }
@@ -132,7 +132,7 @@ export function routeMeta(pathname = "/") {
   if (normalized === "/work-with-me") {
     return localize(pageMeta({
       path: "/work-with-me/",
-      title: "Work With Nick — Custom Websites & Technical Projects",
+      title: "Nick, Work With Me",
       description: "Hire Nick Esselman for custom-coded websites, web applications, interactive experiences, hardware prototypes and embedded systems.",
       graph: [{
         "@type": "Service",
