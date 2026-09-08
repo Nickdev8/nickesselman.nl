@@ -1,34 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
 import { featuredProjects, projectPath } from "../data/projects";
-import { localizeProject, t, useLocale } from "../locale";
-
-function ResponsiveImage({ media, priority = false }) {
-  const base = media.src.replace(/\.webp$/, "");
-  return (
-    <picture>
-      <source
-        type="image/avif"
-        srcSet={`${base}-320.avif 320w, ${base}-640.avif 640w, ${base}-960.avif 960w`}
-        sizes="(max-width: 680px) calc(100vw - 36px), (max-width: 980px) 48vw, 31vw"
-      />
-      <source
-        type="image/webp"
-        srcSet={`${base}-320.webp 320w, ${base}-640.webp 640w, ${base}-960.webp 960w`}
-        sizes="(max-width: 680px) calc(100vw - 36px), (max-width: 980px) 48vw, 31vw"
-      />
-      <img
-        src={media.src}
-        alt={media.alt}
-        width="960"
-        height="1280"
-        loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : "auto"}
-        decoding="async"
-      />
-    </picture>
-  );
-}
+import { localizeProject, localePath, t, useLocale } from "../locale";
+import ResponsiveImage from "./ProjectImage";
+import { projectContent } from "../data/projectContent";
 
 function VideoSlide({ media, active, enabled }) {
   const videoRef = useRef(null);
@@ -59,7 +34,10 @@ function VideoSlide({ media, active, enabled }) {
 }
 
 function CarouselChevron({ direction }) {
-  const path = direction === "previous" ? "M15.5 4.5 8 12l7.5 7.5" : "M8.5 4.5 16 12l-7.5 7.5";
+  const path =
+    direction === "previous"
+      ? "M15.5 4.5 8 12l7.5 7.5"
+      : "M8.5 4.5 16 12l-7.5 7.5";
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d={path} />
@@ -93,22 +71,33 @@ function ProjectCarousel({ project, index, locale }) {
   const nearViewport = useNearViewport(articleRef);
   project = localizeProject(locale, project);
   const slides = project.media;
-  const primaryLink = project.links[0];
+  const content = projectContent(project.slug, locale);
   const caseStudyPath = projectPath(project, locale);
+  const repository = project.links.find((link) =>
+    link.href.includes("github.com"),
+  );
 
   useEffect(() => {
-    if (!nearViewport || paused || slides.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (
+      !nearViewport ||
+      paused ||
+      slides.length < 2 ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       return undefined;
     }
 
     let intervalId;
-    const startId = window.setTimeout(() => {
-      setSlide((current) => (current + 1) % slides.length);
-      intervalId = window.setInterval(
-        () => setSlide((current) => (current + 1) % slides.length),
-        4700 + ((index * 733) % 1300),
-      );
-    }, 1700 + index * 260);
+    const startId = window.setTimeout(
+      () => {
+        setSlide((current) => (current + 1) % slides.length);
+        intervalId = window.setInterval(
+          () => setSlide((current) => (current + 1) % slides.length),
+          4700 + ((index * 733) % 1300),
+        );
+      },
+      1700 + index * 260,
+    );
 
     return () => {
       window.clearTimeout(startId);
@@ -118,25 +107,32 @@ function ProjectCarousel({ project, index, locale }) {
 
   function move(direction) {
     setPaused(true);
-    setSlide((current) => (current + direction + slides.length) % slides.length);
+    setSlide(
+      (current) => (current + direction + slides.length) % slides.length,
+    );
   }
 
   return (
     <article
       ref={articleRef}
       className="project-carousel"
+      style={{ "--media-fit": content.fit }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false);
+        if (!event.currentTarget.contains(event.relatedTarget))
+          setPaused(false);
       }}
     >
       <div className="carousel-viewport">
         <div className="carousel-media">
           {slides.map((media, mediaIndex) => {
             const distance = Math.abs(mediaIndex - slide);
-            const shouldMount = mediaIndex === 0 || (nearViewport && (distance <= 1 || distance === slides.length - 1));
+            const shouldMount =
+              mediaIndex === 0 ||
+              (nearViewport &&
+                (distance <= 1 || distance === slides.length - 1));
             if (!shouldMount) return null;
             return (
               <div
@@ -145,9 +141,13 @@ function ProjectCarousel({ project, index, locale }) {
                 aria-hidden={slide !== mediaIndex}
               >
                 {media.type === "video" ? (
-                  <VideoSlide media={media} active={slide === mediaIndex} enabled={nearViewport && slide === mediaIndex} />
+                  <VideoSlide
+                    media={media}
+                    active={slide === mediaIndex}
+                    enabled={nearViewport && slide === mediaIndex}
+                  />
                 ) : (
-                  <ResponsiveImage media={media} priority={index === 0 && mediaIndex === 0} />
+                  <ResponsiveImage media={media} />
                 )}
               </div>
             );
@@ -156,10 +156,20 @@ function ProjectCarousel({ project, index, locale }) {
 
         {slides.length > 1 && (
           <>
-            <button type="button" className="carousel-arrow carousel-arrow-left" onClick={() => move(-1)} aria-label={`Previous ${project.title} image`}>
+            <button
+              type="button"
+              className="carousel-arrow carousel-arrow-left"
+              onClick={() => move(-1)}
+              aria-label={`Previous ${project.title} image`}
+            >
               <CarouselChevron direction="previous" />
             </button>
-            <button type="button" className="carousel-arrow carousel-arrow-right" onClick={() => move(1)} aria-label={`Next ${project.title} image`}>
+            <button
+              type="button"
+              className="carousel-arrow carousel-arrow-right"
+              onClick={() => move(1)}
+              aria-label={`Next ${project.title} image`}
+            >
               <CarouselChevron direction="next" />
             </button>
           </>
@@ -167,14 +177,33 @@ function ProjectCarousel({ project, index, locale }) {
         <a
           className="project-card-link"
           href={caseStudyPath}
-          aria-label={locale === "nl" ? `Lees de case van ${project.title}` : `Read the ${project.title} case study`}
+          aria-label={
+            locale === "nl"
+              ? `Lees de case van ${project.title}`
+              : `Read the ${project.title} case study`
+          }
         />
       </div>
 
       <div className="project-caption">
         <div>
-          <h3><a href={caseStudyPath}>{project.title}</a></h3>
-          <p>{project.summary}</p>
+          <h3>
+            <a href={caseStudyPath}>{project.title}</a>
+          </h3>
+          <p>{content.summary}</p>
+          <a className="text-link project-cta" href={caseStudyPath}>
+            {locale === "nl" ? "Bekijk project" : "View project"} ↗
+          </a>
+          {repository ? (
+            <a
+              className="text-link project-repository"
+              href={repository.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {locale === "nl" ? "Repository" : "Repository"} ↗
+            </a>
+          ) : null}
         </div>
       </div>
     </article>
@@ -184,11 +213,25 @@ function ProjectCarousel({ project, index, locale }) {
 export default function ProjectGallery() {
   const locale = useLocale();
   return (
-    <section className="projects-section" id="work" aria-labelledby="work-heading">
-      <h2 className="visually-hidden" id="work-heading">{t(locale, "Selected work")}</h2>
+    <section
+      className="projects-section"
+      id="work"
+      aria-labelledby="work-heading"
+    >
+      <div className="recent-work-row">
+        <h2 className="section-title" id="work-heading">
+          {t(locale, "recent work")}
+        </h2>
+        <a href={localePath("/work/", locale)}>{t(locale, "view all")}</a>
+      </div>
       <div className="project-grid">
-        {featuredProjects.map((project, index) => (
-          <ProjectCarousel project={project} index={index} locale={locale} key={project.slug} />
+        {featuredProjects.slice(0, 3).map((project, index) => (
+          <ProjectCarousel
+            project={project}
+            index={index}
+            locale={locale}
+            key={project.slug}
+          />
         ))}
       </div>
     </section>

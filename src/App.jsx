@@ -8,7 +8,8 @@ import ProjectGallery from "./components/ProjectGallery";
 import SiteHeader from "./components/SiteHeader";
 import SpotifyWidget, { SpotifySkeleton } from "./components/SpotifyWidget";
 import FitbitWidget, { FitbitSkeleton } from "./components/FitbitWidget";
-import { useLocale } from "./locale";
+import { localePath, useLocale } from "./locale";
+import Portrait from "./components/Portrait";
 
 function DeferredWidget({ children, className, fallback }) {
   const ref = useRef(null);
@@ -32,7 +33,11 @@ function DeferredWidget({ children, className, fallback }) {
     return () => observer.disconnect();
   }, []);
 
-  return <div ref={ref} className={className}>{ready ? children : fallback}</div>;
+  return (
+    <div ref={ref} className={className}>
+      {ready ? children : fallback}
+    </div>
+  );
 }
 
 export default function App() {
@@ -43,36 +48,66 @@ export default function App() {
 
       <main>
         <Hero />
-        <ProjectGallery />
-        <Links />
-
         <section className="about-section" id="about">
-          <div className="about-heading">
-            <p className="section-index">{locale === "nl" ? "over mij" : "about"}</p>
-          </div>
+          <Portrait />
           <div className="about-manifesto">
             {locale === "nl" ? (
               <>
-                <p>Ik ben in de kern een full-stack developer en van nature een maker.</p>
-                <p>Ik bouw maatwerkwebsites en webapps, en volg een project daarna waar het heen moet: multiplayer-VR, games, eigen elektronica, LED-installaties en PCB&apos;s.</p>
-                <p>Ik leer door het hele ding te bouwen, in de echte situatie te testen en een versie op te leveren die mensen kunnen gebruiken.</p>
+                <p>
+                  Ik ben een full-stack developer en maker uit Nederland. Ik
+                  bouw websites, webapps en elektronica.
+                </p>
+                <p className="skills-line">
+                  Maatwerkwebsites en webapps · Games en VR · Hardware, firmware
+                  en PCB-ontwerp
+                </p>
               </>
             ) : (
               <>
-                <p>I’m a full-stack developer at heart and a maker by nature.</p>
-                <p>I build custom websites and web applications, then follow projects wherever they need to go: multiplayer VR, games, custom electronics, LED installations and PCBs.</p>
-                <p>I learn by building the whole thing, testing it in the real setting, and shipping a version people can use.</p>
+                <p>
+                  I'm a full-stack developer and maker based in the Netherlands.
+                  I build websites, web apps and electronics.
+                </p>
+                <p className="skills-line">
+                  Custom websites and web apps · Games and VR · Hardware,
+                  firmware and PCB design
+                </p>
               </>
             )}
+            <a className="text-link" href={localePath("/about/", locale)}>
+              {locale === "nl" ? "Over mij" : "About me"} ↗
+            </a>
           </div>
         </section>
 
+        <ProjectGallery />
+
+        <Links />
+
         <section className="now-section" id="now" data-nosnippet>
+          <h2 className="section-title">
+            {locale === "nl" ? "Wat me nu bezighoudt" : "What I'm up to"}
+          </h2>
           <div className="live-grid">
-            <DeferredWidget className="deferred-signal" fallback={<SpotifySkeleton />}><SpotifyWidget /></DeferredWidget>
-            <DeferredWidget className="deferred-signal" fallback={<FitbitSkeleton />}><FitbitWidget /></DeferredWidget>
+            <DeferredWidget
+              className="deferred-signal"
+              fallback={<SpotifySkeleton />}
+            >
+              <SpotifyWidget />
+            </DeferredWidget>
+            <DeferredWidget
+              className="deferred-signal"
+              fallback={<FitbitSkeleton />}
+            >
+              <FitbitWidget />
+            </DeferredWidget>
           </div>
-          <DeferredWidget className="deferred-github" fallback={<GithubSkeleton />}><GithubWidget /></DeferredWidget>
+          <DeferredWidget
+            className="deferred-github"
+            fallback={<GithubSkeleton />}
+          >
+            <GithubWidget />
+          </DeferredWidget>
         </section>
       </main>
       <Footer />

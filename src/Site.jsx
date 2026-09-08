@@ -19,10 +19,22 @@ export default function Site({ url = "/" }) {
       {pathname === "/about" ? <AboutPage /> : null}
       {pathname === "/work" ? <WorkPage /> : null}
       {pathname === "/work-with-me" ? <WorkWithMePage /> : null}
-      {pathname.startsWith("/projects/") && projectBySlug[pathname.slice("/projects/".length)] ? (
-        <ProjectPage project={projectBySlug[pathname.slice("/projects/".length)]} />
+      {pathname.startsWith("/projects/") &&
+      projectBySlug[pathname.slice("/projects/".length)] ? (
+        <ProjectPage
+          project={projectBySlug[pathname.slice("/projects/".length)]}
+        />
       ) : null}
-      {pathname !== "/" && pathname !== "/about" && pathname !== "/work" && pathname !== "/work-with-me" && !(pathname.startsWith("/projects/") && projectBySlug[pathname.slice("/projects/".length)]) ? <NotFoundPage /> : null}
+      {pathname !== "/" &&
+      pathname !== "/about" &&
+      pathname !== "/work" &&
+      pathname !== "/work-with-me" &&
+      !(
+        pathname.startsWith("/projects/") &&
+        projectBySlug[pathname.slice("/projects/".length)]
+      ) ? (
+        <NotFoundPage />
+      ) : null}
       <PrivacyAnalytics />
     </LocaleProvider>
   );

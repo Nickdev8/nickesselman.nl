@@ -21,7 +21,9 @@ export default function PortfolioPage() {
           <div className="border-b border-[var(--color-border)] px-6 py-5 sm:px-8">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-accent)]">Portfolio</p>
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-accent)]">
+                  Portfolio
+                </p>
                 <h1 className="mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">
                   ME!
                 </h1>
@@ -44,13 +46,16 @@ export default function PortfolioPage() {
 
             <aside className="space-y-4 rounded-[1rem] bg-[var(--color-surface-cool-strong)] p-5">
               <div>
-                <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-text-muted)]">Projects</p>
+                <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                  Projects
+                </p>
                 <h2 className="mt-2 text-2xl font-semibold tracking-tight">
                   This is a list of some of my projects.
                 </h2>
               </div>
               <p className="text-sm leading-7 text-[var(--color-text-secondary)]">
-                all projects from hardware to software can be found here. in general just stuff im proud of.
+                all projects from hardware to software can be found here. in
+                general just stuff im proud of.
               </p>
               <a
                 href="https://projects.nickesselman.nl"

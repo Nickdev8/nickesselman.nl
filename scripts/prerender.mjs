@@ -5,10 +5,15 @@ import { routes } from "../src/seo.js";
 
 const root = resolve(import.meta.dirname, "..");
 const template = await readFile(resolve(root, "dist/index.html"), "utf8");
-const { render } = await import(pathToFileURL(resolve(root, "dist-ssr/entry-server.js")));
+const { render } = await import(
+  pathToFileURL(resolve(root, "dist-ssr/entry-server.js"))
+);
 
 function escapeAttribute(value) {
-  return value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("<", "&lt;");
 }
 
 function safeJson(value) {
@@ -16,8 +21,15 @@ function safeJson(value) {
 }
 
 function head(meta) {
-  const english = meta.locale === "nl" ? meta.canonical.replace("/nl/", "/") : meta.canonical;
-  const dutch = meta.locale === "nl" ? meta.canonical : meta.canonical.replace("https://nickesselman.nl/", "https://nickesselman.nl/nl/");
+  const english =
+    meta.locale === "nl" ? meta.canonical.replace("/nl/", "/") : meta.canonical;
+  const dutch =
+    meta.locale === "nl"
+      ? meta.canonical
+      : meta.canonical.replace(
+          "https://nickesselman.nl/",
+          "https://nickesselman.nl/nl/",
+        );
   return [
     `<title>${meta.title}</title>`,
     `<meta name="description" content="${escapeAttribute(meta.description)}">`,
@@ -48,7 +60,10 @@ for (const route of routes) {
     .replace('<html lang="en">', `<html lang="${meta.locale}">`)
     .replace("<!--seo-head-->", head(meta))
     .replace('<div id="root"></div>', `<div id="root">${html}</div>`);
-  const target = route === "/" ? resolve(root, "dist/index.html") : resolve(root, `dist${route}index.html`);
+  const target =
+    route === "/"
+      ? resolve(root, "dist/index.html")
+      : resolve(root, `dist${route}index.html`);
   await mkdir(dirname(target), { recursive: true });
   await writeFile(target, output);
 }

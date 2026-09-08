@@ -1,110 +1,147 @@
 import Footer from "./Footer";
-import { projectPath } from "../data/projects";
 import SiteHeader from "./SiteHeader";
+import ProjectImage from "./ProjectImage";
+import { projectContent } from "../data/projectContent";
 import { localizeProject, localePath, t, useLocale } from "../locale";
 
-function Media({ media, project, priority }) {
+function Media({ media, priority = false }) {
   if (media.type === "video") {
     return (
       <video
         className="case-media"
         poster={media.poster}
         aria-label={media.label}
-        autoPlay
+        controls
         muted
-        loop
         playsInline
-        preload="metadata"
-        disablePictureInPicture
-        controlsList="nodownload noplaybackrate noremoteplayback"
+        preload="none"
       >
         <source src={media.src} type="video/mp4" />
       </video>
     );
   }
-
-  const base = media.src.replace(/\.webp$/, "");
   return (
-    <picture>
-      <source
-        type="image/avif"
-        srcSet={`${base}-320.avif 320w, ${base}-640.avif 640w, ${base}-960.avif 960w`}
-        sizes="(max-width: 700px) 100vw, 50vw"
-      />
-      <source
-        type="image/webp"
-        srcSet={`${base}-320.webp 320w, ${base}-640.webp 640w, ${base}-960.webp 960w`}
-        sizes="(max-width: 700px) 100vw, 50vw"
-      />
-      <img
-        className="case-media"
-        src={media.src}
-        alt={media.alt}
-        width="960"
-        height="1280"
-        loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : "auto"}
-        decoding="async"
-      />
-    </picture>
+    <ProjectImage
+      media={media}
+      priority={priority}
+      className="case-media"
+      sizes="(max-width: 680px) min(90vw, 420px), min(40vw, 420px)"
+    />
+  );
+}
+
+function ProjectFigure({ media, priority, className = "" }) {
+  return (
+    <figure className={`project-figure ${className}`}>
+      <Media media={media} priority={priority} />
+      <figcaption>{media.alt ?? media.label}</figcaption>
+    </figure>
   );
 }
 
 export default function ProjectPage({ project }) {
   const locale = useLocale();
   project = localizeProject(locale, project);
-  const hasMedia = project.media?.length > 0;
+  const content = projectContent(project.slug, locale);
+  const primary = project.links[0];
+  const primaryLabel = primary.href.includes("itch.io")
+    ? locale === "nl"
+      ? "Speel het spel"
+      : "Play game"
+    : primary.href.includes("github.com")
+      ? locale === "nl"
+        ? "Bekijk de code"
+        : "View source"
+      : locale === "nl"
+        ? "Bezoek website"
+        : "Visit website";
+
   return (
-    <div className="case-shell">
+    <div className="case-shell" style={{ "--media-fit": content.fit }}>
       <SiteHeader />
       <main>
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <a href={localePath("/", locale)}>Nick Esselman</a><span aria-hidden="true">/</span><span>{project.title}</span>
+        <nav
+          className="breadcrumbs"
+          aria-label={locale === "nl" ? "Kruimelpad" : "Breadcrumb"}
+        >
+          <a href={localePath("/work/", locale)}>
+            {locale === "nl" ? "Werk" : "Work"}
+          </a>
+          <span aria-hidden="true">/</span>
+          <span>{project.title}</span>
         </nav>
-        <section className="case-intro">
-          <div>
-            <p>{project.category} — {project.status}</p>
+        <section className="case-overview">
+          <div className="case-intro">
+            <p>
+              {project.category} · {project.status}
+            </p>
             <h1>{project.title}</h1>
+            <p className="case-summary">{content.summary}</p>
+            <a
+              className="text-link case-primary"
+              href={primary.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {primaryLabel} ↗
+            </a>
           </div>
-          <p className="case-summary">{project.summary}</p>
+          {project.media?.[0] && (
+            <ProjectFigure
+              media={project.media[0]}
+              priority
+              className="case-lead"
+            />
+          )}
         </section>
-
-        {hasMedia ? (
-          <figure className="case-lead">
-            <Media media={project.media[0]} project={project} priority />
-            <figcaption>{project.media[0].alt ?? project.media[0].label}</figcaption>
-          </figure>
-        ) : null}
-
-        <section className="case-facts" aria-label="Project facts">
-          <div><h2>{t(locale, "Role")}</h2><p>{project.role}</p></div>
-          <div><h2>{t(locale, "Tools")}</h2><p>{project.technologies.join(", ")}</p></div>
-          <div><h2>{t(locale, "Status")}</h2><p>{project.status}</p></div>
-        </section>
-
-        <div className="case-story">
-          <section><h2>{t(locale, "The challenge")}</h2><p>{project.challenge}</p></section>
-          <section><h2>{t(locale, "The approach")}</h2><p>{project.approach}</p></section>
-          <section><h2>{t(locale, "The result")}</h2><p>{project.outcome}</p></section>
-        </div>
-
-        {hasMedia && project.media.length > 1 && (
-          <section className="case-gallery" aria-label={`${project.title} project media`}>
-            {project.media.slice(1).map((media, index) => (
-              <figure key={media.src}>
-                <Media media={media} project={project} />
-                <figcaption>{media.alt ?? media.label}</figcaption>
-              </figure>
-            ))}
-          </section>
-        )}
-
-        <section className="case-links">
-          <h2>{t(locale, "Continue with")} {project.title}</h2>
+        <section
+          className="case-facts"
+          aria-label={locale === "nl" ? "Projectgegevens" : "Project facts"}
+        >
           <div>
-            {project.links.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label} ↗</a>)}
-            <a href={localePath("/work/", locale)}>{t(locale, "More projects")}</a>
+            <h2>{t(locale, "Role")}</h2>
+            <p>{project.role}</p>
           </div>
+          <div>
+            <h2>Stack</h2>
+            <p>{project.technologies.join(", ")}</p>
+          </div>
+          <div>
+            <h2>{t(locale, "Status")}</h2>
+            <p>{project.status}</p>
+          </div>
+        </section>
+        <div className="case-story">
+          {content.sections.map((section) => (
+            <section
+              key={section.title}
+              className={section.mediaIndex !== undefined ? "has-media" : ""}
+            >
+              <div>
+                <h2>{section.title}</h2>
+                <p>{section.text}</p>
+              </div>
+              {section.mediaIndex !== undefined && (
+                <ProjectFigure media={project.media[section.mediaIndex]} />
+              )}
+            </section>
+          ))}
+          {content.extraMedia.map((index) => (
+            <ProjectFigure key={index} media={project.media[index]} />
+          ))}
+        </div>
+        <section className="case-links">
+          <a
+            className="text-link"
+            href={primary.href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {primaryLabel} ↗
+          </a>
+          <a className="text-link" href={localePath("/work/", locale)}>
+            {t(locale, "More projects")} ↗
+          </a>
         </section>
       </main>
       <Footer />

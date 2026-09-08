@@ -1,16 +1,36 @@
 import { useEffect, useState } from "react";
 
 function batteryPercentage(device) {
-  return Number.isFinite(device?.batteryPercent) ? `${Math.round(device.batteryPercent)}%` : "—";
+  return Number.isFinite(device?.batteryPercent)
+    ? `${Math.round(device.batteryPercent)}%`
+    : "—";
 }
 
 export function FitbitSkeleton() {
-  const labels = ["steps", "bpm", "calories", "laptop battery", "phone battery"];
+  const labels = [
+    "steps",
+    "bpm",
+    "calories",
+    "laptop battery",
+    "phone battery",
+  ];
   return (
-    <section className="signal fitbit-signal" aria-busy="true" aria-label="Loading movement activity">
-      <div className="signal-label"><span>moving</span><span>today</span></div>
+    <section
+      className="signal fitbit-signal"
+      aria-busy="true"
+      aria-label="Loading movement activity"
+    >
+      <div className="signal-label">
+        <span>moving</span>
+        <span>today</span>
+      </div>
       <div className="fitbit-stats">
-        {labels.map((label) => <div key={label}><i className="skeleton skeleton-stat" /><span>{label}</span></div>)}
+        {labels.map((label) => (
+          <div key={label}>
+            <i className="skeleton skeleton-stat" />
+            <span>{label}</span>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -24,10 +44,22 @@ export default function FitbitWidget() {
   useEffect(() => {
     let cancelled = false;
     fetch("https://api.nickesselman.nl/fitbit")
-      .then((response) => { if (!response.ok) throw new Error(); return response.json(); })
-      .then((result) => { if (!cancelled) { setData(result); setState("ready"); } })
-      .catch(() => { if (!cancelled) setState("error"); });
-    return () => { cancelled = true; };
+      .then((response) => {
+        if (!response.ok) throw new Error();
+        return response.json();
+      })
+      .then((result) => {
+        if (!cancelled) {
+          setData(result);
+          setState("ready");
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setState("error");
+      });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
@@ -35,9 +67,16 @@ export default function FitbitWidget() {
 
     function loadDevices() {
       fetch("https://api.nickesselman.nl/device-state")
-        .then((response) => { if (!response.ok) throw new Error(); return response.json(); })
-        .then((result) => { if (!cancelled) setDevices(result); })
-        .catch(() => { if (!cancelled) setDevices(null); });
+        .then((response) => {
+          if (!response.ok) throw new Error();
+          return response.json();
+        })
+        .then((result) => {
+          if (!cancelled) setDevices(result);
+        })
+        .catch(() => {
+          if (!cancelled) setDevices(null);
+        });
     }
 
     loadDevices();
@@ -53,13 +92,35 @@ export default function FitbitWidget() {
 
   return (
     <section className="signal fitbit-signal">
-      <div className="signal-label"><span>moving</span><span>today</span></div>
+      <div className="signal-label">
+        <span>moving</span>
+        <span>today</span>
+      </div>
       <div className="fitbit-stats" aria-live="polite">
-        <div><strong>{state === "ready" ? data?.steps ?? "—" : "—"}</strong><span>steps</span></div>
-        <div><strong>{state === "ready" ? data?.heartRateBpm ?? "—" : "—"}</strong><span>bpm</span></div>
-        <div><strong>{state === "ready" ? data?.caloriesOut ?? "—" : "—"}</strong><span>calories</span></div>
-        <div><strong>{batteryPercentage(devices?.laptop)}</strong><span>laptop battery</span></div>
-        <div><strong>{batteryPercentage(devices?.phone)}</strong><span>phone battery</span></div>
+        <div>
+          <strong>{state === "ready" ? (data?.steps ?? "—") : "—"}</strong>
+          <span>steps</span>
+        </div>
+        <div>
+          <strong>
+            {state === "ready" ? (data?.heartRateBpm ?? "—") : "—"}
+          </strong>
+          <span>bpm</span>
+        </div>
+        <div>
+          <strong>
+            {state === "ready" ? (data?.caloriesOut ?? "—") : "—"}
+          </strong>
+          <span>calories</span>
+        </div>
+        <div>
+          <strong>{batteryPercentage(devices?.laptop)}</strong>
+          <span>laptop battery</span>
+        </div>
+        <div>
+          <strong>{batteryPercentage(devices?.phone)}</strong>
+          <span>phone battery</span>
+        </div>
       </div>
     </section>
   );
