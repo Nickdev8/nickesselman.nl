@@ -36,7 +36,14 @@ function absolute(path) {
   return path.startsWith("http") ? path : `${site.url}${path}`;
 }
 
-function pageMeta({ path, title, description, graph = [], noindex = false }) {
+function pageMeta({
+  path,
+  title,
+  description,
+  graph = [],
+  noindex = false,
+  noimageindex = false,
+}) {
   return {
     canonical: `${site.url}${path}`,
     title,
@@ -44,6 +51,7 @@ function pageMeta({ path, title, description, graph = [], noindex = false }) {
     image: absolute(site.image),
     graph,
     noindex,
+    noimageindex,
   };
 }
 
@@ -66,6 +74,7 @@ function projectMeta(project) {
     description: project.summary,
     graph: [schema],
     noindex: Boolean(project.draft),
+    noimageindex: true,
   });
 }
 

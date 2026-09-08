@@ -21,6 +21,11 @@ function safeJson(value) {
 }
 
 function head(meta) {
+  const robots = [
+    meta.noindex ? "noindex" : "index",
+    "follow",
+    meta.noimageindex ? "noimageindex" : "max-image-preview:large",
+  ].join(",");
   const english =
     meta.locale === "nl" ? meta.canonical.replace("/nl/", "/") : meta.canonical;
   const dutch =
@@ -37,7 +42,7 @@ function head(meta) {
     `<link rel="alternate" hreflang="en" href="${english}">`,
     `<link rel="alternate" hreflang="nl" href="${dutch}">`,
     `<link rel="alternate" hreflang="x-default" href="${english}">`,
-    `<meta name="robots" content="${meta.noindex ? "noindex,follow" : "index,follow"},max-image-preview:large">`,
+    `<meta name="robots" content="${robots}">`,
     '<meta property="og:type" content="website">',
     `<meta property="og:site_name" content="Nick Esselman">`,
     `<meta property="og:title" content="${escapeAttribute(meta.title)}">`,
