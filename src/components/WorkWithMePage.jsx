@@ -24,11 +24,23 @@ export default function WorkWithMePage() {
       <SiteHeader />
       <main>
         <section className="work-intro work-with-me-intro">
-          <h1>{locale === "nl" ? "Ik maak dingen die werken." : "I make things that work."}</h1>
+          <h1>
+            {locale === "nl"
+              ? "Ik maak dingen die werken."
+              : "I make things that work."}
+          </h1>
         </section>
         <section className="work-with-me-note">
-          <p>{locale === "nl" ? "Ik werk het liefst aan projecten waar een idee, een echte gebruiker en een technisch probleem samenkomen. Soms is dat een kleine website; soms een fysieke installatie, een game of een systeem dat alles verbindt." : "I work best on projects where an idea, a real user and a technical problem meet. Sometimes that is a small website; sometimes a physical installation, a game or a system that ties everything together."}</p>
-          <p>{locale === "nl" ? "Beschikbaar voor lokaal klein werk, remote samenwerking en internationale projecten." : "Available for local small jobs, remote collaboration and international projects."}</p>
+          <p>
+            {locale === "nl"
+              ? "Ik werk het liefst aan projecten waar een idee, een echte gebruiker en een technisch probleem samenkomen. Soms is dat een kleine website; soms een fysieke installatie, een game of een systeem dat alles verbindt."
+              : "I work best on projects where an idea, a real user and a technical problem meet. Sometimes that is a small website; sometimes a physical installation, a game or a system that ties everything together."}
+          </p>
+          <p>
+            {locale === "nl"
+              ? "Beschikbaar voor lokaal klein werk, remote samenwerking en internationale projecten."
+              : "Available for local small jobs, remote collaboration and international projects."}
+          </p>
         </section>
         <section className="capability-list" aria-label="Capabilities">
           {capabilities.map(([title, description]) => (
@@ -39,7 +51,11 @@ export default function WorkWithMePage() {
           ))}
         </section>
         <section className="work-contact">
-          <a href={`https://contact.nickesselman.nl${locale === "nl" ? "/nl/" : "/"}`}>Contact Nick Esselman ↗</a>
+          <a
+            href={`https://contact.nickesselman.nl${locale === "nl" ? "/nl/" : "/"}`}
+          >
+            Contact Nick Esselman ↗
+          </a>
         </section>
       </main>
       <Footer />

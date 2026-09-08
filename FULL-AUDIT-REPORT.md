@@ -8,12 +8,12 @@ Intended canonical URL: `https://nickesselman.nl/`
 
 The source-controlled implementation is complete. A final local production build measured:
 
-| Lighthouse category | Final |
-|---|---:|
-| SEO | **100** |
-| Accessibility | **100** |
-| Best practices | **100** |
-| Performance | **99** |
+| Lighthouse category |   Final |
+| ------------------- | ------: |
+| SEO                 | **100** |
+| Accessibility       | **100** |
+| Best practices      | **100** |
+| Performance         |  **99** |
 
 Key mobile lab metrics:
 
@@ -52,16 +52,16 @@ The fastest path to a much stronger result is:
 
 ## Scores
 
-| Category | Weight | Score | Weighted |
-|---|---:|---:|---:|
-| Technical SEO | 22% | 47 | 10.34 |
-| Content quality | 23% | 57 | 13.11 |
-| On-page SEO | 20% | 48 | 9.60 |
-| Schema / structured data | 10% | 0 | 0.00 |
-| Performance / CWV | 10% | 82 | 8.20 |
-| AI search readiness | 10% | 35 | 3.50 |
-| Images | 5% | 66 | 3.30 |
-| **Overall** | **100%** |  | **48.05 → 48** |
+| Category                 |   Weight | Score |       Weighted |
+| ------------------------ | -------: | ----: | -------------: |
+| Technical SEO            |      22% |    47 |          10.34 |
+| Content quality          |      23% |    57 |          13.11 |
+| On-page SEO              |      20% |    48 |           9.60 |
+| Schema / structured data |      10% |     0 |           0.00 |
+| Performance / CWV        |      10% |    82 |           8.20 |
+| AI search readiness      |      10% |    35 |           3.50 |
+| Images                   |       5% |    66 |           3.30 |
+| **Overall**              | **100%** |       | **48.05 → 48** |
 
 Additional diagnostics:
 

@@ -10,13 +10,22 @@ function formatDuration(ms = 0) {
 
 export function SpotifySkeleton() {
   return (
-    <section className="signal spotify-signal" aria-busy="true" aria-label="Loading listening activity">
-      <div className="signal-label"><span>listening</span><i className="skeleton skeleton-status" /></div>
+    <section
+      className="signal spotify-signal"
+      aria-busy="true"
+      aria-label="Loading listening activity"
+    >
+      <div className="signal-label">
+        <span>listening</span>
+        <i className="skeleton skeleton-status" />
+      </div>
       <i className="skeleton skeleton-art" />
       <div className="signal-body skeleton-signal-body">
         <i className="skeleton skeleton-line skeleton-line-short" />
         <i className="skeleton skeleton-line skeleton-track-title" />
-        <div className="track-line skeleton"><i /></div>
+        <div className="track-line skeleton">
+          <i />
+        </div>
         <i className="skeleton skeleton-line skeleton-time" />
       </div>
     </section>
@@ -47,7 +56,10 @@ export default function SpotifyWidget() {
     }
     load();
     const refresh = window.setInterval(load, 30000);
-    return () => { cancelled = true; window.clearInterval(refresh); };
+    return () => {
+      cancelled = true;
+      window.clearInterval(refresh);
+    };
   }, []);
 
   useEffect(() => {
@@ -58,7 +70,8 @@ export default function SpotifyWidget() {
   const track = spotify?.item;
   const duration = track?.duration_ms ?? 0;
   const progress = useMemo(() => {
-    const elapsed = spotify?.is_playing && lastFetchedAt ? now - lastFetchedAt : 0;
+    const elapsed =
+      spotify?.is_playing && lastFetchedAt ? now - lastFetchedAt : 0;
     return Math.min((spotify?.progress_ms ?? 0) + elapsed, duration);
   }, [duration, lastFetchedAt, now, spotify?.is_playing, spotify?.progress_ms]);
   const art = track?.album?.images?.[0]?.url || vinylRecord;
@@ -67,18 +80,38 @@ export default function SpotifyWidget() {
 
   return (
     <section className="signal spotify-signal">
-      <div className="signal-label"><span>listening</span><span>{spotify?.is_playing ? "live" : "paused"}</span></div>
+      <div className="signal-label">
+        <span>listening</span>
+        <span>{spotify?.is_playing ? "live" : "paused"}</span>
+      </div>
       {state === "ready" && track ? (
         <>
-          <img src={art} alt={`Album art for ${track.name}`} width="640" height="640" loading="lazy" decoding="async" />
+          <img
+            src={art}
+            alt={`Album art for ${track.name}`}
+            width="640"
+            height="640"
+            loading="lazy"
+            decoding="async"
+          />
           <div className="signal-body">
             <p>{track.artists?.map((artist) => artist.name).join(", ")}</p>
             <h3>{track.name}</h3>
-            <div className="track-line"><i style={{ width: `${duration ? (progress / duration) * 100 : 0}%` }} /></div>
-            <p className="track-time">{formatDuration(progress)} / {formatDuration(duration)}</p>
+            <div className="track-line">
+              <i
+                style={{
+                  width: `${duration ? (progress / duration) * 100 : 0}%`,
+                }}
+              />
+            </div>
+            <p className="track-time">
+              {formatDuration(progress)} / {formatDuration(duration)}
+            </p>
           </div>
         </>
-      ) : <p className="signal-message">Spotify is being quiet right now.</p>}
+      ) : (
+        <p className="signal-message">Spotify is being quiet right now.</p>
+      )}
     </section>
   );
 }

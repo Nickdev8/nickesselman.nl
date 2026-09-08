@@ -10,15 +10,41 @@
   font-synthesis: none;
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: auto; background: var(--paper); }
-section[id] { scroll-margin-top: 70px; }
-body { margin: 0; min-width: 320px; background: var(--paper); }
-body, button, input { font: inherit; }
-a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
-button { color: inherit; }
-::selection { background: var(--ink); color: var(--paper); }
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: auto;
+  background: var(--paper);
+}
+section[id] {
+  scroll-margin-top: 70px;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--paper);
+}
+body,
+button,
+input {
+  font: inherit;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+button {
+  color: inherit;
+}
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
 .visually-hidden {
   position: absolute;
   width: 1px;

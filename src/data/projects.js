@@ -26,7 +26,12 @@ export const projects = [
       "Room-scale multiplayer games with a server-authoritative LAN setup and a spectator screen for everyone outside the headset.",
     role: "Design, development and hardware integration",
     technologies: ["VR", "LAN multiplayer", "Blender", "3D avatars"],
-    links: [{ label: "Source repository", href: "https://github.com/Nickdev8/PartyVR" }],
+    links: [
+      {
+        label: "Source repository",
+        href: "https://github.com/Nickdev8/PartyVR",
+      },
+    ],
     challenge:
       "A room-scale party game has to work for more people than the player wearing the headset. The game session, host controls and spectator view all need to stay understandable while several devices exchange state over a local network.",
     approach:
@@ -34,10 +39,26 @@ export const projects = [
     outcome:
       "PartyVR is an active platform for experimenting with social VR, local networking and the practical work around running a shared physical game space. The current project media shows the host panel, multi-client synchronization, device logs and avatar production instead of a staged marketing render.",
     media: [
-      { type: "image", src: "/projects/partyvr/development.webp", alt: "PartyVR rendering and device logs during development" },
-      { type: "image", src: "/projects/partyvr/host-panel.webp", alt: "PartyVR host panel for rounds, players, and hardware" },
-      { type: "image", src: "/projects/partyvr/multiplayer-debug.webp", alt: "PartyVR multi-client avatar and synchronization test" },
-      { type: "image", src: "/projects/partyvr/avatar-workshop.webp", alt: "PartyVR avatars and cosmetics being developed in Blender" },
+      {
+        type: "image",
+        src: "/projects/partyvr/development.webp",
+        alt: "PartyVR rendering and device logs during development",
+      },
+      {
+        type: "image",
+        src: "/projects/partyvr/host-panel.webp",
+        alt: "PartyVR host panel for rounds, players, and hardware",
+      },
+      {
+        type: "image",
+        src: "/projects/partyvr/multiplayer-debug.webp",
+        alt: "PartyVR multi-client avatar and synchronization test",
+      },
+      {
+        type: "image",
+        src: "/projects/partyvr/avatar-workshop.webp",
+        alt: "PartyVR avatars and cosmetics being developed in Blender",
+      },
     ],
   },
   {
@@ -49,7 +70,12 @@ export const projects = [
       "A custom RP2040 board for driving chains of LED panels and large xLights-style installations.",
     role: "Electronics, PCB design and firmware",
     technologies: ["RP2040", "PCB design", "Addressable LEDs", "xLights"],
-    links: [{ label: "Source repository", href: "https://github.com/Nickdev8/LedScreen" }],
+    links: [
+      {
+        label: "Source repository",
+        href: "https://github.com/Nickdev8/LedScreen",
+      },
+    ],
     challenge:
       "Large LED installations quickly turn into a wiring, power and repeatability problem. A useful controller has to move beyond a one-off breadboard and make it practical to connect, test and reproduce panel chains.",
     approach:
@@ -57,10 +83,26 @@ export const projects = [
     outcome:
       "The project has reached a PCB-ready stage and has already driven assembled displays. The photographs document the real build sequence: hand-wired prototype, multi-panel floor test, development setup and an illuminated assembled panel.",
     media: [
-      { type: "image", src: "/projects/lamp/bench-prototype.webp", alt: "LAMP LED panel and controller prototype on a workbench" },
-      { type: "image", src: "/projects/lamp/floor-test.webp", alt: "Multiple LAMP LED panels connected for a floor test" },
-      { type: "image", src: "/projects/lamp/installed-display.webp", alt: "LAMP display running behind a development laptop" },
-      { type: "image", src: "/projects/lamp/assembled-panel.webp", alt: "Assembled LAMP panel showing multicolored LEDs" },
+      {
+        type: "image",
+        src: "/projects/lamp/bench-prototype.webp",
+        alt: "LAMP LED panel and controller prototype on a workbench",
+      },
+      {
+        type: "image",
+        src: "/projects/lamp/floor-test.webp",
+        alt: "Multiple LAMP LED panels connected for a floor test",
+      },
+      {
+        type: "image",
+        src: "/projects/lamp/installed-display.webp",
+        alt: "LAMP display running behind a development laptop",
+      },
+      {
+        type: "image",
+        src: "/projects/lamp/assembled-panel.webp",
+        alt: "Assembled LAMP panel showing multicolored LEDs",
+      },
     ],
   },
   {
@@ -71,8 +113,18 @@ export const projects = [
     summary:
       "A 4×4 macropad designed from PCB to case, including firmware, switches and soldering.",
     role: "Product design, electronics and firmware",
-    technologies: ["Custom PCB", "Firmware", "Mechanical switches", "3D enclosure"],
-    links: [{ label: "Source repository", href: "https://github.com/Nickdev8/macropad" }],
+    technologies: [
+      "Custom PCB",
+      "Firmware",
+      "Mechanical switches",
+      "3D enclosure",
+    ],
+    links: [
+      {
+        label: "Source repository",
+        href: "https://github.com/Nickdev8/macropad",
+      },
+    ],
     challenge:
       "The goal was to make a compact input device as a complete object, not just wire switches to a development board. The electrical layout, firmware, case and physical switch spacing all had to agree.",
     approach:
@@ -80,9 +132,21 @@ export const projects = [
     outcome:
       "MYMacropad is a finished, working piece of hardware. The build shows the complete progression from bare custom board to assembled electronics and the final blue enclosure with coral keycaps.",
     media: [
-      { type: "image", src: "/projects/mymacropad/finished-case.webp", alt: "Finished MYMacropad with coral keycaps and blue enclosure" },
-      { type: "image", src: "/projects/mymacropad/pcb-back.webp", alt: "Back of the MYMacropad PCB with custom artwork" },
-      { type: "image", src: "/projects/mymacropad/assembled-board.webp", alt: "Assembled MYMacropad circuit board held in one hand" },
+      {
+        type: "image",
+        src: "/projects/mymacropad/finished-case.webp",
+        alt: "Finished MYMacropad with coral keycaps and blue enclosure",
+      },
+      {
+        type: "image",
+        src: "/projects/mymacropad/pcb-back.webp",
+        alt: "Back of the MYMacropad PCB with custom artwork",
+      },
+      {
+        type: "image",
+        src: "/projects/mymacropad/assembled-board.webp",
+        alt: "Assembled MYMacropad circuit board held in one hand",
+      },
     ],
   },
   {
@@ -93,8 +157,18 @@ export const projects = [
     summary:
       "Kennemer is a local-first control surface for running a room full of Shelly-powered devices without relying on the cloud.",
     role: "Interface, local networking and hardware integration",
-    technologies: ["Shelly", "Local network", "Touch interface", "Relay control"],
-    links: [{ label: "Source repository", href: "https://github.com/Nickdev8/kennemer" }],
+    technologies: [
+      "Shelly",
+      "Local network",
+      "Touch interface",
+      "Relay control",
+    ],
+    links: [
+      {
+        label: "Source repository",
+        href: "https://github.com/Nickdev8/kennemer",
+      },
+    ],
     challenge:
       "Event controls need to remain quick and dependable even when internet access is poor. Managing many connected relays through separate apps or a remote cloud service adds unnecessary delay and uncertainty.",
     approach:
@@ -102,8 +176,16 @@ export const projects = [
     outcome:
       "Kennemer provides one focused surface for operating the room without making the cloud part of the critical path. The project pairs a working control interface with the real relay hardware it operates.",
     media: [
-      { type: "image", src: "/projects/kennemer/control-interface.webp", alt: "Shelly Control Board interface running on a portable display" },
-      { type: "image", src: "/projects/kennemer/shelly-hardware.webp", alt: "Hand-wired Shelly relay and button control board" },
+      {
+        type: "image",
+        src: "/projects/kennemer/control-interface.webp",
+        alt: "Shelly Control Board interface running on a portable display",
+      },
+      {
+        type: "image",
+        src: "/projects/kennemer/shelly-hardware.webp",
+        alt: "Hand-wired Shelly relay and button control board",
+      },
     ],
   },
   {
@@ -123,8 +205,12 @@ export const projects = [
     outcome:
       "Monkey Swing became my first finished and published Unity game. More importantly, it established a practical lesson I still use: a small shipped project teaches more than an endlessly expanding prototype.",
     media: [
-      { type: "image", src: "/projects/monkey-swing/gameplay.webp", alt: "Monkey Swing gameplay in a pixel-art forest" },
-      { type: "video", src: "/projects/monkey-swing/gameplay.mp4", poster: "/projects/monkey-swing/gameplay.webp", label: "Monkey Swing gameplay video" },
+      {
+        type: "video",
+        src: "/projects/monkey-swing/gameplay.mp4",
+        poster: "/projects/monkey-swing/gameplay.webp",
+        label: "Monkey Swing gameplay video",
+      },
     ],
   },
   {
@@ -136,7 +222,9 @@ export const projects = [
       "A Godot island-defence prototype where small bots do the fighting and birds remain deeply annoying.",
     role: "Solo game development",
     technologies: ["Godot", "Game AI", "3D gameplay", "Browser build"],
-    links: [{ label: "Play the game", href: "https://nikkcc.itch.io/blipstorm" }],
+    links: [
+      { label: "Play the game", href: "https://nikkcc.itch.io/blipstorm" },
+    ],
     challenge:
       "The game needed to make a small island feel busy and readable while autonomous units defend it. The player should understand what the bots are doing without controlling every individual action.",
     approach:
@@ -144,8 +232,16 @@ export const projects = [
     outcome:
       "Blipstorm is available as a playable browser build. Its current screenshots show both the close-range combat and the wider island state so the relationship between individual bots and the whole defence is clear.",
     media: [
-      { type: "image", src: "/projects/blipstorm/gameplay-close.webp", alt: "Blipstorm bots defending the island from chickens" },
-      { type: "image", src: "/projects/blipstorm/island-overview.webp", alt: "Overview of the Blipstorm island and its defenders" },
+      {
+        type: "image",
+        src: "/projects/blipstorm/gameplay-close.webp",
+        alt: "Blipstorm bots defending the island from chickens",
+      },
+      {
+        type: "image",
+        src: "/projects/blipstorm/island-overview.webp",
+        alt: "Overview of the Blipstorm island and its defenders",
+      },
     ],
   },
 ];
@@ -157,14 +253,29 @@ export const clientProjects = [
     title: "AMH, Architect Maria Hoogland",
     category: "Architecture portfolio website",
     status: "Live",
-    summary: "A custom portfolio website and simple editing system for architect Maria Hoogland, built to help local clients discover her work and get in touch.",
+    summary:
+      "A custom portfolio website and simple editing system for architect Maria Hoogland, built to help local clients discover her work and get in touch.",
     role: "Wireframing, custom website development, admin development and hosting",
-    technologies: ["SvelteKit", "Custom admin", "Cloudflare DNS", "Self-hosting"],
-    links: [{ label: "Visit the live website", href: "https://mariahoogland.nl/" }],
-    challenge: "Maria had outgrown a slow WordPress-based setup and wanted a website that felt like her own practice: professional, individual and easy for a potential local client to understand. The first job was to turn that feeling into a clear, practical direction without a long agency process.",
-    approach: "I made a working wireframe in one day, then used it as the shared foundation for the finished SvelteKit website. The result includes a custom admin area so Maria can update text and choose or upload images herself. I also set up the site for responsive use, search visibility and Google Search Console. For bigger changes, I remain available to work directly with her.",
-    outcome: "Maria now has one clear place to introduce AMH and her work without taking unnecessary time away from clients. The website is live at mariahoogland.nl, fully custom-built by me and hosted on my own hardware, with the domain at Hostinger and DNS managed through Cloudflare.",
-    keywords: ["architecture portfolio website development", "SvelteKit architecture website", "custom website developer Netherlands"],
+    technologies: [
+      "SvelteKit",
+      "Custom admin",
+      "Cloudflare DNS",
+      "Self-hosting",
+    ],
+    links: [
+      { label: "Visit the live website", href: "https://mariahoogland.nl/" },
+    ],
+    challenge:
+      "Maria had outgrown a slow WordPress-based setup and wanted a website that felt like her own practice: professional, individual and easy for a potential local client to understand. The first job was to turn that feeling into a clear, practical direction without a long agency process.",
+    approach:
+      "I made a working wireframe in one day, then used it as the shared foundation for the finished SvelteKit website. The result includes a custom admin area so Maria can update text and choose or upload images herself. I also set up the site for responsive use, search visibility and Google Search Console. For bigger changes, I remain available to work directly with her.",
+    outcome:
+      "Maria now has one clear place to introduce AMH and her work without taking unnecessary time away from clients. The website is live at mariahoogland.nl, fully custom-built by me and hosted on my own hardware, with the domain at Hostinger and DNS managed through Cloudflare.",
+    keywords: [
+      "architecture portfolio website development",
+      "SvelteKit architecture website",
+      "custom website developer Netherlands",
+    ],
     draft: false,
     media: [
       {
@@ -179,14 +290,29 @@ export const clientProjects = [
     title: "Robijn Fotografie",
     category: "Photography portfolio and booking website",
     status: "Live",
-    summary: "A custom photography portfolio website and editing system that helps Robijn Fotografie turn social discovery into enquiries.",
+    summary:
+      "A custom photography portfolio website and editing system that helps Robijn Fotografie turn social discovery into enquiries.",
     role: "Custom website, responsive gallery and admin development",
-    technologies: ["SvelteKit", "Custom admin", "Responsive image delivery", "Docker"],
-    links: [{ label: "Visit the live website", href: "https://robijnfotografie.nl/" }],
-    challenge: "Robijn wanted a website that could turn people discovering her through social media into future clients. She had a clear visual idea and drew it out herself; the challenge was to make that direction real while keeping the site and its editing tools straightforward.",
-    approach: "I built the website in SvelteKit from Robijn’s visual direction. The custom admin lets her edit text, images and photo categories, and add pages for new work without having to touch code. The site is responsive, Docker-containerised and uses multiple image sizes so photography loads appropriately on different devices.",
-    outcome: "Robijn now has a custom, editable home for her work at robijnfotografie.nl. It is built to help visitors remember her work, browse it easily and reach out when they are ready. The public case study intentionally uses no photography from the site until image permission is confirmed.",
-    keywords: ["photography portfolio website development", "booking website developer", "SvelteKit website developer Netherlands"],
+    technologies: [
+      "SvelteKit",
+      "Custom admin",
+      "Responsive image delivery",
+      "Docker",
+    ],
+    links: [
+      { label: "Visit the live website", href: "https://robijnfotografie.nl/" },
+    ],
+    challenge:
+      "Robijn wanted a website that could turn people discovering her through social media into future clients. She had a clear visual idea and drew it out herself; the challenge was to make that direction real while keeping the site and its editing tools straightforward.",
+    approach:
+      "I built the website in SvelteKit from Robijn’s visual direction. The custom admin lets her edit text, images and photo categories, and add pages for new work without having to touch code. The site is responsive, Docker-containerised and uses multiple image sizes so photography loads appropriately on different devices.",
+    outcome:
+      "Robijn now has a custom, editable home for her work at robijnfotografie.nl. It is built to help visitors remember her work, browse it easily and reach out when they are ready. The public case study intentionally uses no photography from the site until image permission is confirmed.",
+    keywords: [
+      "photography portfolio website development",
+      "booking website developer",
+      "SvelteKit website developer Netherlands",
+    ],
     draft: false,
     media: [
       {
@@ -201,14 +327,24 @@ export const clientProjects = [
     title: "Jazz Design",
     category: "Custom clothing and print website",
     status: "Draft case study",
-    summary: "A custom website for a small custom-clothing and textile-print studio, built to present services, portfolio work and enquiries.",
+    summary:
+      "A custom website for a small custom-clothing and textile-print studio, built to present services, portfolio work and enquiries.",
     role: "Custom website development",
     technologies: ["Astro", "Svelte", "Responsive web development"],
-    links: [{ label: "Visit the live website", href: "https://jazzdesign.nl/" }],
-    challenge: "Lorem ipsum — add the original brief and the specific customer journey the website needed to support.",
-    approach: "Lorem ipsum — explain the information structure, responsive build and any custom features you implemented.",
-    outcome: "Lorem ipsum — replace with a factual outcome after the planned redesign is complete.",
-    keywords: ["custom business website development", "small business website developer", "Astro Svelte developer Netherlands"],
+    links: [
+      { label: "Visit the live website", href: "https://jazzdesign.nl/" },
+    ],
+    challenge:
+      "Lorem ipsum — add the original brief and the specific customer journey the website needed to support.",
+    approach:
+      "Lorem ipsum — explain the information structure, responsive build and any custom features you implemented.",
+    outcome:
+      "Lorem ipsum — replace with a factual outcome after the planned redesign is complete.",
+    keywords: [
+      "custom business website development",
+      "small business website developer",
+      "Astro Svelte developer Netherlands",
+    ],
     draft: true,
     media: [],
   },
@@ -223,7 +359,9 @@ export const featuredProjects = [
   projects[2],
   projects[3],
 ];
-export const projectBySlug = Object.fromEntries(allProjects.map((project) => [project.slug, project]));
+export const projectBySlug = Object.fromEntries(
+  allProjects.map((project) => [project.slug, project]),
+);
 
 export function projectPath(project, locale = "en") {
   return `${locale === "nl" ? "/nl" : ""}/projects/${project.slug}/`;
