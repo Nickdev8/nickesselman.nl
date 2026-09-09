@@ -59,11 +59,22 @@
   font-weight: 650;
   line-height: 0.82;
   letter-spacing: -0.08em;
-  border: 1px solid currentColor;
   opacity: 0;
   user-select: none;
   touch-action: none;
   will-change: transform;
+}
+.physics-test-letter::after {
+  display: var(--collider-display);
+  position: absolute;
+  bottom: var(--collision-bottom-offset);
+  left: 50%;
+  width: 100%;
+  height: var(--collision-height);
+  border: 1px solid currentColor;
+  content: "";
+  pointer-events: none;
+  transform: translateX(-50%);
 }
 .physics-test-letter.is-ready {
   opacity: 1;

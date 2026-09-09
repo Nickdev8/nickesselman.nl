@@ -1,13 +1,28 @@
 import { useEffect, useRef } from "react";
 import Matter from "matter-js";
 
-const words = ["Websites,", "software,", "hardware,", "games,"];
+const words = [
+  "Websites.",
+  "Software.",
+  "Hardware.",
+  "Games."
+];
+
+const LETTER_COLLISION_BASELINE_OFFSET = 4;
+const SHOW_COLLIDERS = false;
+const LETTER_COLLISION_HEIGHTS = {
+  "Websites.": [0.85, 0.65, 0.8, 0.65, 0.9, 0.8, 0.65, 0.7, 0.2],
+  "Software.": [0.87, 0.65, 0.9, 0.8, 0.65, 0.65, 0.65, 0.65, 0.2],
+  "Hardware.": [0.88, 0.65, 0.65, 0.8, 0.65, 0.65, 0.65, 0.65, 0.2],
+  "Games.": [0.86, 0.65, 0.7, 0.65, 0.65, 0.2],
+};
 const characters = words.flatMap((word, wordIndex) =>
-    [...word].map((character, index) => ({
-      character,
-      isWordStart: index === 0,
-      wordIndex,
-    })),
+  [...word].map((character, index) => ({
+    character,
+    isWordStart: index === 0,
+    wordIndex,
+    collisionHeightScale: LETTER_COLLISION_HEIGHTS[word][index],
+  })),
 );
 
 export default function PhysicsTest() {
@@ -31,19 +46,22 @@ export default function PhysicsTest() {
       Query,
       Runner,
     } = Matter;
-    const engine = Engine.create();
+    const engine = Engine.create({ enableSleeping: true });
     const runner = Runner.create();
     let boundaries = [];
     let letterBodies = [];
     const randomBetween = (minimum, maximum) =>
       minimum + Math.random() * Math.max(maximum - minimum, 0);
 
-    const createBoundaries = (width, height) => [
-      Bodies.rectangle(width / 2, height + 24, width + 48, 48, { isStatic: true }),
-      Bodies.rectangle(-24, height / 2, 48, height, { isStatic: true }),
-      Bodies.rectangle(width + 24, height / 2, 48, height, { isStatic: true }),
-      Bodies.rectangle(width / 2, -24, width + 48, 48, { isStatic: true }),
-    ];
+    const createBoundaries = (width, height) => {
+      const wallOptions = { isStatic: true, friction: 1, frictionStatic: 1 };
+      return [
+        Bodies.rectangle(width / 2, height + 24, width + 48, 48, wallOptions),
+        Bodies.rectangle(-24, height / 2, 48, height, wallOptions),
+        Bodies.rectangle(width + 24, height / 2, 48, height, wallOptions),
+        Bodies.rectangle(width / 2, -24, width + 48, 48, wallOptions),
+      ];
+    };
 
     const setBounds = () => {
       const { width, height } = scene.getBoundingClientRect();
@@ -53,18 +71,36 @@ export default function PhysicsTest() {
       boundaries = createBoundaries(width, height);
       Composite.add(engine.world, boundaries);
 
-      letterBodies.forEach(({ body, width: letterWidth, height: letterHeight }) => {
-        Body.setPosition(body, {
-          x: Math.min(Math.max(body.position.x, letterWidth / 2), width - letterWidth / 2),
-          y: Math.min(Math.max(body.position.y, letterHeight / 2), height - letterHeight / 2),
-        });
-      });
+      letterBodies.forEach(
+        ({ body, width: letterWidth, height: letterHeight }) => {
+          Body.setPosition(body, {
+            x: Math.min(
+              Math.max(body.position.x, letterWidth / 2),
+              width - letterWidth / 2,
+            ),
+            y: Math.min(
+              Math.max(body.position.y, letterHeight / 2),
+              height - letterHeight / 2,
+            ),
+          });
+        },
+      );
     };
 
     const sceneRect = scene.getBoundingClientRect();
     const measurements = letters.map((element, index) => {
       const { width, height } = element.getBoundingClientRect();
-      return { width, height, element, ...characters[index] };
+      const collisionHeight = height * characters[index].collisionHeightScale;
+      return {
+        width,
+        height,
+        collisionWidth: width,
+        collisionHeight,
+        collisionOffsetY:
+          (height - collisionHeight) / 2 - LETTER_COLLISION_BASELINE_OFFSET,
+        element,
+        ...characters[index],
+      };
     });
     const wordMeasurements = words.map((_, wordIndex) =>
       measurements.filter((measurement) => measurement.wordIndex === wordIndex),
@@ -74,7 +110,9 @@ export default function PhysicsTest() {
       const wordWidth =
         groupLetters.reduce((total, letter) => total + letter.width, 0) -
         gap * (groupLetters.length - 1);
-      const wordHeight = Math.max(...groupLetters.map((letter) => letter.height));
+      const wordHeight = Math.max(
+        ...groupLetters.map((letter) => letter.height),
+      );
       const x = randomBetween(wordWidth / 2, sceneRect.width - wordWidth / 2);
       const y = verticalBand
         ? randomBetween(
@@ -88,34 +126,52 @@ export default function PhysicsTest() {
         y: randomBetween(-0.7, 0.7),
       };
       const angularVelocity = randomBetween(-0.035, 0.035);
+      const collisionGroup = Body.nextGroup(true);
       let offset = -wordWidth / 2;
 
       return groupLetters.map((letter) => {
         const center = offset + letter.width / 2;
         const body = Bodies.rectangle(
-          x + center * Math.cos(angle),
-          y + center * Math.sin(angle),
-          letter.width,
-          letter.height,
+          x +
+            center * Math.cos(angle) -
+            letter.collisionOffsetY * Math.sin(angle),
+          y +
+            center * Math.sin(angle) +
+            letter.collisionOffsetY * Math.cos(angle),
+          letter.collisionWidth,
+          letter.collisionHeight,
           {
-            restitution: 0.32,
-            friction: 0.8,
-            frictionAir: 0.012,
+            restitution: 0.2,
+            friction: 0.9,
+            frictionStatic: 1,
+            frictionAir: 0.03,
+            collisionFilter: { group: collisionGroup },
           },
         );
         Body.setAngle(body, angle);
         Body.setVelocity(body, velocity);
         Body.setAngularVelocity(body, angularVelocity);
         offset += letter.width - gap;
-        return { body, element: letter.element, width: letter.width, height: letter.height };
+        return {
+          body,
+          element: letter.element,
+          width: letter.width,
+          height: letter.height,
+          collisionWidth: letter.collisionWidth,
+          collisionHeight: letter.collisionHeight,
+          collisionOffsetY: letter.collisionOffsetY,
+        };
       });
     };
     const overlapsPlacedLetters = (candidate, placed) =>
-      candidate.some(({ body }) =>
-        Query.collides(
-          body,
-          placed.flatMap((group) => group.map(({ body: placedBody }) => placedBody)),
-        ).length,
+      candidate.some(
+        ({ body }) =>
+          Query.collides(
+            body,
+            placed.flatMap((group) =>
+              group.map(({ body: placedBody }) => placedBody),
+            ),
+          ).length,
       );
 
     let wordGroups = [];
@@ -154,16 +210,34 @@ export default function PhysicsTest() {
     }
     letterBodies = wordGroups.flat();
     const letterConstraints = wordGroups.flatMap((group) =>
-      group.slice(1).map((letter, index) =>
-        Constraint.create({
-          bodyA: group[index].body,
-          bodyB: letter.body,
-          length: (group[index].width + letter.width) / 2 - 2,
-          stiffness: 0.96,
-          damping: 0.03,
-          angularStiffness: 0,
-        }),
-      ),
+      group.slice(1).flatMap((letter, index) => {
+        const previous = group[index];
+        const sharedHeight = Math.min(
+          previous.collisionHeight,
+          letter.collisionHeight,
+        );
+        const createJoint = (distanceFromBottom) =>
+          Constraint.create({
+            bodyA: previous.body,
+            pointA: {
+              x: previous.collisionWidth / 2,
+              y: previous.collisionHeight / 2 - distanceFromBottom,
+            },
+            bodyB: letter.body,
+            pointB: {
+              x: -letter.collisionWidth / 2,
+              y: letter.collisionHeight / 2 - distanceFromBottom,
+            },
+            length: 2,
+            stiffness: 0.99,
+            damping: 0.22,
+          });
+
+        return [
+          createJoint(sharedHeight * 0.18),
+          createJoint(sharedHeight * 0.72),
+        ];
+      }),
     );
     const mouse = Mouse.create(scene);
     scene.removeEventListener("wheel", mouse.mousewheel);
@@ -193,10 +267,14 @@ export default function PhysicsTest() {
     setBounds();
 
     const syncLetters = () => {
-      letterBodies.forEach(({ body, element, width, height }) => {
-        const { x, y } = body.position;
-        element.style.transform = `translate(${x - width / 2}px, ${y - height / 2}px) rotate(${body.angle}rad)`;
-      });
+      letterBodies.forEach(
+        ({ body, element, width, height, collisionOffsetY }) => {
+          const { x, y } = body.position;
+          const renderCenterX = x + collisionOffsetY * Math.sin(body.angle);
+          const renderCenterY = y - collisionOffsetY * Math.cos(body.angle);
+          element.style.transform = `translate(${renderCenterX - width / 2}px, ${renderCenterY - height / 2}px) rotate(${body.angle}rad)`;
+        },
+      );
     };
 
     Events.on(engine, "afterUpdate", syncLetters);
@@ -227,17 +305,24 @@ export default function PhysicsTest() {
 
   return (
     <div className="physics-test" ref={sceneRef}>
-      {characters.map(({ character, isWordStart }, index) => (
-        <span
-          className={`physics-test-letter${isWordStart ? " is-word-start" : ""}`}
-          ref={(element) => {
-            characterRefs.current[index] = element;
-          }}
-          key={`${character}-${index}`}
-        >
-          {character}
-        </span>
-      ))}
+      {characters.map(
+        ({ character, isWordStart, collisionHeightScale }, index) => (
+          <span
+            className={`physics-test-letter${isWordStart ? " is-word-start" : ""}`}
+          style={{
+            "--collision-height": `${collisionHeightScale * 100}%`,
+            "--collision-bottom-offset": `${LETTER_COLLISION_BASELINE_OFFSET}px`,
+            "--collider-display": SHOW_COLLIDERS ? "block" : "none",
+            }}
+            ref={(element) => {
+              characterRefs.current[index] = element;
+            }}
+            key={`${character}-${index}`}
+          >
+            {character}
+          </span>
+        ),
+      )}
     </div>
   );
 }
