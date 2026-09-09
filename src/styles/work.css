@@ -1,7 +1,9 @@
 .work-intro {
+  position: relative;
   display: grid;
   grid-template-columns: 1.25fr 0.75fr;
   gap: 8vw;
+  min-height: clamp(210px, 32.8vw, 558px);
   align-items: end;
   padding: 4vw 3.4vw 3vw;
   border-bottom: 1px solid var(--ink);
@@ -40,6 +42,34 @@
   font-size: clamp(20px, 2vw, 34px);
   line-height: 1.12;
   letter-spacing: -0.035em;
+}
+.physics-test {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+.physics-test-letter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  color: var(--ink);
+  font-size: clamp(48px, 8vw, 140px);
+  font-weight: 650;
+  line-height: 0.82;
+  letter-spacing: -0.08em;
+  border: 1px solid currentColor;
+  opacity: 0;
+  user-select: none;
+  touch-action: none;
+  will-change: transform;
+}
+.physics-test-letter.is-ready {
+  opacity: 1;
+}
+.physics-test-letter.is-word-start {
+  color: var(--accent);
 }
 .work-list,
 .capability-list {
@@ -137,4 +167,42 @@
 .work-with-me-note p + p {
   align-self: end;
   color: #54534f;
+}
+
+.back-to-top {
+  --back-to-top-rotation: 0deg;
+  position: fixed;
+  right: 3.4vw;
+  bottom: 24px;
+  z-index: 2;
+  display: grid;
+  width: 88px;
+  aspect-ratio: 1;
+  place-items: center;
+  padding: 0;
+  color: var(--paper);
+  background: var(--ink);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: rotate(var(--back-to-top-rotation));
+}
+
+.back-to-top span {
+  display: block;
+  padding-inline: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  color: var(--accent);
 }

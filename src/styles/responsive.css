@@ -203,6 +203,7 @@
   }
   .work-intro {
     display: block;
+    min-height: clamp(203px, 65.6vw, 341px);
     padding: 36px 18px 34px;
   }
   .work-intro h1 {
@@ -258,6 +259,12 @@
     display: inline;
     margin-top: 42px;
     font-size: 42px;
+  }
+  .back-to-top {
+    right: auto;
+    bottom: 18px;
+    left: 18px;
+    width: 76px;
   }
   .not-found {
     padding-inline: 18px;

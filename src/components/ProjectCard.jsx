@@ -185,7 +185,9 @@ export default function ProjectCard({ item, index, locale }) {
           <a href={caseStudyPath}>{project.title}</a>
         </h3>
         <p>{content.summary}</p>
-        <div className="project-actions">
+        <div
+          className={`project-actions${repository ? " has-repository" : ""}`}
+        >
           <a className="text-link" href={caseStudyPath}>
             {locale === "nl" ? "Bekijk project" : "View project"} ↗
           </a>

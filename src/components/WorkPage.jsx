@@ -1,4 +1,6 @@
+import BackToTop from "./BackToTop";
 import Footer from "./Footer";
+import PhysicsTest from "./PhysicsTest";
 import ProjectCard from "./ProjectCard";
 import SiteHeader from "./SiteHeader";
 import { allProjects } from "../data/projects";
@@ -10,8 +12,8 @@ export default function WorkPage() {
     <div className="case-shell">
       <SiteHeader />
       <main>
-        <section className="work-intro">
-          <h1>{t(locale, "Websites, software, hardware and games.")}</h1>
+        <section className="work-intro" aria-label="Interactive physics test">
+          <PhysicsTest />
         </section>
         <section className="work-grid" aria-label={t(locale, "Selected work")}>
           {allProjects.map((project, index) => (
@@ -25,6 +27,7 @@ export default function WorkPage() {
         </section>
       </main>
       <Footer />
+      <BackToTop label={locale === "nl" ? "Terug naar boven" : "Back to top"} />
     </div>
   );
 }

@@ -96,6 +96,28 @@
 .project-caption {
   padding: 12px 0 8px;
 }
+.project-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+}
+.project-actions .text-link {
+  position: relative;
+  z-index: 4;
+}
+.project-actions .text-link:hover,
+.project-actions .text-link:focus-visible {
+  color: var(--accent);
+  outline: none;
+}
+.project-actions.has-repository {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.project-actions.has-repository .text-link {
+  justify-self: center;
+  text-align: center;
+}
 .project-cta {
   display: inline-block;
   margin-top: 12px;
