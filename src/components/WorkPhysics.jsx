@@ -25,7 +25,7 @@ const characters = words.flatMap((word, wordIndex) =>
   })),
 );
 
-export default function PhysicsTest() {
+export default function WorkPhysics() {
   const sceneRef = useRef(null);
   const characterRefs = useRef([]);
 

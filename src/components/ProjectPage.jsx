@@ -44,11 +44,11 @@ export default function ProjectPage({ project }) {
   project = localizeProject(locale, project);
   const content = projectContent(project.slug, locale);
   const primary = project.links[0];
-  const primaryLabel = primary.href.includes("itch.io")
+  const primaryLabel = primary?.href.includes("itch.io")
     ? locale === "nl"
       ? "Speel het spel"
       : "Play game"
-    : primary.href.includes("github.com")
+    : primary?.href.includes("github.com")
       ? locale === "nl"
         ? "Bekijk de code"
         : "View source"
@@ -77,14 +77,16 @@ export default function ProjectPage({ project }) {
             </p>
             <h1>{project.title}</h1>
             <p className="case-summary">{content.summary}</p>
-            <a
-              className="text-link case-primary"
-              href={primary.href}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {primaryLabel} ↗
-            </a>
+            {primary ? (
+              <a
+                className="text-link case-primary"
+                href={primary.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {primaryLabel} ↗
+              </a>
+            ) : null}
           </div>
           {project.media?.[0] && (
             <ProjectFigure
@@ -131,14 +133,16 @@ export default function ProjectPage({ project }) {
           ))}
         </div>
         <section className="case-links">
-          <a
-            className="text-link"
-            href={primary.href}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {primaryLabel} ↗
-          </a>
+          {primary ? (
+            <a
+              className="text-link"
+              href={primary.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {primaryLabel} ↗
+            </a>
+          ) : null}
           <a className="text-link" href={localePath("/work/", locale)}>
             {t(locale, "More projects")} ↗
           </a>

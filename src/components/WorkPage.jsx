@@ -1,6 +1,6 @@
 import BackToTop from "./BackToTop";
 import Footer from "./Footer";
-import PhysicsTest from "./PhysicsTest";
+import WorkPhysics from "./WorkPhysics";
 import ProjectCard from "./ProjectCard";
 import SiteHeader from "./SiteHeader";
 import { allProjects } from "../data/projects";
@@ -13,7 +13,7 @@ export default function WorkPage() {
       <SiteHeader />
       <main>
         <section className="work-intro" aria-label="Interactive physics test">
-          <PhysicsTest />
+          <WorkPhysics />
         </section>
         <section className="work-grid" aria-label={t(locale, "Selected work")}>
           {allProjects.map((project, index) => (
