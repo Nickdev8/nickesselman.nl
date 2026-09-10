@@ -26,12 +26,7 @@ export const projects = [
       "Room-scale multiplayer games with a server-authoritative LAN setup and a spectator screen for everyone outside the headset.",
     role: "Design, development and hardware integration",
     technologies: ["VR", "LAN multiplayer", "Blender", "3D avatars"],
-    links: [
-      {
-        label: "Source repository",
-        href: "https://github.com/Nickdev8/PartyVR",
-      },
-    ],
+    links: [],
     challenge:
       "A room-scale party game has to work for more people than the player wearing the headset. The game session, host controls and spectator view all need to stay understandable while several devices exchange state over a local network.",
     approach:
@@ -197,7 +192,13 @@ export const projects = [
       "My first finished Unity game: repeated faceplants, one swinging monkey, and a lesson in shipping small things.",
     role: "Solo game development",
     technologies: ["Unity", "2D physics", "Pixel art", "Web game"],
-    links: [{ label: "Play on itch.io", href: "https://nikkcc.itch.io/ms" }],
+    links: [
+      { label: "Play on itch.io", href: "https://nikkcc.itch.io/ms" },
+      {
+        label: "Source repository",
+        href: "https://github.com/Nickdev8/Monkey-Swing",
+      },
+    ],
     challenge:
       "Small game ideas can accumulate systems without ever becoming a finished game. Monkey Swing was deliberately scoped around one physical action so I could take the complete loop from prototype to something other people could play.",
     approach:
@@ -224,6 +225,10 @@ export const projects = [
     technologies: ["Godot", "Game AI", "3D gameplay", "Browser build"],
     links: [
       { label: "Play the game", href: "https://nikkcc.itch.io/blipstorm" },
+      {
+        label: "Source repository",
+        href: "https://github.com/Nickdev8/islandblimp",
+      },
     ],
     challenge:
       "The game needed to make a small island feel busy and readable while autonomous units defend it. The player should understand what the bots are doing without controlling every individual action.",

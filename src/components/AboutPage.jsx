@@ -6,6 +6,8 @@ import Portrait from "./Portrait";
 export default function AboutPage() {
   const locale = useLocale();
   const dutch = locale === "nl";
+  const latestBlogPath = `https://blog.nickesselman.nl${dutch ? "/nl" : ""}`;
+  const blogCover = "https://cdn.nickesselman.nl/blogimages/beest/groupphoto.jpg";
   return (
     <div className="case-shell about-shell">
       <SiteHeader />
@@ -16,7 +18,7 @@ export default function AboutPage() {
               ? "Ik bouw dingen die je kunt gebruiken."
               : "I build things people can use."}
           </h1>
-          <Portrait priority />
+          <Portrait priority variant="film" />
         </section>
         <section className="about-statement">
           <p>
@@ -58,29 +60,36 @@ export default function AboutPage() {
           </div>
         </section>
         <section className="about-journal">
-          <div>
-            <p className="about-kicker">
-              {dutch ? "Naast het werk" : "Outside work"}
-            </p>
-            <h2>
+          <a
+            className="about-journal-image"
+            href={latestBlogPath}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src={blogCover}
+              alt={
+                dutch
+                  ? "Deelnemers bouwen samen een Strandbeest in Den Haag"
+                  : "People building a Strandbeest together in The Hague"
+              }
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+          <div className="about-journal-copy">
+            <p>
               {dutch
                 ? "Ik schrijf ook verhalen over bouwen en onderweg zijn."
                 : "I also write about building and being on the road."}
-            </h2>
-          </div>
-          <div>
-            <p>
-              {dutch
-                ? "Mijn blog houdt de projecten, mensen en trips bij die niet in een case study passen."
-                : "My blog keeps track of the projects, people and trips that do not fit in a case study."}
             </p>
             <a
-              className="text-link"
-              href="https://blog.nickesselman.nl"
+              className="about-journal-read"
+              href={latestBlogPath}
               target="_blank"
               rel="noreferrer"
             >
-              {dutch ? "Lees mijn verhalen" : "Read the stories"} ↗
+              {dutch ? "Lees het verhaal" : "Read the story"} ↗
             </a>
           </div>
         </section>

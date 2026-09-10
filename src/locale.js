@@ -199,7 +199,6 @@ const dutch = new Map([
     "Kleine live signalen uit mijn hoek van het internet.",
   ],
   ["Waiting for live data…", "Wachten op live gegevens…"],
-  ["back to top ↑", "terug naar boven ↑"],
   [
     "Websites, software, hardware and games.",
     "Websites, software, hardware en games.",

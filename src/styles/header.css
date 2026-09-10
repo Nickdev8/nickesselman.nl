@@ -50,6 +50,7 @@
 }
 .site-header nav a:hover,
 .site-header nav a:focus-visible {
+  color: var(--accent);
   border-color: currentColor;
   outline: none;
 }
@@ -57,19 +58,19 @@
   justify-self: end;
   min-height: 34px;
   padding: 5px 10px;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--accent);
   border-radius: 0;
   color: var(--paper);
-  background: var(--ink);
+  background: var(--accent);
   transition:
     color 140ms ease,
     background-color 140ms ease;
 }
 .site-header nav .contact-link:hover,
 .site-header nav .contact-link:focus-visible {
-  color: var(--ink);
+  color: var(--accent);
   background: transparent;
-  border-color: var(--ink);
+  border-color: var(--accent);
 }
 .language-switch {
   display: inline-flex;
