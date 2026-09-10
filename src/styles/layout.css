@@ -309,6 +309,39 @@ footer {
   width: min(100%, 420px);
   justify-self: end;
 }
+.about-portrait-trigger {
+  justify-self: end;
+  width: min(100%, 420px);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.about-portrait-trigger .portrait {
+  width: 100%;
+}
+.about-portrait-trigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+.about-tech-burst {
+  position: fixed;
+  z-index: 60;
+  inset: 0;
+  pointer-events: none;
+}
+.about-tech-burst-icon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  font-size: 38px;
+  line-height: 1;
+  will-change: transform;
+}
 .about-statement {
   padding: 8vw 3.4vw;
   border-top: 1px solid var(--ink);
@@ -741,6 +774,10 @@ a:focus-visible {
     gap: 32px;
   }
   .about-opening .portrait {
+    justify-self: start;
+    width: min(78vw, 360px);
+  }
+  .about-portrait-trigger {
     justify-self: start;
     width: min(78vw, 360px);
   }

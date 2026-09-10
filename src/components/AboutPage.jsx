@@ -1,7 +1,7 @@
 import Footer from "./Footer";
 import SiteHeader from "./SiteHeader";
 import { localePath, useLocale } from "../locale";
-import Portrait from "./Portrait";
+import AboutTechBurst from "./AboutTechBurst";
 
 export default function AboutPage() {
   const locale = useLocale();
@@ -18,7 +18,7 @@ export default function AboutPage() {
               ? "Ik bouw dingen die je kunt gebruiken."
               : "I build things people can use."}
           </h1>
-          <Portrait priority variant="film" />
+          <AboutTechBurst />
         </section>
         <section className="about-statement">
           <p>
