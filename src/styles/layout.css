@@ -1,6 +1,3 @@
-.site-header nav {
-  grid-template-columns: 0.75fr 1fr 1fr 1fr auto;
-}
 .hero {
   display: flex;
   align-items: flex-end;

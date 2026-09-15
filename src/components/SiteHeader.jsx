@@ -26,6 +26,9 @@ export default function SiteHeader() {
         <a href={localePath("/about/", locale)}>
           {locale === "nl" ? "over mij" : "about"}
         </a>
+        <a href={localePath("/cv/", locale)}>
+          {locale === "nl" ? "cv" : "cv"}
+        </a>
         <a
           className="contact-link"
           href={`https://contact.nickesselman.nl${locale === "nl" ? "/nl/" : "/"}`}

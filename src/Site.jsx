@@ -1,5 +1,6 @@
 import App from "./App";
 import AboutPage from "./components/AboutPage";
+import CvPage from "./components/CvPage";
 import NotFoundPage from "./components/NotFoundPage";
 import ProjectPage from "./components/ProjectPage";
 import PrivacyAnalytics from "./components/PrivacyAnalytics";
@@ -17,6 +18,7 @@ export default function Site({ url = "/" }) {
     <LocaleProvider locale={locale} pathname={requestedPath}>
       {pathname === "/" ? <App /> : null}
       {pathname === "/about" ? <AboutPage /> : null}
+      {pathname === "/cv" ? <CvPage /> : null}
       {pathname === "/work" ? <WorkPage /> : null}
       {pathname === "/work-with-me" ? <WorkWithMePage /> : null}
       {pathname.startsWith("/projects/") &&
@@ -27,6 +29,7 @@ export default function Site({ url = "/" }) {
       ) : null}
       {pathname !== "/" &&
       pathname !== "/about" &&
+      pathname !== "/cv" &&
       pathname !== "/work" &&
       pathname !== "/work-with-me" &&
       !(

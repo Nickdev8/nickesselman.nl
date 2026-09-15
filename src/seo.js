@@ -16,6 +16,7 @@ const projectRoutes = allProjects.map(
 const englishRoutes = [
   "/",
   "/about/",
+  "/cv/",
   "/work/",
   "/work-with-me/",
   ...projectRoutes,
@@ -27,6 +28,7 @@ export const routes = [
 export const indexedRoutes = [
   "/",
   "/about/",
+  "/cv/",
   "/work/",
   "/work-with-me/",
   ...allProjects.map((project) => `/projects/${project.slug}/`),
@@ -169,6 +171,24 @@ export function routeMeta(pathname = "/") {
           "About Nick Esselman, an independent Dutch full-stack developer and maker.",
       }),
     );
+  if (normalized === "/cv") {
+    return localize(
+      pageMeta({
+        path: "/cv/",
+        title: "CV — Nick Esselman",
+        description:
+          "Curriculum vitae of Nick Esselman, a Netherlands-based full-stack developer and maker working across software, interactive experiences and physical technology.",
+        graph: [
+          {
+            "@type": "ProfilePage",
+            url: `${site.url}/cv/`,
+            name: "CV — Nick Esselman",
+            mainEntity: { "@id": personId },
+          },
+        ],
+      }),
+    );
+  }
   if (normalized === "/work-with-me") {
     return localize(
       pageMeta({

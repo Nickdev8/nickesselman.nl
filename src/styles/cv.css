@@ -1,0 +1,437 @@
+.cv-shell {
+  padding-top: 62px;
+}
+
+.cv-page {
+  position: relative;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 3.4vw 96px;
+}
+
+.cv-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(250px, 0.6fr);
+  gap: clamp(36px, 6vw, 96px);
+  align-items: end;
+  min-height: 560px;
+  padding: 76px 0 48px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.cv-kicker,
+.cv-section > h2,
+.cv-contact > h2,
+.cv-details h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cv-intro h1 {
+  max-width: 800px;
+  margin: 18px 0 0;
+  font-size: clamp(64px, 8.8vw, 128px);
+  font-weight: 650;
+  line-height: 0.84;
+  letter-spacing: -0.09em;
+}
+
+.cv-summary {
+  max-width: 30ch;
+  margin: 42px 0 0;
+  font-size: clamp(23px, 2.4vw, 37px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.cv-print-button {
+  padding: 9px 14px 10px;
+  border: 1px solid var(--accent);
+  border-radius: 0;
+  color: var(--paper);
+  background: var(--accent);
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.cv-print-control {
+  position: fixed;
+  z-index: 45;
+  right: 3.4vw;
+  bottom: 22px;
+}
+
+.cv-print-control.is-docked {
+  position: absolute;
+  right: 0;
+  bottom: 22px;
+}
+
+.cv-print-button:hover,
+.cv-print-button:focus-visible {
+  color: var(--accent);
+  background: transparent;
+  outline: none;
+}
+
+.cv-print-hint {
+  margin: 11px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.cv-portrait {
+  align-self: end;
+  justify-self: end;
+  width: min(100%, 340px);
+  height: 420px;
+  margin: 0;
+  min-height: 0;
+}
+
+.cv-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.cv-contact,
+.cv-section {
+  display: grid;
+  grid-template-columns: minmax(145px, 0.25fr) minmax(0, 1fr);
+  gap: 24px;
+  padding: 42px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cv-contact > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px 28px;
+}
+
+.cv-contact a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+.cv-contact a:hover,
+.cv-contact a:focus-visible {
+  color: var(--accent);
+  outline: none;
+}
+
+.cv-entry-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.cv-entry {
+  break-inside: avoid;
+}
+
+.cv-entry-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: baseline;
+}
+
+.cv-entry h3,
+.cv-entry p,
+.cv-education p {
+  margin: 0;
+}
+
+.cv-entry h3 {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.cv-entry-heading span {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.cv-entry p,
+.cv-skills dd,
+.cv-education p {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.cv-details {
+  display: block;
+}
+
+.cv-details > div {
+  display: grid;
+  grid-template-columns: minmax(145px, 0.25fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+.cv-details > div + div {
+  margin-top: 36px;
+}
+
+.cv-skills {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px 28px;
+  margin: 0;
+}
+
+.cv-skills div {
+  margin: 0;
+}
+
+.cv-skills dt {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cv-skills dd {
+  margin-left: 0;
+}
+
+.cv-education {
+  margin-top: 36px;
+}
+
+.cv-education p {
+  grid-column: 2;
+}
+
+.cv-education p + p {
+  color: var(--muted);
+}
+
+.cv-events .cv-entry-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px 52px;
+}
+
+.cv-document-footer {
+  margin: 0;
+  padding-top: 24px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 680px) {
+  .cv-shell {
+    padding-top: 58px;
+  }
+
+  .cv-page {
+    padding: 0 18px 64px;
+  }
+
+  .cv-intro {
+    display: block;
+    min-height: 0;
+    padding: 56px 0 38px;
+  }
+
+  .cv-intro h1 {
+    font-size: clamp(64px, 19vw, 104px);
+  }
+
+  .cv-summary {
+    margin-top: 32px;
+    font-size: 25px;
+  }
+
+  .cv-portrait {
+    width: min(100%, 300px);
+    height: auto;
+    margin: 34px 0 0 auto;
+  }
+
+  .cv-print-control {
+    right: 18px;
+    bottom: 16px;
+  }
+
+  .cv-print-control.is-docked {
+    right: 0;
+    bottom: 16px;
+  }
+
+  .cv-portrait img {
+    aspect-ratio: 3 / 4;
+  }
+
+  .cv-contact,
+  .cv-section {
+    display: block;
+    padding: 30px 0;
+  }
+
+  .cv-contact > div {
+    grid-template-columns: 1fr;
+    margin-top: 24px;
+  }
+
+  .cv-entry-list,
+  .cv-events .cv-entry-list,
+  .cv-skills {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 24px;
+  }
+
+  .cv-details > div {
+    display: block;
+  }
+
+  .cv-education {
+    margin-top: 32px;
+  }
+
+  .cv-education p {
+    grid-column: auto;
+  }
+
+  .cv-details h2 + p {
+    margin-top: 24px;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm 13mm;
+  }
+
+  html,
+  body {
+    background: #fff;
+  }
+
+  .site-header,
+  .cv-shell > footer,
+  .cv-print-control,
+  .cv-print-button,
+  .cv-print-hint {
+    display: none !important;
+  }
+
+  .cv-shell {
+    padding: 0;
+  }
+
+  .cv-page {
+    max-width: none;
+    padding: 0;
+  }
+
+  .cv-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 42mm;
+    gap: 10mm;
+    align-items: end;
+    min-height: 0;
+    padding: 0 0 7mm;
+    border-bottom: 1px solid #000;
+  }
+
+  .cv-kicker,
+  .cv-section > h2,
+  .cv-contact > h2,
+  .cv-details h2,
+  .cv-entry-heading span,
+  .cv-document-footer {
+    font-size: 8pt;
+  }
+
+  .cv-intro h1 {
+    margin-top: 3mm;
+    font-size: 30pt;
+    letter-spacing: -0.07em;
+  }
+
+  .cv-summary {
+    max-width: 48ch;
+    margin-top: 3mm;
+    font-size: 11.5pt;
+  }
+
+  .cv-portrait {
+    display: block;
+    width: 42mm;
+    height: 54mm;
+    min-height: 0;
+    margin: 0;
+  }
+
+  .cv-contact,
+  .cv-section {
+    grid-template-columns: 30mm 1fr;
+    gap: 7mm;
+    padding: 5mm 0;
+  }
+
+  .cv-contact > div {
+    gap: 2.5mm 7mm;
+  }
+
+  .cv-entry-list {
+    gap: 5mm;
+  }
+
+  .cv-entry h3 {
+    font-size: 9.5pt;
+  }
+
+  .cv-entry p,
+  .cv-skills dd,
+  .cv-education p {
+    margin-top: 2mm;
+    font-size: 8.8pt;
+    line-height: 1.32;
+  }
+
+  .cv-skills dt {
+    font-size: 8.5pt;
+  }
+
+  .cv-details > div {
+    grid-template-columns: 30mm 1fr;
+    gap: 7mm;
+  }
+
+  .cv-education {
+    margin-top: 4mm;
+  }
+
+  .cv-events .cv-entry-list {
+    margin-left: 37mm;
+    gap: 4mm 8mm;
+  }
+
+  .cv-events {
+    display: flow-root;
+    padding-bottom: 0;
+  }
+
+  .cv-events > h2 {
+    float: left;
+    width: 30mm;
+  }
+
+  .cv-document-footer {
+    display: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
