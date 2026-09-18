@@ -111,7 +111,7 @@ export function routeMeta(pathname = "/") {
             url: `${site.url}/`,
             name: site.title,
             description: site.description,
-            mainEntity: { "@id": personId },
+            mainEntity: { "@type": "Person", "@id": personId },
             isPartOf: { "@id": websiteId },
           },
           {
@@ -183,7 +183,7 @@ export function routeMeta(pathname = "/") {
             "@type": "ProfilePage",
             url: `${site.url}/cv/`,
             name: "CV — Nick Esselman",
-            mainEntity: { "@id": personId },
+            mainEntity: { "@type": "Person", "@id": personId },
           },
         ],
       }),
