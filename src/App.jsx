@@ -72,8 +72,16 @@ export default function App() {
                   Custom websites and web apps · Games and VR · Hardware,
                   firmware and PCB design
                 </p>
+                <p className="availability-line">
+                  Open to freelance work, collaborations and custom projects.
+                </p>
               </>
             )}
+            {locale === "nl" ? (
+              <p className="availability-line">
+                Beschikbaar voor freelance werk, samenwerkingen en maatwerkprojecten.
+              </p>
+            ) : null}
             <a className="text-link" href={localePath("/about/", locale)}>
               {locale === "nl" ? "Over mij" : "About me"} ↗
             </a>

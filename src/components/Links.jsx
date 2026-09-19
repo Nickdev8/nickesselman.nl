@@ -52,7 +52,7 @@ export default function Links() {
         className="links-contact"
         href={`https://contact.nickesselman.nl${locale === "nl" ? "/nl/" : "/"}`}
       >
-        {locale === "nl" ? "Neem contact op" : "Get in touch"} ↗
+        {locale === "nl" ? "Freelance werk? Neem contact op" : "Freelance work? Get in touch"} ↗
       </a>
     </section>
   );

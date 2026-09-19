@@ -25,7 +25,7 @@ export function GithubSkeleton() {
         className="contribution-grid contribution-skeleton"
         aria-hidden="true"
       >
-        {Array.from({ length: 38 }, (_, week) => (
+        {Array.from({ length: 104 }, (_, week) => (
           <div key={week}>
             {Array.from({ length: 7 }, (_, day) => (
               <i key={day} />
@@ -44,7 +44,7 @@ export default function GithubWidget() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch("https://api.nickesselman.nl/github/contributions")
+    fetch("https://api.nickesselman.nl/github/contributions?years=2")
       .then((response) => {
         if (!response.ok) throw new Error();
         return response.json();
@@ -68,15 +68,15 @@ export default function GithubWidget() {
       <div>
         <span>building</span>
         <strong>
-          {calendar?.totalContributions ?? "—"} contributions this year
+          {calendar?.totalContributions ?? "—"} contributions over 2 years
         </strong>
       </div>
       {weeks.length ? (
         <div
-          className="contribution-grid"
+          className="contribution-grid contribution-grid-two-year"
           aria-label="GitHub contribution graph"
         >
-          {weeks.slice(-38).map((week, weekIndex) => (
+          {weeks.slice(-104).map((week, weekIndex) => (
             <div key={weekIndex}>
               {week.map((day) => (
                 <i

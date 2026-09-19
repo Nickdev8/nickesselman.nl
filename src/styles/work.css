@@ -47,7 +47,36 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
+  cursor: grab;
   touch-action: pan-y;
+}
+.physics-test.is-dragging {
+  cursor: grabbing;
+}
+.physics-hint {
+  position: absolute;
+  z-index: 2;
+  right: 3.4vw;
+  bottom: 3vw;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+.physics-hint svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.4;
+}
+.physics-test.has-been-dragged .physics-hint {
+  opacity: 0;
 }
 .physics-test-letter {
   position: absolute;

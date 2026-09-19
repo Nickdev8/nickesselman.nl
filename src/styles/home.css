@@ -5,6 +5,14 @@
   padding: 28px 0 20px;
   font-size: 16px;
 }
+
+.hero-description {
+  max-width: 70ch;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 12px 0 24px 0.4rem;
+}
 .recent-work-row .recent-work-label {
   justify-self: start;
   font-size: inherit;
@@ -200,9 +208,6 @@
   margin-top: 0.42em;
 }
 
-.now-section {
-  padding: 52px 3.4vw 110px;
-}
 .live-grid {
   display: grid;
   grid-template-columns: 1.25fr 0.75fr;
@@ -241,8 +246,15 @@
   aspect-ratio: 1;
   object-fit: cover;
 }
+.spotify-idle-art {
+  opacity: 0.68;
+}
+.spotify-idle-copy h3 {
+  max-width: 8ch;
+}
+
 .signal-body {
-  align-self: end;
+  align-self: center;
   min-width: 0;
 }
 .signal-body p,
@@ -333,6 +345,16 @@
   width: 8px;
   height: 8px;
   background: var(--ink);
+}
+.contribution-grid-two-year {
+  gap: 2px;
+}
+.contribution-grid-two-year div {
+  gap: 2px;
+}
+.contribution-grid-two-year i {
+  width: clamp(4px, 0.48vw, 7px);
+  height: clamp(4px, 0.48vw, 7px);
 }
 .skeleton {
   display: block;

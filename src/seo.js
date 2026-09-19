@@ -63,6 +63,7 @@ function projectMeta(project) {
     "@type": "CreativeWork",
     "@id": `${site.url}${path}#project`,
     url: `${site.url}${path}`,
+    mainEntityOfPage: `${site.url}${path}`,
     name: project.title,
     description: project.summary,
     creator: { "@id": personId },
@@ -70,6 +71,8 @@ function projectMeta(project) {
     about: project.category,
     sameAs: project.links.map((link) => link.href),
   };
+  const image = project.media.find((media) => media.type === "image");
+  if (image) schema.image = absolute(image.src);
   return pageMeta({
     path,
     title: `Nick Esselman, Project: ${project.title}`,
@@ -111,7 +114,7 @@ export function routeMeta(pathname = "/") {
             url: `${site.url}/`,
             name: site.title,
             description: site.description,
-            mainEntity: { "@type": "Person", "@id": personId },
+            mainEntity: { "@type": "Person", "@id": personId, name: site.name },
             isPartOf: { "@id": websiteId },
           },
           {
@@ -183,7 +186,7 @@ export function routeMeta(pathname = "/") {
             "@type": "ProfilePage",
             url: `${site.url}/cv/`,
             name: "CV — Nick Esselman",
-            mainEntity: { "@type": "Person", "@id": personId },
+            mainEntity: { "@type": "Person", "@id": personId, name: site.name },
           },
         ],
       }),

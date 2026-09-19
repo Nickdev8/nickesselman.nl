@@ -4,12 +4,15 @@
   min-height: calc(100svh - clamp(48px, 8svh, 96px) - 72px);
   padding: clamp(180px, 40svh, 540px) 3.4vw 0;
 }
+.hero > div {
+  width: 100%;
+}
 .hero h1 {
   margin: 0;
   max-width: 100%;
   font-size: min(13.6vw, 30svh);
   font-weight: 650;
-  line-height: 1;
+  line-height: 0.8;
   letter-spacing: -0.085em;
   white-space: nowrap;
 }
@@ -36,6 +39,14 @@
 .about-manifesto .skills-line {
   margin-top: 24px;
   max-width: 48ch;
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+.about-manifesto .availability-line {
+  max-width: 48ch;
+  margin-top: 16px;
   font-size: 17px;
   line-height: 1.5;
   letter-spacing: 0;
@@ -83,7 +94,8 @@
   padding: 36px 0 64px;
 }
 .project-carousel {
-  width: min(100%, 360px, 45svh);
+  width: 100%;
+  max-width: min(45svh, 560px);
   justify-self: center;
 }
 .carousel-slide img,
@@ -196,7 +208,7 @@
   outline: none;
 }
 .now-section {
-  padding: 52px 3.4vw 110px;
+  padding: 52px 3.4vw 28px;
   color: var(--ink);
   background: var(--accent);
   border-top: 1px solid var(--ink);

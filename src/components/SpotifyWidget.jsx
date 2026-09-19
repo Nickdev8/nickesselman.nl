@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import vinylRecord from "../assets/Vinyl_record.svg";
+import { useLocale } from "../locale";
 
 const SPOTIFY_URL = "https://api.nickesselman.nl/spotify/currently-playing";
 
@@ -16,7 +17,7 @@ export function SpotifySkeleton() {
       aria-label="Loading listening activity"
     >
       <div className="signal-label">
-        <span>listening</span>
+        <span>What I’m listening to</span>
         <i className="skeleton skeleton-status" />
       </div>
       <i className="skeleton skeleton-art" />
@@ -33,6 +34,9 @@ export function SpotifySkeleton() {
 }
 
 export default function SpotifyWidget() {
+  const locale = useLocale();
+  const sectionLabel =
+    locale === "nl" ? "Waar ik naar luister" : "What I’m listening to";
   const [spotify, setSpotify] = useState(null);
   const [lastFetchedAt, setLastFetchedAt] = useState(0);
   const [now, setNow] = useState(Date.now());
@@ -40,6 +44,15 @@ export default function SpotifyWidget() {
 
   useEffect(() => {
     let cancelled = false;
+    const previewIdle =
+      new URLSearchParams(window.location.search).get("spotify") === "idle";
+    if (previewIdle) {
+      setSpotify(null);
+      setLastFetchedAt(Date.now());
+      setState("ready");
+      return undefined;
+    }
+
     async function load() {
       try {
         const response = await fetch(SPOTIFY_URL);
@@ -81,8 +94,8 @@ export default function SpotifyWidget() {
   return (
     <section className="signal spotify-signal">
       <div className="signal-label">
-        <span>listening</span>
-        <span>{spotify?.is_playing ? "live" : "paused"}</span>
+        <span>{sectionLabel}</span>
+        <span>{spotify?.is_playing ? "live" : track ? "paused" : "idle"}</span>
       </div>
       {state === "ready" && track ? (
         <>
@@ -110,7 +123,21 @@ export default function SpotifyWidget() {
           </div>
         </>
       ) : (
-        <p className="signal-message">Spotify is being quiet right now.</p>
+        <>
+          <img
+            className="spotify-idle-art"
+            src={vinylRecord}
+            alt=""
+            width="640"
+            height="640"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="signal-body spotify-idle-copy">
+            <p>Spotify</p>
+            <h3>Nothing playing.</h3>
+          </div>
+        </>
       )}
     </section>
   );

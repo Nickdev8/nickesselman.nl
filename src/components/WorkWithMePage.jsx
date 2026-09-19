@@ -38,8 +38,8 @@ export default function WorkWithMePage() {
           </p>
           <p>
             {locale === "nl"
-              ? "Beschikbaar voor lokaal klein werk, remote samenwerking en internationale projecten."
-              : "Available for local small jobs, remote collaboration and international projects."}
+              ? "Ik sta open voor freelance werk, lokaal of op afstand, en voor internationale samenwerkingen."
+              : "I'm open to freelance work, local or remote, as well as international collaborations."}
           </p>
         </section>
         <section className="capability-list" aria-label="Capabilities">

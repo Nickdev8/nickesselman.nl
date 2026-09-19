@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import Matter from "matter-js";
+import { useLocale } from "../locale";
 
 const words = [
   "Websites.",
@@ -26,6 +27,7 @@ const characters = words.flatMap((word, wordIndex) =>
 );
 
 export default function WorkPhysics() {
+  const locale = useLocale();
   const sceneRef = useRef(null);
   const characterRefs = useRef([]);
 
@@ -57,9 +59,8 @@ export default function WorkPhysics() {
       const wallOptions = { isStatic: true, friction: 1, frictionStatic: 1 };
       return [
         Bodies.rectangle(width / 2, height + 24, width + 48, 48, wallOptions),
-        Bodies.rectangle(-24, height / 2, 48, height, wallOptions),
-        Bodies.rectangle(width + 24, height / 2, 48, height, wallOptions),
-        Bodies.rectangle(width / 2, -24, width + 48, 48, wallOptions),
+        Bodies.rectangle(-24, height / 2, 48, height * 3, wallOptions),
+        Bodies.rectangle(width + 24, height / 2, 48, height * 3, wallOptions),
       ];
     };
 
@@ -72,18 +73,15 @@ export default function WorkPhysics() {
       Composite.add(engine.world, boundaries);
 
       letterBodies.forEach(
-        ({ body, width: letterWidth, height: letterHeight }) => {
-          Body.setPosition(body, {
-            x: Math.min(
-              Math.max(body.position.x, letterWidth / 2),
-              width - letterWidth / 2,
-            ),
-            y: Math.min(
-              Math.max(body.position.y, letterHeight / 2),
-              height - letterHeight / 2,
-            ),
-          });
-        },
+      ({ body, width: letterWidth }) => {
+        Body.setPosition(body, {
+          x: Math.min(
+            Math.max(body.position.x, letterWidth / 2),
+            width - letterWidth / 2,
+          ),
+          y: body.position.y,
+        });
+      },
       );
     };
 
@@ -163,6 +161,15 @@ export default function WorkPhysics() {
         };
       });
     };
+    const storeSpawnOffsets = (group) => {
+      const anchor = group[0].body.position;
+      group.spawnOffsets = group.map(({ body }) => ({
+        x: body.position.x - anchor.x,
+        y: body.position.y - anchor.y,
+      }));
+      group.spawnAngle = group[0].body.angle;
+      return group;
+    };
     const overlapsPlacedLetters = (candidate, placed) =>
       candidate.some(
         ({ body }) =>
@@ -183,7 +190,7 @@ export default function WorkPhysics() {
       for (const groupLetters of wordMeasurements) {
         let candidate;
         for (let attempt = 0; attempt < 5; attempt += 1) {
-          const nextCandidate = createWordGroup(groupLetters);
+          const nextCandidate = storeSpawnOffsets(createWordGroup(groupLetters));
           if (!overlapsPlacedLetters(nextCandidate, placedGroups)) {
             candidate = nextCandidate;
             break;
@@ -202,13 +209,43 @@ export default function WorkPhysics() {
 
     if (!wordGroups.length) {
       wordGroups = wordMeasurements.map((groupLetters, index) =>
-        createWordGroup(groupLetters, {
+        storeSpawnOffsets(createWordGroup(groupLetters, {
           start: (sceneRect.height * index) / words.length,
           end: (sceneRect.height * (index + 1)) / words.length,
-        }),
+        })),
       );
     }
     letterBodies = wordGroups.flat();
+    const respawnWord = (group, width, height) => {
+      const anchorX = randomBetween(width * 0.2, width * 0.8);
+      const anchorY = -Math.max(...group.map(({ height: letterHeight }) => letterHeight)) - 24;
+      const angle = randomBetween(-0.08, 0.08);
+
+      group.forEach(({ body }, index) => {
+        const offset = group.spawnOffsets[index];
+        Body.setPosition(body, {
+          x: anchorX + offset.x,
+          y: anchorY + offset.y,
+        });
+        Body.setAngle(body, angle);
+        Body.setVelocity(body, { x: randomBetween(-0.6, 0.6), y: 0.5 });
+        Body.setAngularVelocity(body, randomBetween(-0.02, 0.02));
+      });
+    };
+    const respawnEscapedWords = () => {
+      const { width, height } = scene.getBoundingClientRect();
+      if (!width || !height) return;
+
+      wordGroups.forEach((group) => {
+        const escaped = group.some(
+          ({ body, width: letterWidth, height: letterHeight }) =>
+            body.position.x < -letterWidth ||
+            body.position.x > width + letterWidth ||
+            body.position.y > height + letterHeight,
+        );
+        if (escaped) respawnWord(group, width, height);
+      });
+    };
     const letterConstraints = wordGroups.flatMap((group) =>
       group.slice(1).flatMap((letter, index) => {
         const previous = group[index];
@@ -258,6 +295,21 @@ export default function WorkPhysics() {
       mouse,
       constraint: { stiffness: 0.18, damping: 0.08, angularStiffness: 0 },
     });
+    const handleDragStart = () => {
+      scene.classList.add("is-dragging", "has-been-dragged");
+    };
+    const handleDragEnd = () => {
+      scene.classList.remove("is-dragging");
+    };
+    const releaseDragOnLeave = () => {
+      if (mouse.button === 0) {
+        mouse.button = -1;
+        MouseConstraint.update(mouseConstraint, []);
+      }
+    };
+    Events.on(mouseConstraint, "startdrag", handleDragStart);
+    Events.on(mouseConstraint, "enddrag", handleDragEnd);
+    scene.addEventListener("mouseleave", releaseDragOnLeave);
 
     Composite.add(engine.world, [
       ...letterBodies.map(({ body }) => body),
@@ -277,7 +329,10 @@ export default function WorkPhysics() {
       );
     };
 
-    Events.on(engine, "afterUpdate", syncLetters);
+    Events.on(engine, "afterUpdate", () => {
+      respawnEscapedWords();
+      syncLetters();
+    });
     syncLetters();
     letters.forEach((letter) => letter.classList.add("is-ready"));
 
@@ -297,6 +352,9 @@ export default function WorkPhysics() {
       scene.removeEventListener("touchstart", keepBackgroundScrollable, true);
       scene.removeEventListener("touchmove", keepBackgroundScrollable, true);
       scene.removeEventListener("touchend", keepBackgroundScrollable, true);
+      scene.removeEventListener("mouseleave", releaseDragOnLeave);
+      Events.off(mouseConstraint, "startdrag", handleDragStart);
+      Events.off(mouseConstraint, "enddrag", handleDragEnd);
       Mouse.clearSourceEvents(mouse);
       Composite.clear(engine.world, false);
       Engine.clear(engine);
@@ -305,6 +363,12 @@ export default function WorkPhysics() {
 
   return (
     <div className="physics-test" ref={sceneRef}>
+      <div className="physics-hint" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="M8.5 11V6.5a1.5 1.5 0 0 1 3 0V11m0-.5V5a1.5 1.5 0 0 1 3 0v6m0-.5V7a1.5 1.5 0 0 1 3 0v7.5c0 4-2.2 6-6 6h-.5c-2.2 0-3.4-.9-4.5-2.5l-2-3a1.5 1.5 0 0 1 2.5-1.7L8.5 15V11Z" />
+        </svg>
+        <span>{locale === "nl" ? "Sleep de woorden" : "Drag the words"}</span>
+      </div>
       {characters.map(
         ({ character, isWordStart, collisionHeightScale }, index) => (
           <span
