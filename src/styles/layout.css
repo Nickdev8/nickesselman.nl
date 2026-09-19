@@ -2,7 +2,7 @@
   display: flex;
   align-items: flex-end;
   min-height: calc(100svh - clamp(48px, 8svh, 96px) - 72px);
-  padding: clamp(180px, 40svh, 540px) 3.4vw 0;
+  padding: clamp(180px, 40svh, 540px) var(--page-gutter) 0;
 }
 .hero > div {
   width: 100%;
@@ -52,18 +52,18 @@
   letter-spacing: 0;
   color: var(--muted);
 }
+.about-manifesto > a {
+  display: inline-block;
+  margin-top: 24px;
+  font-size: 16px;
+  letter-spacing: 0;
+}
 .text-link {
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
 .text-link:hover {
   text-decoration-thickness: 2px;
-}
-.about-manifesto > a {
-  display: inline-block;
-  margin-top: 24px;
-  font-size: 16px;
-  letter-spacing: 0;
 }
 .section-title {
   margin: 0;
@@ -90,7 +90,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 32px 24px;
-  margin: 0 3.4vw;
+  margin: 0 var(--page-gutter);
   padding: 36px 0 64px;
 }
 .project-carousel {
@@ -139,7 +139,7 @@
 .links-section {
   grid-template-columns: minmax(0, 1fr) minmax(220px, 0.38fr);
   gap: 4vw;
-  padding: 44px 3.4vw 72px;
+  padding: 44px var(--page-gutter) 72px;
   background: var(--paper);
   color: var(--ink);
   border-color: var(--ink);
@@ -233,36 +233,16 @@
 }
 .now-section .signal {
   min-height: 360px;
-  padding: 24px 0;
 }
 .now-section .spotify-signal {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  grid-template-rows: auto 1fr;
-  column-gap: 26px;
   padding-right: 26px;
   border-right: 1px solid var(--ink);
-}
-.now-section .spotify-signal img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
 }
 .now-section .signal-label {
   margin-bottom: 24px;
 }
-.now-section .signal-body h3 {
-  margin-top: 8px;
-  font-size: clamp(29px, 3.4vw, 58px);
-  line-height: 0.95;
-}
 .now-section .signal-message {
-  margin: 60px 0;
   color: var(--ink);
-}
-.now-section .fitbit-signal {
-  padding-left: 26px;
 }
 .now-section .fitbit-stats {
   height: calc(100% - 38px);
@@ -278,16 +258,6 @@
 }
 .now-section .fitbit-stats strong {
   font-size: clamp(30px, 2.6vw, 44px);
-}
-.now-section .github-signal {
-  grid-template-columns: 230px 1fr auto;
-  gap: 30px;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--ink);
-}
-.now-section .contribution-grid i {
-  width: 8px;
-  height: 8px;
 }
 footer {
   padding-block: 22px;

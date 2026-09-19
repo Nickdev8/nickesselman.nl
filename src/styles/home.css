@@ -1,6 +1,7 @@
 .recent-work-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--column-gap);
   align-items: center;
   padding: 28px 0 20px;
   font-size: 16px;
@@ -14,23 +15,26 @@
   margin: 12px 0 24px 0.4rem;
 }
 .recent-work-row .recent-work-label {
+  grid-column: 1 / span 4;
   justify-self: start;
   font-size: inherit;
 }
 .recent-work-row a:last-child {
+  grid-column: 10 / -1;
   justify-self: end;
 }
 
 .projects-section {
-  padding: 0 3.4vw 150px;
+  padding: 0 var(--page-gutter);
 }
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(14px, 1.15vw, 24px);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 32px var(--column-gap);
 }
 .project-carousel {
   position: relative;
+  grid-column: span 4;
   min-width: 0;
   cursor: pointer;
 }

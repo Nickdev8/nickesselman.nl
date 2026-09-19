@@ -288,6 +288,11 @@ export const clientProjects = [
         src: "/projects/maria-hoogland/timmermans-werkplaats.webp",
         alt: "Timmermans Werkplaats building in Haarlem, photographed for the Maria Hoogland Architectuur website case study",
       },
+      {
+        type: "image",
+        src: "/projects/maria-hoogland/garagewoning-haarlem-noord.webp",
+        alt: "Garagewoning in Haarlem-Noord photographed for the Maria Hoogland Architectuur website",
+      },
     ],
   },
   {
@@ -312,7 +317,7 @@ export const clientProjects = [
     approach:
       "I built the website in SvelteKit from Robijn’s visual direction. The custom admin lets her edit text, images and photo categories, and add pages for new work without having to touch code. The site is responsive, Docker-containerised and uses multiple image sizes so photography loads appropriately on different devices.",
     outcome:
-      "Robijn now has a custom, editable home for her work at robijnfotografie.nl. It is built to help visitors remember her work, browse it easily and reach out when they are ready. The public case study intentionally uses no photography from the site until image permission is confirmed.",
+      "Robijn now has a custom, editable home for her work at robijnfotografie.nl. It is built to help visitors remember her work, browse it easily and reach out when they are ready.",
     keywords: [
       "photography portfolio website development",
       "booking website developer",
@@ -324,6 +329,11 @@ export const clientProjects = [
         type: "image",
         src: "/projects/robijn-fotografie/portrait.webp",
         alt: "Photography presented on the Robijn Fotografie website",
+      },
+      {
+        type: "image",
+        src: "/projects/robijn-fotografie/subway-portrait.webp",
+        alt: "Black-and-white portrait from the Robijn Fotografie portfolio",
       },
     ],
   },

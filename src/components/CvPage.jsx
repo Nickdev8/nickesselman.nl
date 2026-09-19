@@ -55,10 +55,10 @@ export default function CvPage() {
           </div>
           <figure className="cv-portrait">
             <img
-              src="/images/cv/nick-cloudworld-v2.webp"
+              src="/images/cv/nick-temporary-portrait.webp"
               width="960"
               height="1280"
-              alt="Nick Esselman at Oracle CloudWorld"
+              alt="Nick Esselman outdoors"
               fetchPriority="high"
             />
           </figure>

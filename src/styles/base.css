@@ -4,6 +4,8 @@
   --accent: #f15a24;
   --muted: #62615d;
   --line: rgba(5, 5, 5, 0.24);
+  --page-gutter: 3.4vw;
+  --column-gap: clamp(16px, 1.7vw, 28px);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   color: var(--ink);
   background: var(--paper);

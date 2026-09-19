@@ -1,11 +1,11 @@
 .work-intro {
   position: relative;
   display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
-  gap: 8vw;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--column-gap);
   min-height: clamp(210px, 32.8vw, 558px);
   align-items: end;
-  padding: 4vw 3.4vw 3vw;
+  padding: 4vw var(--page-gutter) 3vw;
   border-bottom: 1px solid var(--ink);
 }
 .work-intro p {
@@ -17,6 +17,7 @@
   font-size: 14px;
 }
 .work-intro h1 {
+  grid-column: 1 / span 7;
   margin: 0;
   font-size: clamp(64px, 10vw, 170px);
   font-weight: 650;
@@ -38,6 +39,7 @@
   max-width: none;
 }
 .work-intro h1 + p {
+  grid-column: 9 / -1;
   max-width: 42ch;
   font-size: clamp(20px, 2vw, 34px);
   line-height: 1.12;
@@ -113,7 +115,7 @@
 }
 .work-list,
 .capability-list {
-  margin: 0 3.4vw;
+  margin: 0 var(--page-gutter);
   border-top: 1px solid var(--ink);
 }
 .work-list article,
@@ -122,10 +124,19 @@
 }
 .work-list a {
   display: grid;
-  grid-template-columns: 0.55fr 1.25fr 1.2fr;
-  gap: 24px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--column-gap);
   align-items: baseline;
   padding: 26px 0;
+}
+.work-list a > span:first-child {
+  grid-column: span 2;
+}
+.work-list a > h2 {
+  grid-column: span 5;
+}
+.work-list a > p {
+  grid-column: 9 / -1;
 }
 .work-list a:hover h2,
 .work-list a:focus-visible h2 {
@@ -172,7 +183,7 @@
   display: flex;
   justify-content: space-between;
   gap: 40px;
-  padding: 56px 3.4vw 70px;
+  padding: 56px var(--page-gutter) 70px;
   background: var(--accent);
   border-top: 1px solid var(--ink);
 }

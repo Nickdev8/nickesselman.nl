@@ -6,7 +6,7 @@
 .breadcrumbs {
   display: flex;
   gap: 10px;
-  padding: 32px 3.4vw 0;
+  padding: 32px var(--page-gutter) 0;
   color: #54534f;
   font-size: 14px;
 }
@@ -15,10 +15,17 @@
 }
 .case-intro {
   display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
-  gap: 8vw;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--column-gap);
   align-items: end;
-  padding: 7vw 3.4vw 5vw;
+  padding: 7vw var(--page-gutter) 5vw;
+}
+.case-intro > div:first-child {
+  grid-column: 1 / span 7;
+}
+.case-intro > .case-summary,
+.case-intro > .case-draft-media {
+  grid-column: 9 / -1;
 }
 .case-intro p {
   margin: 0;
@@ -57,7 +64,7 @@
 }
 .case-lead {
   margin: 0;
-  padding: 0 3.4vw;
+  padding: 0 var(--page-gutter);
 }
 .case-lead picture {
   display: block;
@@ -78,10 +85,13 @@
 }
 .case-facts {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin: 70px 3.4vw 0;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  margin: 70px var(--page-gutter) 0;
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
+}
+.case-facts div {
+  grid-column: span 4;
 }
 .case-facts div {
   min-height: 150px;
@@ -132,9 +142,12 @@
 }
 .case-gallery {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 3.4vw;
-  padding: 0 3.4vw 130px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--column-gap);
+  padding: 0 var(--page-gutter) 130px;
+}
+.case-gallery figure {
+  grid-column: span 6;
 }
 .case-gallery figure {
   margin: 0;
