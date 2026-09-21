@@ -178,7 +178,7 @@ export function routeMeta(pathname = "/") {
     return localize(
       pageMeta({
         path: "/cv/",
-        title: "CV — Nick Esselman",
+        title: "CV Nick Esselman",
         description:
           "Curriculum vitae of Nick Esselman, a Netherlands-based full-stack developer and maker working across software, interactive experiences and physical technology.",
         graph: [
