@@ -4,6 +4,7 @@
   min-height: calc(100svh - clamp(48px, 8svh, 96px) - 72px);
   padding: clamp(180px, 40svh, 540px) var(--page-gutter) 0;
 }
+
 .hero > div {
   width: 100%;
 }
@@ -89,14 +90,17 @@
 .work-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 32px 24px;
+  gap: clamp(28px, 3vw, 48px) clamp(16px, 2.2vw, 32px);
   margin: 0 var(--page-gutter);
   padding: 36px 0 64px;
 }
 .project-carousel {
   width: 100%;
-  max-width: min(45svh, 560px);
+  max-width: min(100%, 560px);
   justify-self: center;
+}
+.work-grid .project-carousel {
+  grid-column: auto;
 }
 .carousel-slide img,
 .carousel-slide video {
@@ -619,7 +623,7 @@ a:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 4px;
 }
-@media (max-width: 980px) {
+@media (max-width: 1023px) {
   .work-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -633,7 +637,7 @@ a:focus-visible {
     justify-self: start;
   }
 }
-@media (max-width: 680px) {
+@media (max-width: 679px) {
   .site-header nav a:nth-child(3) {
     display: inline-flex;
   }
