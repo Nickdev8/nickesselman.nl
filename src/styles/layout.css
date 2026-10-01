@@ -1,21 +1,33 @@
 .hero {
   display: flex;
-  align-items: flex-end;
-  min-height: calc(100svh - clamp(48px, 8svh, 96px) - 72px);
-  padding: clamp(180px, 40svh, 540px) var(--page-gutter) 0;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  min-height: 100svh;
+  padding: 62px var(--page-gutter) clamp(14px, 1.4vw, 24px);
+  overflow: hidden;
 }
 
-.hero > div {
-  width: 100%;
+.hero-description {
+  max-width: 62ch;
+  margin: 0 0 clamp(22px, 2.2vw, 38px) 0.4rem;
+  color: var(--muted);
+  font-size: clamp(11px, 0.85vw, 13px);
+  line-height: 1.45;
 }
-.hero h1 {
+
+.hero-name {
   margin: 0;
-  max-width: 100%;
+  width: 100%;
   font-size: min(13.6vw, 30svh);
   font-weight: 650;
   line-height: 0.8;
   letter-spacing: -0.085em;
   white-space: nowrap;
+}
+
+.hero-name span {
+  display: inline-block;
 }
 .portrait {
   width: 100%;
@@ -29,8 +41,13 @@
   gap: clamp(28px, 6vw, 100px);
   align-items: center;
   padding: 56px 3.4vw 64px;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
+  border-top: 1px solid rgba(242, 242, 240, 0.28);
+  border-bottom: 1px solid rgba(242, 242, 240, 0.28);
+  color: var(--paper);
+  background: var(--ink);
+}
+.about-section .portrait {
+  mix-blend-mode: screen;
 }
 .about-manifesto {
   margin: 0;
@@ -43,7 +60,7 @@
   font-size: 17px;
   line-height: 1.5;
   letter-spacing: 0;
-  color: var(--muted);
+  color: rgba(242, 242, 240, 0.72);
 }
 .about-manifesto .availability-line {
   max-width: 48ch;
@@ -51,7 +68,7 @@
   font-size: 17px;
   line-height: 1.5;
   letter-spacing: 0;
-  color: var(--muted);
+  color: rgba(242, 242, 240, 0.72);
 }
 .about-manifesto > a {
   display: inline-block;
@@ -65,6 +82,9 @@
 }
 .text-link:hover {
   text-decoration-thickness: 2px;
+}
+.about-section .text-link:hover {
+  color: var(--accent);
 }
 .section-title {
   margin: 0;
@@ -642,17 +662,22 @@ a:focus-visible {
     display: inline-flex;
   }
   .hero {
-    min-height: 0;
-    padding: clamp(104px, 18svh, 152px) 18px 24px;
+    min-height: 100svh;
+    padding: 58px 18px 16px;
   }
   .hero h1 {
-    font-size: clamp(56px, 20vw, 104px);
-    white-space: normal;
-    line-height: 0.92;
+    font-size: clamp(56px, 18vw, 104px);
+    line-height: 0.82;
     letter-spacing: -0.075em;
   }
   .hero h1 span {
     display: block;
+  }
+  .hero-description {
+    max-width: 42ch;
+    margin: 0 0 22px 0.2rem;
+    font-size: 11px;
+    line-height: 1.45;
   }
   .recent-work-row {
     min-height: 60px;
