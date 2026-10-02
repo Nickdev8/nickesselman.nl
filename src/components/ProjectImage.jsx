@@ -6,6 +6,19 @@ export default function ProjectImage({
 }) {
   const src = media.type === "video" ? media.poster : media.src;
   const base = src.replace(/\.webp$/, "");
+  const img = (
+    <img
+      className={className}
+      src={src}
+      alt={media.alt ?? media.label}
+      width={media.width ?? 960}
+      height={media.height ?? 1280}
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : "auto"}
+      decoding="async"
+    />
+  );
+  if (!src.endsWith(".webp")) return img;
   return (
     <picture>
       <source
@@ -18,16 +31,7 @@ export default function ProjectImage({
         srcSet={`${base}-320.webp 320w, ${base}-640.webp 640w, ${base}-960.webp 960w`}
         sizes={sizes}
       />
-      <img
-        className={className}
-        src={src}
-        alt={media.alt ?? media.label}
-        width="960"
-        height="1280"
-        loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : "auto"}
-        decoding="async"
-      />
+      {img}
     </picture>
   );
 }

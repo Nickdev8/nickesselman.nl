@@ -1,6 +1,4 @@
 import {
-  allProjects,
-  featuredProjects,
   projectBySlug,
   projects,
   site,
@@ -9,9 +7,9 @@ import { localeFromPath, stripLocale } from "./locale.js";
 
 const personId = `${site.url}/#person`;
 const websiteId = `${site.url}/#website`;
-const projectRoutes = allProjects.map(
-  (project) => `/projects/${project.slug}/`,
-);
+const projectRoutes = projects
+  .filter((project) => !project.externalUrl && !project.draft)
+  .map((project) => `/projects/${project.slug}/`);
 
 const englishRoutes = [
   "/",
@@ -31,7 +29,7 @@ export const indexedRoutes = [
   "/cv/",
   "/work/",
   "/work-with-me/",
-  ...allProjects.map((project) => `/projects/${project.slug}/`),
+  ...projectRoutes,
 ];
 
 function absolute(path) {
@@ -143,11 +141,11 @@ export function routeMeta(pathname = "/") {
             "@type": "ItemList",
             "@id": `${site.url}/#projects`,
             name: "Selected projects by Nick Esselman",
-            numberOfItems: featuredProjects.length,
-            itemListElement: featuredProjects.map((item, index) => ({
+            numberOfItems: Math.min(projects.length, 3),
+            itemListElement: projects.slice(0, 3).map((item, index) => ({
               "@type": "ListItem",
               position: index + 1,
-              url: `${site.url}/projects/${item.slug}/`,
+              url: item.externalUrl ?? `${site.url}/projects/${item.slug}/`,
               name: item.title,
             })),
           },
@@ -162,6 +160,7 @@ export function routeMeta(pathname = "/") {
         title: "Nick, All Work",
         description:
           "Selected custom websites, web applications, VR experiences, hardware and game projects by Nick Esselman.",
+        noimageindex: true,
       }),
     );
   }

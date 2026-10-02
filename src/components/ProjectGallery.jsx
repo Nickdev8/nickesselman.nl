@@ -1,4 +1,4 @@
-import { featuredProjects } from "../data/projects";
+import { projects } from "../data/projects";
 import { localePath, t, useLocale } from "../locale";
 import ProjectCard from "./ProjectCard";
 
@@ -17,7 +17,7 @@ export default function ProjectGallery() {
         <a href={localePath("/work/", locale)}>{t(locale, "view all")}</a>
       </div>
       <div className="project-grid">
-        {featuredProjects.slice(0, 3).map((project, index) => (
+        {projects.slice(0, 3).map((project, index) => (
           <ProjectCard
             item={project}
             index={index}

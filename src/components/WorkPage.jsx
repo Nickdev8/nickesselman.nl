@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import WorkPhysics from "./WorkPhysics";
 import ProjectCard from "./ProjectCard";
 import SiteHeader from "./SiteHeader";
-import { allProjects } from "../data/projects";
+import { projects } from "../data/projects";
 import { t, useLocale } from "../locale";
 
 export default function WorkPage() {
@@ -16,7 +16,7 @@ export default function WorkPage() {
           <WorkPhysics />
         </section>
         <section className="work-grid" aria-label={t(locale, "Selected work")}>
-          {allProjects.map((project, index) => (
+          {projects.filter((project) => !project.draft).map((project, index) => (
             <ProjectCard
               item={project}
               index={index}

@@ -16,7 +16,140 @@ export const site = {
   ],
 };
 
+// Public entries appear in this order on /work; the first three also appear on the home page.
 export const projects = [
+  {
+    slug: "maria-hoogland",
+    title: "AMH, Architect Maria Hoogland",
+    category: "Architecture portfolio website",
+    status: "Live",
+    summary:
+      "A custom portfolio website and simple editing system for architect Maria Hoogland, built to help local clients discover her work and get in touch.",
+    role: "Wireframing, custom website development, admin development and hosting",
+    technologies: [
+      "SvelteKit",
+      "Custom admin",
+      "Cloudflare DNS",
+      "Self-hosting",
+    ],
+    links: [
+      { label: "Visit the live website", href: "https://mariahoogland.nl/" },
+    ],
+    challenge:
+      "Maria had outgrown a slow WordPress-based setup and wanted a website that felt like her own practice: professional, individual and easy for a potential local client to understand. The first job was to turn that feeling into a clear, practical direction without a long agency process.",
+    approach:
+      "I made a working wireframe in one day, then used it as the shared foundation for the finished SvelteKit website. The result includes a custom admin area so Maria can update text and choose or upload images herself. I also set up the site for responsive use, search visibility and Google Search Console. For bigger changes, I remain available to work directly with her.",
+    outcome:
+      "Maria now has one clear place to introduce AMH and her work without taking unnecessary time away from clients. The website is live at mariahoogland.nl, fully custom-built by me and hosted on my own hardware, with the domain at Hostinger and DNS managed through Cloudflare.",
+    keywords: [
+      "architecture portfolio website development",
+      "SvelteKit architecture website",
+      "custom website developer Netherlands",
+    ],
+    draft: false,
+    media: [
+      {
+        type: "image",
+        src: "/projects/maria-hoogland/timmermans-werkplaats.webp",
+        alt: "Timmermans Werkplaats building in Haarlem, photographed for the Maria Hoogland Architectuur website case study",
+      },
+      {
+        type: "image",
+        src: "/projects/maria-hoogland/garagewoning-haarlem-noord.webp",
+        alt: "Garagewoning in Haarlem-Noord photographed for the Maria Hoogland Architectuur website",
+      },
+    ],
+  },
+  {
+    slug: "robijn-fotografie",
+    title: "Robijn Fotografie",
+    category: "Photography portfolio and booking website",
+    status: "Live",
+    summary:
+      "A custom photography portfolio website and editing system that helps Robijn Fotografie turn social discovery into enquiries.",
+    role: "Custom website, responsive gallery and admin development",
+    technologies: [
+      "SvelteKit",
+      "Custom admin",
+      "Responsive image delivery",
+      "Docker",
+    ],
+    links: [
+      { label: "Visit the live website", href: "https://robijnfotografie.nl/" },
+    ],
+    challenge:
+      "Robijn wanted a website that could turn people discovering her through social media into future clients. She had a clear visual idea and drew it out herself; the challenge was to make that direction real while keeping the site and its editing tools straightforward.",
+    approach:
+      "I built the website in SvelteKit from Robijn’s visual direction. The custom admin lets her edit text, images and photo categories, and add pages for new work without having to touch code. The site is responsive, Docker-containerised and uses multiple image sizes so photography loads appropriately on different devices.",
+    outcome:
+      "Robijn now has a custom, editable home for her work at robijnfotografie.nl. It is built to help visitors remember her work, browse it easily and reach out when they are ready.",
+    keywords: [
+      "photography portfolio website development",
+      "booking website developer",
+      "SvelteKit website developer Netherlands",
+    ],
+    draft: false,
+    media: [
+      {
+        type: "image",
+        src: "/projects/robijn-fotografie/portrait.webp",
+        alt: "Photography presented on the Robijn Fotografie website",
+      },
+      {
+        type: "image",
+        src: "/projects/robijn-fotografie/subway-portrait.webp",
+        alt: "Black-and-white portrait from the Robijn Fotografie portfolio",
+      },
+    ],
+  },
+  {
+    slug: "edith-van-aken",
+    title: "Edith van Aken",
+    externalUrl: "https://evamarthe.nickesselman.nl/",
+    summary: "A photography portfolio for Edith's portraits and surreal visual stories.",
+    summaryNl: "Een fotografieportfolio voor Ediths portretten en surrealistische beeldverhalen.",
+    links: [],
+    media: [
+      {
+        type: "image",
+        src: "/projects/edith-van-aken/plug-and-cables.jpg",
+        alt: "Hand holding an electrical plug, wrapped in cables and lit blue and red, photographed by Edith van Aken",
+        width: 4160,
+        height: 6240,
+      },
+      {
+        type: "image",
+        src: "/projects/edith-van-aken/through-the-frame.jpg",
+        alt: "A person appears inside a frame in the woods, photographed by Edith van Aken",
+        width: 1555,
+        height: 2048,
+      },
+    ],
+  },
+  {
+    slug: "jayden-daniel-koek",
+    title: "Jayden Daniel Koek",
+    externalUrl: "https://jaydendanielkoek.nickesselman.nl/",
+    summary: "An interactive 3D photography portfolio for Jayden's nature and urban work.",
+    summaryNl: "Een interactief 3D-fotografieportfolio voor Jaydens natuur- en stadsfotografie.",
+    links: [],
+    media: [
+      {
+        type: "image",
+        src: "/projects/jayden-daniel-koek/colorful-bird.jpg",
+        alt: "Colorful bird photographed by Jayden Daniel Koek",
+        width: 1440,
+        height: 1800,
+      },
+      {
+        type: "image",
+        src: "/projects/jayden-daniel-koek/horse.jpg",
+        alt: "Close-up horse portrait photographed by Jayden Daniel Koek",
+        width: 1440,
+        height: 1800,
+      },
+    ],
+  },
   {
     slug: "partyvr",
     title: "PartyVR",
@@ -249,94 +382,7 @@ export const projects = [
       },
     ],
   },
-];
-
-// Jazz Design remains stored here for the planned redesign, but is not public yet.
-export const clientProjects = [
-  {
-    slug: "maria-hoogland",
-    title: "AMH, Architect Maria Hoogland",
-    category: "Architecture portfolio website",
-    status: "Live",
-    summary:
-      "A custom portfolio website and simple editing system for architect Maria Hoogland, built to help local clients discover her work and get in touch.",
-    role: "Wireframing, custom website development, admin development and hosting",
-    technologies: [
-      "SvelteKit",
-      "Custom admin",
-      "Cloudflare DNS",
-      "Self-hosting",
-    ],
-    links: [
-      { label: "Visit the live website", href: "https://mariahoogland.nl/" },
-    ],
-    challenge:
-      "Maria had outgrown a slow WordPress-based setup and wanted a website that felt like her own practice: professional, individual and easy for a potential local client to understand. The first job was to turn that feeling into a clear, practical direction without a long agency process.",
-    approach:
-      "I made a working wireframe in one day, then used it as the shared foundation for the finished SvelteKit website. The result includes a custom admin area so Maria can update text and choose or upload images herself. I also set up the site for responsive use, search visibility and Google Search Console. For bigger changes, I remain available to work directly with her.",
-    outcome:
-      "Maria now has one clear place to introduce AMH and her work without taking unnecessary time away from clients. The website is live at mariahoogland.nl, fully custom-built by me and hosted on my own hardware, with the domain at Hostinger and DNS managed through Cloudflare.",
-    keywords: [
-      "architecture portfolio website development",
-      "SvelteKit architecture website",
-      "custom website developer Netherlands",
-    ],
-    draft: false,
-    media: [
-      {
-        type: "image",
-        src: "/projects/maria-hoogland/timmermans-werkplaats.webp",
-        alt: "Timmermans Werkplaats building in Haarlem, photographed for the Maria Hoogland Architectuur website case study",
-      },
-      {
-        type: "image",
-        src: "/projects/maria-hoogland/garagewoning-haarlem-noord.webp",
-        alt: "Garagewoning in Haarlem-Noord photographed for the Maria Hoogland Architectuur website",
-      },
-    ],
-  },
-  {
-    slug: "robijn-fotografie",
-    title: "Robijn Fotografie",
-    category: "Photography portfolio and booking website",
-    status: "Live",
-    summary:
-      "A custom photography portfolio website and editing system that helps Robijn Fotografie turn social discovery into enquiries.",
-    role: "Custom website, responsive gallery and admin development",
-    technologies: [
-      "SvelteKit",
-      "Custom admin",
-      "Responsive image delivery",
-      "Docker",
-    ],
-    links: [
-      { label: "Visit the live website", href: "https://robijnfotografie.nl/" },
-    ],
-    challenge:
-      "Robijn wanted a website that could turn people discovering her through social media into future clients. She had a clear visual idea and drew it out herself; the challenge was to make that direction real while keeping the site and its editing tools straightforward.",
-    approach:
-      "I built the website in SvelteKit from Robijn’s visual direction. The custom admin lets her edit text, images and photo categories, and add pages for new work without having to touch code. The site is responsive, Docker-containerised and uses multiple image sizes so photography loads appropriately on different devices.",
-    outcome:
-      "Robijn now has a custom, editable home for her work at robijnfotografie.nl. It is built to help visitors remember her work, browse it easily and reach out when they are ready.",
-    keywords: [
-      "photography portfolio website development",
-      "booking website developer",
-      "SvelteKit website developer Netherlands",
-    ],
-    draft: false,
-    media: [
-      {
-        type: "image",
-        src: "/projects/robijn-fotografie/portrait.webp",
-        alt: "Photography presented on the Robijn Fotografie website",
-      },
-      {
-        type: "image",
-        src: "/projects/robijn-fotografie/subway-portrait.webp",
-        alt: "Black-and-white portrait from the Robijn Fotografie portfolio",
-      },
-    ],
-  },
+  // Jazz Design remains a draft until its planned redesign is ready.
   {
     slug: "jazz-design",
     title: "Jazz Design",
@@ -365,17 +411,10 @@ export const clientProjects = [
   },
 ];
 
-export const allProjects = [clientProjects[0], clientProjects[1], ...projects];
-export const featuredProjects = [
-  clientProjects[0],
-  clientProjects[1],
-  projects[0],
-  projects[1],
-  projects[2],
-  projects[3],
-];
 export const projectBySlug = Object.fromEntries(
-  allProjects.map((project) => [project.slug, project]),
+  projects
+    .filter((project) => !project.externalUrl && !project.draft)
+    .map((project) => [project.slug, project]),
 );
 
 export function projectPath(project, locale = "en") {
