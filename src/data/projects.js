@@ -112,14 +112,14 @@ export const projects = [
     media: [
       {
         type: "image",
-        src: "/projects/edith-van-aken/plug-and-cables.jpg",
+        src: "/projects/edith-van-aken/plug-and-cables.webp",
         alt: "Hand holding an electrical plug, wrapped in cables and lit blue and red, photographed by Edith van Aken",
         width: 4160,
         height: 6240,
       },
       {
         type: "image",
-        src: "/projects/edith-van-aken/through-the-frame.jpg",
+        src: "/projects/edith-van-aken/through-the-frame.webp",
         alt: "A person appears inside a frame in the woods, photographed by Edith van Aken",
         width: 1555,
         height: 2048,
@@ -136,14 +136,14 @@ export const projects = [
     media: [
       {
         type: "image",
-        src: "/projects/jayden-daniel-koek/colorful-bird.jpg",
+        src: "/projects/jayden-daniel-koek/colorful-bird.webp",
         alt: "Colorful bird photographed by Jayden Daniel Koek",
         width: 1440,
         height: 1800,
       },
       {
         type: "image",
-        src: "/projects/jayden-daniel-koek/horse.jpg",
+        src: "/projects/jayden-daniel-koek/horse.webp",
         alt: "Close-up horse portrait photographed by Jayden Daniel Koek",
         width: 1440,
         height: 1800,
