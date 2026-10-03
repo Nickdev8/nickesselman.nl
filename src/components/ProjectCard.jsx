@@ -202,14 +202,14 @@ export default function ProjectCard({ item, index, locale }) {
         <div
           className={`project-actions${repository ? " has-repository" : ""}`}
         >
-          <a className="text-link" href={cardHref} {...linkProps}>
+          <a className="text-link-left" href={cardHref} {...linkProps}>
             {external
               ? locale === "nl" ? "Bezoek website" : "Visit website"
               : locale === "nl" ? "Bekijk project" : "View project"} ↗
           </a>
           {repository ? (
             <a
-              className="text-link"
+              className="text-link-right"
               href={repository.href}
               target="_blank"
               rel="noreferrer"

@@ -130,26 +130,29 @@
   padding: 12px 0 8px;
 }
 .project-actions {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
   margin-top: 12px;
 }
-.project-actions .text-link {
+.project-actions .text-link-right,
+.project-actions .text-link-left {
   position: relative;
   z-index: 4;
 }
-.project-actions .text-link:hover,
-.project-actions .text-link:focus-visible {
+.project-actions .text-link-left {
+  justify-self: start;
+}
+
+.project-actions .text-link-right {
+  justify-self: end;
+}
+.project-actions .text-link-right:hover,
+.project-actions .text-link-left:hover,
+.project-actions .text-link-right:focus-visible,
+.project-actions .text-link-left:focus-visible {
   color: var(--accent);
   outline: none;
-}
-.project-actions.has-repository {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.project-actions.has-repository .text-link {
-  justify-self: center;
-  text-align: center;
 }
 .project-cta {
   display: inline-block;

@@ -19,44 +19,26 @@ export const site = {
 // Public entries appear in this order on /work; the first three also appear on the home page.
 export const projects = [
   {
-    slug: "maria-hoogland",
-    title: "AMH, Architect Maria Hoogland",
-    category: "Architecture portfolio website",
-    status: "Live",
-    summary:
-      "A custom portfolio website and simple editing system for architect Maria Hoogland, built to help local clients discover her work and get in touch.",
-    role: "Wireframing, custom website development, admin development and hosting",
-    technologies: [
-      "SvelteKit",
-      "Custom admin",
-      "Cloudflare DNS",
-      "Self-hosting",
-    ],
-    links: [
-      { label: "Visit the live website", href: "https://mariahoogland.nl/" },
-    ],
-    challenge:
-      "Maria had outgrown a slow WordPress-based setup and wanted a website that felt like her own practice: professional, individual and easy for a potential local client to understand. The first job was to turn that feeling into a clear, practical direction without a long agency process.",
-    approach:
-      "I made a working wireframe in one day, then used it as the shared foundation for the finished SvelteKit website. The result includes a custom admin area so Maria can update text and choose or upload images herself. I also set up the site for responsive use, search visibility and Google Search Console. For bigger changes, I remain available to work directly with her.",
-    outcome:
-      "Maria now has one clear place to introduce AMH and her work without taking unnecessary time away from clients. The website is live at mariahoogland.nl, fully custom-built by me and hosted on my own hardware, with the domain at Hostinger and DNS managed through Cloudflare.",
-    keywords: [
-      "architecture portfolio website development",
-      "SvelteKit architecture website",
-      "custom website developer Netherlands",
-    ],
-    draft: false,
+    slug: "bloesem-kneppers",
+    title: "Bloesem Kneppers",
+    externalUrl: "https://bloesemkneppers.nickesselman.nl/nl/",
+    summary: "A photography portfolio for Bloesem's portraits and personal work.",
+    summaryNl: "Een fotografieportfolio voor Bloesems portretten en eigen werk.",
+    links: [],
     media: [
       {
         type: "image",
-        src: "/projects/maria-hoogland/timmermans-werkplaats.webp",
-        alt: "Timmermans Werkplaats building in Haarlem, photographed for the Maria Hoogland Architectuur website case study",
+        src: "/projects/bloesem-kneppers/about-bloesem.webp",
+        alt: "Bloesem Kneppers dancing in a warmly lit room",
+        width: 960,
+        height: 1280,
       },
       {
         type: "image",
-        src: "/projects/maria-hoogland/garagewoning-haarlem-noord.webp",
-        alt: "Garagewoning in Haarlem-Noord photographed for the Maria Hoogland Architectuur website",
+        src: "/projects/bloesem-kneppers/insta-3824650181032118774.webp",
+        alt: "Addicted to You campaign portrait featuring Bloesem Kneppers",
+        width: 960,
+        height: 1279,
       },
     ],
   },
@@ -147,6 +129,48 @@ export const projects = [
         alt: "Close-up horse portrait photographed by Jayden Daniel Koek",
         width: 1440,
         height: 1800,
+      },
+    ],
+  },
+    {
+    slug: "maria-hoogland",
+    title: "AMH, Architect Maria Hoogland",
+    category: "Architecture portfolio website",
+    status: "Live",
+    summary:
+      "A custom portfolio website and simple editing system for architect Maria Hoogland, built to help local clients discover her work and get in touch.",
+    role: "Wireframing, custom website development, admin development and hosting",
+    technologies: [
+      "SvelteKit",
+      "Custom admin",
+      "Cloudflare DNS",
+      "Self-hosting",
+    ],
+    links: [
+      { label: "Visit the live website", href: "https://mariahoogland.nl/" },
+    ],
+    challenge:
+      "Maria had outgrown a slow WordPress-based setup and wanted a website that felt like her own practice: professional, individual and easy for a potential local client to understand. The first job was to turn that feeling into a clear, practical direction without a long agency process.",
+    approach:
+      "I made a working wireframe in one day, then used it as the shared foundation for the finished SvelteKit website. The result includes a custom admin area so Maria can update text and choose or upload images herself. I also set up the site for responsive use, search visibility and Google Search Console. For bigger changes, I remain available to work directly with her.",
+    outcome:
+      "Maria now has one clear place to introduce AMH and her work without taking unnecessary time away from clients. The website is live at mariahoogland.nl, fully custom-built by me and hosted on my own hardware, with the domain at Hostinger and DNS managed through Cloudflare.",
+    keywords: [
+      "architecture portfolio website development",
+      "SvelteKit architecture website",
+      "custom website developer Netherlands",
+    ],
+    draft: false,
+    media: [
+      {
+        type: "image",
+        src: "/projects/maria-hoogland/timmermans-werkplaats.webp",
+        alt: "Timmermans Werkplaats building in Haarlem, photographed for the Maria Hoogland Architectuur website case study",
+      },
+      {
+        type: "image",
+        src: "/projects/maria-hoogland/garagewoning-haarlem-noord.webp",
+        alt: "Garagewoning in Haarlem-Noord photographed for the Maria Hoogland Architectuur website",
       },
     ],
   },
