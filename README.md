@@ -32,6 +32,14 @@ npm run build
 The build produces prerendered HTML for the homepage and every project case study. JavaScript
 hydrates the carousels and live widgets after the static content is visible.
 
+## CV click notifications
+
+Clicking the CV print/PDF button sends browser and device details to `/api/cv-download`.
+Production nginx adds the connection IP and any forwarded IP/country headers, then posts
+the message to `https://ntfy.sh/nickesselman-nickcvdownload`. The Vite development proxy
+forwards the browser details without nginx's IP fields. This tracks clicks, not completed
+PDF saves. The ntfy.sh topic is publicly readable, so its messages are not confidential.
+
 Optional privacy-first traffic measurement uses Cloudflare Web Analytics:
 
 ```bash

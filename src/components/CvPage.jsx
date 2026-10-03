@@ -21,6 +21,44 @@ function EntryList({ entries, className = "" }) {
   );
 }
 
+function notifyCvDownload() {
+  const { screen, navigator } = window;
+  const details = [
+    "CV download clicked",
+    `Time: ${new Date().toISOString()}`,
+    `Page: ${window.location.href}`,
+    `Referrer: ${document.referrer || "none"}`,
+    `User agent: ${navigator.userAgent}`,
+    `Platform: ${navigator.userAgentData?.platform || navigator.platform || "unknown"}`,
+    `Languages: ${navigator.languages?.join(", ") || navigator.language || "unknown"}`,
+    `Timezone: ${Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown"}`,
+    `Screen: ${screen.width}x${screen.height}, ${screen.colorDepth}-bit color`,
+    `Viewport: ${window.innerWidth}x${window.innerHeight}`,
+    `Pixel ratio: ${window.devicePixelRatio}`,
+    `Touch points: ${navigator.maxTouchPoints ?? "unknown"}`,
+    `CPU cores: ${navigator.hardwareConcurrency ?? "unknown"}`,
+    `Device memory: ${navigator.deviceMemory ? `${navigator.deviceMemory} GB` : "unknown"}`,
+    `Connection: ${navigator.connection?.effectiveType || "unknown"}`,
+  ].join("\n");
+
+  if (!navigator.sendBeacon?.("/api/cv-download", details)) {
+    fetch("/api/cv-download", {
+      method: "POST",
+      body: details,
+      keepalive: true,
+    }).catch(() => {});
+  }
+}
+
+function handleCvDownload() {
+  try {
+    notifyCvDownload();
+  } catch {
+    // A notification failure must not prevent opening the PDF print dialog.
+  }
+  window.print();
+}
+
 export default function CvPage() {
   const locale = useLocale();
   const content = cv[locale];
@@ -109,7 +147,7 @@ export default function CvPage() {
         </section>
         <p className="cv-document-footer">{content.footer}</p>
         <div className={`cv-print-control${dockPrintControl ? " is-docked" : ""}`}>
-          <button className="cv-print-button" type="button" onClick={() => window.print()}>
+          <button className="cv-print-button" type="button" onClick={handleCvDownload}>
             {content.print} <span aria-hidden="true">↗</span>
           </button>
         </div>
