@@ -724,10 +724,23 @@ a:focus-visible {
     margin-top: 32px;
   }
   .link-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    display: block;
     margin: 0;
+  }
+  .link-list a {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    min-height: 72px;
+    padding-block: 12px;
+  }
+  .link-list a span:first-child {
+    font-size: clamp(36px, 10vw, 52px);
+    white-space: nowrap;
+    overflow-wrap: normal;
+  }
+  .link-list a span:last-child {
+    font-size: clamp(11px, 3vw, 13px);
   }
   .now-section {
     display: block;
