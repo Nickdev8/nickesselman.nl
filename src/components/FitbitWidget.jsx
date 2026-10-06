@@ -7,9 +7,16 @@ function batteryPercentage(device) {
 }
 
 function screenTime(device) {
+  const reportedMinutes = device?.screenTime?.todayMinutes;
   const hours = device?.screenTime?.today;
-  if (!Number.isFinite(hours) || hours < 0) return "—";
-  const minutes = Math.round(hours * 60);
+  const totalMinutes =
+    Number.isFinite(reportedMinutes) && reportedMinutes >= 0
+      ? reportedMinutes
+      : Number.isFinite(hours) && hours >= 0
+        ? hours * 60
+        : null;
+  if (totalMinutes === null) return "—";
+  const minutes = Math.round(totalMinutes);
   return `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
 }
 
