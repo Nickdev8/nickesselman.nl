@@ -6,11 +6,19 @@ function batteryPercentage(device) {
     : "—";
 }
 
+function screenTime(device) {
+  const hours = device?.screenTime?.today;
+  if (!Number.isFinite(hours) || hours < 0) return "—";
+  const minutes = Math.round(hours * 60);
+  return `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
+}
+
 export function FitbitSkeleton() {
   const labels = [
     "steps",
     "bpm",
-    "calories",
+    "laptop screen time today",
+    "phone screen time today",
     "laptop battery",
     "phone battery",
   ];
@@ -18,12 +26,8 @@ export function FitbitSkeleton() {
     <section
       className="signal fitbit-signal"
       aria-busy="true"
-      aria-label="Loading movement activity"
+      aria-label="Loading activity and device status"
     >
-      <div className="signal-label">
-        <span>moving</span>
-        <span>today</span>
-      </div>
       <div className="fitbit-stats">
         {labels.map((label) => (
           <div key={label}>
@@ -40,6 +44,7 @@ export default function FitbitWidget() {
   const [data, setData] = useState(null);
   const [state, setState] = useState("loading");
   const [devices, setDevices] = useState(null);
+  const [phone, setPhone] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -66,17 +71,22 @@ export default function FitbitWidget() {
     let cancelled = false;
 
     function loadDevices() {
-      fetch("https://api.nickesselman.nl/device-state")
-        .then((response) => {
-          if (!response.ok) throw new Error();
-          return response.json();
-        })
-        .then((result) => {
-          if (!cancelled) setDevices(result);
-        })
-        .catch(() => {
-          if (!cancelled) setDevices(null);
-        });
+      function loadDevice(path, setDevice) {
+        fetch(`https://api.nickesselman.nl/${path}`)
+          .then((response) => {
+            if (!response.ok) throw new Error();
+            return response.json();
+          })
+          .then((result) => {
+            if (!cancelled) setDevice(result);
+          })
+          .catch(() => {
+            if (!cancelled) setDevice(null);
+          });
+      }
+
+      loadDevice("device-state", setDevices);
+      loadDevice("phone-state", setPhone);
     }
 
     loadDevices();
@@ -88,14 +98,10 @@ export default function FitbitWidget() {
     };
   }, []);
 
-  if (state === "loading" && !devices) return <FitbitSkeleton />;
+  if (state === "loading" && !devices && !phone) return <FitbitSkeleton />;
 
   return (
     <section className="signal fitbit-signal">
-      <div className="signal-label">
-        <span>moving</span>
-        <span>today</span>
-      </div>
       <div className="fitbit-stats" aria-live="polite">
         <div>
           <strong>{state === "ready" ? (data?.steps ?? "—") : "—"}</strong>
@@ -108,17 +114,19 @@ export default function FitbitWidget() {
           <span>bpm</span>
         </div>
         <div>
-          <strong>
-            {state === "ready" ? (data?.caloriesOut ?? "—") : "—"}
-          </strong>
-          <span>calories</span>
+          <strong>{screenTime(devices?.laptop)}</strong>
+          <span>laptop screen time today</span>
+        </div>
+        <div>
+          <strong>{screenTime(phone ?? devices?.phone)}</strong>
+          <span>phone screen time today</span>
         </div>
         <div>
           <strong>{batteryPercentage(devices?.laptop)}</strong>
           <span>laptop battery</span>
         </div>
         <div>
-          <strong>{batteryPercentage(devices?.phone)}</strong>
+          <strong>{batteryPercentage(phone ?? devices?.phone)}</strong>
           <span>phone battery</span>
         </div>
       </div>

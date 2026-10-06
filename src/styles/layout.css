@@ -272,7 +272,7 @@
   color: var(--ink);
 }
 .now-section .fitbit-stats {
-  height: calc(100% - 38px);
+  height: 100%;
 }
 .now-section .fitbit-stats div {
   padding: 13px 0;
