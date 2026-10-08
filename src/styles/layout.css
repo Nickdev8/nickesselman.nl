@@ -3,18 +3,10 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  min-height: 100svh;
   padding: 62px var(--page-gutter) clamp(14px, 1.4vw, 24px);
   overflow: hidden;
 }
 
-.hero-description {
-  max-width: 62ch;
-  margin: 0 0 clamp(22px, 2.2vw, 38px) 0.4rem;
-  color: var(--muted);
-  font-size: clamp(11px, 0.85vw, 13px);
-  line-height: 1.45;
-}
 
 .hero-name {
   margin: 0;
@@ -665,7 +657,6 @@ a:focus-visible {
     display: inline-flex;
   }
   .hero {
-    min-height: 100svh;
     padding: 58px 18px 16px;
   }
   .hero h1 {
@@ -676,12 +667,7 @@ a:focus-visible {
   .hero h1 span {
     display: block;
   }
-  .hero-description {
-    max-width: 42ch;
-    margin: 0 0 22px 0.2rem;
-    font-size: 11px;
-    line-height: 1.45;
-  }
+
   .recent-work-row {
     min-height: 60px;
     padding: 12px 0 20px;
