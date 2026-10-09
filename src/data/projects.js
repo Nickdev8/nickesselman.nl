@@ -21,10 +21,17 @@ export const projects = [
   {
     slug: "bloesem-kneppers",
     title: "Bloesem Kneppers",
-    externalUrl: "https://bloesemkneppers.nickesselman.nl/nl/",
-    summary: "A photography portfolio for Bloesem's portraits and personal work.",
-    summaryNl: "Een fotografieportfolio voor Bloesems portretten en eigen werk.",
-    links: [],
+    category: "Photography portfolio",
+    status: "Finished · Live",
+    summary: "A photography portfolio with a custom admin for independent editing.",
+    role: "Design, frontend and admin development",
+    technologies: ["SvelteKit", "TypeScript", "Docker", "Caddy"],
+    links: [
+      {
+        label: "Visit the live website",
+        href: "https://bloesemkneppers.nickesselman.nl/nl/",
+      },
+    ],
     media: [
       {
         type: "image",
@@ -87,10 +94,14 @@ export const projects = [
   {
     slug: "edith-van-aken",
     title: "Edith van Aken",
-    externalUrl: "https://evamarthe.nickesselman.nl/",
-    summary: "A photography portfolio for Edith's portraits and surreal visual stories.",
-    summaryNl: "Een fotografieportfolio voor Ediths portretten en surrealistische beeldverhalen.",
-    links: [],
+    category: "Photography portfolio",
+    status: "Live · Frontend complete",
+    summary: "A photography portfolio designed around Edith's portraits and visual stories.",
+    role: "Design and frontend development",
+    technologies: ["SvelteKit", "TypeScript", "Tailwind CSS"],
+    links: [
+      { label: "Visit the live website", href: "https://evamarthe.nickesselman.nl/" },
+    ],
     media: [
       {
         type: "image",
@@ -111,10 +122,17 @@ export const projects = [
   {
     slug: "jayden-daniel-koek",
     title: "Jayden Daniel Koek",
-    externalUrl: "https://jaydendanielkoek.nickesselman.nl/",
+    category: "Interactive photography portfolio",
+    status: "Live · In development",
     summary: "An interactive 3D photography portfolio for Jayden's nature and urban work.",
-    summaryNl: "Een interactief 3D-fotografieportfolio voor Jaydens natuur- en stadsfotografie.",
-    links: [],
+    role: "Design and frontend development",
+    technologies: ["SvelteKit", "Threlte", "Three.js"],
+    links: [
+      {
+        label: "Visit the live website",
+        href: "https://jaydendanielkoek.nickesselman.nl/",
+      },
+    ],
     media: [
       {
         type: "image",
@@ -437,7 +455,7 @@ export const projects = [
 
 export const projectBySlug = Object.fromEntries(
   projects
-    .filter((project) => !project.externalUrl && !project.draft)
+    .filter((project) => !project.draft)
     .map((project) => [project.slug, project]),
 );
 

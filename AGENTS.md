@@ -7,3 +7,4 @@
 - Verified 2026-10-06: `npm run build` passed with today's laptop/phone screen time replacing calories; prefer `todayMinutes`, falling back to hours. Device-state and phone-state refresh every minute in `FitbitWidget.jsx`.
 - Commit messages must not add Copilot as an author, co-author, contributor, or trailer. Use only human author information provided by Nick.
 - Verified 2026-10-09: shorter English/Dutch CV copy and compact layout; `npm run build` passed. Browser checked mobile overflow and print layout. CV content: `src/data/cv.js`; layout: `src/components/CvPage.jsx`, `src/styles/cv.css`.
+- Verified 2026-10-09: Bloesem, Edith and Jayden have English/Dutch project pages. Cards link to project + website/game; source links live on project pages. `npm run build`, six prerender/sitemap checks, mobile layout and keyboard/carousel checks passed. Stories: `src/data/projectContent.js`; link labels: `src/data/projectLinks.js`.

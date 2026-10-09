@@ -2,6 +2,7 @@ import Footer from "./Footer";
 import SiteHeader from "./SiteHeader";
 import ProjectImage from "./ProjectImage";
 import { projectContent } from "../data/projectContent";
+import { projectLinkLabel } from "../data/projectLinks";
 import { localizeProject, localePath, t, useLocale } from "../locale";
 
 function Media({ media, priority = false }) {
@@ -44,17 +45,7 @@ export default function ProjectPage({ project }) {
   project = localizeProject(locale, project);
   const content = projectContent(project.slug, locale);
   const primary = project.links[0];
-  const primaryLabel = primary?.href.includes("itch.io")
-    ? locale === "nl"
-      ? "Speel het spel"
-      : "Play game"
-    : primary?.href.includes("github.com")
-      ? locale === "nl"
-        ? "Bekijk de code"
-        : "View source"
-      : locale === "nl"
-        ? "Bezoek website"
-        : "Visit website";
+  const primaryLabel = primary ? projectLinkLabel(primary, locale) : null;
 
   return (
     <div className="case-shell" style={{ "--media-fit": content.fit }}>
@@ -133,16 +124,17 @@ export default function ProjectPage({ project }) {
           ))}
         </div>
         <section className="case-links">
-          {primary ? (
+          {project.links.map((link) => (
             <a
               className="text-link"
-              href={primary.href}
+              key={link.href}
+              href={link.href}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
-              {primaryLabel} ↗
+              {projectLinkLabel(link, locale)} ↗
             </a>
-          ) : null}
+          ))}
           <a className="text-link" href={localePath("/work/", locale)}>
             {t(locale, "More projects")} ↗
           </a>

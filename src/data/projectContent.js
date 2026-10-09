@@ -1,5 +1,71 @@
 // Each project chooses its own story order and supporting media.
 const content = {
+  "bloesem-kneppers": {
+    summary: [
+      "A photography portfolio with a custom admin for independent editing.",
+      "Een fotografieportfolio met een eigen admin voor zelfstandig beheer.",
+    ],
+    fit: "cover",
+    sections: [
+      [
+        "From references to a portfolio",
+        "Van inspiratie naar portfolio",
+        "Bloesem is a photography student who needed a full portfolio website. She brought Pinterest references, which I used as a starting point to develop the design and build the site in SvelteKit.",
+        "Bloesem is een fotografiestudent die een volledige portfoliosite nodig had. Ze bracht Pinterest-referenties mee, die ik als uitgangspunt gebruikte om het ontwerp uit te werken en de site in SvelteKit te bouwen.",
+        1,
+      ],
+      [
+        "Independent editing",
+        "Zelfstandig beheer",
+        "I built a password-protected admin where Bloesem can upload photos and edit the site herself. Images are optimised for delivery, and the site runs with Docker and Caddy. The website is finished and live.",
+        "Ik bouwde een admin met wachtwoordbeveiliging waarmee Bloesem zelf foto's kan uploaden en de site kan aanpassen. Afbeeldingen worden geoptimaliseerd en de site draait met Docker en Caddy. De website is afgerond en live.",
+      ],
+    ],
+  },
+  "edith-van-aken": {
+    summary: [
+      "A photography portfolio designed around Edith's portraits and visual stories.",
+      "Een fotografieportfolio ontworpen rond Ediths portretten en beeldverhalen.",
+    ],
+    fit: "cover",
+    sections: [
+      [
+        "Design around the photography",
+        "Ontwerpen rond de fotografie",
+        "Edith needed a photography portfolio but had no fixed design in mind. Her photographs became the starting point: I developed the visual direction around her work and built the frontend in SvelteKit.",
+        "Edith had een fotografieportfolio nodig, maar nog geen vast ontwerp in gedachten. Haar foto's vormden het uitgangspunt: ik ontwikkelde de visuele richting rond haar werk en bouwde de frontend in SvelteKit.",
+        1,
+      ],
+      [
+        "Current state",
+        "Huidige stand",
+        "The website is live and the frontend is complete. A custom admin is planned so Edith can manage her photos and content herself.",
+        "De website is live en de frontend is afgerond. Een eigen admin staat gepland, zodat Edith haar foto's en content zelf kan beheren.",
+      ],
+    ],
+  },
+  "jayden-daniel-koek": {
+    summary: [
+      "An interactive 3D photography portfolio for Jayden's nature and urban work.",
+      "Een interactief 3D-fotografieportfolio voor Jaydens natuur- en stadsfotografie.",
+    ],
+    fit: "cover",
+    sections: [
+      [
+        "A reference, reinterpreted",
+        "Een referentie, opnieuw uitgewerkt",
+        "Jayden shared a website he liked as a reference for his photography portfolio. I interpreted that direction in my own way and built the site with SvelteKit, Threlte and Three.js.",
+        "Jayden deelde een website die hij mooi vond als referentie voor zijn fotografieportfolio. Ik gaf die richting een eigen invulling en bouwde de site met SvelteKit, Threlte en Three.js.",
+        1,
+      ],
+      [
+        "Exploring the photography",
+        "De fotografie verkennen",
+        "Visitors can explore an interactive 3D gallery, open photos in a viewer or switch to a conventional gallery. The site is live and still in development; a custom admin for Jayden to manage his work is planned.",
+        "Bezoekers kunnen een interactieve 3D-galerij verkennen, foto's in een viewer openen of overschakelen naar een gewone galerij. De site is live en nog in ontwikkeling; een eigen admin waarmee Jayden zijn werk kan beheren staat gepland.",
+      ],
+    ],
+  },
   "maria-hoogland": {
     summary: [
       "A custom architecture portfolio with an admin Maria can update herself.",

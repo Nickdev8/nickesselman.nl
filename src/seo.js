@@ -3,12 +3,12 @@ import {
   projects,
   site,
 } from "./data/projects.js";
-import { localeFromPath, stripLocale } from "./locale.js";
+import { localeFromPath, localizeProject, stripLocale } from "./locale.js";
 
 const personId = `${site.url}/#person`;
 const websiteId = `${site.url}/#website`;
 const projectRoutes = projects
-  .filter((project) => !project.externalUrl && !project.draft)
+  .filter((project) => !project.draft)
   .map((project) => `/projects/${project.slug}/`);
 
 const englishRoutes = [
@@ -145,7 +145,7 @@ export function routeMeta(pathname = "/") {
             itemListElement: projects.slice(0, 3).map((item, index) => ({
               "@type": "ListItem",
               position: index + 1,
-              url: item.externalUrl ?? `${site.url}/projects/${item.slug}/`,
+              url: `${site.url}/projects/${item.slug}/`,
               name: item.title,
             })),
           },
@@ -217,7 +217,7 @@ export function routeMeta(pathname = "/") {
   }
   const match = normalized.match(/^\/projects\/([^/]+)$/);
   if (match && projectBySlug[match[1]])
-    return localize(projectMeta(projectBySlug[match[1]]));
+    return localize(projectMeta(localizeProject(locale, projectBySlug[match[1]])));
   return localize(
     pageMeta({
       path: "/404.html",

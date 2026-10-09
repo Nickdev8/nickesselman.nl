@@ -38,6 +38,42 @@ export function copy(locale, english, dutch) {
 
 const dutch = new Map([
   [
+    "Bloesem Kneppers dancing in a warmly lit room",
+    "Bloesem Kneppers danst in een warm verlichte kamer",
+  ],
+  [
+    "Addicted to You campaign portrait featuring Bloesem Kneppers",
+    "Campagneportret voor Addicted to You met Bloesem Kneppers",
+  ],
+  [
+    "Hand holding an electrical plug, wrapped in cables and lit blue and red, photographed by Edith van Aken",
+    "Een hand met een stekker, omwikkeld met kabels en blauw en rood verlicht, gefotografeerd door Edith van Aken",
+  ],
+  [
+    "A person appears inside a frame in the woods, photographed by Edith van Aken",
+    "Een persoon in een lijst in het bos, gefotografeerd door Edith van Aken",
+  ],
+  [
+    "Colorful bird photographed by Jayden Daniel Koek",
+    "Kleurrijke vogel gefotografeerd door Jayden Daniel Koek",
+  ],
+  [
+    "Close-up horse portrait photographed by Jayden Daniel Koek",
+    "Close-upportret van een paard, gefotografeerd door Jayden Daniel Koek",
+  ],
+
+  ["Photography portfolio", "Fotografieportfolio"],
+  ["Interactive photography portfolio", "Interactief fotografieportfolio"],
+  ["Finished · Live", "Afgerond · Live"],
+  ["Live · Frontend complete", "Live · Frontend afgerond"],
+  ["Live · In development", "Live · In ontwikkeling"],
+  ["Design, frontend and admin development", "Ontwerp, frontend- en adminontwikkeling"],
+  ["Design and frontend development", "Ontwerp en frontendontwikkeling"],
+  ["A photography portfolio with a custom admin for independent editing.", "Een fotografieportfolio met een eigen admin voor zelfstandig beheer."],
+  ["A photography portfolio designed around Edith's portraits and visual stories.", "Een fotografieportfolio ontworpen rond Ediths portretten en beeldverhalen."],
+  ["An interactive 3D photography portfolio for Jayden's nature and urban work.", "Een interactief 3D-fotografieportfolio voor Jaydens natuur- en stadsfotografie."],
+
+  [
     "Netherlands based full-stack developer and maker working across software, games, VR, hardware and PCB design.",
     "Nederlandse full-stack developer en maker, werkzaam met software, games, VR, hardware en PCB-ontwerp.",
   ],

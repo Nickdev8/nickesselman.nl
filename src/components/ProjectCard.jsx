@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { projectPath } from "../data/projects";
+import { isRepositoryLink, projectLinkLabel } from "../data/projectLinks";
 import { localizeProject } from "../locale";
 import { projectContent } from "../data/projectContent";
 import ProjectImage from "./ProjectImage";
@@ -71,20 +72,9 @@ export default function ProjectCard({ item, index, locale }) {
   const nearViewport = useNearViewport(cardRef);
   const project = localizeProject(locale, item);
   const slides = project.media;
-  const external = Boolean(project.externalUrl);
-  const content = external
-    ? {
-        fit: "cover",
-        summary: locale === "nl" ? project.summaryNl : project.summary,
-      }
-    : projectContent(project.slug, locale);
-  const cardHref = project.externalUrl ?? projectPath(project, locale);
-  const linkProps = external
-    ? { target: "_blank", rel: "noopener noreferrer" }
-    : {};
-  const repository = project.links.find((link) =>
-    link.href.includes("github.com"),
-  );
+  const content = projectContent(project.slug, locale);
+  const cardHref = projectPath(project, locale);
+  const website = project.links.find((link) => !isRepositoryLink(link));
 
   useEffect(() => {
     if (
@@ -182,39 +172,30 @@ export default function ProjectCard({ item, index, locale }) {
         <a
           className="project-card-link"
           href={cardHref}
-          {...linkProps}
           aria-label={
-            external
-              ? locale === "nl"
-                ? `Bezoek de website van ${project.title}`
-                : `Visit the ${project.title} website`
-              : locale === "nl"
-                ? `Lees de case van ${project.title}`
-                : `Read the ${project.title} case study`
+            locale === "nl"
+              ? `Bekijk het project ${project.title}`
+              : `View the ${project.title} project`
           }
         />
       </div>
       <div className="project-caption">
         <h3>
-          <a href={cardHref} {...linkProps}>{project.title}</a>
+          <a href={cardHref}>{project.title}</a>
         </h3>
         <p>{content.summary}</p>
-        <div
-          className={`project-actions${repository ? " has-repository" : ""}`}
-        >
-          <a className="text-link-left" href={cardHref} {...linkProps}>
-            {external
-              ? locale === "nl" ? "Bezoek website" : "Visit website"
-              : locale === "nl" ? "Bekijk project" : "View project"} ↗
+        <div className="project-actions">
+          <a className="text-link-left" href={cardHref}>
+            {locale === "nl" ? "Bekijk project" : "View project"} ↗
           </a>
-          {repository ? (
+          {website ? (
             <a
               className="text-link-right"
-              href={repository.href}
+              href={website.href}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
-              {locale === "nl" ? "Repository" : "Repository"} ↗
+              {projectLinkLabel(website, locale)} ↗
             </a>
           ) : null}
         </div>

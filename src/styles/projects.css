@@ -168,6 +168,7 @@
 }
 .case-links {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 40px;
   padding: 55px 3.4vw 70px;
