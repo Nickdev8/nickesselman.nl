@@ -87,8 +87,7 @@ export default function CvPage() {
       <main className="cv-page" ref={pageRef}>
         <header className="cv-intro">
           <div className="cv-intro-copy">
-            <p className="cv-kicker">Nick Esselman</p>
-            <h1>{content.title}</h1>
+            <h1>Nick Esselman</h1>
             <p className="cv-summary">{content.intro}</p>
           </div>
           <figure className="cv-portrait">
@@ -119,7 +118,7 @@ export default function CvPage() {
 
         <section className="cv-section" aria-labelledby="cv-client-heading">
           <h2 id="cv-client-heading">{content.clientWork}</h2>
-          <EntryList entries={content.clients} />
+          <EntryList entries={content.clients} className="cv-client-list" />
         </section>
 
         <section className="cv-section cv-details" aria-label={`${content.skills} and ${content.education}`}>

@@ -8,7 +8,7 @@ export const cv = {
   en: {
     title: "CV",
     intro:
-      "Full-stack developer and maker. I build software, interactive projects and hardware.",
+      "Full-stack developer & hardware maker.",
     print: "Download CV as PDF",
     contact: "Contact",
     selectedWork: "Selected work",
@@ -20,33 +20,33 @@ export const cv = {
       {
         title: "PartyVR",
         date: "Active",
-        body: "Room-scale multiplayer games on a server-authoritative LAN, with a spectator screen and hardware integration.",
+        body: "Room-scale VR multiplayer with LAN networking and hardware integration.",
       },
       {
         title: "LAMP",
         date: "PCB ready",
-        body: "An RP2040 controller for LED-panel chains and xLights-style installations. I designed the electronics, PCB and firmware.",
+        body: "LED-panel controller. Custom PCB and RP2040 firmware.",
       },
       {
         title: "MYMacropad",
         date: "Built",
-        body: "A 4×4 macropad I designed and built, including the PCB, firmware, enclosure, switches and soldering.",
+        body: "Custom 4×4 macropad: PCB, firmware and enclosure.",
       },
     ],
     clients: [
       {
-        title: "AMH, Architect Maria Hoogland",
-        body: "A custom SvelteKit portfolio and admin system, built from a one-day wireframe through launch, hosting and search setup.",
+        title: "Architect Maria Hoogland",
+        body: "SvelteKit portfolio and admin system, from design to hosting.",
       },
       {
         title: "Robijn Fotografie",
-        body: "A custom photography portfolio and editing system with Docker deployment and responsive images.",
+        body: "Photography portfolio and editing system, deployed with Docker.",
       },
     ],
     skillGroups: [
       ["Web", "JavaScript, React, SvelteKit, HTML/CSS, Docker, Linux, Bash"],
-      ["Physical computing", "PCB design, RP2040, firmware, addressable LEDs, sensors, servos, speakers"],
-      ["Interactive", "VR, LAN multiplayer, Unity, Godot, Blender, game development"],
+      ["Physical computing", "PCB design, RP2040, firmware, LEDs, sensors"],
+      ["Interactive", "VR, LAN multiplayer, Unity, Godot, Blender"],
     ],
     educationBody: "Mediacollege Amsterdam · 2024-2029",
     languages: "Dutch (native) · English (professional) · Russian (basic)",
@@ -54,22 +54,22 @@ export const cv = {
       {
         title: "Hack Club Moonshot",
         place: "Florida · 2025",
-        body: "With Ruben, I built the electronics for Disco Prullenbak: sensors, servos and speakers. Ruben built the woodwork and LEDs.",
+        body: "Built sensor, servo and audio electronics for Disco Prullenbak.",
       },
       {
         title: "Hack Club Neighborhood",
         place: "San Francisco · 2025",
-        body: "Three months of building. I made Pao, an early browser-based networked physics sandbox, and worked with three friends on another project.",
+        body: "Three-month residency; built Pao, a networked physics sandbox.",
       },
       {
         title: "Hack Club Undercity",
         place: "San Francisco · 2025",
-        body: "A hardware hackathon where I worked with Alice on a physical-computing build.",
+        body: "Hardware hackathon; physical computing with Alice.",
       },
       {
         title: "Hack Club Juice",
         place: "Shanghai · 2025",
-        body: "Built solo at Hack Club's game-jam finale, where I started working on PartyVR.",
+        body: "Game-jam finale; started PartyVR as a solo project.",
       },
     ],
     footer: "Full project case studies and contact details at nickesselman.nl",
@@ -77,7 +77,7 @@ export const cv = {
   nl: {
     title: "CV",
     intro:
-      "Full-stack developer en maker. Ik bouw software, interactieve projecten en hardware.",
+      "Full-stack developer & hardwaremaker.",
     print: "Download cv als pdf",
     contact: "Contact",
     selectedWork: "Geselecteerd werk",
@@ -89,33 +89,33 @@ export const cv = {
       {
         title: "PartyVR",
         date: "Actief",
-        body: "Multiplayergames op kamerschaal met een servergestuurde LAN-opstelling, een spectateurscherm en hardware-integratie.",
+        body: "VR-multiplayer op kamerschaal met LAN en hardware-integratie.",
       },
       {
         title: "LAMP",
         date: "PCB klaar",
-        body: "Een RP2040-controller voor ketens van LED-panelen en xLights-achtige installaties. Ik ontwierp de elektronica, PCB en firmware.",
+        body: "LED-paneelcontroller. Eigen PCB en RP2040-firmware.",
       },
       {
         title: "MYMacropad",
         date: "Gebouwd",
-        body: "Een 4×4-macropad die ik ontwierp en bouwde, met eigen PCB, firmware, behuizing, switches en soldeerwerk.",
+        body: "Eigen 4×4-macropad: PCB, firmware en behuizing.",
       },
     ],
     clients: [
       {
-        title: "AMH, Architect Maria Hoogland",
-        body: "Een maatwerk SvelteKit-portfolio met adminomgeving, van wireframe in één dag tot launch, hosting en zoekoptimalisatie.",
+        title: "Architect Maria Hoogland",
+        body: "SvelteKit-portfolio met adminomgeving, van ontwerp tot hosting.",
       },
       {
         title: "Robijn Fotografie",
-        body: "Een maatwerk fotografieportfolio met bewerksysteem, Docker-deployment en responsive afbeeldingen.",
+        body: "Fotografieportfolio met bewerksysteem, gehost met Docker.",
       },
     ],
     skillGroups: [
       ["Web", "JavaScript, React, SvelteKit, HTML/CSS, Docker, Linux, Bash"],
-      ["Physical computing", "PCB-ontwerp, RP2040, firmware, addressable LEDs, sensoren, servo's, speakers"],
-      ["Interactief", "VR, LAN-multiplayer, Unity, Godot, Blender, gameontwikkeling"],
+      ["Physical computing", "PCB-ontwerp, RP2040, firmware, LEDs, sensoren"],
+      ["Interactief", "VR, LAN-multiplayer, Unity, Godot, Blender"],
     ],
     educationBody: "Mediacollege Amsterdam · 2024-2029",
     languages: "Nederlands (moedertaal) · Engels (professioneel) · Russisch (basis)",
@@ -123,22 +123,22 @@ export const cv = {
       {
         title: "Hack Club Moonshot",
         place: "Florida · 2025",
-        body: "Ik bouwde met Ruben de elektronica voor Disco Prullenbak: sensoren, servo's en speakers. Ruben bouwde het houtwerk en de LEDs.",
+        body: "Sensoren, servo's en audio-elektronica voor Disco Prullenbak.",
       },
       {
         title: "Hack Club Neighborhood",
         place: "San Francisco · 2025",
-        body: "Drie maanden bouwen. Ik maakte Pao, een vroege browser-based netwerkomgeving met physics, en werkte met drie vrienden aan een ander project.",
+        body: "Drie maanden bouwen; maakte Pao, een netwerksandbox met physics.",
       },
       {
         title: "Hack Club Undercity",
         place: "San Francisco · 2025",
-        body: "Hardware-hackathon waar ik met Alice aan een physical-computing-project werkte.",
+        body: "Hardware-hackathon; physical computing met Alice.",
       },
       {
         title: "Hack Club Juice",
         place: "Shanghai · 2025",
-        body: "Bouwde solo bij de game-jamfinale van Hack Club, waar ik begon met PartyVR.",
+        body: "Game-jamfinale; begon solo aan PartyVR.",
       },
     ],
     footer: "Volledige projectcases en contactgegevens op nickesselman.nl",
