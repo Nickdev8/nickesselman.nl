@@ -1,5 +1,7 @@
 # Repository notes
 
+- Verified 2026-10-24: local SVG icons replace Devicon font; homepage portrait prioritized; dependency audit clean. Build, nginx syntax/headers and desktop/mobile EN/NL smoke checks passed. Local mobile Lighthouse median 99, LCP 2.03s, CLS 0. No deployment/push. Evidence and HTTPS redirect gap: `AUDIT-2026-10-24.md`.
+
 - React/Vite site. `npm run build` produces the client, SSR bundle, and prerendered pages.
 - Production serves `dist/` through `docker/nginx.conf`; Docker Compose maps port 3012.
 - The CV print button posts to `/api/cv-download`. Production nginx adds connection and proxy IP headers before forwarding to ntfy; the Vite dev proxy forwards browser details only. See README for the public-topic caveat.

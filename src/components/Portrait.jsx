@@ -6,7 +6,11 @@ const filmPortrait = {
     "/images/nick-portrait-film-480.webp 480w, /images/nick-portrait-film-960.webp 960w",
 };
 
-export default function Portrait({ priority = false, variant = "default" }) {
+export default function Portrait({
+  priority = false,
+  variant = "default",
+  sizes = "(max-width: 679px) min(78vw, 360px), 420px",
+}) {
   const portrait = variant === "film" ? filmPortrait : { src: site.portrait };
 
   return (
@@ -17,7 +21,7 @@ export default function Portrait({ priority = false, variant = "default" }) {
         portrait.srcSet ??
         "/images/nick-esselman-480.webp 478w, /images/nick-esselman-960.webp 956w"
       }
-      sizes="(max-width: 680px) 90vw, 420px"
+      sizes={sizes}
       alt="Nick Esselman"
       width={variant === "film" ? "960" : "800"}
       height={variant === "film" ? "960" : "800"}

@@ -335,9 +335,9 @@ footer {
   display: grid;
   width: 42px;
   height: 42px;
+  padding: 2px;
   place-items: center;
-  font-size: 38px;
-  line-height: 1;
+  object-fit: contain;
   will-change: transform;
 }
 .about-statement {

@@ -49,7 +49,10 @@ export default function App() {
       <main>
         <Hero />
         <section className="about-section" id="about">
-          <Portrait />
+          <Portrait
+            priority
+            sizes="(max-width: 316px) calc(100vw - 36px), (max-width: 679px) 280px, 320px"
+          />
           <div className="about-manifesto">
             {locale === "nl" ? (
               <>
