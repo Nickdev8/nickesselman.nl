@@ -1,5 +1,7 @@
 # Repository notes
 
+- Verified 2026-10-31: consent-gated GA4 `G-F6V07ZW9PS` connected through `src/analytics.js`; nginx CSP updated. Accept loads GA, Reject blocks it; withdrawal clears GA cookies and reloads. Build, diff check and stubbed browser consent/EN/NL mobile checks passed. No deployment; live GA receipt unverified.
+
 - Verified 2026-10-24: local SVG icons replace Devicon font; homepage portrait prioritized; dependency audit clean. Build, nginx syntax/headers and desktop/mobile EN/NL smoke checks passed. Local mobile Lighthouse median 99, LCP 2.03s, CLS 0. No deployment/push. Evidence and HTTPS redirect gap: `AUDIT-2026-10-24.md`.
 
 - React/Vite site. `npm run build` produces the client, SSR bundle, and prerendered pages.

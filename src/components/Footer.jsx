@@ -7,6 +7,9 @@ export default function Footer() {
       <a href={localePath("/about/", locale)}>
         © {new Date().getFullYear()} Nick Esselman
       </a>
+      <button className="cookie-settings" type="button" onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))}>
+        Cookies
+      </button>
     </footer>
   );
 }

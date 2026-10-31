@@ -40,6 +40,21 @@ the message to `https://ntfy.sh/nickesselman-nickcvdownload`. The Vite developme
 forwards the browser details without nginx's IP fields. This tracks clicks, not completed
 PDF saves. The ntfy.sh topic is publicly readable, so its messages are not confidential.
 
+## Google Analytics
+
+GA4 stream `G-F6V07ZW9PS` loads only after the visitor accepts analytics cookies.
+The EN/NL banner stores the choice locally; the footer Cookies button reopens it.
+Rejecting after acceptance disables GA, clears its cookies and reloads the page.
+Advertising consent stays denied. Page URLs and referrers omit query strings and
+fragments. No Measurement Protocol secret or backend endpoint is needed.
+
+Build and deploy the site **and** `docker/nginx.conf` together: nginx permits the
+Google tag and Analytics collection hosts. After deployment, accept cookies on
+`https://nickesselman.nl` without an ad blocker and confirm the visit in GA4 Realtime
+or Google Tag Assistant. Local browser checks stub Google requests to avoid test traffic.
+The Google property’s Enhanced Measurement settings control automatic interactions;
+review them before collecting form or other potentially identifying content.
+
 Optional privacy-first traffic measurement uses Cloudflare Web Analytics:
 
 ```bash

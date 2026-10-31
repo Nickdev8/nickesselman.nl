@@ -1,4 +1,5 @@
 import App from "./App";
+import CookieBanner from "./components/CookieBanner";
 import AboutPage from "./components/AboutPage";
 import CvPage from "./components/CvPage";
 import NotFoundPage from "./components/NotFoundPage";
@@ -39,6 +40,7 @@ export default function Site({ url = "/" }) {
         <NotFoundPage />
       ) : null}
       <PrivacyAnalytics />
+      <CookieBanner />
     </LocaleProvider>
   );
 }
