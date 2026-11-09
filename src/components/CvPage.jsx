@@ -15,6 +15,9 @@ function EntryList({ entries, className = "" }) {
             {(entry.date || entry.place) && <span>{entry.date ?? entry.place}</span>}
           </div>
           <p>{entry.body}</p>
+          {entry.bullets && (
+            <ul>{entry.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+          )}
         </article>
       ))}
     </div>
@@ -89,36 +92,39 @@ export default function CvPage() {
           <div className="cv-intro-copy">
             <h1>Nick Esselman</h1>
             <p className="cv-summary">{content.intro}</p>
+            <address className="cv-contact" aria-label={content.contact}>
+              <div>
+                <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                <a href={`https://${contact.site}`}>{contact.site}</a>
+                <a href={`https://${contact.github}`} target="_blank" rel="noreferrer">{contact.github}</a>
+                <a href={`https://${contact.linkedin}`} target="_blank" rel="noreferrer">{contact.linkedin}</a>
+              </div>
+            </address>
           </div>
           <figure className="cv-portrait">
             <img
-              src="/images/cv/nick-temporary-portrait.webp"
+              src="/images/cv/nick-esselman-edith-van-aken.webp"
               width="960"
-              height="1280"
-              alt="Nick Esselman outdoors"
+              height="1200"
+              alt="Nick Esselman"
               fetchPriority="high"
             />
           </figure>
         </header>
 
-        <section className="cv-contact" aria-labelledby="cv-contact-heading">
-          <h2 id="cv-contact-heading">{content.contact}</h2>
-          <div>
-            <a href={`mailto:${contact.email}`}>{contact.email}</a>
-            <a href={`https://${contact.site}`}>{contact.site}</a>
-            <a href={`https://${contact.github}`} target="_blank" rel="noreferrer">{contact.github}</a>
-            <a href={`https://${contact.linkedin}`} target="_blank" rel="noreferrer">{contact.linkedin}</a>
-          </div>
-        </section>
-
-        <section className="cv-section" aria-labelledby="cv-work-heading">
-          <h2 id="cv-work-heading">{content.selectedWork}</h2>
-          <EntryList entries={content.projects} />
+        <section className="cv-section cv-profile" aria-labelledby="cv-profile-heading">
+          <h2 id="cv-profile-heading">{content.profile}</h2>
+          <p>{content.profileBody}</p>
         </section>
 
         <section className="cv-section" aria-labelledby="cv-client-heading">
           <h2 id="cv-client-heading">{content.clientWork}</h2>
           <EntryList entries={content.clients} className="cv-client-list" />
+        </section>
+
+        <section className="cv-section" aria-labelledby="cv-work-heading">
+          <h2 id="cv-work-heading">{content.selectedWork}</h2>
+          <EntryList entries={content.projects} />
         </section>
 
         <section className="cv-section cv-details" aria-label={`${content.skills} and ${content.education}`}>

@@ -1,3 +1,5 @@
+import PhotoCredit from "./PhotoCredit";
+
 export default function ProjectImage({
   media,
   priority = false,
@@ -18,8 +20,7 @@ export default function ProjectImage({
       decoding="async"
     />
   );
-  if (!src.endsWith(".webp")) return img;
-  return (
+  const picture = !src.endsWith(".webp") ? img : (
     <picture>
       <source
         type="image/avif"
@@ -33,5 +34,12 @@ export default function ProjectImage({
       />
       {img}
     </picture>
+  );
+  if (!media.credit) return picture;
+  return (
+    <div className="credited-image">
+      {picture}
+      <PhotoCredit name={media.credit} />
+    </div>
   );
 }

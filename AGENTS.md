@@ -1,6 +1,10 @@
 # Repository notes
 
-- Verified 2026-10-31: consent-gated GA4 `G-F6V07ZW9PS` connected through `src/analytics.js`; nginx CSP updated. Accept loads GA, Reject blocks it; withdrawal clears GA cookies and reloads. Build, diff check and stubbed browser consent/EN/NL mobile checks passed. No deployment; live GA receipt unverified.
+- Verified 2026-11-09: CV redesigned as a traditional freelance full-stack resume: profile, client experience with delivery bullets, technical projects/skills, education and hackathons. EN/NL build passed; 320/390/768/1440px overflow checks and one-page A4 PDF checks passed. Content/layout remain in `src/data/cv.js`, `src/components/CvPage.jsx`, `src/styles/cv.css`.
+- Verified 2026-11-09: shared React `PhotoCredit.jsx` renders name-only bottom-right difference-blend credits on credited project images (home/work/case studies); CV portrait has no credit per Nick’s preference. Per-image `credit` fields live in `src/data/projects.js`; shared styles in `src/styles/photo-credit.css`. Build and desktop/home + mobile/home/case/CV checks passed.
+- Verified 2026-11-09: CV uses Edith van Aken’s optimized portrait without a credit; enlarged desktop/mobile/print sizes and subtle rounded corners. Build, desktop/mobile overflow checks and one-page A4 PDF visual check passed.
+
+- Verified 2026-10-31: consent-gated GA4 `G-F6V07ZW9PS` connected through `src/analytics.js`; nginx CSP updated. Accept loads GA, Reject blocks it; withdrawal clears GA cookies and reloads. Build, diff check and stubbed browser consent/EN/NL mobile checks passed. Live deployment verified: Google tag HTTP 200, consented page_view to region1.google-analytics.com for this stream HTTP 204; GA cookies present. nginx syntax validated.
 
 - Verified 2026-10-24: local SVG icons replace Devicon font; homepage portrait prioritized; dependency audit clean. Build, nginx syntax/headers and desktop/mobile EN/NL smoke checks passed. Local mobile Lighthouse median 99, LCP 2.03s, CLS 0. No deployment/push. Evidence and HTTPS redirect gap: `AUDIT-2026-10-24.md`.
 

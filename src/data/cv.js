@@ -8,14 +8,16 @@ export const cv = {
   en: {
     title: "CV",
     intro:
-      "Full-stack developer & hardware maker.",
+      "Freelance full-stack developer",
     print: "Download CV as PDF",
+    profile: "Profile",
+    profileBody: "I build custom websites and web applications, from responsive interfaces to admin systems and deployment. I work directly with clients on design, development and hosting, with a focus on sites they can manage themselves.",
     contact: "Contact",
-    selectedWork: "Selected work",
-    clientWork: "Client work",
-    skills: "Skills",
-    education: "Education",
-    hackathons: "Hackathons & community",
+    selectedWork: "Technical projects",
+    clientWork: "Freelance experience",
+    skills: "Technical skills",
+    education: "Education & languages",
+    hackathons: "Hackathons & international experience",
     projects: [
       {
         title: "PartyVR",
@@ -36,17 +38,19 @@ export const cv = {
     clients: [
       {
         title: "Architect Maria Hoogland",
-        body: "SvelteKit portfolio and admin system, from design to hosting.",
+        body: "Built a custom SvelteKit portfolio and admin system from wireframe to deployment.",
+        bullets: ["Enabled the client to edit text and manage images without changing code.", "Set up hosting, domain configuration and Google Search Console."],
       },
       {
         title: "Robijn Fotografie",
-        body: "Photography portfolio and editing system, deployed with Docker.",
+        body: "Developed a responsive SvelteKit photography portfolio from the client’s design direction.",
+        bullets: ["Built an admin for text, images, categories and pages; deployed with Docker."],
       },
     ],
     skillGroups: [
-      ["Web", "JavaScript, React, SvelteKit, HTML/CSS, Docker, Linux, Bash"],
-      ["Physical computing", "PCB design, RP2040, firmware, LEDs, sensors"],
-      ["Interactive", "VR, LAN multiplayer, Unity, Godot, Blender"],
+      ["Frontend", "JavaScript, TypeScript, React, SvelteKit, HTML, CSS"],
+      ["Delivery & hosting", "Custom admin systems, Docker, Linux, Bash, Caddy, nginx"],
+      ["Additional", "PCB design, RP2040 firmware, VR, Unity, Godot, Blender"],
     ],
     educationBody: "Mediacollege Amsterdam · 2024-2029",
     languages: "Dutch (native) · English (professional) · Russian (basic)",
@@ -77,14 +81,16 @@ export const cv = {
   nl: {
     title: "CV",
     intro:
-      "Full-stack developer & hardwaremaker.",
+      "Freelance full-stack developer",
     print: "Download cv als pdf",
+    profile: "Profiel",
+    profileBody: "Ik bouw websites en webapplicaties op maat, van responsive interfaces tot adminsystemen en deployment. Ik werk rechtstreeks met opdrachtgevers aan ontwerp, ontwikkeling en hosting, met aandacht voor sites die ze zelf kunnen beheren.",
     contact: "Contact",
-    selectedWork: "Geselecteerd werk",
-    clientWork: "Opdrachtwerk",
+    selectedWork: "Technische projecten",
+    clientWork: "Freelance ervaring",
     skills: "Vaardigheden",
-    education: "Opleiding",
-    hackathons: "Hackathons & community",
+    education: "Opleiding & talen",
+    hackathons: "Hackathons & internationale ervaring",
     projects: [
       {
         title: "PartyVR",
@@ -105,17 +111,19 @@ export const cv = {
     clients: [
       {
         title: "Architect Maria Hoogland",
-        body: "SvelteKit-portfolio met adminomgeving, van ontwerp tot hosting.",
+        body: "Bouwde een SvelteKit-portfolio met adminomgeving, van wireframe tot deployment.",
+        bullets: ["Maakte tekst- en beeldbeheer mogelijk zonder code aan te passen.", "Regelde hosting, domeinconfiguratie en Google Search Console."],
       },
       {
         title: "Robijn Fotografie",
-        body: "Fotografieportfolio met bewerksysteem, gehost met Docker.",
+        body: "Ontwikkelde een responsive SvelteKit-fotografieportfolio vanuit de ontwerpvisie van de klant.",
+        bullets: ["Bouwde een admin voor tekst, beelden, categorieën en pagina’s; deployment met Docker."],
       },
     ],
     skillGroups: [
-      ["Web", "JavaScript, React, SvelteKit, HTML/CSS, Docker, Linux, Bash"],
-      ["Physical computing", "PCB-ontwerp, RP2040, firmware, LEDs, sensoren"],
-      ["Interactief", "VR, LAN-multiplayer, Unity, Godot, Blender"],
+      ["Frontend", "JavaScript, TypeScript, React, SvelteKit, HTML, CSS"],
+      ["Oplevering & hosting", "Adminsystemen op maat, Docker, Linux, Bash, Caddy, nginx"],
+      ["Aanvullend", "PCB-ontwerp, RP2040-firmware, VR, Unity, Godot, Blender"],
     ],
     educationBody: "Mediacollege Amsterdam · 2024-2029",
     languages: "Nederlands (moedertaal) · Engels (professioneel) · Russisch (basis)",

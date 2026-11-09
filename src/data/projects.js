@@ -36,6 +36,7 @@ export const projects = [
       {
         type: "image",
         src: "/projects/bloesem-kneppers/about-bloesem.webp",
+        credit: "Bloesem Kneppers",
         alt: "Bloesem Kneppers dancing in a warmly lit room",
         width: 960,
         height: 1280,
@@ -43,6 +44,7 @@ export const projects = [
       {
         type: "image",
         src: "/projects/bloesem-kneppers/insta-3824650181032118774.webp",
+        credit: "Bloesem Kneppers",
         alt: "Addicted to You campaign portrait featuring Bloesem Kneppers",
         width: 960,
         height: 1279,
@@ -82,11 +84,13 @@ export const projects = [
       {
         type: "image",
         src: "/projects/robijn-fotografie/portrait.webp",
+        credit: "Beau Robijn Fotografie",
         alt: "Photography presented on the Robijn Fotografie website",
       },
       {
         type: "image",
         src: "/projects/robijn-fotografie/subway-portrait.webp",
+        credit: "Beau Robijn Fotografie",
         alt: "Black-and-white portrait from the Robijn Fotografie portfolio",
       },
     ],
@@ -106,6 +110,7 @@ export const projects = [
       {
         type: "image",
         src: "/projects/edith-van-aken/plug-and-cables.webp",
+        credit: "Edith van Aken",
         alt: "Hand holding an electrical plug, wrapped in cables and lit blue and red, photographed by Edith van Aken",
         width: 4160,
         height: 6240,
@@ -113,6 +118,7 @@ export const projects = [
       {
         type: "image",
         src: "/projects/edith-van-aken/through-the-frame.webp",
+        credit: "Edith van Aken",
         alt: "A person appears inside a frame in the woods, photographed by Edith van Aken",
         width: 1555,
         height: 2048,
@@ -137,6 +143,7 @@ export const projects = [
       {
         type: "image",
         src: "/projects/jayden-daniel-koek/colorful-bird.webp",
+        credit: "Jayden Daniel Koek",
         alt: "Colorful bird photographed by Jayden Daniel Koek",
         width: 1440,
         height: 1800,
@@ -144,6 +151,7 @@ export const projects = [
       {
         type: "image",
         src: "/projects/jayden-daniel-koek/horse.webp",
+        credit: "Jayden Daniel Koek",
         alt: "Close-up horse portrait photographed by Jayden Daniel Koek",
         width: 1440,
         height: 1800,
@@ -183,11 +191,13 @@ export const projects = [
       {
         type: "image",
         src: "/projects/maria-hoogland/timmermans-werkplaats.webp",
+        credit: "Maria Hoogland",
         alt: "Timmermans Werkplaats building in Haarlem, photographed for the Maria Hoogland Architectuur website case study",
       },
       {
         type: "image",
         src: "/projects/maria-hoogland/garagewoning-haarlem-noord.webp",
+        credit: "Maria Hoogland",
         alt: "Garagewoning in Haarlem-Noord photographed for the Maria Hoogland Architectuur website",
       },
     ],
